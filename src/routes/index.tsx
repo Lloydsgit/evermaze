@@ -53,50 +53,57 @@ function Header() {
         scrolled ? "bg-card/95 backdrop-blur border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="container-evermaze flex items-center justify-between py-4 relative">
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 -ml-2 z-20"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+      <div className="container-evermaze py-4">
+        <div className="hidden md:flex items-center justify-between">
+          <nav className="flex items-center gap-6">
+            {nav.slice(0, 3).map((n) => (
+              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+                {n.name}
+              </Link>
+            ))}
+          </nav>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {nav.slice(0, 3).map((n) => (
-            <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
-              {n.name}
-            </Link>
-          ))}
-        </nav>
-
-        <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none">
-          <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-          <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
-          {nav.slice(3).map((n) => (
-            <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
-              {n.name}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3 md:gap-5 md:ml-8">
-          <button 
-            onClick={() => setSearchOpen(!searchOpen)} 
-            aria-label="Search" 
-            className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
-          >
-            <Search className="size-[18px]" />
-          </button>
-          <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors hidden sm:block"><Heart className="size-[18px]" /></Link>
-          <Link to="/profile" aria-label="Account" className="hover:text-burgundy transition-colors hidden sm:block"><User className="size-[18px]" /></Link>
-          <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
-            <ShoppingBag className="size-[18px]" />
-            <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+          <Link to="/" className="flex flex-col items-center leading-none mx-8">
+            <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
+            <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
           </Link>
+
+          <nav className="flex items-center gap-6">
+            {nav.slice(3).map((n) => (
+              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+                {n.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="flex md:hidden items-center justify-between">
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 -ml-2 z-20"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+
+          <Link to="/" className="flex flex-col items-center leading-none">
+            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setSearchOpen(!searchOpen)} 
+              aria-label="Search" 
+              className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
+            >
+              <Search className="size-[18px]" />
+            </button>
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+              <ShoppingBag className="size-[18px]" />
+              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+            </Link>
+          </div>
         </div>
       </div>
 
