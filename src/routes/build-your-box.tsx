@@ -71,7 +71,7 @@ function BuildYourBoxPage() {
 
   const toggleItem = (itemName: string) => {
     setSelectedItems((prev) => 
-      prev.includes(itemName) ? prev.filter((i) => i !== itemName) : prev
+      prev.includes(itemName) ? prev.filter((i) => i !== itemName) : [...prev, itemName]
     );
   };
 
