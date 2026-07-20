@@ -213,12 +213,6 @@ function BuildYourBoxPage() {
                     <span className="block font-serif text-3xl text-burgundy">₹{pkgItem.price}</span>
                     <span className="block mt-2 font-serif text-lg">{pkgItem.name}</span>
                     <span className="block mt-1 text-sm text-muted-foreground">{pkgItem.items} items</span>
-                    <div className="mt-3 pt-3 border-t border-border">
-                      <p className="text-xs text-burgundy font-medium">Included:</p>
-                      {pkgItem.defaultTouches.map((touch) => (
-                        <p key={touch} className="text-xs text-muted-foreground">• {touch}</p>
-                      ))}
-                    </div>
                   </button>
                 ))}
               </div>
