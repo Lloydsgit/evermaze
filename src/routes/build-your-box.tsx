@@ -10,11 +10,11 @@ export const Route = createFileRoute("/build-your-box")({
 });
 
 const packages = [
-  { price: 199, name: "Mini Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
-  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain"], includedValue: 147 },
-  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame"], includedValue: 335 },
-  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear"], includedValue: 673 },
-  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Photo Album", "Personalized Mug", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet"], includedValue: 1144 },
+  { price: 199, name: "Mini Hamper", items: 4, maxItems: 4 },
+  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6 },
+  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9 },
+  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12 },
+  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15 },
 ];
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
@@ -37,16 +37,16 @@ const personalItems = [
 function BuildYourBoxPage() {
   const search = Route.useSearch();
   const initialPackage = search.package ? parseInt(search.package as string) : null;
-  const initialPkg = packages.find((p) => p.price === initialPackage);
 
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
-  const [selectedItems, setSelectedItems] = useState<string[]>(initialPkg?.defaultTouches || []);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
   const [occasionDate, setOccasionDate] = useState("");
   const [recipientName, setRecipientName] = useState("");
   const [recipientMessage, setRecipientMessage] = useState("");
+  const [deliveryType, setDeliveryType] = useState<"standard" | "express" | "same-day">("standard");
   const [formData, setFormData] = useState({
     senderName: "",
     senderEmail: "",
@@ -61,12 +61,17 @@ function BuildYourBoxPage() {
 
   const pkg = packages.find((p) => p.price === selectedPackage);
 
+  const deliveryOptions = [
+    { id: "standard", name: "Standard Delivery", price: 99, description: "3-5 business days" },
+    { id: "express", name: "Express Delivery", price: 199, description: "1-2 business days" },
+    { id: "same-day", name: "Same Day Delivery", price: 349, description: "Delivery today (order before 2 PM)" },
+  ];
+
+  const selectedDelivery = deliveryOptions.find(d => d.id === deliveryType) || deliveryOptions[0];
+
   const handlePackageSelect = useCallback((price: number) => {
     setSelectedPackage(price);
-    const selectedPkg = packages.find((p) => p.price === price);
-    if (selectedPkg) {
-      setSelectedItems(selectedPkg.defaultTouches);
-    }
+    setSelectedItems([]);
   }, []);
 
   const toggleItem = useCallback((itemName: string) => {
@@ -103,8 +108,9 @@ function BuildYourBoxPage() {
       const found = personalItems.find((i) => i.name === itemName);
       if (found) total += found.price;
     });
+    total += selectedDelivery.price;
     return total;
-  }, [selectedPackage, selectedItems]);
+  }, [selectedPackage, selectedItems, selectedDelivery]);
 
   const canProceed = useCallback(() => {
     switch (step) {
@@ -505,6 +511,35 @@ function BuildYourBoxPage() {
                 <User className="size-6 text-burgundy" />
                 Complete Your Order
               </h2>
+              
+              {/* Delivery Options */}
+              <div className="mb-8">
+                <h3 className="font-medium mb-4">Delivery Options</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {deliveryOptions.map((option) => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => setDeliveryType(option.id as "standard" | "express" | "same-day")}
+                      className={`p-4 rounded-xl border-2 text-left transition-all ${
+                        deliveryType === option.id
+                          ? "border-burgundy bg-burgundy/5"
+                          : "border-border hover:border-burgundy"
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="font-medium">{option.name}</span>
+                        {deliveryType === option.id && (
+                          <Check className="size-5 text-burgundy" />
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground">{option.description}</p>
+                      <p className="mt-2 font-medium text-burgundy">₹{option.price}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
@@ -602,6 +637,10 @@ function BuildYourBoxPage() {
                     if (found) sum += found.price;
                     return sum;
                   }, 0)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Shipping</span>
+                  <span>₹{selectedDelivery.price} ({selectedDelivery.name})</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Occasion</span>
