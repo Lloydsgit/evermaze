@@ -62,7 +62,7 @@ function FAQPage() {
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
             <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Special Just For You</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Specially Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
             <button aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></button>

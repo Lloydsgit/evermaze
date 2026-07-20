@@ -62,10 +62,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Evermaze — Special Just For You | Personalized Gift Hampers" },
+      { title: "Evermaze — Specially Just For You | Personalized Gift Hampers" },
       { name: "description", content: "Evermaze curates beautifully personalized gift hampers for every celebration. Thoughtfully packed, premium quality, made with love." },
       { name: "author", content: "Evermaze" },
-      { property: "og:title", content: "Evermaze — Special Just For You" },
+      { property: "og:title", content: "Evermaze — Specially Just For You" },
       { property: "og:description", content: "Personalized gift hampers, thoughtfully curated for every occasion." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Evermaze" },
