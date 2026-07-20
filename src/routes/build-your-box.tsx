@@ -307,30 +307,33 @@ function BuildYourBoxPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
-                  <input
-                    type="text"
-                    value={occasionDate}
-                    onChange={(e) => {
-                      let value = e.target.value.replace(/\D/g, "");
-                      if (value.length >= 3) value = value.slice(0, 2) + "/" + value.slice(2);
-                      if (value.length >= 6) value = value.slice(0, 5) + "/" + value.slice(5, 9);
-                      if (value.length > 10) value = value.slice(0, 10);
-                      setOccasionDate(value);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Backspace" && occasionDate.length === 3) {
-                        e.preventDefault();
-                        setOccasionDate(occasionDate.slice(0, -1));
-                      }
-                      if (e.key === "Backspace" && occasionDate.length === 6) {
-                        e.preventDefault();
-                        setOccasionDate(occasionDate.slice(0, -1));
-                      }
-                    }}
-                    placeholder="DD/MM/YYYY"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
-                    maxLength={10}
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={occasionDate}
+                      onChange={(e) => {
+                        let value = e.target.value.replace(/\D/g, "");
+                        if (value.length >= 3) value = value.slice(0, 2) + "/" + value.slice(2);
+                        if (value.length >= 6) value = value.slice(0, 5) + "/" + value.slice(5, 9);
+                        if (value.length > 10) value = value.slice(0, 10);
+                        setOccasionDate(value);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Backspace" && occasionDate.length === 3) {
+                          e.preventDefault();
+                          setOccasionDate(occasionDate.slice(0, -1));
+                        }
+                        if (e.key === "Backspace" && occasionDate.length === 6) {
+                          e.preventDefault();
+                          setOccasionDate(occasionDate.slice(0, -1));
+                        }
+                      }}
+                      placeholder="DD/MM/YYYY"
+                      className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                      maxLength={10}
+                    />
+                    <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground pointer-events-none" />
+                  </div>
                   <div className="mt-6">
                     <label className="block text-sm font-medium mb-2">Recipient's Name (Optional)</label>
                     <input
