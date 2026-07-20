@@ -71,8 +71,8 @@ function Header() {
         </nav>
 
         <Link to="/" className="flex flex-col items-center leading-none">
-          <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-gray-800">EVERMAZE</span>
-          <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-gray-600">Just For You</span>
+          <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
+          <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 flex-1 justify-end">
@@ -199,7 +199,7 @@ function Strip() {
   const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
   return (
     <div className="border-y border-border bg-card/50 py-4">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-gray-800 font-medium">
+      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-gray-700 font-medium">
         {items.map((i) => <span key={i}>· {i}</span>)}
       </div>
     </div>
@@ -578,9 +578,9 @@ function Newsletter() {
   return (
     <section className="py-20 md:py-28 bg-burgundy text-white relative overflow-hidden">
       <div className="container-evermaze text-center max-w-2xl relative z-10">
-        <span className="text-base tracking-[0.32em] uppercase text-champagne">Join the family</span>
+        <span className="text-lg tracking-[0.32em] uppercase text-champagne">Join the family</span>
         <h2 className="mt-4 font-serif text-5xl md:text-7xl text-champagne">Join the Evermaze family.</h2>
-        <p className="mt-4 text-lg text-gray-300">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
+        <p className="mt-4 text-lg text-gray-200">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
         <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
             type="email"
@@ -638,7 +638,7 @@ function Footer() {
         <div>
           <Link to="/" className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
           <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-gray-600">Just For You</p>
-          <p className="mt-6 max-w-xs text-sm text-gray-600 leading-relaxed">
+          <p className="mt-6 max-w-xs text-base text-gray-700 leading-relaxed">
             Beautifully personalized gift hampers, thoughtfully packed for every celebration.
           </p>
           <div className="mt-6 flex gap-3">
@@ -652,13 +652,13 @@ function Footer() {
         {cols.map((c) => (
           <div key={c.t}>
             <h4 className="text-xs tracking-[0.25em] uppercase mb-5">{c.t}</h4>
-            <ul className="space-y-3 text-sm text-gray-600">
+            <ul className="space-y-3 text-base text-gray-700">
               {c.l.map((li) => <li key={li.name}><Link to={li.to} className="hover:text-burgundy transition-colors">{li.name}</Link></li>)}
             </ul>
           </div>
         ))}
       </div>
-      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-sm text-gray-600">
+      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-base text-gray-700">
         <span>Evermaze. Made with love.</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-burgundy">Privacy</a>
