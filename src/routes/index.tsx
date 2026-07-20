@@ -17,7 +17,7 @@ import storyImg from "@/assets/story.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Evermaze — Love in a Box | Personalized Gift Hampers" },
+      { title: "Evermaze — Special Just For You | Personalized Gift Hampers" },
       { name: "description", content: "Curated, personalized gift hampers thoughtfully packed for every celebration. Shop by occasion, or build your own box." },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -71,7 +71,7 @@ function Header() {
 
         <Link to="/" className="flex flex-col items-center leading-none">
           <span className="font-serif text-2xl md:text-3xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-          <span className="mt-1 text-[0.6rem] md:text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Love in a Box</span>
+          <span className="mt-1 text-[0.6rem] md:text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Special Just For You</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 flex-1 justify-end">
@@ -594,7 +594,7 @@ function Footer() {
       <div className="container-evermaze grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12">
         <div>
           <Link to="/" className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Love in a Box</p>
+          <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Special Just For You</p>
           <p className="mt-6 max-w-xs text-sm text-muted-foreground leading-relaxed">
             Beautifully personalized gift hampers, thoughtfully packed for every celebration.
           </p>
