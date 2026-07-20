@@ -142,6 +142,15 @@ function BuildYourBoxPage() {
     return selectedOccasion;
   };
 
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return "";
+    const parts = dateStr.split("-");
+    if (parts.length === 3) {
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+    return dateStr;
+  };
+
   const isItemSelected = (itemName: string) => selectedItems.includes(itemName);
   const isItemDisabled = (itemName: string) => !isItemSelected(itemName) && selectedItems.length >= (pkg?.maxItems || 0);
 
@@ -309,28 +318,11 @@ function BuildYourBoxPage() {
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
                   <div className="relative">
                     <input
-                      type="text"
+                      type="date"
                       value={occasionDate}
-                      onChange={(e) => {
-                        let value = e.target.value.replace(/\D/g, "");
-                        if (value.length >= 3) value = value.slice(0, 2) + "/" + value.slice(2);
-                        if (value.length >= 6) value = value.slice(0, 5) + "/" + value.slice(5, 9);
-                        if (value.length > 10) value = value.slice(0, 10);
-                        setOccasionDate(value);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Backspace" && occasionDate.length === 3) {
-                          e.preventDefault();
-                          setOccasionDate(occasionDate.slice(0, -1));
-                        }
-                        if (e.key === "Backspace" && occasionDate.length === 6) {
-                          e.preventDefault();
-                          setOccasionDate(occasionDate.slice(0, -1));
-                        }
-                      }}
-                      placeholder="DD/MM/YYYY"
+                      onChange={(e) => setOccasionDate(e.target.value)}
                       className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
-                      maxLength={10}
+                      style={{ colorScheme: 'light' }}
                     />
                     <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground pointer-events-none" />
                   </div>
@@ -515,7 +507,7 @@ function BuildYourBoxPage() {
                       <span className="font-medium">Occasion:</span> {getOccasionDisplay()}
                     </p>
                     <p className="text-muted-foreground">
-                      <span className="font-medium">Date:</span> {occasionDate}
+                      <span className="font-medium">Date:</span> {formatDate(occasionDate)}
                     </p>
                     {recipientName && (
                       <p className="text-muted-foreground">
@@ -735,7 +727,7 @@ function BuildYourBoxPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Occasion</span>
-                    <span>{getOccasionDisplay()} - {occasionDate}</span>
+                    <span>{getOccasionDisplay()} - {formatDate(occasionDate)}</span>
                   </div>
                   <div className="border-t border-border pt-3 mt-3">
                     <div className="flex justify-between font-serif text-2xl">
