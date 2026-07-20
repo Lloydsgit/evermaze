@@ -17,7 +17,7 @@ const packages = [
   { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15 },
 ];
 
-const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
+const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Housewarming", "Graduation", "Thank You Gift", "Surprise Gift", "Other"];
 
 const personalItems = [
   { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: true },
@@ -41,6 +41,7 @@ function BuildYourBoxPage() {
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
+  const [customOccasion, setCustomOccasion] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
   const [occasionDate, setOccasionDate] = useState("");
@@ -123,13 +124,13 @@ function BuildYourBoxPage() {
   const canProceed = useCallback(() => {
     switch (step) {
       case 1: return selectedPackage !== null;
-      case 2: return selectedOccasion !== "" && occasionDate !== "";
+      case 2: return selectedOccasion !== "" && occasionDate !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
       case 3: return selectedItems.length > 0;
       case 4: return true;
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
       default: return true;
     }
-  }, [step, selectedPackage, selectedOccasion, occasionDate, selectedItems, formData]);
+  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, selectedItems, formData]);
 
   const handleSubmit = () => {
     alert("Order placed successfully! You will receive a confirmation email shortly.");
@@ -233,12 +234,12 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 2: Occasion Details */}
+          {/* Step 2: Personalization */}
           {step === 2 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
                 <Calendar className="size-6 text-burgundy" />
-                Tell Us About the Occasion
+                Let's Personalize Your Gift
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -247,7 +248,12 @@ function BuildYourBoxPage() {
                     {occasions.map((occ) => (
                       <button
                         key={occ}
-                        onClick={() => setSelectedOccasion(occ)}
+                        onClick={() => {
+                          setSelectedOccasion(occ);
+                          if (occ !== "Other") {
+                            setCustomOccasion("");
+                          }
+                        }}
                         className={`p-3 rounded-xl border text-sm transition-all relative ${
                           selectedOccasion === occ
                             ? "border-burgundy bg-burgundy/5 text-burgundy"
@@ -263,6 +269,17 @@ function BuildYourBoxPage() {
                       </button>
                     ))}
                   </div>
+                  {selectedOccasion === "Other" && (
+                    <div className="mt-4">
+                      <input
+                        type="text"
+                        value={customOccasion}
+                        onChange={(e) => setCustomOccasion(e.target.value)}
+                        placeholder="Enter your occasion..."
+                        className="w-full px-4 py-3 rounded-xl border-2 border-burgundy bg-background focus:outline-none"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
@@ -451,7 +468,7 @@ function BuildYourBoxPage() {
                     <h3 className="font-medium text-burgundy mb-4">Package Details</h3>
                     <p className="text-lg font-serif">{pkg?.name} - ₹{pkg?.price}</p>
                     <p className="text-muted-foreground mt-2">
-                      <span className="font-medium">Occasion:</span> {selectedOccasion}
+                      <span className="font-medium">Occasion:</span> {selectedOccasion === "Other" ? customOccasion : selectedOccasion}
                     </p>
                     <p className="text-muted-foreground">
                       <span className="font-medium">Date:</span> {occasionDate}
@@ -673,7 +690,7 @@ function BuildYourBoxPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Occasion</span>
-                  <span>{selectedOccasion} - {occasionDate}</span>
+                  <span>{selectedOccasion === "Other" ? customOccasion : selectedOccasion} - {occasionDate}</span>
                 </div>
                 <div className="border-t border-border pt-3 mt-3">
                   <div className="flex justify-between font-serif text-2xl">
