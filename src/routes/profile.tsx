@@ -148,43 +148,7 @@ function ProfilePage() {
           )}
 
           {activeTab === "settings" && (
-            <div className="space-y-6">
-              <h2 className="font-serif text-2xl">Account Settings</h2>
-              <div className="bg-card border border-border rounded-2xl divide-y divide-border">
-                <div className="p-6 flex items-center gap-4">
-                  <User className="size-5 text-muted-foreground" />
-                  <div className="flex-1">
-                    <p className="font-medium">Personal Information</p>
-                    <p className="text-sm text-muted-foreground">Update your name and contact details</p>
-                  </div>
-                  <button className="text-sm text-burgundy">Edit</button>
-                </div>
-                <div className="p-6 flex items-center gap-4">
-                  <Mail className="size-5 text-muted-foreground" />
-                  <div className="flex-1">
-                    <p className="font-medium">Email Address</p>
-                    <p className="text-sm text-muted-foreground">evermaze.info@gmail.com</p>
-                  </div>
-                  <button className="text-sm text-burgundy">Edit</button>
-                </div>
-                <div className="p-6 flex items-center gap-4">
-                  <Phone className="size-5 text-muted-foreground" />
-                  <div className="flex-1">
-                    <p className="font-medium">Phone Number</p>
-                    <p className="text-sm text-muted-foreground">+91 9848507639</p>
-                  </div>
-                  <button className="text-sm text-burgundy">Edit</button>
-                </div>
-                <div className="p-6 flex items-center gap-4">
-                  <HeartHandshake className="size-5 text-muted-foreground" />
-                  <div className="flex-1">
-                    <p className="font-medium">Newsletter Preferences</p>
-                    <p className="text-sm text-muted-foreground">Manage your email subscriptions</p>
-                  </div>
-                  <button className="text-sm text-burgundy">Edit</button>
-                </div>
-              </div>
-            </div>
+            <SettingsForm />
           )}
         </div>
       </section>
@@ -196,6 +160,160 @@ function ProfilePage() {
           <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function SettingsForm() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "Guest",
+    lastName: "User",
+    email: "evermaze.info@gmail.com",
+    phone: "9848507639",
+    newsletter: true,
+  });
+
+  const handleSave = () => {
+    setIsEditing(false);
+    // In a real app, you would save to backend here
+  };
+
+  if (isEditing) {
+    return (
+      <div className="space-y-6">
+        <h2 className="font-serif text-2xl">Edit Account Settings</h2>
+        <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+          <div className="space-y-6">
+            {/* Name */}
+            <div>
+              <h3 className="font-medium mb-4 flex items-center gap-2">
+                <User className="size-5 text-burgundy" />
+                Personal Information
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm text-muted-foreground mb-2">First Name</label>
+                  <input
+                    type="text"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-muted-foreground mb-2">Last Name</label>
+                  <input
+                    type="text"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div>
+              <h3 className="font-medium mb-4 flex items-center gap-2">
+                <Mail className="size-5 text-burgundy" />
+                Email Address
+              </h3>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+              />
+            </div>
+
+            {/* Phone */}
+            <div>
+              <h3 className="font-medium mb-4 flex items-center gap-2">
+                <Phone className="size-5 text-burgundy" />
+                Phone Number
+              </h3>
+              <div className="flex gap-3">
+                <span className="px-4 py-3 bg-muted rounded-xl text-muted-foreground">+91</span>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="flex-1 px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h3 className="font-medium mb-4 flex items-center gap-2">
+                <HeartHandshake className="size-5 text-burgundy" />
+                Newsletter Preferences
+              </h3>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.newsletter}
+                  onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
+                  className="size-5 rounded border-border text-burgundy focus:ring-burgundy"
+                />
+                <span className="text-sm">Subscribe to newsletters and promotional emails</span>
+              </label>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-4 pt-4 border-t border-border">
+              <button onClick={handleSave} className="btn-primary">
+                Save Changes
+              </button>
+              <button onClick={() => setIsEditing(false)} className="btn-outline">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="font-serif text-2xl">Account Settings</h2>
+        <button onClick={() => setIsEditing(true)} className="btn-primary">
+          Edit Profile
+        </button>
+      </div>
+      <div className="bg-card border border-border rounded-2xl divide-y divide-border">
+        <div className="p-6 flex items-center gap-4">
+          <User className="size-5 text-muted-foreground" />
+          <div className="flex-1">
+            <p className="font-medium">Full Name</p>
+            <p className="text-sm text-muted-foreground">{formData.firstName} {formData.lastName}</p>
+          </div>
+        </div>
+        <div className="p-6 flex items-center gap-4">
+          <Mail className="size-5 text-muted-foreground" />
+          <div className="flex-1">
+            <p className="font-medium">Email Address</p>
+            <p className="text-sm text-muted-foreground">{formData.email}</p>
+          </div>
+        </div>
+        <div className="p-6 flex items-center gap-4">
+          <Phone className="size-5 text-muted-foreground" />
+          <div className="flex-1">
+            <p className="font-medium">Phone Number</p>
+            <p className="text-sm text-muted-foreground">+91 {formData.phone}</p>
+          </div>
+        </div>
+        <div className="p-6 flex items-center gap-4">
+          <HeartHandshake className="size-5 text-muted-foreground" />
+          <div className="flex-1">
+            <p className="font-medium">Newsletter Preferences</p>
+            <p className="text-sm text-muted-foreground">{formData.newsletter ? "Subscribed" : "Not subscribed"}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
