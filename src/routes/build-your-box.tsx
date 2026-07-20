@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, Upload, X, Image } from "lucide-react";
+import { useState, useRef } from "react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
 
@@ -20,21 +20,21 @@ const packages = [
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
 
 const personalItems = [
-  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️" },
-  { name: "Personalized Keychain", price: 79, description: "Custom keychain with their name", icon: "🔑" },
-  { name: "Photo Frame", price: 99, description: "Beautiful frame for your special photo", icon: "📷" },
-  { name: "Custom Bookmark", price: 49, description: "Engraved bookmark for book lovers", icon: "📚" },
-  { name: "Engraved Token", price: 129, description: "Special engraved token as keepsake", icon: "🎫" },
-  { name: "Memory Card", price: 39, description: "Card with your cherished memory", icon: "💝" },
-  { name: "Scented Candle", price: 99, description: "Hand-poured aromatic candle", icon: "🕯️" },
-  { name: "Scented Potpourri", price: 59, description: "Natural dried flower potpourri", icon: "🌸" },
-  { name: "Mini Vase", price: 79, description: "Decorative mini vase for flowers", icon: "🏺" },
-  { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱" },
-  { name: "Photo Album", price: 149, description: "Premium photo album for memories", icon: "📒" },
-  { name: "Personalized Mug", price: 89, description: "Custom printed ceramic mug", icon: "☕" },
-  { name: "Chocolates Box", price: 79, description: "Assorted premium chocolates", icon: "🍫" },
-  { name: "Teddy Bear", price: 129, description: "Soft and cuddly teddy bear", icon: "🧸" },
-  { name: "Flower Bouquet", price: 149, description: "Fresh flower arrangement", icon: "💐" },
+  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: false },
+  { name: "Personalized Keychain", price: 79, description: "Custom keychain with their name", icon: "🔑", hasImage: false },
+  { name: "Photo Frame", price: 99, description: "Beautiful frame for your special photo", icon: "📷", hasImage: true },
+  { name: "Custom Bookmark", price: 49, description: "Engraved bookmark for book lovers", icon: "📚", hasImage: false },
+  { name: "Engraved Token", price: 129, description: "Special engraved token as keepsake", icon: "🎫", hasImage: false },
+  { name: "Memory Card", price: 39, description: "Card with your cherished memory", icon: "💝", hasImage: true },
+  { name: "Scented Candle", price: 99, description: "Hand-poured aromatic candle", icon: "🕯️", hasImage: false },
+  { name: "Scented Potpourri", price: 59, description: "Natural dried flower potpourri", icon: "🌸", hasImage: false },
+  { name: "Mini Vase", price: 79, description: "Decorative mini vase for flowers", icon: "🏺", hasImage: false },
+  { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱", hasImage: false },
+  { name: "Photo Album", price: 149, description: "Premium photo album for memories", icon: "📒", hasImage: true },
+  { name: "Personalized Mug", price: 89, description: "Custom printed ceramic mug", icon: "☕", hasImage: true },
+  { name: "Chocolates Box", price: 79, description: "Assorted premium chocolates", icon: "🍫", hasImage: false },
+  { name: "Teddy Bear", price: 129, description: "Soft and cuddly teddy bear", icon: "🧸", hasImage: false },
+  { name: "Flower Bouquet", price: 149, description: "Fresh flower arrangement", icon: "💐", hasImage: false },
 ];
 
 function BuildYourBoxPage() {
@@ -46,6 +46,7 @@ function BuildYourBoxPage() {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<string[]>(initialPkg?.defaultTouches || []);
+  const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
   const [occasionDate, setOccasionDate] = useState("");
   const [recipientName, setRecipientName] = useState("");
   const [recipientMessage, setRecipientMessage] = useState("");
@@ -59,6 +60,8 @@ function BuildYourBoxPage() {
     specialInstructions: "",
   });
 
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
   const pkg = packages.find((p) => p.price === selectedPackage);
 
   const handlePackageSelect = (price: number) => {
@@ -69,10 +72,29 @@ function BuildYourBoxPage() {
     }
   };
 
-  const toggleItem = (item: string) => {
+  const toggleItem = (itemName: string) => {
     setSelectedItems((prev) => 
-      prev.includes(item) ? prev.filter((i) => i !== item) : prev
+      prev.includes(itemName) ? prev.filter((i) => i !== itemName) : prev
     );
+  };
+
+  const handleImageUpload = (itemName: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUploadedImages((prev) => ({ ...prev, [itemName]: reader.result as string }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = (itemName: string) => {
+    setUploadedImages((prev) => {
+      const newImages = { ...prev };
+      delete newImages[itemName];
+      return newImages;
+    });
   };
 
   const calculateTotal = () => {
@@ -98,6 +120,11 @@ function BuildYourBoxPage() {
   const handleSubmit = () => {
     alert("Order placed successfully! You will receive a confirmation email shortly.");
   };
+
+  const itemsNeedingImage = selectedItems.filter((itemName) => {
+    const item = personalItems.find((i) => i.name === itemName);
+    return item?.hasImage;
+  });
 
   return (
     <div className="min-h-screen">
@@ -171,26 +198,26 @@ function BuildYourBoxPage() {
                   <button
                     key={pkg.price}
                     onClick={() => handlePackageSelect(pkg.price)}
-                    className={`p-6 rounded-2xl border-2 transition-all text-left ${
+                    className={`p-6 rounded-2xl border-2 transition-all text-left relative ${
                       selectedPackage === pkg.price
                         ? "border-burgundy bg-burgundy/5"
                         : "border-border hover:border-burgundy"
                     }`}
                   >
+                    {selectedPackage === pkg.price && (
+                      <div className="absolute top-3 right-3 size-6 bg-burgundy rounded-full flex items-center justify-center">
+                        <Check className="size-4 text-white" />
+                      </div>
+                    )}
                     <span className="block font-serif text-3xl text-burgundy">₹{pkg.price}</span>
                     <span className="block mt-2 font-serif text-lg">{pkg.name}</span>
-                    <span className="block mt-1 text-sm text-muted-foreground">Up to {pkg.items} items</span>
+                    <span className="block mt-1 text-sm text-muted-foreground">{pkg.items} items</span>
                     <div className="mt-3 pt-3 border-t border-border">
                       <p className="text-xs text-burgundy font-medium">Included:</p>
                       {pkg.defaultTouches.map((touch) => (
                         <p key={touch} className="text-xs text-muted-foreground">• {touch}</p>
                       ))}
                     </div>
-                    {selectedPackage === pkg.price && (
-                      <div className="mt-3 flex justify-center">
-                        <Check className="size-5 text-burgundy" />
-                      </div>
-                    )}
                   </button>
                 ))}
               </div>
@@ -212,12 +239,17 @@ function BuildYourBoxPage() {
                       <button
                         key={occ}
                         onClick={() => setSelectedOccasion(occ)}
-                        className={`p-3 rounded-xl border text-sm transition-all ${
+                        className={`p-3 rounded-xl border text-sm transition-all relative ${
                           selectedOccasion === occ
                             ? "border-burgundy bg-burgundy/5 text-burgundy"
                             : "border-border hover:border-burgundy"
                         }`}
                       >
+                        {selectedOccasion === occ && (
+                          <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
+                            <Check className="size-3 text-white" />
+                          </div>
+                        )}
                         {occ}
                       </button>
                     ))}
@@ -265,45 +297,159 @@ function BuildYourBoxPage() {
                 Add Personal Touches
               </h2>
               <p className="text-muted-foreground mb-6">Choose up to {pkg?.maxItems} personal items for your {pkg?.name}</p>
-              <div className="flex flex-wrap gap-2 mb-6 p-4 bg-burgundy/10 rounded-xl">
-                <span className="text-sm font-medium">Selected: {selectedItems.length}/{pkg?.maxItems}</span>
-                {selectedItems.map((item) => (
-                  <span key={item} className="bg-burgundy text-white text-sm px-3 py-1 rounded-full flex items-center gap-1">
-                    {personalItems.find(i => i.name === item)?.icon} {item}
-                    <button onClick={() => toggleItem(item)} className="hover:text-champagne ml-1">×</button>
-                  </span>
-                ))}
+              
+              {/* Selected Items Summary */}
+              <div className="mb-6 p-4 bg-burgundy/10 rounded-xl">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium">Selected Items ({selectedItems.length}/{pkg?.maxItems})</span>
+                  <span className="text-sm text-burgundy font-medium">₹{calculateTotal() - (selectedPackage || 0)}</span>
+                </div>
+                {selectedItems.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    {selectedItems.map((item) => {
+                      const itemData = personalItems.find(i => i.name === item);
+                      return (
+                        <span key={item} className="bg-burgundy text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2">
+                          <span>{itemData?.icon}</span>
+                          <span>{item}</span>
+                          <button onClick={() => toggleItem(item)} className="hover:text-red-200 ml-1">
+                            <X className="size-3" />
+                          </button>
+                        </span>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">Click on items below to select them</p>
+                )}
               </div>
+
+              {/* Items Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {personalItems.map((item) => {
                   const isSelected = selectedItems.includes(item.name);
                   const isDisabled = !isSelected && selectedItems.length >= (pkg?.maxItems || 0);
+                  
                   return (
-                    <button
+                    <div
                       key={item.name}
-                      onClick={() => !isDisabled && toggleItem(item.name)}
-                      disabled={isDisabled}
-                      className={`p-5 rounded-2xl border text-left transition-all ${
+                      className={`rounded-2xl border-2 transition-all overflow-hidden ${
                         isSelected
                           ? "border-burgundy bg-burgundy/5"
                           : isDisabled
-                          ? "border-border opacity-50 cursor-not-allowed"
-                          : "border-border hover:border-burgundy"
+                          ? "border-border opacity-50"
+                          : "border-border hover:border-burgundy cursor-pointer"
                       }`}
+                      onClick={() => !isDisabled && toggleItem(item.name)}
                     >
-                      <div className="flex items-start gap-4">
-                        <span className="text-3xl">{item.icon}</span>
-                        <div className="flex-1">
-                          <h4 className="font-medium">{item.name}</h4>
-                          <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                          <p className="mt-2 font-medium text-burgundy">+₹{item.price}</p>
+                      <div className="p-5">
+                        <div className="flex items-start gap-4">
+                          <div className={`size-12 rounded-xl flex items-center justify-center text-2xl transition-colors ${
+                            isSelected ? "bg-burgundy/20" : "bg-muted"
+                          }`}>
+                            {item.icon}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium">{item.name}</h4>
+                            <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                            <p className="mt-2 font-medium text-burgundy">+₹{item.price}</p>
+                          </div>
+                          <div className={`size-8 rounded-full border-2 flex items-center justify-center transition-all ${
+                            isSelected
+                              ? "border-burgundy bg-burgundy text-white"
+                              : "border-border bg-white"
+                          }`}>
+                            {isSelected && <Check className="size-5" />}
+                          </div>
                         </div>
-                        {isSelected && <Check className="size-5 text-burgundy shrink-0" />}
                       </div>
-                    </button>
+                      
+                      {/* Image Upload Section - Only show for selected items that need images */}
+                      {isSelected && item.hasImage && (
+                        <div className="px-5 pb-5 border-t border-burgundy/20 pt-4 mt-2">
+                          <label className="block">
+                            <div className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-colors ${
+                              uploadedImages[item.name]
+                                ? "border-burgundy bg-burgundy/10"
+                                : "border-border hover:border-burgundy hover:bg-muted"
+                            }`}>
+                              {uploadedImages[item.name] ? (
+                                <div className="relative">
+                                  <img 
+                                    src={uploadedImages[item.name]} 
+                                    alt="Uploaded" 
+                                    className="max-h-32 mx-auto rounded-lg object-cover"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      removeImage(item.name);
+                                    }}
+                                    className="absolute -top-2 -right-2 size-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"
+                                  >
+                                    <X className="size-4" />
+                                  </button>
+                                  <p className="text-xs text-burgundy mt-2">Click to change image</p>
+                                </div>
+                              ) : (
+                                <>
+                                  <Image className="size-8 mx-auto text-muted-foreground mb-2" />
+                                  <p className="text-sm font-medium">Upload Image</p>
+                                  <p className="text-xs text-muted-foreground mt-1">For {item.name}</p>
+                                </>
+                              )}
+                            </div>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              ref={(el) => { fileInputRefs.current[item.name] = el; }}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                handleImageUpload(item.name, e);
+                              }}
+                              className="hidden"
+                            />
+                          </label>
+                        </div>
+                      )}
+                    </div>
                   );
                 })}
               </div>
+
+              {/* Image Items Summary */}
+              {itemsNeedingImage.length > 0 && (
+                <div className="mt-6 p-4 bg-champagne-soft rounded-xl">
+                  <p className="text-sm font-medium mb-3 flex items-center gap-2">
+                    <Image className="size-4 text-burgundy" />
+                    Items needing images:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {itemsNeedingImage.map((itemName) => {
+                      const item = personalItems.find(i => i.name === itemName);
+                      const hasImage = uploadedImages[itemName];
+                      return (
+                        <span 
+                          key={itemName} 
+                          className={`text-sm px-3 py-1.5 rounded-full flex items-center gap-2 ${
+                            hasImage 
+                              ? "bg-green-100 text-green-700" 
+                              : "bg-amber-100 text-amber-700"
+                          }`}
+                        >
+                          {item?.icon} {itemName}
+                          {hasImage ? (
+                            <Check className="size-3" />
+                          ) : (
+                            <span className="text-xs">(upload)</span>
+                          )}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -333,12 +479,20 @@ function BuildYourBoxPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-burgundy mb-4">Selected Items ({selectedItems.length})</h3>
-                    <div className="space-y-2">
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
                       {selectedItems.map((itemName) => {
                         const item = personalItems.find(i => i.name === itemName);
                         return (
                           <div key={itemName} className="flex items-center justify-between text-sm">
-                            <span>{item?.icon} {itemName}</span>
+                            <span className="flex items-center gap-2">
+                              <span>{item?.icon}</span>
+                              <span>{itemName}</span>
+                              {uploadedImages[itemName] && (
+                                <span className="size-5 bg-green-100 rounded-full flex items-center justify-center">
+                                  <Check className="size-3 text-green-600" />
+                                </span>
+                              )}
+                            </span>
                             <span className="text-muted-foreground">₹{item?.price}</span>
                           </div>
                         );
@@ -350,6 +504,23 @@ function BuildYourBoxPage() {
                   <div className="mt-6 pt-6 border-t border-border">
                     <h3 className="font-medium text-burgundy mb-2">Your Message</h3>
                     <p className="text-muted-foreground italic">"{recipientMessage}"</p>
+                  </div>
+                )}
+                
+                {/* Uploaded Images Preview */}
+                {Object.keys(uploadedImages).length > 0 && (
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <h3 className="font-medium text-burgundy mb-3">Uploaded Images</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {Object.entries(uploadedImages).map(([itemName, image]) => (
+                        <div key={itemName} className="relative">
+                          <img src={image} alt={itemName} className="size-16 rounded-lg object-cover border border-border" />
+                          <span className="absolute -bottom-1 -right-1 text-[10px] bg-burgundy text-white px-1.5 py-0.5 rounded-full">
+                            {itemName.split(' ')[0]}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
