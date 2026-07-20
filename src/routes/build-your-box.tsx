@@ -345,11 +345,11 @@ function BuildYourBoxPage() {
                     />
                   </div>
                   <div className="mt-6">
-                    <label className="block text-sm font-medium mb-2">Message for Recipient</label>
+                    <label className="block text-sm font-medium mb-2">Special Message</label>
                     <textarea
                       value={recipientMessage}
                       onChange={(e) => setRecipientMessage(e.target.value)}
-                      placeholder="Write a personal message..."
+                      placeholder="Write your message here..."
                       rows={3}
                       className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none resize-none"
                     />
