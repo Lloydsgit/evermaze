@@ -199,7 +199,7 @@ function Strip() {
   const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
   return (
     <div className="border-y border-border bg-card/50 py-4">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-[0.7rem] tracking-[0.25em] uppercase text-gray-700">
+      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-burgundy font-medium">
         {items.map((i) => <span key={i}>· {i}</span>)}
       </div>
     </div>
@@ -214,7 +214,7 @@ function Occasions() {
     { name: "Wedding", img: hamper2 },
     { name: "Baby Shower", img: hamper4 },
     { name: "Farewell", img: hamper6 },
-    { name: "Friendship", img: hamper1 },
+    { name: "Festivals", img: hamper1 },
     { name: "Festival Hamper", img: hamper3 },
     { name: "Special Moments", img: heroHamper },
   ];
@@ -578,18 +578,18 @@ function Newsletter() {
   return (
     <section className="py-20 md:py-28 bg-burgundy text-white relative overflow-hidden">
       <div className="container-evermaze text-center max-w-2xl relative z-10">
-        <span className="text-sm tracking-[0.32em] uppercase text-champagne">Join the family</span>
-        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-white">Join the Evermaze family.</h2>
-        <p className="mt-4 text-lg text-white/70">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
+        <span className="text-base tracking-[0.32em] uppercase text-gray-200">Join the family</span>
+        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-gray-100">Join the Evermaze family.</h2>
+        <p className="mt-4 text-lg text-gray-300">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
         <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
             type="email"
             required
             placeholder="your@email.com"
             aria-label="Email address"
-            className="flex-1 bg-transparent border border-white/30 focus:border-champagne rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
+            className="flex-1 bg-transparent border border-white/30 focus:border-gray-200 rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
           />
-          <button type="submit" className="bg-champagne text-foreground px-8 py-3 rounded-full text-sm tracking-[0.2em] uppercase hover:bg-white transition-colors">
+          <button type="submit" className="bg-gray-100 text-gray-800 px-8 py-3 rounded-full text-base tracking-[0.2em] uppercase hover:bg-white transition-colors">
             Subscribe
           </button>
         </form>
@@ -658,8 +658,8 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-xs text-gray-600">
-        <span>Evermaze. Made with love in India.</span>
+      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-sm text-gray-600">
+        <span>Evermaze. Made with love.</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-burgundy">Privacy</a>
           <a href="#" className="hover:text-burgundy">Terms</a>
