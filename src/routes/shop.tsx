@@ -50,12 +50,7 @@ const hamperTypes = [
   },
 ];
 
-const occasions = ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"];
-
 function ShopPage() {
-  const search = Route.useSearch();
-  const selectedOccasion = search.occasion || null;
-
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -82,45 +77,10 @@ function ShopPage() {
       {/* Hero */}
       <section className="bg-burgundy text-white py-16 md:py-20">
         <div className="container-evermaze text-center">
-          <h1 className="font-serif text-4xl md:text-6xl">
-            {selectedOccasion ? `${selectedOccasion} Hampers` : "Choose Your Hamper"}
-          </h1>
+          <h1 className="font-serif text-4xl md:text-6xl">Choose Your Hamper</h1>
           <p className="mt-4 text-white/70 max-w-xl mx-auto">
-            {selectedOccasion 
-              ? `Find the perfect ${selectedOccasion.toLowerCase()} hamper for your loved one`
-              : "Select your package and customize it with your personal touch"}
+            Select your package and customize it with your personal touch
           </p>
-        </div>
-      </section>
-
-      {/* Occasion Filter */}
-      <section className="border-b border-border py-4 bg-card">
-        <div className="container-evermaze">
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              to="/shop"
-              className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                !selectedOccasion
-                  ? "bg-burgundy text-white"
-                  : "bg-muted text-muted-foreground hover:text-burgundy"
-              }`}
-            >
-              All Hampers
-            </Link>
-            {occasions.map((occasion) => (
-              <Link
-                key={occasion}
-                to={`/shop?occasion=${encodeURIComponent(occasion)}`}
-                className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                  selectedOccasion === occasion
-                    ? "bg-burgundy text-white"
-                    : "bg-muted text-muted-foreground hover:text-burgundy"
-                }`}
-              >
-                {occasion}
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 

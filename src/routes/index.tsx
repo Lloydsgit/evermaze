@@ -259,8 +259,6 @@ function ShopByPrice() {
     { price: 1999, name: "Luxury Hamper", description: "Ultimate indulgence" },
   ];
 
-  const occasions = ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"];
-
   return (
     <section className="py-16 md:py-24 bg-card border-y border-border">
       <div className="container-evermaze">
@@ -269,7 +267,7 @@ function ShopByPrice() {
           <h2 className="mt-3 font-serif text-4xl md:text-5xl">Choose your hamper & customize it.</h2>
         </div>
         {/* Hamper Types */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {hamperTypes.map((h) => (
             <Link 
               key={h.price}
@@ -283,24 +281,6 @@ function ShopByPrice() {
               </span>
             </Link>
           ))}
-        </div>
-        {/* Occasion Categories */}
-        <div className="text-center">
-          <h3 className="font-serif text-xl mb-6">Or browse by occasion</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {occasions.map((occasion) => (
-              <Link 
-                key={occasion}
-                to={`/shop?occasion=${encodeURIComponent(occasion)}`}
-                className="group relative bg-ivory border border-border rounded-2xl py-6 px-4 text-center transition-all hover:border-burgundy hover:-translate-y-1"
-              >
-                <span className="block font-serif text-lg text-foreground">{occasion}</span>
-                <span className="mt-2 inline-flex items-center gap-1 text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground">
-                  Shop <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </section>
