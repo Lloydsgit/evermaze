@@ -19,8 +19,6 @@ const packages = [
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift"];
 
-const otherOccasions = ["Housewarming", "Graduation", "Surprise Gift", "Other"];
-
 const personalItems = [
   { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: true },
   { name: "Bookmark", price: 39, description: "Beautiful bookmark for book lovers", icon: "📚", hasImage: false },
@@ -43,7 +41,6 @@ function BuildYourBoxPage() {
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
-  const [showOtherOptions, setShowOtherOptions] = useState<boolean>(false);
   const [customOccasion, setCustomOccasion] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
@@ -133,7 +130,7 @@ function BuildYourBoxPage() {
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
       default: return true;
     }
-  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, selectedItems, formData, showOtherOptions]);
+  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, selectedItems, formData]);
 
   const handleSubmit = () => {
     alert("Order placed successfully! You will receive a confirmation email shortly.");
@@ -259,16 +256,15 @@ function BuildYourBoxPage() {
                         key={occ}
                         onClick={() => {
                           setSelectedOccasion(occ);
-                          setShowOtherOptions(false);
                           setCustomOccasion("");
                         }}
                         className={`p-3 rounded-xl border text-sm transition-all relative ${
-                          selectedOccasion === occ && !showOtherOptions
+                          selectedOccasion === occ && customOccasion === ""
                             ? "border-burgundy bg-burgundy/5 text-burgundy"
                             : "border-border hover:border-burgundy"
                         }`}
                       >
-                        {selectedOccasion === occ && !showOtherOptions && (
+                        {selectedOccasion === occ && customOccasion === "" && (
                           <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
                             <Check className="size-3 text-white" />
                           </div>
@@ -279,16 +275,15 @@ function BuildYourBoxPage() {
                     <button
                       onClick={() => {
                         setSelectedOccasion("Other");
-                        setShowOtherOptions(true);
                         setCustomOccasion("");
                       }}
                       className={`p-3 rounded-xl border text-sm transition-all relative ${
-                        showOtherOptions
+                        selectedOccasion === "Other"
                           ? "border-burgundy bg-burgundy/5 text-burgundy"
                           : "border-border hover:border-burgundy"
                       }`}
                     >
-                      {showOtherOptions && (
+                      {selectedOccasion === "Other" && (
                         <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
                           <Check className="size-3 text-white" />
                         </div>
@@ -297,47 +292,16 @@ function BuildYourBoxPage() {
                     </button>
                   </div>
                   
-                  {/* Other Options Dropdown */}
-                  {showOtherOptions && (
-                    <div className="mt-4 space-y-3">
-                      <div className="grid grid-cols-2 gap-2">
-                        {otherOccasions.map((occ) => (
-                          <button
-                            key={occ}
-                            onClick={() => {
-                              if (occ === "Other") {
-                                setSelectedOccasion("Other");
-                              } else {
-                                setSelectedOccasion(occ);
-                                setCustomOccasion("");
-                              }
-                            }}
-                            className={`p-3 rounded-xl border text-sm transition-all relative ${
-                              selectedOccasion === occ && customOccasion === ""
-                                ? "border-burgundy bg-burgundy/5 text-burgundy"
-                                : "border-border hover:border-burgundy"
-                            }`}
-                          >
-                            {selectedOccasion === occ && customOccasion === "" && (
-                              <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
-                                <Check className="size-3 text-white" />
-                              </div>
-                            )}
-                            {occ}
-                          </button>
-                        ))}
-                      </div>
-                      
-                      {/* Custom Occasion Input */}
-                      {selectedOccasion === "Other" && (
-                        <input
-                          type="text"
-                          value={customOccasion}
-                          onChange={(e) => setCustomOccasion(e.target.value)}
-                          placeholder="Enter the occasion..."
-                          className="w-full px-4 py-3 rounded-xl border-2 border-burgundy bg-background focus:outline-none"
-                        />
-                      )}
+                  {/* Custom Occasion Input */}
+                  {selectedOccasion === "Other" && (
+                    <div className="mt-4">
+                      <input
+                        type="text"
+                        value={customOccasion}
+                        onChange={(e) => setCustomOccasion(e.target.value)}
+                        placeholder="Enter the occasion..."
+                        className="w-full px-4 py-3 rounded-xl border-2 border-burgundy bg-background focus:outline-none"
+                      />
                     </div>
                   )}
                 </div>
