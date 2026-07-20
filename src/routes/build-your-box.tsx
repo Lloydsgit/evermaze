@@ -335,7 +335,7 @@ function BuildYourBoxPage() {
                     <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground pointer-events-none" />
                   </div>
                   <div className="mt-6">
-                    <label className="block text-sm font-medium mb-2">Recipient's Name (Optional)</label>
+                    <label className="block text-sm font-medium mb-2">Recipient's Name</label>
                     <input
                       type="text"
                       value={recipientName}
@@ -345,7 +345,7 @@ function BuildYourBoxPage() {
                     />
                   </div>
                   <div className="mt-6">
-                    <label className="block text-sm font-medium mb-2">Message for Recipient (Optional)</label>
+                    <label className="block text-sm font-medium mb-2">Message for Recipient</label>
                     <textarea
                       value={recipientMessage}
                       onChange={(e) => setRecipientMessage(e.target.value)}
