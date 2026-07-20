@@ -74,6 +74,21 @@ function Header() {
                 {n.name}
               </Link>
             ))}
+            <div className="flex items-center gap-4 ml-4">
+              <button 
+                onClick={() => setSearchOpen(!searchOpen)} 
+                aria-label="Search" 
+                className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
+              >
+                <Search className="size-[18px]" />
+              </button>
+              <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
+              <Link to="/profile" aria-label="Account" className="hover:text-burgundy transition-colors"><User className="size-[18px]" /></Link>
+              <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+                <ShoppingBag className="size-[18px]" />
+                <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              </Link>
+            </div>
           </nav>
         </div>
 
