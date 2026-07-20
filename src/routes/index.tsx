@@ -29,6 +29,7 @@ export const Route = createFileRoute("/")({
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -83,15 +84,45 @@ function Header() {
         </nav>
 
         <div className="flex items-center gap-3 md:gap-5 md:ml-8">
-          <button aria-label="Search" className="hover:text-burgundy transition-colors"><Search className="size-[18px]" /></button>
-          <button aria-label="Wishlist" className="hover:text-burgundy transition-colors hidden sm:block"><Heart className="size-[18px]" /></button>
-          <button aria-label="Account" className="hover:text-burgundy transition-colors hidden sm:block"><User className="size-[18px]" /></button>
-          <button aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+          <button 
+            onClick={() => setSearchOpen(!searchOpen)} 
+            aria-label="Search" 
+            className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
+          >
+            <Search className="size-[18px]" />
+          </button>
+          <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors hidden sm:block"><Heart className="size-[18px]" /></Link>
+          <Link to="/profile" aria-label="Account" className="hover:text-burgundy transition-colors hidden sm:block"><User className="size-[18px]" /></Link>
+          <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
             <ShoppingBag className="size-[18px]" />
             <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
-          </button>
+          </Link>
         </div>
       </div>
+
+      {/* Search Bar */}
+      {searchOpen && (
+        <div className="absolute top-full left-0 right-0 bg-card border-b border-border p-4 shadow-lg">
+          <div className="container-evermaze">
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+              <input
+                type="search"
+                placeholder="Search for gift hampers..."
+                autoFocus
+                className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-full focus:border-burgundy focus:outline-none transition-colors"
+              />
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                aria-label="Close search"
+              >
+                <X className="size-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {open && (
         <div className="md:hidden border-t border-border bg-card">

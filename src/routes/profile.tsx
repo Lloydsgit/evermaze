@@ -1,0 +1,201 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { ArrowLeft, ShoppingBag, Heart, User, Mail, Phone, MapPin, Package, Clock, HeartHandshake } from "lucide-react";
+import { useState } from "react";
+
+import hamper1 from "@/assets/hamper-1.jpg";
+import hamper5 from "@/assets/hamper-5.jpg";
+
+export const Route = createFileRoute("/profile")({
+  head: () => ({
+    meta: [
+      { title: "My Profile | Evermaze" },
+      { name: "description", content: "Manage your Evermaze profile, orders, and preferences." },
+    ],
+  }),
+  component: ProfilePage,
+});
+
+const orders = [
+  { id: "EM-2024-001", date: "Dec 15, 2024", items: "The Sabrina Bloom", price: "₹1,899", status: "Delivered", img: hamper1 },
+  { id: "EM-2024-002", date: "Dec 20, 2024", items: "Rose Ritual Box", price: "₹1,499", status: "Delivered", img: hamper5 },
+];
+
+function ProfilePage() {
+  const [activeTab, setActiveTab] = useState<"orders" | "addresses" | "settings">("orders");
+
+  return (
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="bg-card border-b border-border py-4">
+        <div className="container-evermaze flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+            <ArrowLeft className="size-4" />
+            Back to Home
+          </Link>
+          <Link to="/" className="flex flex-col items-center leading-none">
+            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+              <ShoppingBag className="size-[18px]" />
+              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="bg-burgundy text-white py-12 md:py-16">
+        <div className="container-evermaze flex items-center gap-6">
+          <div className="size-20 md:size-24 rounded-full bg-champagne/20 flex items-center justify-center">
+            <User className="size-10 md:size-12 text-champagne" />
+          </div>
+          <div>
+            <h1 className="font-serif text-3xl md:text-4xl">Welcome, Guest!</h1>
+            <p className="mt-1 text-white/70">Manage your profile and orders</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tabs */}
+      <section className="border-b border-border">
+        <div className="container-evermaze">
+          <div className="flex gap-8">
+            {(["orders", "addresses", "settings"] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`py-4 text-sm tracking-[0.2em] uppercase border-b-2 transition-colors ${
+                  activeTab === tab
+                    ? "border-burgundy text-burgundy"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab === "orders" ? "My Orders" : tab === "addresses" ? "Addresses" : "Settings"}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section className="py-8 md:py-12">
+        <div className="container-evermaze">
+          {activeTab === "orders" && (
+            <div className="space-y-6">
+              <h2 className="font-serif text-2xl">My Orders</h2>
+              {orders.map((order) => (
+                <div key={order.id} className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="flex gap-4">
+                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-muted">
+                        <img src={order.img} alt={order.items} className="size-full object-cover" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">{order.id}</p>
+                        <h3 className="font-serif text-lg mt-1">{order.items}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{order.date}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-serif text-xl">{order.price}</p>
+                      <span className="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                        {order.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {orders.length === 0 && (
+                <div className="text-center py-12">
+                  <Package className="size-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground">No orders yet</p>
+                  <Link to="/shop" className="btn-primary mt-4 inline-block">Start Shopping</Link>
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === "addresses" && (
+            <div className="space-y-6">
+              <h2 className="font-serif text-2xl">My Addresses</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="size-5 text-burgundy mt-1" />
+                    <div>
+                      <h3 className="font-medium">Home</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Secunderabad, Hyderabad, Telangana 500062
+                      </p>
+                      <p className="mt-1 text-xs text-muted-foreground">+91 9848507639</p>
+                    </div>
+                  </div>
+                </div>
+                <button className="bg-card border border-dashed border-border rounded-2xl p-6 text-left hover:border-burgundy transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="size-10 rounded-full border border-border grid place-items-center">
+                      <span className="text-xl">+</span>
+                    </div>
+                    <span className="text-muted-foreground">Add new address</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "settings" && (
+            <div className="space-y-6">
+              <h2 className="font-serif text-2xl">Account Settings</h2>
+              <div className="bg-card border border-border rounded-2xl divide-y divide-border">
+                <div className="p-6 flex items-center gap-4">
+                  <User className="size-5 text-muted-foreground" />
+                  <div className="flex-1">
+                    <p className="font-medium">Personal Information</p>
+                    <p className="text-sm text-muted-foreground">Update your name and contact details</p>
+                  </div>
+                  <button className="text-sm text-burgundy">Edit</button>
+                </div>
+                <div className="p-6 flex items-center gap-4">
+                  <Mail className="size-5 text-muted-foreground" />
+                  <div className="flex-1">
+                    <p className="font-medium">Email Address</p>
+                    <p className="text-sm text-muted-foreground">evermaze.info@gmail.com</p>
+                  </div>
+                  <button className="text-sm text-burgundy">Edit</button>
+                </div>
+                <div className="p-6 flex items-center gap-4">
+                  <Phone className="size-5 text-muted-foreground" />
+                  <div className="flex-1">
+                    <p className="font-medium">Phone Number</p>
+                    <p className="text-sm text-muted-foreground">+91 9848507639</p>
+                  </div>
+                  <button className="text-sm text-burgundy">Edit</button>
+                </div>
+                <div className="p-6 flex items-center gap-4">
+                  <HeartHandshake className="size-5 text-muted-foreground" />
+                  <div className="flex-1">
+                    <p className="font-medium">Newsletter Preferences</p>
+                    <p className="text-sm text-muted-foreground">Manage your email subscriptions</p>
+                  </div>
+                  <button className="text-sm text-burgundy">Edit</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-ivory border-t border-border pt-12 pb-6 mt-12">
+        <div className="container-evermaze text-center">
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
