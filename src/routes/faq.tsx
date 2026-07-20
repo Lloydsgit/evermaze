@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "Do you offer corporate gifting?",
-    a: "Yes! We offer bulk orders for corporate gifting with custom branding options. Contact us at corporate@evermaze.com for special pricing and customization options.",
+    a: "Yes! We offer bulk orders for corporate gifting with custom branding options. Contact us at evermaze.info@gmail.com for special pricing and customization options.",
   },
   {
     q: "How are the hampers packaged?",
@@ -79,7 +79,7 @@ function FAQPage() {
         <div className="container-evermaze text-center">
           <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">We're here to help</span>
           <h1 className="mt-4 font-serif text-4xl md:text-6xl">Frequently Asked Questions</h1>
-          <p className="mt-4 text-white/70 max-w-xl mx-auto">Can't find the answer you're looking for? Reach out to our team at hello@evermaze.com</p>
+          <p className="mt-4 text-white/70 max-w-xl mx-auto">Can't find the answer you're looking for? Reach out to our team at evermaze.info@gmail.com</p>
         </div>
       </section>
 

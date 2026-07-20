@@ -77,7 +77,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium">Email Us</h3>
-                    <p className="text-muted-foreground">hello@evermaze.com</p>
+                    <p className="text-muted-foreground">evermaze.info@gmail.com</p>
                     <p className="text-sm text-muted-foreground">We reply within 24 hours</p>
                   </div>
                 </div>
