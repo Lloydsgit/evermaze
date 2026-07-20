@@ -251,7 +251,13 @@ function Occasions() {
 
 /* ---------- Shop by Price ---------- */
 function ShopByPrice() {
-  const prices = ["₹199", "₹499", "₹999", "₹1499", "₹1999"];
+  const hampers = [
+    { price: "₹199", name: "Mini Hamper" },
+    { price: "₹499", name: "Classic Hamper" },
+    { price: "₹999", name: "Signature Hamper" },
+    { price: "₹1499", name: "Supreme Hamper" },
+    { price: "₹1999", name: "Luxury Hamper" },
+  ];
   return (
     <section className="py-16 md:py-24 bg-card border-y border-border">
       <div className="container-evermaze">
@@ -260,10 +266,11 @@ function ShopByPrice() {
           <h2 className="mt-3 font-serif text-4xl md:text-5xl">A thoughtful gift, at every budget.</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {prices.map((p) => (
-            <Link key={p} to="/shop" className="group relative bg-ivory border border-border rounded-2xl py-10 text-center transition-all hover:border-burgundy hover:-translate-y-1">
+          {hampers.map((h) => (
+            <Link key={h.price} to="/shop" className="group relative bg-ivory border border-border rounded-2xl py-10 text-center transition-all hover:border-burgundy hover:-translate-y-1">
               <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-muted-foreground">Under</span>
-              <span className="mt-2 block font-serif text-4xl md:text-5xl text-burgundy">{p}</span>
+              <span className="mt-2 block font-serif text-4xl md:text-5xl text-burgundy">{h.price}</span>
+              <span className="mt-2 block font-serif text-lg text-foreground">{h.name}</span>
               <span className="mt-4 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.3em] uppercase">
                 Shop now <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
               </span>
