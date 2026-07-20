@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Search, Heart, ShoppingBag, User, Menu, X, Star,
@@ -37,7 +37,14 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const nav = ["Shop", "Gift Hampers", "Build Your Box", "About", "FAQs", "Contact"];
+  const nav = [
+    { name: "Shop", to: "/shop" },
+    { name: "Gift Hampers", to: "/gift-hampers" },
+    { name: "Build Your Box", to: "/build-your-box" },
+    { name: "About", to: "/about" },
+    { name: "FAQs", to: "/faq" },
+    { name: "Contact", to: "/contact" },
+  ];
 
   return (
     <header
@@ -56,22 +63,22 @@ function Header() {
 
         <nav className="hidden md:flex items-center gap-8 flex-1">
           {nav.slice(0, 3).map((n) => (
-            <a key={n} href="#" className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
-              {n}
-            </a>
+            <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+              {n.name}
+            </Link>
           ))}
         </nav>
 
-        <a href="/" className="flex flex-col items-center leading-none">
+        <Link to="/" className="flex flex-col items-center leading-none">
           <span className="font-serif text-2xl md:text-3xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
           <span className="mt-1 text-[0.6rem] md:text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Love in a Box</span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8 flex-1 justify-end">
           {nav.slice(3).map((n) => (
-            <a key={n} href="#" className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
-              {n}
-            </a>
+            <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+              {n.name}
+            </Link>
           ))}
         </nav>
 
@@ -90,7 +97,7 @@ function Header() {
         <div className="md:hidden border-t border-border bg-card">
           <nav className="container-evermaze py-4 flex flex-col gap-4">
             {nav.map((n) => (
-              <a key={n} href="#" className="text-xs tracking-[0.2em] uppercase">{n}</a>
+              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase">{n.name}</Link>
             ))}
           </nav>
         </div>
@@ -116,8 +123,8 @@ function Hero() {
             create unforgettable memories — moments that live longer than the ribbon.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#shop" className="btn-primary">Shop Hampers <ArrowRight className="size-4" /></a>
-            <a href="#build" className="btn-outline">Build Your Own Box</a>
+            <Link to="/shop" className="btn-primary">Shop Hampers <ArrowRight className="size-4" /></Link>
+            <Link to="/build-your-box" className="btn-outline">Build Your Own Box</Link>
           </div>
 
           <div className="mt-14 flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-muted-foreground">
@@ -181,19 +188,19 @@ function Occasions() {
     { name: "Just Because", img: heroHamper },
   ];
   return (
-    <section className="py-20 md:py-28" id="shop">
+    <section className="py-20 md:py-28">
       <div className="container-evermaze">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>
             <span className="eyebrow">Shop by occasion</span>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">A hamper for every hello.</h2>
           </div>
-          <a href="#" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">View all occasions</a>
+          <Link to="/gift-hampers" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">View all occasions</Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {items.map((it, i) => (
-            <a key={it.name + i} href="#" className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted">
+            <Link key={it.name + i} to="/gift-hampers" className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted">
               <img src={it.img} alt={`${it.name} gift hampers`} loading="lazy" width={1000} height={1200}
                 className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
@@ -203,7 +210,7 @@ function Occasions() {
                   Explore <ArrowRight className="size-3" />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -223,13 +230,13 @@ function ShopByPrice() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {prices.map((p) => (
-            <a key={p} href="#" className="group relative bg-ivory border border-border rounded-2xl py-10 text-center transition-all hover:border-burgundy hover:-translate-y-1">
+            <Link key={p} to="/shop" className="group relative bg-ivory border border-border rounded-2xl py-10 text-center transition-all hover:border-burgundy hover:-translate-y-1">
               <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-muted-foreground">Under</span>
               <span className="mt-2 block font-serif text-4xl md:text-5xl text-burgundy">{p}</span>
               <span className="mt-4 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.3em] uppercase">
                 Shop now <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -298,7 +305,7 @@ function BestSellers() {
             <span className="eyebrow">Best Sellers</span>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">Loved by thousands.</h2>
           </div>
-          <a href="#" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">Shop all</a>
+          <Link to="/shop" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">Shop all</Link>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((p) => <ProductCard key={p.name} p={p} />)}
@@ -352,7 +359,7 @@ function BuildYourBox() {
     { n: "06", t: "Preview & Checkout", d: "See your box, then send with love." },
   ];
   return (
-    <section id="build" className="py-24 md:py-32">
+    <section className="py-24 md:py-32">
       <div className="container-evermaze grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
         <div className="relative">
           <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-champagne-soft">
@@ -385,7 +392,7 @@ function BuildYourBox() {
             ))}
           </ol>
 
-          <a href="#" className="btn-primary mt-10">Start Building <ArrowRight className="size-4" /></a>
+          <Link to="/build-your-box" className="btn-primary mt-10">Start Building <ArrowRight className="size-4" /></Link>
         </div>
       </div>
     </section>
@@ -551,15 +558,42 @@ function Newsletter() {
 /* ---------- Footer ---------- */
 function Footer() {
   const cols = [
-    { t: "Shop", l: ["All Hampers", "Occasions", "Build Your Box", "Under ₹999", "Gift Cards"] },
-    { t: "Help", l: ["Track Order", "Shipping", "Returns", "FAQs", "Contact"] },
-    { t: "About", l: ["Our Story", "Sustainability", "Careers", "Corporate Gifting", "Press"] },
+    { 
+      t: "Shop", 
+      l: [
+        { name: "All Hampers", to: "/shop" },
+        { name: "Occasions", to: "/gift-hampers" },
+        { name: "Build Your Box", to: "/build-your-box" },
+        { name: "Under ₹999", to: "/shop" },
+        { name: "Gift Cards", to: "/shop" },
+      ] 
+    },
+    { 
+      t: "Help", 
+      l: [
+        { name: "Track Order", to: "/contact" },
+        { name: "Shipping", to: "/faq" },
+        { name: "Returns", to: "/faq" },
+        { name: "FAQs", to: "/faq" },
+        { name: "Contact", to: "/contact" },
+      ] 
+    },
+    { 
+      t: "About", 
+      l: [
+        { name: "Our Story", to: "/about" },
+        { name: "Sustainability", to: "/about" },
+        { name: "Careers", to: "/about" },
+        { name: "Corporate Gifting", to: "/contact" },
+        { name: "Press", to: "/about" },
+      ] 
+    },
   ];
   return (
     <footer className="bg-ivory border-t border-border pt-20 pb-8">
       <div className="container-evermaze grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12">
         <div>
-          <div className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</div>
+          <Link to="/" className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
           <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Love in a Box</p>
           <p className="mt-6 max-w-xs text-sm text-muted-foreground leading-relaxed">
             Beautifully personalized gift hampers, thoughtfully packed for every celebration.
@@ -576,7 +610,7 @@ function Footer() {
           <div key={c.t}>
             <h4 className="text-xs tracking-[0.25em] uppercase mb-5">{c.t}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              {c.l.map((li) => <li key={li}><a href="#" className="hover:text-burgundy transition-colors">{li}</a></li>)}
+              {c.l.map((li) => <li key={li.name}><Link to={li.to} className="hover:text-burgundy transition-colors">{li.name}</Link></li>)}
             </ul>
           </div>
         ))}
