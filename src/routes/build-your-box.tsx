@@ -702,46 +702,48 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Order Summary */}
-          <div className="max-w-4xl mx-auto mt-12">
-            <div className="bg-card border border-border rounded-2xl p-6">
-              <h3 className="font-serif text-xl mb-4">Order Summary</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Package</span>
-                  <span>{pkg?.name} (₹{pkg?.price})</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Items ({selectedItems.length})</span>
-                  <span>₹{selectedItems.reduce((sum, itemName) => {
-                    const found = personalItems.find(i => i.name === itemName);
-                    if (found) sum += found.price;
-                    return sum;
-                  }, 0)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span>
-                    {selectedDelivery.price === 0 ? (
-                      <span className="text-green-600 font-medium">FREE</span>
-                    ) : (
-                      <>₹{selectedDelivery.price} ({selectedDelivery.name})</>
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Occasion</span>
-                  <span>{getOccasionDisplay()} - {occasionDate}</span>
-                </div>
-                <div className="border-t border-border pt-3 mt-3">
-                  <div className="flex justify-between font-serif text-2xl">
-                    <span>Total</span>
-                    <span className="text-burgundy">₹{calculateTotal()}</span>
+          {/* Order Summary - Only on Personal Touches page */}
+          {step === 3 && (
+            <div className="max-w-4xl mx-auto mt-12">
+              <div className="bg-card border border-border rounded-2xl p-6">
+                <h3 className="font-serif text-xl mb-4">Order Summary</h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Package</span>
+                    <span>{pkg?.name} (₹{pkg?.price})</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Items ({selectedItems.length})</span>
+                    <span>₹{selectedItems.reduce((sum, itemName) => {
+                      const found = personalItems.find(i => i.name === itemName);
+                      if (found) sum += found.price;
+                      return sum;
+                    }, 0)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Shipping</span>
+                    <span>
+                      {selectedDelivery.price === 0 ? (
+                        <span className="text-green-600 font-medium">FREE</span>
+                      ) : (
+                        <>₹{selectedDelivery.price} ({selectedDelivery.name})</>
+                      )}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Occasion</span>
+                    <span>{getOccasionDisplay()} - {occasionDate}</span>
+                  </div>
+                  <div className="border-t border-border pt-3 mt-3">
+                    <div className="flex justify-between font-serif text-2xl">
+                      <span>Total</span>
+                      <span className="text-burgundy">₹{calculateTotal()}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Navigation Buttons */}
           <div className="max-w-4xl mx-auto mt-8 flex justify-between">
