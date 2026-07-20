@@ -88,7 +88,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium">Call Us</h3>
-                    <p className="text-muted-foreground">+91 98765 43210</p>
+                    <p className="text-muted-foreground">+91 9848507639</p>
                     <p className="text-sm text-muted-foreground">Mon-Sat, 10am-7pm IST</p>
                   </div>
                 </div>
@@ -99,8 +99,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium">Visit Us</h3>
-                    <p className="text-muted-foreground">Evermaze Studio, Sector 15</p>
-                    <p className="text-muted-foreground">Gurugram, Haryana 122001</p>
+                    <p className="text-muted-foreground">Secunderabad, Hyderabad, Telangana</p>
                   </div>
                 </div>
               </div>
