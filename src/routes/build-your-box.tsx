@@ -17,7 +17,7 @@ const packages = [
   { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15 },
 ];
 
-const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
+const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift"];
 
 const otherOccasions = ["Housewarming", "Graduation", "Surprise Gift", "Other"];
 
@@ -259,13 +259,8 @@ function BuildYourBoxPage() {
                         key={occ}
                         onClick={() => {
                           setSelectedOccasion(occ);
-                          if (occ === "Other") {
-                            setShowOtherOptions(true);
-                            setCustomOccasion("");
-                          } else {
-                            setShowOtherOptions(false);
-                            setCustomOccasion("");
-                          }
+                          setShowOtherOptions(false);
+                          setCustomOccasion("");
                         }}
                         className={`p-3 rounded-xl border text-sm transition-all relative ${
                           selectedOccasion === occ && !showOtherOptions
@@ -281,6 +276,25 @@ function BuildYourBoxPage() {
                         {occ}
                       </button>
                     ))}
+                    <button
+                      onClick={() => {
+                        setSelectedOccasion("Other");
+                        setShowOtherOptions(true);
+                        setCustomOccasion("");
+                      }}
+                      className={`p-3 rounded-xl border text-sm transition-all relative ${
+                        showOtherOptions
+                          ? "border-burgundy bg-burgundy/5 text-burgundy"
+                          : "border-border hover:border-burgundy"
+                      }`}
+                    >
+                      {showOtherOptions && (
+                        <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
+                          <Check className="size-3 text-white" />
+                        </div>
+                      )}
+                      Other
+                    </button>
                   </div>
                   
                   {/* Other Options Dropdown */}
