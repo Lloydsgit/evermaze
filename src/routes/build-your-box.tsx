@@ -11,30 +11,27 @@ export const Route = createFileRoute("/build-your-box")({
 
 const packages = [
   { price: 199, name: "Mini Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
-  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Personalized Keychain"], includedValue: 128 },
-  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame"], includedValue: 227 },
-  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear"], includedValue: 455 },
-  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet"], includedValue: 604 },
+  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain"], includedValue: 147 },
+  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame"], includedValue: 335 },
+  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear"], includedValue: 673 },
+  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Photo Album", "Personalized Mug", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet"], includedValue: 1144 },
 ];
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
 
 const personalItems = [
-  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: false },
-  { name: "Personalized Keychain", price: 79, description: "Custom keychain with their name", icon: "🔑", hasImage: false },
+  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: true },
+  { name: "Bookmark", price: 39, description: "Beautiful bookmark for book lovers", icon: "📚", hasImage: false },
+  { name: "Fridge Magnet", price: 49, description: "Custom fridge magnet as keepsake", icon: "🧲", hasImage: true },
+  { name: "Chocolate Box", price: 79, description: "Assorted premium chocolates", icon: "🍫", hasImage: false },
+  { name: "Keychain", price: 59, description: "Custom keychain with their name", icon: "🔑", hasImage: false },
   { name: "Photo Frame", price: 99, description: "Beautiful frame for your special photo", icon: "📷", hasImage: true },
-  { name: "Custom Bookmark", price: 49, description: "Engraved bookmark for book lovers", icon: "📚", hasImage: false },
-  { name: "Engraved Token", price: 129, description: "Special engraved token as keepsake", icon: "🎫", hasImage: false },
-  { name: "Memory Card", price: 39, description: "Card with your cherished memory", icon: "💝", hasImage: true },
-  { name: "Scented Candle", price: 99, description: "Hand-poured aromatic candle", icon: "🕯️", hasImage: false },
-  { name: "Scented Potpourri", price: 59, description: "Natural dried flower potpourri", icon: "🌸", hasImage: false },
-  { name: "Mini Vase", price: 79, description: "Decorative mini vase for flowers", icon: "🏺", hasImage: false },
-  { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱", hasImage: false },
   { name: "Photo Album", price: 149, description: "Premium photo album for memories", icon: "📒", hasImage: true },
   { name: "Personalized Mug", price: 89, description: "Custom printed ceramic mug", icon: "☕", hasImage: true },
-  { name: "Chocolates Box", price: 79, description: "Assorted premium chocolates", icon: "🍫", hasImage: false },
+  { name: "Scented Candle", price: 99, description: "Hand-poured aromatic candle", icon: "🕯️", hasImage: false },
   { name: "Teddy Bear", price: 129, description: "Soft and cuddly teddy bear", icon: "🧸", hasImage: false },
   { name: "Flower Bouquet", price: 149, description: "Fresh flower arrangement", icon: "💐", hasImage: false },
+  { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱", hasImage: false },
 ];
 
 function BuildYourBoxPage() {

@@ -17,35 +17,35 @@ const hamperTypes = [
     price: 199, 
     name: "Mini Hamper", 
     description: "Perfect for small gestures and intimate moments",
-    items: ["Handwritten Letter", "Personalized Keychain", "Chocolates Box", "Mini Vase"],
+    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet"],
     img: hamper1
   },
   { 
     price: 499, 
     name: "Classic Hamper", 
     description: "Thoughtful gift for any celebration",
-    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Chocolates Box", "Mini Vase"],
+    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box"],
     img: hamper2
   },
   { 
     price: 999, 
     name: "Signature Hamper", 
     description: "Premium selection for special occasions",
-    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Custom Bookmark", "Chocolates Box", "Scented Potpourri", "Mini Vase"],
+    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet"],
     img: hamper3
   },
   { 
     price: 1499, 
     name: "Supreme Hamper", 
     description: "Luxurious experience with premium items",
-    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Custom Bookmark", "Engraved Token", "Personalized Mug", "Chocolates Box", "Succulent Plant"],
+    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Personalized Mug", "Succulent Plant"],
     img: hamper4
   },
   { 
     price: 1999, 
     name: "Luxury Hamper", 
     description: "Ultimate indulgence with exclusive items",
-    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Custom Bookmark", "Engraved Token", "Personalized Mug", "Chocolates Box", "Succulent Plant", "Scented Potpourri", "Memory Card", "Mini Vase"],
+    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Personalized Mug", "Succulent Plant"],
     img: hamper5
   },
 ];
