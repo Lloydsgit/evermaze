@@ -17,35 +17,35 @@ const hamperTypes = [
     price: 199, 
     name: "Mini Hamper", 
     description: "Perfect for small gestures and intimate moments",
-    items: ["2 Selection items", "Eco packaging", "Basic ribbon"],
+    items: ["4 Selection items", "Eco packaging", "Basic ribbon", "Gift box"],
     img: hamper1
   },
   { 
     price: 499, 
     name: "Classic Hamper", 
     description: "Thoughtful gift for any celebration",
-    items: ["4 Selection items", "Premium packaging", "Personalized card", "Basic ribbon"],
+    items: ["6 Selection items", "Premium packaging", "Personalized card", "Basic ribbon", "Gift box"],
     img: hamper2
   },
   { 
     price: 999, 
     name: "Signature Hamper", 
     description: "Premium selection for special occasions",
-    items: ["6 Selection items", "Luxury packaging", "Handwritten letter", "Premium ribbon", "Gift box"],
+    items: ["9 Selection items", "Luxury packaging", "Handwritten letter", "Premium ribbon", "Gift box", "Photo frame"],
     img: hamper3
   },
   { 
     price: 1499, 
     name: "Supreme Hamper", 
     description: "Luxurious experience with premium items",
-    items: ["8 Selection items", "Deluxe packaging", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card"],
+    items: ["12 Selection items", "Deluxe packaging", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card", "Photo frame"],
     img: hamper4
   },
   { 
     price: 1999, 
     name: "Luxury Hamper", 
     description: "Ultimate indulgence with exclusive items",
-    items: ["10 Selection items", "Premium wooden box", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card", "Photo frame"],
+    items: ["15 Selection items", "Premium wooden box", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card", "Photo frame", "Champagne"],
     img: hamper5
   },
 ];

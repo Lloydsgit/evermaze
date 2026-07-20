@@ -10,11 +10,11 @@ export const Route = createFileRoute("/build-your-box")({
 });
 
 const packages = [
-  { price: 199, name: "Mini Hamper", items: 2, maxItems: 2, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
-  { price: 499, name: "Classic Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes"], includedValue: 98 },
-  { price: 999, name: "Signature Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping"], includedValue: 177 },
-  { price: 1499, name: "Supreme Hamper", items: 8, maxItems: 8, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card"], includedValue: 216 },
-  { price: 1999, name: "Luxury Hamper", items: 10, maxItems: 10, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card", "Champagne/Wine Upgrade"], includedValue: 515 },
+  { price: 199, name: "Mini Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
+  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes"], includedValue: 98 },
+  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping"], includedValue: 177 },
+  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card"], includedValue: 216 },
+  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card", "Champagne/Wine Upgrade"], includedValue: 515 },
 ];
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
