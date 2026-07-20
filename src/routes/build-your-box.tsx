@@ -10,11 +10,11 @@ export const Route = createFileRoute("/build-your-box")({
 });
 
 const packages = [
-  { price: 199, name: "Mini Hamper", items: 2, maxItems: 2 },
-  { price: 499, name: "Classic Hamper", items: 4, maxItems: 4 },
-  { price: 999, name: "Signature Hamper", items: 6, maxItems: 6 },
-  { price: 1499, name: "Supreme Hamper", items: 8, maxItems: 8 },
-  { price: 1999, name: "Luxury Hamper", items: 10, maxItems: 10 },
+  { price: 199, name: "Mini Hamper", items: 2, maxItems: 2, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
+  { price: 499, name: "Classic Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes"], includedValue: 98 },
+  { price: 999, name: "Signature Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping"], includedValue: 177 },
+  { price: 1499, name: "Supreme Hamper", items: 8, maxItems: 8, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card"], includedValue: 216 },
+  { price: 1999, name: "Luxury Hamper", items: 10, maxItems: 10, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card", "Champagne/Wine Upgrade"], includedValue: 515 },
 ];
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
@@ -94,12 +94,13 @@ const personalTouches = [
 function BuildYourBoxPage() {
   const search = Route.useSearch();
   const initialPackage = search.package ? parseInt(search.package as string) : null;
+  const initialPkg = packages.find((p) => p.price === initialPackage);
 
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [selectedTouches, setSelectedTouches] = useState<string[]>([]);
+  const [selectedTouches, setSelectedTouches] = useState<string[]>(initialPkg?.defaultTouches || []);
   const [occasionDate, setOccasionDate] = useState("");
   const [recipientName, setRecipientName] = useState("");
   const [recipientMessage, setRecipientMessage] = useState("");
@@ -114,6 +115,14 @@ function BuildYourBoxPage() {
   });
 
   const pkg = packages.find((p) => p.price === selectedPackage);
+
+  const handlePackageSelect = (price: number) => {
+    setSelectedPackage(price);
+    const selectedPkg = packages.find((p) => p.price === price);
+    if (selectedPkg) {
+      setSelectedTouches(selectedPkg.defaultTouches);
+    }
+  };
 
   const toggleItem = (item: string) => {
     setSelectedItems((prev) => 
@@ -231,8 +240,8 @@ function BuildYourBoxPage() {
                 {packages.map((pkg) => (
                   <button
                     key={pkg.price}
-                    onClick={() => setSelectedPackage(pkg.price)}
-                    className={`p-6 rounded-2xl border-2 transition-all ${
+                    onClick={() => handlePackageSelect(pkg.price)}
+                    className={`p-6 rounded-2xl border-2 transition-all text-left ${
                       selectedPackage === pkg.price
                         ? "border-burgundy bg-burgundy/5"
                         : "border-border hover:border-burgundy"
@@ -241,8 +250,16 @@ function BuildYourBoxPage() {
                     <span className="block font-serif text-3xl text-burgundy">₹{pkg.price}</span>
                     <span className="block mt-2 font-serif text-lg">{pkg.name}</span>
                     <span className="block mt-1 text-sm text-muted-foreground">Up to {pkg.items} items</span>
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <p className="text-xs text-burgundy font-medium">Included:</p>
+                      {pkg.defaultTouches.map((touch) => (
+                        <p key={touch} className="text-xs text-muted-foreground">• {touch}</p>
+                      ))}
+                    </div>
                     {selectedPackage === pkg.price && (
-                      <Check className="size-5 text-burgundy mt-3 mx-auto" />
+                      <div className="mt-3 flex justify-center">
+                        <Check className="size-5 text-burgundy" />
+                      </div>
                     )}
                   </button>
                 ))}
@@ -368,35 +385,65 @@ function BuildYourBoxPage() {
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
                 <Heart className="size-6 text-burgundy" />
-                Add Personal Touches
+                Personal Touches
               </h2>
-              <p className="text-muted-foreground mb-6">Make your gift extra special</p>
-              <div className="grid md:grid-cols-2 gap-4">
-                {personalTouches.map((touch) => {
-                  const isSelected = selectedTouches.includes(touch.name);
-                  return (
-                    <button
-                      key={touch.name}
-                      onClick={() => toggleTouch(touch.name)}
-                      className={`p-5 rounded-2xl border text-left transition-all ${
-                        isSelected
-                          ? "border-burgundy bg-burgundy/5"
-                          : "border-border hover:border-burgundy"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h4 className="font-medium">{touch.name}</h4>
-                          <p className="text-sm text-muted-foreground mt-1">{touch.description}</p>
+              <p className="text-muted-foreground mb-6">These touches are included in your {pkg?.name}. Click to remove if not needed.</p>
+              
+              {/* Included touches */}
+              {selectedTouches.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-sm font-medium text-burgundy mb-3">✓ Included in your package:</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {selectedTouches.map((touchName) => {
+                      const touch = personalTouches.find((t) => t.name === touchName);
+                      if (!touch) return null;
+                      return (
+                        <div
+                          key={touch.name}
+                          className="p-5 rounded-2xl border-2 border-burgundy bg-burgundy/5 cursor-pointer hover:bg-red-50 transition-all"
+                          onClick={() => toggleTouch(touch.name)}
+                        >
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <h4 className="font-medium">{touch.name}</h4>
+                              <p className="text-sm text-muted-foreground mt-1">{touch.description}</p>
+                            </div>
+                            <div className="flex items-center gap-2 text-burgundy">
+                              <span className="font-medium">₹{touch.price}</span>
+                              <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">Remove</span>
+                            </div>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">+₹{touch.price}</span>
-                          {isSelected && <Check className="size-5 text-burgundy" />}
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Optional extras */}
+              <div>
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Add extra touches:</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {personalTouches
+                    .filter((touch) => !selectedTouches.includes(touch.name))
+                    .map((touch) => (
+                      <button
+                        key={touch.name}
+                        onClick={() => toggleTouch(touch.name)}
+                        className="p-5 rounded-2xl border border-border text-left transition-all hover:border-burgundy"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h4 className="font-medium">{touch.name}</h4>
+                            <p className="text-sm text-muted-foreground mt-1">{touch.description}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">+₹{touch.price}</span>
+                          </div>
                         </div>
-                      </div>
-                    </button>
-                  );
-                })}
+                      </button>
+                    ))}
+                </div>
               </div>
             </div>
           )}
