@@ -99,7 +99,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium">Visit Us</h3>
-                    <p className="text-muted-foreground">Secunderabad, Hyderabad, Telangana</p>
+                    <p className="text-muted-foreground">Secunderabad, Hyderabad, Telangana 500062</p>
                   </div>
                 </div>
               </div>
