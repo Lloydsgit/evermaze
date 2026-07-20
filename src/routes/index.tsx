@@ -252,26 +252,31 @@ function Occasions() {
 /* ---------- Shop by Price ---------- */
 function ShopByPrice() {
   const hampers = [
-    { price: "₹199", name: "Mini Hamper" },
-    { price: "₹499", name: "Classic Hamper" },
-    { price: "₹999", name: "Signature Hamper" },
-    { price: "₹1499", name: "Supreme Hamper" },
-    { price: "₹1999", name: "Luxury Hamper" },
+    { price: "₹199", name: "Mini Hamper", categories: ["Birthday", "Return Gift", "Pet", "Festival"] },
+    { price: "₹499", name: "Classic Hamper", categories: ["Birthday", "Farewell", "Return Gift", "Pet", "Festival"] },
+    { price: "₹999", name: "Signature Hamper", categories: ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"] },
+    { price: "₹1499", name: "Supreme Hamper", categories: ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"] },
+    { price: "₹1999", name: "Luxury Hamper", categories: ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"] },
   ];
+
+  const allCategories = ["Birthday", "Wedding", "Farewell", "Return Gift", "Pet", "Festival"];
+
   return (
     <section className="py-16 md:py-24 bg-card border-y border-border">
       <div className="container-evermaze">
         <div className="text-center mb-12">
-          <span className="eyebrow">Shop by price</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">A thoughtful gift, at every budget.</h2>
+          <span className="eyebrow">Shop by occasion</span>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl">A hamper for every celebration.</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {hampers.map((h) => (
-            <Link key={h.price} to="/shop" className="group relative bg-ivory border border-border rounded-2xl py-10 text-center transition-all hover:border-burgundy hover:-translate-y-1">
-              <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-muted-foreground">Under</span>
-              <span className="mt-2 block font-serif text-4xl md:text-5xl text-burgundy">{h.price}</span>
-              <span className="mt-2 block font-serif text-lg text-foreground">{h.name}</span>
-              <span className="mt-4 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.3em] uppercase">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {allCategories.map((category) => (
+            <Link 
+              key={category} 
+              to={`/shop?category=${encodeURIComponent(category)}`} 
+              className="group relative bg-ivory border border-border rounded-2xl py-8 px-4 text-center transition-all hover:border-burgundy hover:-translate-y-1"
+            >
+              <span className="block font-serif text-xl text-foreground">{category}</span>
+              <span className="mt-2 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                 Shop now <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
