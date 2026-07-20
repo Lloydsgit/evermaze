@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, Upload, X, Image } from "lucide-react";
-import { useState, useRef } from "react";
+import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, X, Image } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
 
@@ -61,21 +61,24 @@ function BuildYourBoxPage() {
 
   const pkg = packages.find((p) => p.price === selectedPackage);
 
-  const handlePackageSelect = (price: number) => {
+  const handlePackageSelect = useCallback((price: number) => {
     setSelectedPackage(price);
     const selectedPkg = packages.find((p) => p.price === price);
     if (selectedPkg) {
       setSelectedItems(selectedPkg.defaultTouches);
     }
-  };
+  }, []);
 
-  const toggleItem = (itemName: string) => {
-    setSelectedItems((prev) => 
-      prev.includes(itemName) ? prev.filter((i) => i !== itemName) : [...prev, itemName]
-    );
-  };
+  const toggleItem = useCallback((itemName: string) => {
+    setSelectedItems((prev) => {
+      if (prev.includes(itemName)) {
+        return prev.filter((i) => i !== itemName);
+      }
+      return [...prev, itemName];
+    });
+  }, []);
 
-  const handleImageUpload = (itemName: string, event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = useCallback((itemName: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -84,26 +87,26 @@ function BuildYourBoxPage() {
       };
       reader.readAsDataURL(file);
     }
-  };
+  }, []);
 
-  const removeImage = (itemName: string) => {
+  const removeImage = useCallback((itemName: string) => {
     setUploadedImages((prev) => {
       const newImages = { ...prev };
       delete newImages[itemName];
       return newImages;
     });
-  };
+  }, []);
 
-  const calculateTotal = () => {
+  const calculateTotal = useCallback(() => {
     let total = selectedPackage || 0;
     selectedItems.forEach((itemName) => {
       const found = personalItems.find((i) => i.name === itemName);
       if (found) total += found.price;
     });
     return total;
-  };
+  }, [selectedPackage, selectedItems]);
 
-  const canProceed = () => {
+  const canProceed = useCallback(() => {
     switch (step) {
       case 1: return selectedPackage !== null;
       case 2: return selectedOccasion !== "" && occasionDate !== "";
@@ -112,16 +115,14 @@ function BuildYourBoxPage() {
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
       default: return true;
     }
-  };
+  }, [step, selectedPackage, selectedOccasion, occasionDate, selectedItems, formData]);
 
   const handleSubmit = () => {
     alert("Order placed successfully! You will receive a confirmation email shortly.");
   };
 
-  const itemsNeedingImage = selectedItems.filter((itemName) => {
-    const item = personalItems.find((i) => i.name === itemName);
-    return item?.hasImage;
-  });
+  const isItemSelected = (itemName: string) => selectedItems.includes(itemName);
+  const isItemDisabled = (itemName: string) => !isItemSelected(itemName) && selectedItems.length >= (pkg?.maxItems || 0);
 
   return (
     <div className="min-h-screen">
@@ -152,11 +153,14 @@ function BuildYourBoxPage() {
           <div className="flex items-center justify-center gap-2">
             {[1, 2, 3, 4, 5].map((s) => (
               <div key={s} className="flex items-center">
-                <div className={`size-10 rounded-full flex items-center justify-center font-medium transition-colors ${
-                  step >= s ? "bg-burgundy text-white" : "bg-muted text-muted-foreground"
-                }`}>
+                <button
+                  onClick={() => s < step && setStep(s)}
+                  className={`size-10 rounded-full flex items-center justify-center font-medium transition-colors ${
+                    step >= s ? "bg-burgundy text-white" : "bg-muted text-muted-foreground"
+                  }`}
+                >
                   {s}
-                </div>
+                </button>
                 {s < 5 && (
                   <div className={`w-12 md:w-20 h-1 mx-2 rounded ${step > s ? "bg-burgundy" : "bg-muted"}`} />
                 )}
@@ -191,27 +195,27 @@ function BuildYourBoxPage() {
                 Choose Your Package
               </h2>
               <div className="grid md:grid-cols-5 gap-4">
-                {packages.map((pkg) => (
+                {packages.map((pkgItem) => (
                   <button
-                    key={pkg.price}
-                    onClick={() => handlePackageSelect(pkg.price)}
+                    key={pkgItem.price}
+                    onClick={() => handlePackageSelect(pkgItem.price)}
                     className={`p-6 rounded-2xl border-2 transition-all text-left relative ${
-                      selectedPackage === pkg.price
+                      selectedPackage === pkgItem.price
                         ? "border-burgundy bg-burgundy/5"
                         : "border-border hover:border-burgundy"
                     }`}
                   >
-                    {selectedPackage === pkg.price && (
+                    {selectedPackage === pkgItem.price && (
                       <div className="absolute top-3 right-3 size-6 bg-burgundy rounded-full flex items-center justify-center">
                         <Check className="size-4 text-white" />
                       </div>
                     )}
-                    <span className="block font-serif text-3xl text-burgundy">₹{pkg.price}</span>
-                    <span className="block mt-2 font-serif text-lg">{pkg.name}</span>
-                    <span className="block mt-1 text-sm text-muted-foreground">{pkg.items} items</span>
+                    <span className="block font-serif text-3xl text-burgundy">₹{pkgItem.price}</span>
+                    <span className="block mt-2 font-serif text-lg">{pkgItem.name}</span>
+                    <span className="block mt-1 text-sm text-muted-foreground">{pkgItem.items} items</span>
                     <div className="mt-3 pt-3 border-t border-border">
                       <p className="text-xs text-burgundy font-medium">Included:</p>
-                      {pkg.defaultTouches.map((touch) => (
+                      {pkgItem.defaultTouches.map((touch) => (
                         <p key={touch} className="text-xs text-muted-foreground">• {touch}</p>
                       ))}
                     </div>
@@ -293,7 +297,9 @@ function BuildYourBoxPage() {
                 <Sparkles className="size-6 text-burgundy" />
                 Add Personal Touches
               </h2>
-              <p className="text-muted-foreground mb-6">Choose up to {pkg?.maxItems} personal items for your {pkg?.name}</p>
+              <p className="text-muted-foreground mb-6">
+                Choose up to {pkg?.maxItems} personal items for your {pkg?.name}. Selected: {selectedItems.length}/{pkg?.maxItems}
+              </p>
               
               {/* Selected Items Summary */}
               <div className="mb-6 p-4 bg-burgundy/10 rounded-xl">
@@ -309,7 +315,11 @@ function BuildYourBoxPage() {
                         <span key={item} className="bg-burgundy text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2">
                           <span>{itemData?.icon}</span>
                           <span>{item}</span>
-                          <button onClick={() => toggleItem(item)} className="hover:text-red-200 ml-1">
+                          <button 
+                            onClick={() => toggleItem(item)} 
+                            className="hover:text-red-200 ml-1"
+                            type="button"
+                          >
                             <X className="size-3" />
                           </button>
                         </span>
@@ -321,28 +331,30 @@ function BuildYourBoxPage() {
                 )}
               </div>
 
-              {/* Items Grid */}
+              {/* Items Grid - Using Buttons */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {personalItems.map((item) => {
-                  const isSelected = selectedItems.includes(item.name);
-                  const isDisabled = !isSelected && selectedItems.length >= (pkg?.maxItems || 0);
+                  const selected = isItemSelected(item.name);
+                  const disabled = isItemDisabled(item.name);
                   
                   return (
-                    <div
+                    <button
                       key={item.name}
-                      className={`rounded-2xl border-2 transition-all overflow-hidden ${
-                        isSelected
+                      type="button"
+                      onClick={() => !disabled && toggleItem(item.name)}
+                      disabled={disabled}
+                      className={`w-full text-left rounded-2xl border-2 transition-all overflow-hidden ${
+                        selected
                           ? "border-burgundy bg-burgundy/5"
-                          : isDisabled
-                          ? "border-border opacity-50"
-                          : "border-border hover:border-burgundy cursor-pointer"
+                          : disabled
+                          ? "border-border opacity-50 cursor-not-allowed"
+                          : "border-border hover:border-burgundy"
                       }`}
-                      onClick={() => !isDisabled && toggleItem(item.name)}
                     >
                       <div className="p-5">
                         <div className="flex items-start gap-4">
                           <div className={`size-12 rounded-xl flex items-center justify-center text-2xl transition-colors ${
-                            isSelected ? "bg-burgundy/20" : "bg-muted"
+                            selected ? "bg-burgundy/20" : "bg-muted"
                           }`}>
                             {item.icon}
                           </div>
@@ -352,20 +364,20 @@ function BuildYourBoxPage() {
                             <p className="mt-2 font-medium text-burgundy">+₹{item.price}</p>
                           </div>
                           <div className={`size-8 rounded-full border-2 flex items-center justify-center transition-all ${
-                            isSelected
+                            selected
                               ? "border-burgundy bg-burgundy text-white"
                               : "border-border bg-white"
                           }`}>
-                            {isSelected && <Check className="size-5" />}
+                            {selected && <Check className="size-5" />}
                           </div>
                         </div>
                       </div>
                       
                       {/* Image Upload Section - Only show for selected items that need images */}
-                      {isSelected && item.hasImage && (
+                      {selected && item.hasImage && (
                         <div className="px-5 pb-5 border-t border-burgundy/20 pt-4 mt-2">
-                          <label className="block">
-                            <div className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-colors ${
+                          <label className="block cursor-pointer">
+                            <div className={`border-2 border-dashed rounded-xl p-4 text-center transition-colors ${
                               uploadedImages[item.name]
                                 ? "border-burgundy bg-burgundy/10"
                                 : "border-border hover:border-burgundy hover:bg-muted"
@@ -405,48 +417,16 @@ function BuildYourBoxPage() {
                                 e.stopPropagation();
                                 handleImageUpload(item.name, e);
                               }}
+                              onClick={(e) => e.stopPropagation()}
                               className="hidden"
                             />
                           </label>
                         </div>
                       )}
-                    </div>
+                    </button>
                   );
                 })}
               </div>
-
-              {/* Image Items Summary */}
-              {itemsNeedingImage.length > 0 && (
-                <div className="mt-6 p-4 bg-champagne-soft rounded-xl">
-                  <p className="text-sm font-medium mb-3 flex items-center gap-2">
-                    <Image className="size-4 text-burgundy" />
-                    Items needing images:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {itemsNeedingImage.map((itemName) => {
-                      const item = personalItems.find(i => i.name === itemName);
-                      const hasImage = uploadedImages[itemName];
-                      return (
-                        <span 
-                          key={itemName} 
-                          className={`text-sm px-3 py-1.5 rounded-full flex items-center gap-2 ${
-                            hasImage 
-                              ? "bg-green-100 text-green-700" 
-                              : "bg-amber-100 text-amber-700"
-                          }`}
-                        >
-                          {item?.icon} {itemName}
-                          {hasImage ? (
-                            <Check className="size-3" />
-                          ) : (
-                            <span className="text-xs">(upload)</span>
-                          )}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
           )}
 
@@ -646,7 +626,7 @@ function BuildYourBoxPage() {
           {/* Navigation Buttons */}
           <div className="max-w-4xl mx-auto mt-8 flex justify-between">
             {step > 1 ? (
-              <button onClick={() => setStep(step - 1)} className="btn-outline">
+              <button onClick={() => setStep(step - 1)} type="button" className="btn-outline">
                 ← Previous
               </button>
             ) : (
@@ -656,6 +636,7 @@ function BuildYourBoxPage() {
             )}
             {step < 5 ? (
               <button 
+                type="button"
                 onClick={() => setStep(step + 1)} 
                 disabled={!canProceed()}
                 className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -664,6 +645,7 @@ function BuildYourBoxPage() {
               </button>
             ) : (
               <button 
+                type="button"
                 onClick={handleSubmit}
                 disabled={!canProceed()}
                 className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
