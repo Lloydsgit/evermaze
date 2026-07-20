@@ -320,7 +320,7 @@ function BuildYourBoxPage() {
                           type="text"
                           value={customOccasion}
                           onChange={(e) => setCustomOccasion(e.target.value)}
-                          placeholder="Enter your occasion..."
+                          placeholder="Enter the occasion..."
                           className="w-full px-4 py-3 rounded-xl border-2 border-burgundy bg-background focus:outline-none"
                         />
                       )}
