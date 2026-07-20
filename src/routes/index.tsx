@@ -86,7 +86,6 @@ function Header() {
               <Link to="/profile" aria-label="Account" className="hover:text-burgundy transition-colors"><User className="size-[18px]" /></Link>
               <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
                 <ShoppingBag className="size-[18px]" />
-                <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
               </Link>
             </div>
           </nav>
@@ -116,7 +115,6 @@ function Header() {
             </button>
             <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
