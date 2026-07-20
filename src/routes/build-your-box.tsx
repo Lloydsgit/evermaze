@@ -308,11 +308,28 @@ function BuildYourBoxPage() {
                 <div>
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
                   <input
-                    type="date"
+                    type="text"
                     value={occasionDate}
-                    onChange={(e) => setOccasionDate(e.target.value)}
+                    onChange={(e) => {
+                      let value = e.target.value.replace(/\D/g, "");
+                      if (value.length >= 3) value = value.slice(0, 2) + "/" + value.slice(2);
+                      if (value.length >= 6) value = value.slice(0, 5) + "/" + value.slice(5, 9);
+                      if (value.length > 10) value = value.slice(0, 10);
+                      setOccasionDate(value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Backspace" && occasionDate.length === 3) {
+                        e.preventDefault();
+                        setOccasionDate(occasionDate.slice(0, -1));
+                      }
+                      if (e.key === "Backspace" && occasionDate.length === 6) {
+                        e.preventDefault();
+                        setOccasionDate(occasionDate.slice(0, -1));
+                      }
+                    }}
+                    placeholder="DD/MM/YYYY"
                     className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
-                    min={new Date().toISOString().split('T')[0]}
+                    maxLength={10}
                   />
                   <div className="mt-6">
                     <label className="block text-sm font-medium mb-2">Recipient's Name (Optional)</label>
