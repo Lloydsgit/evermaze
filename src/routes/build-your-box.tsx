@@ -62,12 +62,20 @@ function BuildYourBoxPage() {
   const pkg = packages.find((p) => p.price === selectedPackage);
 
   const deliveryOptions = [
-    { id: "standard", name: "Standard Delivery", price: 99, description: "3-5 business days" },
-    { id: "express", name: "Express Delivery", price: 199, description: "1-2 business days" },
-    { id: "same-day", name: "Same Day Delivery", price: 349, description: "Delivery today (order before 2 PM)" },
+    { id: "standard", name: "Standard Delivery", price: selectedPackage && [999, 1499, 1999].includes(selectedPackage) ? 0 : 99, description: "3-5 business days", originalPrice: 99 },
+    { id: "express", name: "Express Delivery", price: selectedPackage && [999, 1499, 1999].includes(selectedPackage) ? 0 : 199, description: "1-2 business days", originalPrice: 199 },
+    { id: "same-day", name: "Same Day Delivery", price: selectedPackage && [999, 1499, 1999].includes(selectedPackage) ? 0 : 349, description: "Delivery today (order before 2 PM)", originalPrice: 349 },
   ];
 
-  const selectedDelivery = deliveryOptions.find(d => d.id === deliveryType) || deliveryOptions[0];
+  const getDeliveryPrice = (option: typeof deliveryOptions[0]) => {
+    const hasFreeShipping = selectedPackage && [999, 1499, 1999].includes(selectedPackage);
+    return hasFreeShipping ? 0 : option.originalPrice;
+  };
+
+  const selectedDelivery = { 
+    ...(deliveryOptions.find(d => d.id === deliveryType) || deliveryOptions[0]),
+    price: getDeliveryPrice(deliveryOptions.find(d => d.id === deliveryType) || deliveryOptions[0])
+  };
 
   const handlePackageSelect = useCallback((price: number) => {
     setSelectedPackage(price);
@@ -514,29 +522,44 @@ function BuildYourBoxPage() {
               
               {/* Delivery Options */}
               <div className="mb-8">
-                <h3 className="font-medium mb-4">Delivery Options</h3>
+                <h3 className="font-medium mb-4">
+                  Delivery Options
+                  {selectedPackage && [999, 1499, 1999].includes(selectedPackage) && (
+                    <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">FREE Shipping</span>
+                  )}
+                </h3>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {deliveryOptions.map((option) => (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => setDeliveryType(option.id as "standard" | "express" | "same-day")}
-                      className={`p-4 rounded-xl border-2 text-left transition-all ${
-                        deliveryType === option.id
-                          ? "border-burgundy bg-burgundy/5"
-                          : "border-border hover:border-burgundy"
-                      }`}
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium">{option.name}</span>
-                        {deliveryType === option.id && (
-                          <Check className="size-5 text-burgundy" />
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{option.description}</p>
-                      <p className="mt-2 font-medium text-burgundy">₹{option.price}</p>
-                    </button>
-                  ))}
+                  {deliveryOptions.map((option) => {
+                    const isFreeShipping = selectedPackage && [999, 1499, 1999].includes(selectedPackage);
+                    const displayPrice = isFreeShipping ? 0 : option.originalPrice;
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => setDeliveryType(option.id as "standard" | "express" | "same-day")}
+                        className={`p-4 rounded-xl border-2 text-left transition-all ${
+                          deliveryType === option.id
+                            ? "border-burgundy bg-burgundy/5"
+                            : "border-border hover:border-burgundy"
+                        }`}
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="font-medium">{option.name}</span>
+                          {deliveryType === option.id && (
+                            <Check className="size-5 text-burgundy" />
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">{option.description}</p>
+                        <div className="mt-2">
+                          {isFreeShipping ? (
+                            <span className="inline-block bg-green-100 text-green-700 text-sm font-medium px-2 py-0.5 rounded">FREE</span>
+                          ) : (
+                            <span className="font-medium text-burgundy">₹{displayPrice}</span>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
               
@@ -640,7 +663,13 @@ function BuildYourBoxPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span>₹{selectedDelivery.price} ({selectedDelivery.name})</span>
+                  <span>
+                    {selectedDelivery.price === 0 ? (
+                      <span className="text-green-600 font-medium">FREE</span>
+                    ) : (
+                      <>₹{selectedDelivery.price} ({selectedDelivery.name})</>
+                    )}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Occasion</span>
