@@ -53,16 +53,16 @@ function Header() {
         scrolled ? "bg-card/95 backdrop-blur border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="container-evermaze flex items-center justify-between py-4">
+      <div className="container-evermaze flex items-center justify-between py-4 relative">
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden p-2 -ml-2"
+          className="md:hidden p-2 -ml-2 z-20"
           aria-label="Toggle menu"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
 
-        <nav className="hidden md:flex items-center gap-8 flex-1">
+        <nav className="hidden md:flex items-center gap-8">
           {nav.slice(0, 3).map((n) => (
             <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
               {n.name}
@@ -70,12 +70,12 @@ function Header() {
           ))}
         </nav>
 
-        <Link to="/" className="flex flex-col items-center leading-none">
+        <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none">
           <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
           <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 flex-1 justify-end">
+        <nav className="hidden md:flex items-center gap-8">
           {nav.slice(3).map((n) => (
             <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
               {n.name}
