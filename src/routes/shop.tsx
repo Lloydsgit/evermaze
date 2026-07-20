@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Heart, ArrowRight } from "lucide-react";
 
 import hamper1 from "@/assets/hamper-1.jpg";
 import hamper2 from "@/assets/hamper-2.jpg";
@@ -17,35 +17,30 @@ const hamperTypes = [
     price: 199, 
     name: "Mini Hamper", 
     description: "Perfect for small gestures and intimate moments",
-    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet"],
     img: hamper1
   },
   { 
     price: 499, 
     name: "Classic Hamper", 
     description: "Thoughtful gift for any celebration",
-    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box"],
     img: hamper2
   },
   { 
     price: 999, 
     name: "Signature Hamper", 
     description: "Premium selection for special occasions",
-    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet"],
     img: hamper3
   },
   { 
     price: 1499, 
     name: "Supreme Hamper", 
     description: "Luxurious experience with premium items",
-    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Personalized Mug", "Succulent Plant"],
     img: hamper4
   },
   { 
     price: 1999, 
     name: "Luxury Hamper", 
     description: "Ultimate indulgence with exclusive items",
-    items: ["Handwritten Letter", "Bookmark", "Keychain", "Fridge Magnet", "Photo Frame", "Chocolate Box", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Personalized Mug", "Succulent Plant"],
     img: hamper5
   },
 ];
@@ -89,7 +84,11 @@ function ShopPage() {
         <div className="container-evermaze">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hamperTypes.map((hamper) => (
-              <div key={hamper.price} className="group bg-card border border-border rounded-3xl overflow-hidden hover:border-burgundy transition-all">
+              <Link
+                key={hamper.price}
+                to={`/build-your-box?package=${hamper.price}`}
+                className="group bg-card border border-border rounded-3xl overflow-hidden hover:border-burgundy transition-all"
+              >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={hamper.img} alt={hamper.name} className="size-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -98,29 +97,13 @@ function ShopPage() {
                     <span className="block font-serif text-xl text-white/90">{hamper.name}</span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex items-center justify-between">
                   <p className="text-muted-foreground text-sm">{hamper.description}</p>
-                  <div className="mt-4 space-y-2">
-                    {hamper.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm">
-                        <Check className="size-4 text-burgundy" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">
-                      {hamper.items.length} items included
-                    </span>
-                    <Link 
-                      to={`/build-your-box?package=${hamper.price}`}
-                      className="btn-primary text-sm flex items-center gap-2"
-                    >
-                      Customize <ArrowRight className="size-4" />
-                    </Link>
-                  </div>
+                  <span className="btn-primary text-sm flex items-center gap-2 shrink-0">
+                    Customize <ArrowRight className="size-4" />
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
