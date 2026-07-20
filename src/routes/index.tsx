@@ -71,8 +71,8 @@ function Header() {
         </nav>
 
         <Link to="/" className="flex flex-col items-center leading-none">
-          <span className="font-serif text-2xl md:text-3xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-          <span className="mt-1 text-[0.6rem] md:text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+          <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-gray-800">EVERMAZE</span>
+          <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-gray-600">Just For You</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 flex-1 justify-end">
@@ -199,7 +199,7 @@ function Strip() {
   const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
   return (
     <div className="border-y border-border bg-card/50 py-4">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-burgundy font-medium">
+      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-gray-800 font-medium">
         {items.map((i) => <span key={i}>· {i}</span>)}
       </div>
     </div>
@@ -578,8 +578,8 @@ function Newsletter() {
   return (
     <section className="py-20 md:py-28 bg-burgundy text-white relative overflow-hidden">
       <div className="container-evermaze text-center max-w-2xl relative z-10">
-        <span className="text-base tracking-[0.32em] uppercase text-gray-200">Join the family</span>
-        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-gray-100">Join the Evermaze family.</h2>
+        <span className="text-base tracking-[0.32em] uppercase text-champagne">Join the family</span>
+        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-champagne">Join the Evermaze family.</h2>
         <p className="mt-4 text-lg text-gray-300">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
         <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
@@ -587,9 +587,9 @@ function Newsletter() {
             required
             placeholder="your@email.com"
             aria-label="Email address"
-            className="flex-1 bg-transparent border border-white/30 focus:border-gray-200 rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
+            className="flex-1 bg-transparent border border-white/30 focus:border-champagne rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
           />
-          <button type="submit" className="bg-gray-100 text-gray-800 px-8 py-3 rounded-full text-base tracking-[0.2em] uppercase hover:bg-white transition-colors">
+          <button type="submit" className="bg-champagne text-foreground px-8 py-3 rounded-full text-base tracking-[0.2em] uppercase hover:bg-white transition-colors">
             Subscribe
           </button>
         </form>
