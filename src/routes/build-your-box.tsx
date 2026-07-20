@@ -316,13 +316,18 @@ function BuildYourBoxPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
-                  <input
-                    type="date"
-                    value={occasionDate}
-                    onChange={(e) => setOccasionDate(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
-                    style={{ colorScheme: 'light' }}
-                  />
+                  <div className="relative">
+                    <input
+                      type="date"
+                      value={occasionDate}
+                      onChange={(e) => setOccasionDate(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none opacity-0 absolute inset-0 cursor-pointer"
+                      style={{ colorScheme: 'light' }}
+                    />
+                    <div className={`px-4 py-3 rounded-xl border border-border bg-background w-full pointer-events-none ${occasionDate ? 'text-foreground' : 'text-muted-foreground'}`}>
+                      {occasionDate ? formatDate(occasionDate) : "DD/MM/YYYY"}
+                    </div>
+                  </div>
                   <div className="mt-6">
                     <label className="block text-sm font-medium mb-2">Recipient's Name</label>
                     <input
