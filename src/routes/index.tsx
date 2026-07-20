@@ -143,7 +143,7 @@ function Hero() {
     <section className="relative pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
       <div className="container-evermaze grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div className="order-2 md:order-1">
-          <span className="eyebrow">Made with love · Est. 2024</span>
+          <span className="eyebrow">Made with love</span>
           <h1 className="mt-6 font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight">
             Personalized<br />
             <span className="italic text-burgundy">Gift Hampers</span><br />
@@ -161,7 +161,7 @@ function Hero() {
           <div className="mt-14 flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-muted-foreground">
             <div><span className="block font-serif text-2xl text-foreground normal-case tracking-normal">12k+</span>Happy gifters</div>
             <div className="w-px h-10 bg-border" />
-            <div><span className="block font-serif text-2xl text-foreground normal-case tracking-normal">4.9</span>Average rating</div>
+            <div><span className="block font-serif text-2xl text-foreground normal-case tracking-normal">4.9</span>Rating</div>
           </div>
         </div>
 
@@ -196,10 +196,10 @@ function Hero() {
 
 /* ---------- Marquee strip ---------- */
 function Strip() {
-  const items = ["Free shipping over ₹1499", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
+  const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
   return (
     <div className="border-y border-border bg-card/50 py-4">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground">
+      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-[0.7rem] tracking-[0.25em] uppercase text-gray-700">
         {items.map((i) => <span key={i}>· {i}</span>)}
       </div>
     </div>
@@ -213,10 +213,10 @@ function Occasions() {
     { name: "Anniversary", img: hamper5 },
     { name: "Wedding", img: hamper2 },
     { name: "Baby Shower", img: hamper4 },
-    { name: "Diwali", img: hamper6 },
-    { name: "Valentine's", img: hamper1 },
-    { name: "Friendship", img: hamper3 },
-    { name: "Just Because", img: heroHamper },
+    { name: "Farewell", img: hamper6 },
+    { name: "Friendship", img: hamper1 },
+    { name: "Festival Hamper", img: hamper3 },
+    { name: "Special Moments", img: heroHamper },
   ];
   return (
     <section className="py-20 md:py-28">
@@ -224,7 +224,7 @@ function Occasions() {
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>
             <span className="eyebrow">Shop by occasion</span>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">A hamper for every hello.</h2>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Made for every moment.</h2>
           </div>
           <Link to="/gift-hampers" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">View all occasions</Link>
         </div>
@@ -264,7 +264,7 @@ function ShopByPrice() {
       <div className="container-evermaze">
         <div className="text-center mb-12">
           <span className="eyebrow">Build Your Perfect Hamper</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Choose your hamper & customize it.</h2>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Customize it your way.</h2>
         </div>
         {/* Hamper Types */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -395,7 +395,7 @@ function NewArrivals() {
 function BuildYourBox() {
   const steps = [
     { n: "01", t: "Choose Box", d: "Pick a size and style that fits your moment." },
-    { n: "02", t: "Choose Theme", d: "From bridal to birthday, set the mood." },
+    { n: "02", t: "Choose Occasion", d: "From bridal to birthday, set the mood." },
     { n: "03", t: "Choose Products", d: "Handpick every little joy inside." },
     { n: "04", t: "Special Message", d: "Add a handwritten note, straight from you." },
     { n: "05", t: "Delivery Date", d: "Pick when the surprise should arrive." },
@@ -578,9 +578,9 @@ function Newsletter() {
   return (
     <section className="py-20 md:py-28 bg-burgundy text-white relative overflow-hidden">
       <div className="container-evermaze text-center max-w-2xl relative z-10">
-        <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">Join the family</span>
-        <h2 className="mt-4 font-serif text-4xl md:text-6xl text-white">Join the Evermaze family.</h2>
-        <p className="mt-4 text-white/70">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
+        <span className="text-sm tracking-[0.32em] uppercase text-champagne">Join the family</span>
+        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-white">Join the Evermaze family.</h2>
+        <p className="mt-4 text-lg text-white/70">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
         <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
             type="email"
@@ -589,7 +589,7 @@ function Newsletter() {
             aria-label="Email address"
             className="flex-1 bg-transparent border border-white/30 focus:border-champagne rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
           />
-          <button type="submit" className="bg-champagne text-foreground px-6 py-3 rounded-full text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors">
+          <button type="submit" className="bg-champagne text-foreground px-8 py-3 rounded-full text-sm tracking-[0.2em] uppercase hover:bg-white transition-colors">
             Subscribe
           </button>
         </form>
@@ -637,8 +637,8 @@ function Footer() {
       <div className="container-evermaze grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12">
         <div>
           <Link to="/" className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</p>
-          <p className="mt-6 max-w-xs text-sm text-muted-foreground leading-relaxed">
+          <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-gray-600">Just For You</p>
+          <p className="mt-6 max-w-xs text-sm text-gray-600 leading-relaxed">
             Beautifully personalized gift hampers, thoughtfully packed for every celebration.
           </p>
           <div className="mt-6 flex gap-3">
@@ -652,14 +652,14 @@ function Footer() {
         {cols.map((c) => (
           <div key={c.t}>
             <h4 className="text-xs tracking-[0.25em] uppercase mb-5">{c.t}</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <ul className="space-y-3 text-sm text-gray-600">
               {c.l.map((li) => <li key={li.name}><Link to={li.to} className="hover:text-burgundy transition-colors">{li.name}</Link></li>)}
             </ul>
           </div>
         ))}
       </div>
-      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted-foreground">
-        <span>© {new Date().getFullYear()} Evermaze. Made with love in India.</span>
+      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-xs text-gray-600">
+        <span>Evermaze. Made with love in India.</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-burgundy">Privacy</a>
           <a href="#" className="hover:text-burgundy">Terms</a>
