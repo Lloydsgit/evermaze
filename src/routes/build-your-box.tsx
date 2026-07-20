@@ -11,84 +11,30 @@ export const Route = createFileRoute("/build-your-box")({
 
 const packages = [
   { price: 199, name: "Mini Hamper", items: 4, maxItems: 4, defaultTouches: ["Handwritten Letter"], includedValue: 49 },
-  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes"], includedValue: 98 },
-  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping"], includedValue: 177 },
-  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card"], includedValue: 216 },
-  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Gift Card with Wishes", "Premium Gift Wrapping", "Photo Card", "Champagne/Wine Upgrade"], includedValue: 515 },
+  { price: 499, name: "Classic Hamper", items: 6, maxItems: 6, defaultTouches: ["Handwritten Letter", "Personalized Keychain"], includedValue: 128 },
+  { price: 999, name: "Signature Hamper", items: 9, maxItems: 9, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame"], includedValue: 227 },
+  { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear"], includedValue: 455 },
+  { price: 1999, name: "Luxury Hamper", items: 15, maxItems: 15, defaultTouches: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet"], includedValue: 604 },
 ];
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift", "Other"];
 
-const itemCategories = [
-  {
-    name: "Sweets & Treats",
-    icon: "🍫",
-    items: [
-      { name: "Artisan Chocolates", price: 99 },
-      { name: "Handmade Cookies", price: 79 },
-      { name: "Premium Dry Fruits", price: 149 },
-      { name: "Gourmet Candies", price: 49 },
-      { name: "Indian Sweets Box", price: 129 },
-      { name: "Assorted Nuts", price: 99 },
-    ],
-  },
-  {
-    name: "Self-Care & Wellness",
-    icon: "🧴",
-    items: [
-      { name: "Scented Candle", price: 149 },
-      { name: "Bath Bombs Set", price: 99 },
-      { name: "Face Mask Pack", price: 79 },
-      { name: "Essential Oil Roller", price: 69 },
-      { name: "Lip Balm Set", price: 49 },
-      { name: "Hand Cream Duo", price: 89 },
-    ],
-  },
-  {
-    name: "Personal Touches",
-    icon: "💝",
-    items: [
-      { name: "Handwritten Letter", price: 49 },
-      { name: "Photo Frame", price: 99 },
-      { name: "Personalized Keychain", price: 79 },
-      { name: "Custom Bookmark", price: 49 },
-      { name: "Engraved Token", price: 129 },
-      { name: "Memory Card", price: 39 },
-    ],
-  },
-  {
-    name: " Décor & Accessories",
-    icon: "🏠",
-    items: [
-      { name: "Mini Vase", price: 79 },
-      { name: "Scented Potpourri", price: 59 },
-      { name: "Decorative Tray", price: 99 },
-      { name: "LED Photo Clip", price: 69 },
-      { name: "Ceramic Coaster Set", price: 89 },
-      { name: "Dream Catcher", price: 79 },
-    ],
-  },
-  {
-    name: "Plants & Green",
-    icon: "🌿",
-    items: [
-      { name: "Succulent Plant", price: 99 },
-      { name: "Air Plant Terrarium", price: 149 },
-      { name: "Herb Garden Kit", price: 129 },
-      { name: "Bamboo Plant", price: 79 },
-      { name: "Flowering Plant", price: 119 },
-      { name: "Moss Ball", price: 69 },
-    ],
-  },
-];
-
-const personalTouches = [
-  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love" },
-  { name: "Premium Gift Wrapping", price: 79, description: "Luxurious wrapping with silk ribbon" },
-  { name: "Photo Card", price: 39, description: "Include a special photo with your gift" },
-  { name: "Video Message Link", price: 29, description: "Share a personalized video message" },
-  { name: "Gift Card with Wishes", price: 49, description: "Beautiful card with your wishes" },
-  { name: "Champagne/Wine Upgrade", price: 299, description: "Add a bottle of champagne or wine" },
+const personalItems = [
+  { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️" },
+  { name: "Personalized Keychain", price: 79, description: "Custom keychain with their name", icon: "🔑" },
+  { name: "Photo Frame", price: 99, description: "Beautiful frame for your special photo", icon: "📷" },
+  { name: "Custom Bookmark", price: 49, description: "Engraved bookmark for book lovers", icon: "📚" },
+  { name: "Engraved Token", price: 129, description: "Special engraved token as keepsake", icon: "🎫" },
+  { name: "Memory Card", price: 39, description: "Card with your cherished memory", icon: "💝" },
+  { name: "Scented Candle", price: 99, description: "Hand-poured aromatic candle", icon: "🕯️" },
+  { name: "Scented Potpourri", price: 59, description: "Natural dried flower potpourri", icon: "🌸" },
+  { name: "Mini Vase", price: 79, description: "Decorative mini vase for flowers", icon: "🏺" },
+  { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱" },
+  { name: "Photo Album", price: 149, description: "Premium photo album for memories", icon: "📒" },
+  { name: "Personalized Mug", price: 89, description: "Custom printed ceramic mug", icon: "☕" },
+  { name: "Chocolates Box", price: 79, description: "Assorted premium chocolates", icon: "🍫" },
+  { name: "Teddy Bear", price: 129, description: "Soft and cuddly teddy bear", icon: "🧸" },
+  { name: "Flower Bouquet", price: 149, description: "Fresh flower arrangement", icon: "💐" },
 ];
 
 function BuildYourBoxPage() {
@@ -99,8 +45,7 @@ function BuildYourBoxPage() {
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [selectedTouches, setSelectedTouches] = useState<string[]>(initialPkg?.defaultTouches || []);
+  const [selectedItems, setSelectedItems] = useState<string[]>(initialPkg?.defaultTouches || []);
   const [occasionDate, setOccasionDate] = useState("");
   const [recipientName, setRecipientName] = useState("");
   const [recipientMessage, setRecipientMessage] = useState("");
@@ -120,7 +65,7 @@ function BuildYourBoxPage() {
     setSelectedPackage(price);
     const selectedPkg = packages.find((p) => p.price === price);
     if (selectedPkg) {
-      setSelectedTouches(selectedPkg.defaultTouches);
+      setSelectedItems(selectedPkg.defaultTouches);
     }
   };
 
@@ -130,25 +75,10 @@ function BuildYourBoxPage() {
     );
   };
 
-  const toggleTouch = (touch: string) => {
-    setSelectedTouches((prev) =>
-      prev.includes(touch) ? prev.filter((t) => t !== touch) : prev
-    );
-  };
-
   const calculateTotal = () => {
     let total = selectedPackage || 0;
     selectedItems.forEach((itemName) => {
-      for (const cat of itemCategories) {
-        const found = cat.items.find((i) => i.name === itemName);
-        if (found) {
-          total += found.price;
-          break;
-        }
-      }
-    });
-    selectedTouches.forEach((touchName) => {
-      const found = personalTouches.find((t) => t.name === touchName);
+      const found = personalItems.find((i) => i.name === itemName);
       if (found) total += found.price;
     });
     return total;
@@ -158,7 +88,7 @@ function BuildYourBoxPage() {
     switch (step) {
       case 1: return selectedPackage !== null;
       case 2: return selectedOccasion !== "" && occasionDate !== "";
-      case 3: return selectedItems.length <= (pkg?.maxItems || 0);
+      case 3: return selectedItems.length > 0;
       case 4: return true;
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
       default: return true;
@@ -213,7 +143,7 @@ function BuildYourBoxPage() {
             <span className={step >= 1 ? "text-burgundy" : ""}>Package</span>
             <span className={step >= 2 ? "text-burgundy" : ""}>Occasion</span>
             <span className={step >= 3 ? "text-burgundy" : ""}>Items</span>
-            <span className={step >= 4 ? "text-burgundy" : ""}>Touches</span>
+            <span className={step >= 4 ? "text-burgundy" : ""}>Review</span>
             <span className={step >= 5 ? "text-burgundy" : ""}>Book</span>
           </div>
         </div>
@@ -327,123 +257,101 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 3: Item Selection */}
+          {/* Step 3: Personal Touches */}
           {step === 3 && (
             <div className="max-w-5xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
                 <Sparkles className="size-6 text-burgundy" />
-                Select Your Items
+                Add Personal Touches
               </h2>
-              <p className="text-muted-foreground mb-6">Choose up to {pkg?.maxItems} items for your {pkg?.name}</p>
+              <p className="text-muted-foreground mb-6">Choose up to {pkg?.maxItems} personal items for your {pkg?.name}</p>
               <div className="flex flex-wrap gap-2 mb-6 p-4 bg-burgundy/10 rounded-xl">
                 <span className="text-sm font-medium">Selected: {selectedItems.length}/{pkg?.maxItems}</span>
                 {selectedItems.map((item) => (
                   <span key={item} className="bg-burgundy text-white text-sm px-3 py-1 rounded-full flex items-center gap-1">
-                    {item}
-                    <button onClick={() => toggleItem(item)} className="hover:text-champagne">×</button>
+                    {personalItems.find(i => i.name === item)?.icon} {item}
+                    <button onClick={() => toggleItem(item)} className="hover:text-champagne ml-1">×</button>
                   </span>
                 ))}
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {itemCategories.map((category) => (
-                  <div key={category.name} className="bg-card border border-border rounded-2xl p-5">
-                    <h3 className="font-serif text-lg mb-4">{category.icon} {category.name}</h3>
-                    <div className="space-y-2">
-                      {category.items.map((item) => {
-                        const isSelected = selectedItems.includes(item.name);
-                        const isDisabled = !isSelected && selectedItems.length >= (pkg?.maxItems || 0);
-                        return (
-                          <button
-                            key={item.name}
-                            onClick={() => !isDisabled && toggleItem(item.name)}
-                            disabled={isDisabled}
-                            className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${
-                              isSelected
-                                ? "border-burgundy bg-burgundy/5"
-                                : isDisabled
-                                ? "border-border opacity-50 cursor-not-allowed"
-                                : "border-border hover:border-burgundy"
-                            }`}
-                          >
-                            <span className="flex items-center gap-2">
-                              {isSelected && <Check className="size-4 text-burgundy" />}
-                              <span className="text-sm">{item.name}</span>
-                            </span>
-                            <span className="text-sm text-muted-foreground">+₹{item.price}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {personalItems.map((item) => {
+                  const isSelected = selectedItems.includes(item.name);
+                  const isDisabled = !isSelected && selectedItems.length >= (pkg?.maxItems || 0);
+                  return (
+                    <button
+                      key={item.name}
+                      onClick={() => !isDisabled && toggleItem(item.name)}
+                      disabled={isDisabled}
+                      className={`p-5 rounded-2xl border text-left transition-all ${
+                        isSelected
+                          ? "border-burgundy bg-burgundy/5"
+                          : isDisabled
+                          ? "border-border opacity-50 cursor-not-allowed"
+                          : "border-border hover:border-burgundy"
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <span className="text-3xl">{item.icon}</span>
+                        <div className="flex-1">
+                          <h4 className="font-medium">{item.name}</h4>
+                          <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                          <p className="mt-2 font-medium text-burgundy">+₹{item.price}</p>
+                        </div>
+                        {isSelected && <Check className="size-5 text-burgundy shrink-0" />}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {/* Step 4: Personal Touches */}
+          {/* Step 4: Review */}
           {step === 4 && (
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
+              <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
                 <Heart className="size-6 text-burgundy" />
-                Personal Touches
+                Review Your Hamper
               </h2>
-              <p className="text-muted-foreground mb-6">These touches are included in your {pkg?.name}. Click to remove if not needed.</p>
-              
-              {/* Included touches */}
-              {selectedTouches.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-sm font-medium text-burgundy mb-3">✓ Included in your package:</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {selectedTouches.map((touchName) => {
-                      const touch = personalTouches.find((t) => t.name === touchName);
-                      if (!touch) return null;
-                      return (
-                        <div
-                          key={touch.name}
-                          className="p-5 rounded-2xl border-2 border-burgundy bg-burgundy/5 cursor-pointer hover:bg-red-50 transition-all"
-                          onClick={() => toggleTouch(touch.name)}
-                        >
-                          <div className="flex items-start justify-between">
-                            <div>
-                              <h4 className="font-medium">{touch.name}</h4>
-                              <p className="text-sm text-muted-foreground mt-1">{touch.description}</p>
-                            </div>
-                            <div className="flex items-center gap-2 text-burgundy">
-                              <span className="font-medium">₹{touch.price}</span>
-                              <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">Remove</span>
-                            </div>
+              <div className="bg-card border border-border rounded-2xl p-6 mb-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="font-medium text-burgundy mb-4">Package Details</h3>
+                    <p className="text-lg font-serif">{pkg?.name} - ₹{pkg?.price}</p>
+                    <p className="text-muted-foreground mt-2">
+                      <span className="font-medium">Occasion:</span> {selectedOccasion}
+                    </p>
+                    <p className="text-muted-foreground">
+                      <span className="font-medium">Date:</span> {occasionDate}
+                    </p>
+                    {recipientName && (
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">For:</span> {recipientName}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-burgundy mb-4">Selected Items ({selectedItems.length})</h3>
+                    <div className="space-y-2">
+                      {selectedItems.map((itemName) => {
+                        const item = personalItems.find(i => i.name === itemName);
+                        return (
+                          <div key={itemName} className="flex items-center justify-between text-sm">
+                            <span>{item?.icon} {itemName}</span>
+                            <span className="text-muted-foreground">₹{item?.price}</span>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              )}
-
-              {/* Optional extras */}
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground mb-3">Add extra touches:</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {personalTouches
-                    .filter((touch) => !selectedTouches.includes(touch.name))
-                    .map((touch) => (
-                      <button
-                        key={touch.name}
-                        onClick={() => toggleTouch(touch.name)}
-                        className="p-5 rounded-2xl border border-border text-left transition-all hover:border-burgundy"
-                      >
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h4 className="font-medium">{touch.name}</h4>
-                            <p className="text-sm text-muted-foreground mt-1">{touch.description}</p>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium">+₹{touch.price}</span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                </div>
+                {recipientMessage && (
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <h3 className="font-medium text-burgundy mb-2">Your Message</h3>
+                    <p className="text-muted-foreground italic">"{recipientMessage}"</p>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -548,17 +456,7 @@ function BuildYourBoxPage() {
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Items ({selectedItems.length})</span>
                   <span>₹{selectedItems.reduce((sum, itemName) => {
-                    for (const cat of itemCategories) {
-                      const found = cat.items.find(i => i.name === itemName);
-                      if (found) { sum += found.price; break; }
-                    }
-                    return sum;
-                  }, 0)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Personal Touches ({selectedTouches.length})</span>
-                  <span>₹{selectedTouches.reduce((sum, touchName) => {
-                    const found = personalTouches.find(t => t.name === touchName);
+                    const found = personalItems.find(i => i.name === itemName);
                     if (found) sum += found.price;
                     return sum;
                   }, 0)}</span>

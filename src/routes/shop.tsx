@@ -17,35 +17,35 @@ const hamperTypes = [
     price: 199, 
     name: "Mini Hamper", 
     description: "Perfect for small gestures and intimate moments",
-    items: ["4 Selection items", "Eco packaging", "Basic ribbon", "Gift box"],
+    items: ["Handwritten Letter", "Personalized Keychain", "Chocolates Box", "Mini Vase"],
     img: hamper1
   },
   { 
     price: 499, 
     name: "Classic Hamper", 
     description: "Thoughtful gift for any celebration",
-    items: ["6 Selection items", "Premium packaging", "Personalized card", "Basic ribbon", "Gift box"],
+    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Chocolates Box", "Mini Vase"],
     img: hamper2
   },
   { 
     price: 999, 
     name: "Signature Hamper", 
     description: "Premium selection for special occasions",
-    items: ["9 Selection items", "Luxury packaging", "Handwritten letter", "Premium ribbon", "Gift box", "Photo frame"],
+    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Custom Bookmark", "Chocolates Box", "Scented Potpourri", "Mini Vase"],
     img: hamper3
   },
   { 
     price: 1499, 
     name: "Supreme Hamper", 
     description: "Luxurious experience with premium items",
-    items: ["12 Selection items", "Deluxe packaging", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card", "Photo frame"],
+    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Custom Bookmark", "Engraved Token", "Personalized Mug", "Chocolates Box", "Succulent Plant"],
     img: hamper4
   },
   { 
     price: 1999, 
     name: "Luxury Hamper", 
     description: "Ultimate indulgence with exclusive items",
-    items: ["15 Selection items", "Premium wooden box", "Handwritten letter", "Premium ribbon", "Gift box", "Thank you card", "Photo frame", "Champagne"],
+    items: ["Handwritten Letter", "Personalized Keychain", "Photo Frame", "Scented Candle", "Teddy Bear", "Flower Bouquet", "Photo Album", "Custom Bookmark", "Engraved Token", "Personalized Mug", "Chocolates Box", "Succulent Plant", "Scented Potpourri", "Memory Card", "Mini Vase"],
     img: hamper5
   },
 ];
@@ -150,7 +150,7 @@ function ShopPage() {
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
-                      Starting from ₹{hamper.price}
+                      {hamper.items.length} items included
                     </span>
                     <Link 
                       to={`/build-your-box?package=${hamper.price}`}
