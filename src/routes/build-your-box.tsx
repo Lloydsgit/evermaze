@@ -171,33 +171,32 @@ function BuildYourBoxPage() {
             <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
             <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Progress Bar */}
-      <section className="bg-card border-b border-border py-4">
+      <section className="bg-card border-b border-border py-4 px-2">
         <div className="container-evermaze">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-1 sm:gap-2">
             {[1, 2, 3, 4, 5].map((s) => (
               <div key={s} className="flex items-center">
                 <button
                   onClick={() => s < step && setStep(s)}
-                  className={`size-10 rounded-full flex items-center justify-center font-medium transition-colors ${
+                  className={`size-8 sm:size-10 rounded-full flex items-center justify-center font-medium transition-colors text-xs sm:text-sm ${
                     step >= s ? "bg-burgundy text-white" : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {s}
                 </button>
                 {s < 5 && (
-                  <div className={`w-12 md:w-20 h-1 mx-2 rounded ${step > s ? "bg-burgundy" : "bg-muted"}`} />
+                  <div className={`w-6 sm:w-12 md:w-20 h-1 mx-1 sm:mx-2 rounded ${step > s ? "bg-burgundy" : "bg-muted"}`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-center gap-4 md:gap-8 mt-2 text-xs md:text-sm text-muted-foreground">
+          <div className="flex justify-center gap-2 sm:gap-4 md:gap-8 mt-2 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
             <span className={step >= 1 ? "text-burgundy" : ""}>Package</span>
             <span className={step >= 2 ? "text-burgundy" : ""}>Occasion</span>
             <span className={step >= 3 ? "text-burgundy" : ""}>Items</span>
@@ -224,25 +223,25 @@ function BuildYourBoxPage() {
                 <Gift className="size-6 text-burgundy" />
                 Choose Your Package
               </h2>
-              <div className="grid md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
                 {packages.map((pkgItem) => (
                   <button
                     key={pkgItem.price}
                     onClick={() => handlePackageSelect(pkgItem.price)}
-                    className={`p-6 rounded-2xl border-2 transition-all text-left relative ${
+                    className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all text-left relative ${
                       selectedPackage === pkgItem.price
                         ? "border-burgundy bg-burgundy/5"
                         : "border-border hover:border-burgundy"
                     }`}
                   >
                     {selectedPackage === pkgItem.price && (
-                      <div className="absolute top-3 right-3 size-6 bg-burgundy rounded-full flex items-center justify-center">
-                        <Check className="size-4 text-white" />
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 bg-burgundy rounded-full flex items-center justify-center">
+                        <Check className="size-3 sm:size-4 text-white" />
                       </div>
                     )}
-                    <span className="block font-serif text-3xl text-burgundy">₹{pkgItem.price}</span>
-                    <span className="block mt-2 font-serif text-lg">{pkgItem.name}</span>
-                    <span className="block mt-1 text-sm text-muted-foreground">{pkgItem.items} items</span>
+                    <span className="block font-serif text-xl sm:text-3xl text-burgundy">₹{pkgItem.price}</span>
+                    <span className="block mt-1 sm:mt-2 font-serif text-sm sm:text-lg">{pkgItem.name}</span>
+                    <span className="block mt-1 text-xs sm:text-sm text-muted-foreground">{pkgItem.items} items</span>
                   </button>
                 ))}
               </div>
@@ -316,18 +315,13 @@ function BuildYourBoxPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Date of Occasion</label>
-                  <div className="relative">
-                    <input
-                      type="date"
-                      value={occasionDate}
-                      onChange={(e) => setOccasionDate(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none opacity-0 absolute inset-0 cursor-pointer"
-                      style={{ colorScheme: 'light' }}
-                    />
-                    <div className={`px-4 py-3 rounded-xl border border-border bg-background w-full pointer-events-none ${occasionDate ? 'text-foreground' : 'text-muted-foreground'}`}>
-                      {occasionDate ? formatDate(occasionDate) : "DD/MM/YYYY"}
-                    </div>
-                  </div>
+                  <input
+                    type="date"
+                    value={occasionDate}
+                    onChange={(e) => setOccasionDate(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none cursor-pointer"
+                    style={{ colorScheme: 'light' }}
+                  />
                   <div className="mt-6">
                     <label className="block text-sm font-medium mb-2">Recipient's Name</label>
                     <input
@@ -395,7 +389,7 @@ function BuildYourBoxPage() {
               </div>
 
               {/* Items Grid - Using Buttons */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {personalItems.map((item) => {
                   const selected = isItemSelected(item.name);
                   const disabled = isItemDisabled(item.name);
