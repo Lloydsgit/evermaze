@@ -196,10 +196,10 @@ function Hero() {
 
 /* ---------- Marquee strip ---------- */
 function Strip() {
-  const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Handwritten notes", "Sustainable packaging"];
+  const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Sustainable packaging"];
   return (
-    <div className="border-y border-border bg-card/50 py-4">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm tracking-[0.25em] uppercase text-gray-700 font-medium">
+    <div className="border-y border-border bg-card/50 py-3">
+      <div className="container-evermaze flex flex-wrap justify-center gap-x-8 gap-y-1 text-xs tracking-[0.2em] uppercase text-gray-700 font-medium">
         {items.map((i) => <span key={i}>· {i}</span>)}
       </div>
     </div>
@@ -214,8 +214,8 @@ function Occasions() {
     { name: "Wedding", img: hamper2 },
     { name: "Baby Shower", img: hamper4 },
     { name: "Farewell", img: hamper6 },
-    { name: "Festivals", img: hamper1 },
-    { name: "Festival Hamper", img: hamper3 },
+    { name: "Friendship", img: hamper1 },
+    { name: "Festivals", img: hamper3 },
     { name: "Special Moments", img: heroHamper },
   ];
   return (
