@@ -241,12 +241,12 @@ function Hero() {
           {/* Left Column - Text */}
           <div className="order-2 lg:order-1 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 mb-6 lg:mb-8">
-              <Sparkles className="size-4" style={{ color: '#8E78A8' }} />
-              <span className="text-[11px] tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>Made With Love</span>
+              <Sparkles className="size-4" style={{ color: '#957DAD' }} />
+              <span className="text-[11px] tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>Made With Love</span>
             </div>
             <h1 className="font-serif leading-[1.05] tracking-tight" style={{ color: '#5A4B54' }}>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light">Personalized</span>
-              <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl italic mt-1" style={{ color: '#8E78A8' }}>Gift Hampers</span>
+              <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl italic mt-1" style={{ color: '#957DAD' }}>Gift Hampers</span>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Made With</span>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Love.</span>
             </h1>
@@ -283,7 +283,7 @@ function Hero() {
               </div>
               {/* Slider Dots */}
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="size-2 rounded-full" style={{ backgroundColor: '#8E78A8' }} />
+                <div className="size-2 rounded-full" style={{ backgroundColor: '#957DAD' }} />
                 <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
                 <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
               </div>
@@ -311,7 +311,7 @@ function AnnouncementBar() {
         <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
           {features.map((feature, i) => (
             <div key={i} className="flex items-center gap-2.5">
-              <feature.icon className="size-4 shrink-0" style={{ color: '#8E78A8' }} />
+              <feature.icon className="size-4 shrink-0" style={{ color: '#957DAD' }} />
               <span className="text-xs lg:text-sm whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
             </div>
           ))}
@@ -320,7 +320,7 @@ function AnnouncementBar() {
           <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide">
             {features.slice(0, 3).map((feature, i) => (
               <div key={i} className="flex items-center gap-2 shrink-0">
-                <feature.icon className="size-4 shrink-0" style={{ color: '#8E78A8' }} />
+                <feature.icon className="size-4 shrink-0" style={{ color: '#957DAD' }} />
                 <span className="text-xs whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
               </div>
             ))}
@@ -334,7 +334,7 @@ function AnnouncementBar() {
 /* ---------- Emotion Banner ---------- */
 function EmotionBanner() {
   return (
-    <section className="py-28 lg:py-36" style={{ backgroundColor: '#8E78A8' }}>
+    <section className="py-28 lg:py-36" style={{ backgroundColor: '#957DAD' }}>
       <div className="container-evermaze text-center">
         <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white">
           More Than a Gift,<br />It's an Emotion
@@ -368,7 +368,7 @@ function OccasionCategories() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>SHOP BY OCCASION</span>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>SHOP BY OCCASION</span>
           <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Find the Perfect Gift</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
@@ -410,10 +410,10 @@ function FeaturedCollection() {
       <div className="container-evermaze">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 lg:mb-20">
           <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>FEATURED COLLECTION</span>
+            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>FEATURED COLLECTION</span>
             <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Our Bestsellers</h2>
           </div>
-          <Link to="/shop" className="text-sm flex items-center gap-2 transition-colors hover:opacity-70" style={{ color: '#8E78A8' }}>
+          <Link to="/shop" className="text-sm flex items-center gap-2 transition-colors hover:opacity-70" style={{ color: '#957DAD' }}>
             View All <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -422,7 +422,7 @@ function FeaturedCollection() {
             <div key={i} className="group">
               <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 lg:mb-5 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}>
                 <img src={p.img} alt={p.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <button className="absolute bottom-4 right-4 size-12 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ color: '#8E78A8' }}>
+                <button className="absolute bottom-4 right-4 size-12 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ color: '#957DAD' }}>
                   <Plus className="size-5" />
                 </button>
               </div>
@@ -447,7 +447,7 @@ function BuildBoxPromo() {
       <div className="container-evermaze">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>CREATE YOUR OWN</span>
+            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>CREATE YOUR OWN</span>
             <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
               Build a Hamper<br />That's Uniquely Yours
             </h2>
@@ -483,14 +483,14 @@ function WhyChoose() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>WHY EVERMAZE</span>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>WHY EVERMAZE</span>
           <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Makes Us Special</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-10">
           {reasons.map((r, i) => (
             <div key={i} className="text-center">
               <div className="size-16 rounded-full mx-auto mb-5 flex items-center justify-center transition-transform duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(142, 120, 168, 0.1)' }}>
-                <r.icon className="size-7" style={{ color: '#8E78A8' }} />
+                <r.icon className="size-7" style={{ color: '#957DAD' }} />
               </div>
               <p className="text-sm font-medium" style={{ color: '#5A4B54' }}>{r.label}</p>
             </div>
@@ -531,7 +531,7 @@ function Testimonials() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>LOVE LETTERS</span>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>LOVE LETTERS</span>
           <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Our Customers Say</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -569,7 +569,7 @@ function InstagramGallery() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>@evermaze.gifts</span>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>@evermaze.gifts</span>
           <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Follow Our Journey</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">

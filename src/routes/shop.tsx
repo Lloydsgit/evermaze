@@ -73,14 +73,14 @@ function ShopPage() {
             </Link>
             <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:opacity-70 transition-opacity" style={{ color: '#5A4B54' }}>
               <ShoppingBag className="size-[20px]" />
-              <span className="absolute -top-1 -right-1 text-white text-[9px] rounded-full size-4 grid place-items-center" style={{ backgroundColor: '#8E78A8' }}>2</span>
+              <span className="absolute -top-1 -right-1 text-white text-[9px] rounded-full size-4 grid place-items-center" style={{ backgroundColor: '#957DAD' }}>2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="text-white py-16 md:py-20" style={{ backgroundColor: '#8E78A8' }}>
+      <section className="text-white py-16 md:py-20" style={{ backgroundColor: '#957DAD' }}>
         <div className="container-evermaze text-center">
           <h1 className="font-serif text-4xl md:text-6xl">Choose Your Hamper</h1>
           <p className="mt-4 text-white/80 max-w-xl mx-auto">
