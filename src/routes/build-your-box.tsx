@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, X, Image, CreditCard, Smartphone, Building, Truck, Package, PartyPopper } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, X, Image, CreditCard, Smartphone, Building, Truck, Package, PartyPopper, Wallet, Banknote } from "lucide-react";
 import { useState, useRef, useCallback } from "react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/build-your-box")({
 });
 
 const packages = [
-  { price: 199, name: "Mini Hamper", items: 4, maxItems: 4 },
+  { price: 149, name: "Mini Hamper", items: 4, maxItems: 4 },
   { price: 499, name: "Classic Hamper", items: 6, maxItems: 6 },
   { price: 999, name: "Signature Hamper", items: 9, maxItems: 9 },
   { price: 1499, name: "Supreme Hamper", items: 12, maxItems: 12 },
@@ -38,7 +38,8 @@ const paymentMethods = [
   { id: "upi", name: "UPI", icon: Smartphone, description: "PhonePe / Google Pay / Paytm" },
   { id: "card", name: "Credit / Debit Card", icon: CreditCard, description: "Visa, Mastercard, RuPay" },
   { id: "netbanking", name: "Net Banking", icon: Building, description: "All major banks supported" },
-  { id: "cod", name: "Cash on Delivery", icon: Truck, description: "Pay when you receive" },
+  { id: "wallet", name: "Wallets", icon: Wallet, description: "Paytm, Mobikwik, FreeCharge" },
+  { id: "cod", name: "Cash on Delivery", icon: Banknote, description: "Pay when you receive" },
 ];
 
 function BuildYourBoxPage() {
@@ -878,7 +879,7 @@ function BuildYourBoxPage() {
               <PartyPopper className="size-10" style={{ color: 'var(--dusty-lavender)' }} />
             </div>
             <h2 className="font-serif text-3xl mb-3" style={{ color: 'var(--heading-color)' }}>
-              ✨ Order Received!
+              Order Received!
             </h2>
             <p className="text-lg mb-2" style={{ color: 'var(--heading-color)' }}>
               Thank you for choosing Evermaze.

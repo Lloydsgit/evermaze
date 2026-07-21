@@ -56,19 +56,19 @@
   --radius: 0.5rem;
 
   /* Brand tokens - Luxury boutique palette */
-  --primary: #8B7A92;
-  --secondary: #EFE7DF;
-  --background: #F8F5F1;
+  --primary: #8D7699;
+  --secondary: #F3ECE4;
+  --background: #FAF8F5;
   --card-bg: #FDFBF8;
-  --heading-color: #2B2728;
-  --body-text: #756D6C;
-  --nav-text: #3D3738;
-  --border-color: #E5DDD4;
-  --dusty-lavender: #8B7A92;
-  --dark-lavender: #74627A;
+  --heading-color: #2F2A2D;
+  --body-text: #5A4B54;
+  --nav-text: #2F2A2D;
+  --border-color: #E8E2DC;
+  --dusty-lavender: #8D7699;
+  --dark-lavender: #5A4B54;
   --soft-lavender: #A99BAD;
   --champagne: #DCC9AE;
-  --champagne-light: #F2E9DF;
+  --champagne-light: #F3ECE4;
 
   /* Keep old names for compatibility */
   --primary-bg: var(--background);
@@ -81,9 +81,9 @@
   --hover-lavender: var(--dark-lavender);
   --muted-mauve: var(--soft-lavender);
 
-  --ivory: oklch(0.972 0.008 85);
+  --ivory: #FAF8F5;
   --champagne-oklch: oklch(0.82 0.035 75);
-  --burgundy: oklch(0.38 0.09 20);
+  --burgundy: #5A4B54;
   --success: oklch(0.62 0.06 145);
 
   --foreground: var(--heading-color);
@@ -209,11 +209,11 @@
 }
 
 @utility eyebrow {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--dark-lavender);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 @utility scrollbar-hide {

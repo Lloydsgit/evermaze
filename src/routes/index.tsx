@@ -114,7 +114,7 @@ function Header() {
           </nav>
 
           <Link to="/" className="flex flex-col items-center leading-none mx-12">
-            <span className="font-serif text-[46px] tracking-[9px] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="font-serif text-[46px] tracking-[9px] font-semibold" style={{ color: 'var(--heading-color)' }}>EVERMAZE</span>
             <span className="mt-1 text-[10px] tracking-[9px] uppercase" style={{ color: 'var(--body-text)' }}>JUST FOR YOU</span>
           </Link>
 
@@ -158,19 +158,15 @@ function Header() {
           </button>
 
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[6px] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="font-serif text-2xl tracking-[6px] font-semibold" style={{ color: 'var(--heading-color)' }}>EVERMAZE</span>
             <span className="mt-0.5 text-[9px] tracking-[6px] uppercase" style={{ color: 'var(--body-text)' }}>JUST FOR YOU</span>
           </Link>
 
-          <div className="flex items-center gap-5">
-            <button 
-              onClick={() => setSearchOpen(!searchOpen)} 
-              aria-label="Search" 
-              style={{ color: 'var(--nav-text)' }}
-            >
-              <Search className="size-[20px]" />
-            </button>
-            <Link to="/cart" aria-label="Cart" style={{ color: 'var(--nav-text)' }}>
+          <div className="flex items-center gap-1">
+            <Link to="/wishlist" aria-label="Wishlist" className="p-3 min-w-[48px] min-h-[48px] flex items-center justify-center" style={{ color: 'var(--nav-text)' }}>
+              <Heart className="size-[20px]" />
+            </Link>
+            <Link to="/cart" aria-label="Cart" className="p-3 min-w-[48px] min-h-[48px] flex items-center justify-center" style={{ color: 'var(--nav-text)' }}>
               <ShoppingBag className="size-[20px]" />
             </Link>
           </div>
