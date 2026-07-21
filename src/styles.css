@@ -38,9 +38,12 @@
   --color-ivory: var(--ivory);
   --color-lavender: var(--lavender);
   --color-dusty-lavender: var(--dusty-lavender);
+  --color-dark-lavender: var(--dark-lavender);
   --color-warm-beige: var(--warm-beige);
   --color-cream: var(--cream);
   --color-charcoal: var(--charcoal);
+  --color-primary-bg: var(--primary-bg);
+  --color-secondary-bg: var(--secondary-bg);
 
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
@@ -52,36 +55,40 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Lavender theme */
-  --lavender: #8E6AAE;
-  --dusty-lavender: #A98BC1;
-  --warm-beige: #F5EFE6;
-  --cream: #FFF9F2;
-  --charcoal: #2E2A2A;
+  /* Brand tokens - Luxury gifting palette */
+  --primary-bg: #F9F6F2;
+  --secondary-bg: #F4EFE8;
+  --card-bg: #FFFFFF;
+  --border-color: #E9E3DD;
+  --primary-text: #2E2B2A;
+  --secondary-text: #6C6663;
+  --dusty-lavender: #B8ABC7;
+  --dark-lavender: #9E8FB3;
+  --hover-lavender: #8F7DA8;
 
-  --ivory: oklch(0.972 0.008 85);          /* #FAF8F4 warm ivory */
-  --champagne: oklch(0.82 0.035 75);       /* #D8C3A5 champagne beige */
-  --champagne-soft: oklch(0.92 0.02 80);   /* soft champagne hover */
-  --burgundy: oklch(0.38 0.09 20);         /* #7A3942 deep burgundy */
-  --success: oklch(0.62 0.06 145);         /* muted sage */
+  --ivory: oklch(0.972 0.008 85);
+  --champagne: oklch(0.82 0.035 75);
+  --champagne-soft: oklch(0.92 0.02 80);
+  --burgundy: oklch(0.38 0.09 20);
+  --success: oklch(0.62 0.06 145);
 
-  --background: var(--cream);
-  --foreground: var(--charcoal);
+  --background: var(--primary-bg);
+  --foreground: var(--primary-text);
 
-  --card: oklch(1 0 0);
-  --card-foreground: var(--charcoal);
+  --card: var(--card-bg);
+  --card-foreground: var(--primary-text);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--charcoal);
+  --popover: var(--card-bg);
+  --popover-foreground: var(--primary-text);
 
-  --primary: var(--lavender);
+  --primary: var(--dark-lavender);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: var(--warm-beige);
-  --secondary-foreground: var(--charcoal);
+  --secondary: var(--secondary-bg);
+  --secondary-foreground: var(--primary-text);
 
-  --muted: oklch(0.95 0.01 85);
-  --muted-foreground: oklch(0.48 0.01 60);
+  --muted: var(--secondary-bg);
+  --muted-foreground: var(--secondary-text);
 
   --accent: var(--dusty-lavender);
   --accent-foreground: oklch(1 0 0);
@@ -89,9 +96,9 @@
   --destructive: oklch(0.55 0.18 25);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.92 0.015 85);
-  --input: oklch(0.92 0.015 85);
-  --ring: var(--lavender);
+  --border: var(--border-color);
+  --input: var(--border-color);
+  --ring: var(--dusty-lavender);
 }
 
 @layer base {
@@ -104,8 +111,8 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
     font-family: var(--font-sans);
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
@@ -116,12 +123,12 @@
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: -0.01em;
-    color: var(--color-foreground);
+    color: var(--primary-text);
   }
 
   ::selection {
-    background: var(--champagne);
-    color: var(--foreground);
+    background: var(--dusty-lavender);
+    color: white;
   }
 }
 
@@ -138,15 +145,15 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--lavender);
+  background: var(--dusty-lavender);
   color: white;
-  padding: 0.9rem 1.75rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--dusty-lavender); transform: translateY(-1px); }
+  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
 }
 
 @utility btn-outline {
@@ -155,15 +162,15 @@
   justify-content: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--charcoal);
-  padding: 0.9rem 1.75rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  color: var(--primary-text);
+  padding: 0.875rem 1.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border: 1px solid var(--charcoal);
+  border: 1px solid var(--dusty-lavender);
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--charcoal); color: white; }
+  &:hover { background: var(--dusty-lavender); color: white; }
 }
 
 @utility btn-secondary {
@@ -171,7 +178,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--lavender);
+  background: var(--dusty-lavender);
   color: white;
   padding: 0.75rem 1.5rem;
   font-size: 0.75rem;
@@ -179,14 +186,31 @@
   text-transform: uppercase;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--dusty-lavender); transform: translateY(-1px); }
+  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+}
+
+@utility btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: white;
+  color: var(--dark-lavender);
+  padding: 0.875rem 1.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--dusty-lavender);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  &:hover { background: var(--secondary-bg); transform: translateY(-1px); }
 }
 
 @utility eyebrow {
   font-size: 0.7rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--lavender);
+  color: var(--dark-lavender);
   font-weight: 400;
 }
 
