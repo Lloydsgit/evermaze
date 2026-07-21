@@ -58,15 +58,17 @@
   /* Brand tokens - Luxury warm palette */
   --primary-bg: #F7F3EE;
   --secondary-bg: #F2ECE5;
+  --soft-beige: #ECE3D8;
   --card-bg: #FFFFFF;
   --border-color: #E9E3DD;
   --heading-color: #2B2726;
   --body-text: #5D5754;
-  --nav-text: #3C3836;
-  --logo-color: #2A2725;
-  --dusty-lavender: #A99BB9;
-  --dark-lavender: #9E8FB3;
-  --hover-lavender: #8F7DA8;
+  --nav-text: #3A3635;
+  --logo-color: #2C2928;
+  --dusty-lavender: #8F7D9E;
+  --dark-lavender: #756582;
+  --muted-mauve: #A093A9;
+  --hover-lavender: #67596F;
 
   /* Keep old names for compatibility */
   --primary-text: var(--heading-color);
@@ -88,7 +90,7 @@
   --popover: var(--card-bg);
   --popover-foreground: var(--heading-color);
 
-  --primary: var(--dark-lavender);
+  --primary: var(--dusty-lavender);
   --primary-foreground: oklch(1 0 0);
 
   --secondary: var(--secondary-bg);
@@ -97,7 +99,7 @@
   --muted: var(--secondary-bg);
   --muted-foreground: var(--body-text);
 
-  --accent: var(--dusty-lavender);
+  --accent: var(--muted-mauve);
   --accent-foreground: oklch(1 0 0);
 
   --destructive: oklch(0.55 0.18 25);
@@ -156,11 +158,11 @@
   color: white;
   padding: 0.875rem 1.75rem;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  &:hover { background: var(--hover-lavender); }
 }
 
 @utility btn-outline {
@@ -169,10 +171,10 @@
   justify-content: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--primary-text);
+  color: var(--heading-color);
   padding: 0.875rem 1.75rem;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
   border-radius: 9999px;
@@ -189,11 +191,11 @@
   color: white;
   padding: 0.75rem 1.5rem;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  &:hover { background: var(--hover-lavender); }
 }
 
 @utility btn-white {
@@ -205,12 +207,12 @@
   color: var(--dark-lavender);
   padding: 0.875rem 1.75rem;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--secondary-bg); transform: translateY(-1px); }
+  &:hover { background: var(--secondary-bg); }
 }
 
 @utility eyebrow {

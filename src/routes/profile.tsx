@@ -255,7 +255,7 @@ function SettingsForm() {
                   type="checkbox"
                   checked={formData.newsletter}
                   onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-                  className="size-5 rounded border-border-color text-dark-lavender focus:ring-burgundy"
+                  className="size-5 rounded border-border-color text-dark-lavender focus:ring-dusty-lavender"
                 />
                 <span className="text-sm">Subscribe to newsletters and promotional emails</span>
               </label>

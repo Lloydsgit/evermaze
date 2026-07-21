@@ -47,7 +47,7 @@ function WishlistPage() {
           </Link>
           <div className="flex items-center gap-4">
             <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors">
-              <Heart className="size-[18px] fill-burgundy text-dark-lavender" />
+              <Heart className="size-[18px] fill-dark-lavender text-dark-lavender" />
             </button>
             <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />

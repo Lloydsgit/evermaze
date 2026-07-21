@@ -35,7 +35,7 @@ function Header() {
   const [occasionsOpen, setOccasionsOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -64,14 +64,20 @@ function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled ? "bg-white/98 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
+      style={{ paddingTop: scrolled ? '0' : '0' }}
     >
       <div className="container-evermaze py-5">
         <div className="hidden lg:flex items-center justify-between">
-          <nav className="flex items-center gap-10">
+          <nav className="flex items-center gap-9">
             {nav.slice(0, 2).map((n) => (
-              <Link key={n.name} to={n.to} className="text-[15px] tracking-wide font-medium" style={{ color: 'var(--nav-text)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--nav-text)'}>
+              <Link 
+                key={n.name} 
+                to={n.to} 
+                className="text-[15px] font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
+                style={{ color: 'var(--nav-text)' }}
+              >
                 {n.name}
               </Link>
             ))}
@@ -79,10 +85,8 @@ function Header() {
               <button
                 onMouseEnter={() => setOccasionsOpen(true)}
                 onMouseLeave={() => setOccasionsOpen(false)}
-                className="text-[15px] tracking-wide font-medium flex items-center gap-1"
+                className="text-[15px] font-medium flex items-center gap-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
                 style={{ color: 'var(--nav-text)' }}
-                onMouseOver={(e) => (e.currentTarget as HTMLElement).style.color = 'var(--dusty-lavender)'}
-                onMouseOut={(e) => (e.currentTarget as HTMLElement).style.color = 'var(--nav-text)'}
               >
                 Occasions <ChevronRight className="size-3.5 rotate-90" />
               </button>
@@ -96,7 +100,7 @@ function Header() {
                     <Link
                       key={item.name}
                       to={item.to}
-                      className="block px-5 py-2.5 text-sm hover:bg-secondary-bg transition-colors"
+                      className="block px-5 py-2.5 text-sm transition-colors"
                       style={{ color: 'var(--body-text)' }}
                       onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'}
                       onMouseLeave={(e) => e.currentTarget.style.color = 'var(--body-text)'}
@@ -110,34 +114,34 @@ function Header() {
           </nav>
 
           <Link to="/" className="flex flex-col items-center leading-none mx-8">
-            <span className="font-serif text-3xl tracking-[0.25em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
-            <span className="mt-0.5 text-[0.6rem] tracking-[0.35em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
+            <span className="font-serif text-[28px] tracking-[0.22em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="mt-0.5 text-[11px] tracking-[0.3em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
           </Link>
 
-          <nav className="flex items-center gap-10">
+          <nav className="flex items-center gap-9">
             {nav.slice(2).map((n) => (
-              <Link key={n.name} to={n.to} className="text-[15px] tracking-wide font-medium"
+              <Link 
+                key={n.name} 
+                to={n.to} 
+                className="text-[15px] font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
                 style={{ color: 'var(--nav-text)' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--nav-text)'}
               >
                 {n.name}
               </Link>
             ))}
-            <div className="flex items-center gap-6 ml-6">
+            <div className="flex items-center gap-5 ml-4">
               <button 
                 onClick={() => setSearchOpen(!searchOpen)} 
                 aria-label="Search" 
-                className="transition-colors"
                 style={{ color: 'var(--nav-text)' }}
               >
-                <Search className="size-[19px]" />
+                <Search className="size-[18px]" />
               </button>
               <Link to="/wishlist" aria-label="Wishlist" style={{ color: 'var(--nav-text)' }}>
-                <Heart className="size-[19px]" />
+                <Heart className="size-[18px]" />
               </Link>
               <Link to="/cart" aria-label="Cart" className="relative" style={{ color: 'var(--nav-text)' }}>
-                <ShoppingBag className="size-[19px]" />
+                <ShoppingBag className="size-[18px]" />
               </Link>
             </div>
           </nav>
@@ -154,8 +158,8 @@ function Header() {
           </button>
 
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-xl tracking-[0.25em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
-            <span className="mt-0.5 text-[0.5rem] tracking-[0.35em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
+            <span className="font-serif text-xl tracking-[0.22em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="mt-0.5 text-[10px] tracking-[0.3em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
           </Link>
 
           <div className="flex items-center gap-4">
@@ -203,7 +207,7 @@ function Header() {
         <div className="lg:hidden border-t border-border-color bg-white">
           <nav className="container-evermaze py-6 flex flex-col gap-4">
             {nav.map((n) => (
-              <Link key={n.name} to={n.to} className="text-sm tracking-wide font-medium" style={{ color: 'var(--nav-text)' }}>{n.name}</Link>
+              <Link key={n.name} to={n.to} className="text-sm font-medium" style={{ color: 'var(--nav-text)' }}>{n.name}</Link>
             ))}
             <div className="pt-4 border-t border-border-color">
               <p className="text-xs tracking-wider uppercase mb-3" style={{ color: 'var(--body-text)' }}>Occasions</p>
@@ -221,28 +225,28 @@ function Header() {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--primary-bg)' }}>
+    <section className="relative overflow-hidden pt-24 md:pt-28" style={{ backgroundColor: 'var(--primary-bg)' }}>
       <div className="container-evermaze">
-        <div className="grid lg:grid-cols-[45%_55%] gap-8 lg:gap-12 items-center min-h-[85vh] lg:min-h-[80vh]">
+        <div className="grid lg:grid-cols-[48%_52%] gap-12 lg:gap-16 items-center">
           {/* Left Column - Text */}
-          <div className="order-2 lg:order-1 py-12 lg:py-0 flex flex-col justify-center">
-            <span className="text-xs tracking-[0.4em] uppercase" style={{ color: 'var(--dusty-lavender)', fontWeight: 500 }}>EVERMAZE</span>
-            <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight" style={{ color: 'var(--heading-color)' }}>
+          <div className="order-2 lg:order-1 flex flex-col justify-center py-8 lg:py-0">
+            <span className="text-[11px] tracking-[0.35em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>EVERMAZE</span>
+            <h1 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl leading-[1.15] tracking-tight" style={{ color: 'var(--heading-color)' }}>
               Thoughtful Gifts,<br />
-              <span className="italic" style={{ color: 'var(--dusty-lavender)', fontFamily: 'Allura, cursive', fontSize: '1.1em' }}>Made with Love</span>
+              <span className="italic font-normal" style={{ fontFamily: 'Allura, cursive', color: 'var(--dusty-lavender)', fontSize: '1.2em', letterSpacing: '0.02em' }}>Made with Love</span>
             </h1>
-            <p className="mt-6 max-w-md text-base lg:text-lg leading-relaxed" style={{ color: 'var(--body-text)' }}>
+            <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: 'var(--body-text)' }}>
               Curated gift hampers for every occasion, packed with care and made to create unforgettable moments.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link to="/shop" className="btn-primary">Explore Hampers <ArrowRight className="size-4" /></Link>
-              <Link to="/build-your-box" className="btn-outline" style={{ borderColor: 'var(--dusty-lavender)', color: 'var(--heading-color)' }}>Build Your Own Box</Link>
+              <Link to="/build-your-box" className="btn-outline">Build Your Own Box</Link>
             </div>
           </div>
 
           {/* Right Column - Image */}
-          <div className="order-1 lg:order-2 py-8 lg:py-0">
-            <div className="relative aspect-[4/5] max-w-xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl" style={{ backgroundColor: 'var(--secondary-bg)', boxShadow: '0 25px 60px rgba(43, 39, 38, 0.12)' }}>
+          <div className="order-1 lg:order-2">
+            <div className="relative aspect-[4/5] max-w-lg mx-auto lg:max-w-none overflow-hidden rounded-2xl" style={{ backgroundColor: 'var(--secondary-bg)', boxShadow: '0 20px 50px rgba(43, 39, 38, 0.1)' }}>
               <img
                 src={heroHamper}
                 alt="Premium gift hamper with dried lavender flowers and satin ribbon"
@@ -268,15 +272,15 @@ function FeatureIcons() {
   ];
 
   return (
-    <section className="py-12 lg:py-16" style={{ backgroundColor: 'var(--card-bg)' }}>
+    <section className="py-12 lg:py-16" style={{ backgroundColor: 'var(--secondary-bg)' }}>
       <div className="container-evermaze">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {features.map((f, i) => (
             <div key={i} className="flex flex-col items-center text-center gap-3">
-              <div className="size-14 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(184, 171, 199, 0.15)' }}>
-                <f.icon className="size-6" style={{ color: 'var(--dark-lavender)' }} />
+              <div className="size-14 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(143, 125, 158, 0.12)' }}>
+                <f.icon className="size-6" style={{ color: 'var(--dusty-lavender)' }} />
               </div>
-              <span className="text-sm text-primary-text tracking-wide">{f.label}</span>
+              <span className="text-sm tracking-wide" style={{ color: 'var(--heading-color)' }}>{f.label}</span>
             </div>
           ))}
         </div>
@@ -303,8 +307,8 @@ function OccasionCategories() {
     <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
       <div className="container-evermaze">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Shop by Occasion</span>
-          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Find the Perfect Gift</h2>
+          <span className="text-[11px] tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>Shop by Occasion</span>
+          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>Find the Perfect Gift</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5">
           {occasions.map((occ, i) => (
@@ -312,7 +316,7 @@ function OccasionCategories() {
               key={i}
               to="/shop"
               className="group relative aspect-[3/4] rounded-2xl overflow-hidden"
-              style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
+              style={{ boxShadow: '0 4px 20px rgba(43, 39, 38, 0.08)' }}
             >
               <img
                 src={occ.img}
@@ -341,32 +345,32 @@ function FeaturedCollection() {
   ];
 
   return (
-    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--card-bg)' }}>
+    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--soft-beige)' }}>
       <div className="container-evermaze">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 lg:mb-16">
           <div>
-            <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Featured Collection</span>
-            <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Our Bestsellers</h2>
+            <span className="text-[11px] tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>Featured Collection</span>
+            <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>Our Bestsellers</h2>
           </div>
-          <Link to="/shop" className="text-sm flex items-center gap-1 transition-colors" style={{ color: 'var(--dark-lavender)' }}>
+          <Link to="/shop" className="text-sm flex items-center gap-1 transition-colors" style={{ color: 'var(--dusty-lavender)' }}>
             View All <ArrowRight className="size-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {products.map((p, i) => (
             <div key={i} className="group">
-              <div className="relative aspect-square rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+              <div className="relative aspect-square rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: 'var(--card-bg)', boxShadow: '0 4px 20px rgba(43, 39, 38, 0.06)' }}>
                 <img src={p.img} alt={p.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <button className="absolute bottom-4 right-4 size-11 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--dark-lavender)' }}>
+                <button className="absolute bottom-4 right-4 size-11 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--dusty-lavender)' }}>
                   <Plus className="size-5" />
                 </button>
               </div>
-              <h3 className="font-medium text-sm lg:text-base" style={{ color: 'var(--primary-text)' }}>{p.name}</h3>
+              <h3 className="font-medium text-sm lg:text-base" style={{ color: 'var(--heading-color)' }}>{p.name}</h3>
               <div className="flex items-center gap-1 mt-2">
                 <Star className="size-3.5 fill-current" style={{ color: 'var(--dusty-lavender)' }} />
-                <span className="text-xs" style={{ color: 'var(--secondary-text)' }}>{p.rating}</span>
+                <span className="text-xs" style={{ color: 'var(--body-text)' }}>{p.rating}</span>
               </div>
-              <p className="mt-1 font-serif text-lg" style={{ color: 'var(--dark-lavender)' }}>₹{p.price}</p>
+              <p className="mt-1 font-serif text-lg" style={{ color: 'var(--dusty-lavender)' }}>₹{p.price}</p>
             </div>
           ))}
         </div>
@@ -386,19 +390,19 @@ function WhyChoose() {
   ];
 
   return (
-    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
       <div className="container-evermaze">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Why Evermaze</span>
-          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Why Choose Us</h2>
+          <span className="text-[11px] tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>Why Evermaze</span>
+          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>Why Choose Us</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
           {reasons.map((r, i) => (
             <div key={i} className="text-center">
-              <div className="size-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'rgba(184, 171, 199, 0.2)' }}>
-                <r.icon className="size-7" style={{ color: 'var(--dark-lavender)' }} />
+              <div className="size-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'rgba(143, 125, 158, 0.15)' }}>
+                <r.icon className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
               </div>
-              <p className="text-sm font-medium" style={{ color: 'var(--primary-text)' }}>{r.label}</p>
+              <p className="text-sm font-medium" style={{ color: 'var(--heading-color)' }}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -423,7 +427,7 @@ function PromoBanner() {
         <p className="mt-6 max-w-2xl mx-auto text-white/80 leading-relaxed">
           Curated hampers that speak from the heart and stay in memory forever.
         </p>
-        <Link to="/shop" className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-white rounded-full font-medium text-sm tracking-wide transition-all hover:shadow-lg" style={{ color: 'var(--dark-lavender)' }}>
+        <Link to="/shop" className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-white rounded-full font-medium text-sm tracking-wide transition-all hover:shadow-lg" style={{ color: 'var(--dusty-lavender)' }}>
           Shop Now <ChevronRight className="size-4" />
         </Link>
       </div>
@@ -458,29 +462,29 @@ function Testimonials() {
   ];
 
   return (
-    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
+    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--secondary-bg)' }}>
       <div className="container-evermaze">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Love Letters</span>
-          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>What Our Customers Say</h2>
+          <span className="text-[11px] tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>Love Letters</span>
+          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>What Our Customers Say</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {reviews.map((r, i) => (
-            <div key={i} className="rounded-2xl p-8" style={{ backgroundColor: 'var(--card-bg)', boxShadow: '0 4px 30px rgba(0,0,0,0.04)' }}>
-              <Quote className="size-8 mb-6" style={{ color: 'var(--dusty-lavender)' }} />
+            <div key={i} className="rounded-2xl p-8" style={{ backgroundColor: 'var(--card-bg)', boxShadow: '0 4px 30px rgba(43, 39, 38, 0.06)' }}>
+              <Quote className="size-8 mb-6" style={{ color: 'var(--muted-mauve)' }} />
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(r.rating)].map((_, j) => (
                   <Star key={j} className="size-4 fill-current" style={{ color: 'var(--dusty-lavender)' }} />
                 ))}
               </div>
-              <p className="leading-relaxed mb-6" style={{ color: 'var(--secondary-text)' }}>"{r.text}"</p>
+              <p className="leading-relaxed mb-6" style={{ color: 'var(--body-text)' }}>"{r.text}"</p>
               <div className="flex items-center gap-3">
                 <div className="size-11 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--secondary-bg)' }}>
                   <img src={r.img} alt={r.name} className="size-full object-cover" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm" style={{ color: 'var(--primary-text)' }}>{r.name}</p>
-                  <p className="text-xs" style={{ color: 'var(--secondary-text)' }}>{r.location}</p>
+                  <p className="font-medium text-sm" style={{ color: 'var(--heading-color)' }}>{r.name}</p>
+                  <p className="text-xs" style={{ color: 'var(--body-text)' }}>{r.location}</p>
                 </div>
               </div>
             </div>
@@ -496,17 +500,17 @@ function InstagramGallery() {
   const images = [hamper1, hamper2, hamper3, hamper4, hamper5, hamper6];
 
   return (
-    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--card-bg)' }}>
+    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
       <div className="container-evermaze">
         <div className="text-center mb-12 lg:mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>@evermaze.gifts</span>
-          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Follow Our Journey</h2>
+          <span className="text-[11px] tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>@evermaze.gifts</span>
+          <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>Follow Our Journey</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
           {images.map((img, i) => (
             <a key={i} href="#" className="group relative aspect-square rounded-xl overflow-hidden">
               <img src={img} alt={`Instagram post ${i + 1}`} className="size-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ backgroundColor: 'rgba(46, 43, 42, 0.4)' }}>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ backgroundColor: 'rgba(43, 39, 38, 0.4)' }}>
                 <Instagram className="size-8 text-white" />
               </div>
             </a>
@@ -520,11 +524,11 @@ function InstagramGallery() {
 /* ---------- Newsletter ---------- */
 function Newsletter() {
   return (
-    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+    <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--soft-beige)' }}>
       <div className="container-evermaze">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Join the Evermaze Family</h2>
-          <p className="mt-4 text-base" style={{ color: 'var(--secondary-text)' }}>
+          <h2 className="font-serif text-3xl lg:text-4xl" style={{ color: 'var(--heading-color)' }}>Join the Evermaze Family</h2>
+          <p className="mt-4 text-base" style={{ color: 'var(--body-text)' }}>
             Get gifting inspiration, exclusive offers, and early access to new hampers.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -532,13 +536,13 @@ function Newsletter() {
               type="email"
               placeholder="Enter your email"
               className="flex-1 px-6 py-3.5 rounded-full border text-sm"
-              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)', color: 'var(--primary-text)' }}
+              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)', color: 'var(--heading-color)' }}
             />
             <button className="btn-primary whitespace-nowrap">
               Subscribe
             </button>
           </div>
-          <p className="mt-4 text-xs" style={{ color: 'var(--secondary-text)' }}>By subscribing, you agree to our Privacy Policy</p>
+          <p className="mt-4 text-xs" style={{ color: 'var(--body-text)' }}>By subscribing, you agree to our Privacy Policy</p>
         </div>
       </div>
     </section>
@@ -576,37 +580,37 @@ function Footer() {
     },
   ];
   return (
-    <footer className="pt-16 pb-8" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+    <footer className="pt-16 pb-8" style={{ backgroundColor: 'var(--heading-color)' }}>
       <div className="container-evermaze">
         <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12">
           <div>
-            <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'var(--primary-text)' }}>EVERMAZE</Link>
-            <p className="mt-1 text-xs tracking-[0.25em] uppercase" style={{ color: 'var(--secondary-text)', fontFamily: 'Allura, cursive' }}>Just For You</p>
-            <p className="mt-6 max-w-xs leading-relaxed text-sm" style={{ color: 'var(--secondary-text)' }}>
+            <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
+            <p className="mt-1 text-xs tracking-[0.25em] uppercase italic" style={{ color: 'rgba(255,255,255,0.6)' }}>Just For You</p>
+            <p className="mt-6 max-w-xs leading-relaxed text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
               Beautifully personalized gift hampers, thoughtfully curated for every celebration.
             </p>
             <div className="mt-6 flex gap-3">
-              <a href="#" aria-label="Instagram" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid var(--border-color)', color: 'var(--dark-lavender)' }}>
+              <a href="#" aria-label="Instagram" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'var(--dusty-lavender)' }}>
                 <Instagram className="size-4" />
               </a>
-              <a href="#" aria-label="WhatsApp" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid var(--border-color)', color: 'var(--dark-lavender)' }}>
+              <a href="#" aria-label="WhatsApp" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'var(--dusty-lavender)' }}>
                 <MessageCircle className="size-4" />
               </a>
-              <a href="#" aria-label="Email" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid var(--border-color)', color: 'var(--dark-lavender)' }}>
+              <a href="#" aria-label="Email" className="size-11 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'var(--dusty-lavender)' }}>
                 <Mail className="size-4" />
               </a>
             </div>
           </div>
           {cols.map((c) => (
             <div key={c.t}>
-              <h4 className="text-xs tracking-[0.2em] uppercase mb-5" style={{ color: 'var(--secondary-text)' }}>{c.t}</h4>
+              <h4 className="text-xs tracking-[0.2em] uppercase mb-5" style={{ color: 'rgba(255,255,255,0.5)' }}>{c.t}</h4>
               <ul className="space-y-3 text-sm">
-                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="transition-colors hover:opacity-70" style={{ color: 'var(--primary-text)' }}>{li.name}</Link></li>)}
+                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="transition-colors hover:opacity-70" style={{ color: 'rgba(255,255,255,0.8)' }}>{li.name}</Link></li>)}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-14 pt-6 border-t flex flex-col md:flex-row justify-between gap-4 text-sm" style={{ borderColor: 'var(--border-color)', color: 'var(--secondary-text)' }}>
+        <div className="mt-14 pt-6 border-t flex flex-col md:flex-row justify-between gap-4 text-sm" style={{ borderColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }}>
           <span>© 2026 Evermaze. Made with love.</span>
           <div className="flex gap-6">
             <a href="#" className="transition-colors hover:opacity-70">Privacy</a>
