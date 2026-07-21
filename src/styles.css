@@ -36,6 +36,11 @@
   --color-champagne-soft: var(--champagne-soft);
   --color-burgundy: var(--burgundy);
   --color-ivory: var(--ivory);
+  --color-lavender: var(--lavender);
+  --color-dusty-lavender: var(--dusty-lavender);
+  --color-warm-beige: var(--warm-beige);
+  --color-cream: var(--cream);
+  --color-charcoal: var(--charcoal);
 
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
@@ -47,40 +52,46 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens */
+  /* Brand tokens - Lavender theme */
+  --lavender: #8E6AAE;
+  --dusty-lavender: #A98BC1;
+  --warm-beige: #F5EFE6;
+  --cream: #FFF9F2;
+  --charcoal: #2E2A2A;
+
   --ivory: oklch(0.972 0.008 85);          /* #FAF8F4 warm ivory */
   --champagne: oklch(0.82 0.035 75);       /* #D8C3A5 champagne beige */
   --champagne-soft: oklch(0.92 0.02 80);   /* soft champagne hover */
   --burgundy: oklch(0.38 0.09 20);         /* #7A3942 deep burgundy */
   --success: oklch(0.62 0.06 145);         /* muted sage */
 
-  --background: var(--ivory);
-  --foreground: oklch(0.24 0.005 60);      /* #2D2D2D charcoal */
+  --background: var(--cream);
+  --foreground: var(--charcoal);
 
   --card: oklch(1 0 0);
-  --card-foreground: var(--foreground);
+  --card-foreground: var(--charcoal);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: var(--foreground);
+  --popover-foreground: var(--charcoal);
 
-  --primary: var(--burgundy);
+  --primary: var(--lavender);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: var(--champagne);
-  --secondary-foreground: var(--foreground);
+  --secondary: var(--warm-beige);
+  --secondary-foreground: var(--charcoal);
 
-  --muted: oklch(0.95 0.01 80);
+  --muted: oklch(0.95 0.01 85);
   --muted-foreground: oklch(0.48 0.01 60);
 
-  --accent: var(--champagne-soft);
-  --accent-foreground: var(--foreground);
+  --accent: var(--dusty-lavender);
+  --accent-foreground: oklch(1 0 0);
 
   --destructive: oklch(0.55 0.18 25);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.925 0.012 80);         /* #ECE6DE */
-  --input: oklch(0.925 0.012 80);
-  --ring: var(--champagne);
+  --border: oklch(0.92 0.015 85);
+  --input: oklch(0.92 0.015 85);
+  --ring: var(--lavender);
 }
 
 @layer base {
@@ -127,7 +138,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--burgundy);
+  background: var(--lavender);
   color: white;
   padding: 0.9rem 1.75rem;
   font-size: 0.8rem;
@@ -135,7 +146,7 @@
   text-transform: uppercase;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: oklch(0.32 0.09 20); transform: translateY(-1px); }
+  &:hover { background: var(--dusty-lavender); transform: translateY(-1px); }
 }
 
 @utility btn-outline {
@@ -144,22 +155,38 @@
   justify-content: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--foreground);
+  color: var(--charcoal);
   padding: 0.9rem 1.75rem;
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border: 1px solid var(--foreground);
+  border: 1px solid var(--charcoal);
   border-radius: 9999px;
   transition: all 0.3s ease;
-  &:hover { background: var(--foreground); color: var(--ivory); }
+  &:hover { background: var(--charcoal); color: white; }
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--lavender);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  &:hover { background: var(--dusty-lavender); transform: translateY(-1px); }
 }
 
 @utility eyebrow {
   font-size: 0.7rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--lavender);
   font-weight: 400;
 }
 

@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Search, Heart, ShoppingBag, User, Menu, X, Star,
-  Instagram, MessageCircle, Mail, Truck, Sparkles, Gift, Package, HandHeart, Clock, ArrowRight,
+  Instagram, MessageCircle, Mail, Truck, Gift, Package, HandHeart, Clock, ArrowRight,
+  Sparkles, Award, Heart as HeartIcon, Calendar, Palette, Camera, Ribbon,
+  Plus, ChevronRight, Quote
 } from "lucide-react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
@@ -39,52 +41,52 @@ function Header() {
   }, []);
 
   const nav = [
+    { name: "Home", to: "/" },
     { name: "Shop", to: "/shop" },
-    { name: "Gift Hampers", to: "/gift-hampers" },
-    { name: "Build Your Box", to: "/build-your-box" },
+    { name: "Occasions", to: "/gift-hampers" },
+    { name: "Build Your Own Box", to: "/build-your-box" },
     { name: "About", to: "/about" },
-    { name: "FAQs", to: "/faq" },
     { name: "Contact", to: "/contact" },
   ];
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-card/95 backdrop-blur border-b border-border" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container-evermaze py-4">
         <div className="hidden md:flex items-center justify-between">
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-6 lg:gap-8">
             {nav.slice(0, 3).map((n) => (
-              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+              <Link key={n.name} to={n.to} className="text-xs tracking-[0.15em] uppercase text-charcoal hover:text-lavender transition-colors">
                 {n.name}
               </Link>
             ))}
           </nav>
 
-          <Link to="/" className="flex flex-col items-center leading-none mx-8">
-            <span className="font-serif text-3xl md:text-4xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-xs md:text-sm tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+          <Link to="/" className="flex flex-col items-center leading-none mx-4 lg:mx-8">
+            <span className="font-serif text-2xl lg:text-3xl tracking-[0.3em] text-charcoal">EVERMAZE</span>
+            <span className="mt-0.5 text-[0.55rem] lg:text-xs tracking-[0.35em] uppercase text-gray-500 font-light">Just For You</span>
           </Link>
 
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-6 lg:gap-8">
             {nav.slice(3).map((n) => (
-              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase text-foreground hover:text-burgundy transition-colors">
+              <Link key={n.name} to={n.to} className="text-xs tracking-[0.15em] uppercase text-charcoal hover:text-lavender transition-colors">
                 {n.name}
               </Link>
             ))}
-            <div className="flex items-center gap-4 ml-4">
+            <div className="flex items-center gap-4 ml-2 lg:ml-4">
               <button 
                 onClick={() => setSearchOpen(!searchOpen)} 
                 aria-label="Search" 
-                className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
+                className={`hover:text-lavender transition-colors ${searchOpen ? "text-lavender" : "text-charcoal"}`}
               >
                 <Search className="size-[18px]" />
               </button>
-              <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
-              <Link to="/profile" aria-label="Account" className="hover:text-burgundy transition-colors"><User className="size-[18px]" /></Link>
-              <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+              <Link to="/wishlist" aria-label="Wishlist" className="text-charcoal hover:text-lavender transition-colors"><Heart className="size-[18px]" /></Link>
+              <Link to="/profile" aria-label="Account" className="text-charcoal hover:text-lavender transition-colors"><User className="size-[18px]" /></Link>
+              <Link to="/cart" aria-label="Cart" className="relative text-charcoal hover:text-lavender transition-colors">
                 <ShoppingBag className="size-[18px]" />
               </Link>
             </div>
@@ -94,26 +96,26 @@ function Header() {
         <div className="flex md:hidden items-center justify-between">
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 -ml-2 z-20"
+            className="p-2 -ml-2 z-20 text-charcoal"
             aria-label="Toggle menu"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
 
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-xl tracking-[0.3em] text-charcoal">EVERMAZE</span>
+            <span className="mt-0.5 text-[0.5rem] tracking-[0.35em] uppercase text-gray-500 font-light">Just For You</span>
           </Link>
 
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setSearchOpen(!searchOpen)} 
               aria-label="Search" 
-              className={`hover:text-burgundy transition-colors ${searchOpen ? "text-burgundy" : ""}`}
+              className="text-charcoal"
             >
               <Search className="size-[18px]" />
             </button>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/cart" aria-label="Cart" className="text-charcoal hover:text-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
             </Link>
           </div>
@@ -122,19 +124,19 @@ function Header() {
 
       {/* Search Bar */}
       {searchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-card border-b border-border p-4 shadow-lg">
+        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-200 p-4 shadow-md">
           <div className="container-evermaze">
             <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
               <input
                 type="search"
                 placeholder="Search for gift hampers..."
                 autoFocus
-                className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-full focus:border-burgundy focus:outline-none transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full focus:border-lavender focus:outline-none transition-colors"
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-charcoal"
                 aria-label="Close search"
               >
                 <X className="size-5" />
@@ -145,10 +147,10 @@ function Header() {
       )}
 
       {open && (
-        <div className="md:hidden border-t border-border bg-card">
+        <div className="md:hidden border-t border-gray-200 bg-white">
           <nav className="container-evermaze py-4 flex flex-col gap-4">
             {nav.map((n) => (
-              <Link key={n.name} to={n.to} className="text-xs tracking-[0.2em] uppercase">{n.name}</Link>
+              <Link key={n.name} to={n.to} className="text-sm tracking-[0.15em] uppercase text-charcoal">{n.name}</Link>
             ))}
           </nav>
         </div>
@@ -160,53 +162,40 @@ function Header() {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
-      <div className="container-evermaze grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div className="order-2 md:order-1">
-          <span className="eyebrow">Made with love</span>
-          <h1 className="mt-6 font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight">
-            Personalized<br />
-            <span className="italic text-burgundy">Gift Hampers</span><br />
-            Made With Love.
+    <section className="relative pt-28 md:pt-36 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-cream to-white">
+      <div className="container-evermaze grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="order-2 md:order-1 text-center md:text-left">
+          <span className="inline-block text-xs tracking-[0.35em] uppercase text-lavender font-medium">EVERMAZE</span>
+          <h1 className="mt-4 md:mt-6 font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-charcoal">
+            Thoughtful Gifts,<br />
+            <span className="italic text-lavender">Made with Love</span>
           </h1>
-          <p className="mt-6 max-w-md text-muted-foreground leading-relaxed">
-            Curated gifts for every celebration, thoughtfully packed to
-            create unforgettable memories — moments that live longer than the ribbon.
+          <p className="mt-4 md:mt-6 max-w-md mx-auto md:mx-0 text-gray-600 leading-relaxed text-sm md:text-base">
+            Curated gift hampers for every occasion, packed with care and made to create unforgettable moments.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link to="/shop" className="btn-primary">Shop Hampers <ArrowRight className="size-4" /></Link>
-            <Link to="/build-your-box" className="btn-outline">Build Your Own Box</Link>
-          </div>
-
-          <div className="mt-14 flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-muted-foreground">
-            <div><span className="block font-serif text-2xl text-foreground normal-case tracking-normal">12k+</span>Happy gifters</div>
-            <div className="w-px h-10 bg-border" />
-            <div><span className="block font-serif text-2xl text-foreground normal-case tracking-normal">4.9</span>Rating</div>
+          <div className="mt-8 md:mt-10 flex flex-wrap justify-center md:justify-start gap-3 md:gap-4">
+            <Link to="/shop" className="btn-secondary">Explore Hampers <ArrowRight className="size-4" /></Link>
+            <Link to="/build-your-box" className="btn-outline border-charcoal text-charcoal hover:bg-charcoal hover:text-white">Build Your Own Box</Link>
           </div>
         </div>
 
         <div className="order-1 md:order-2 relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-champagne-soft">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl md:rounded-[2rem] bg-gradient-to-br from-lavender/10 to-dusty-lavender/20">
             <img
               src={heroHamper}
-              alt="Personalized Evermaze gift hamper with candle, dried florals and silk ribbon"
+              alt="Premium lavender gift hamper with satin ribbon and dried flowers"
               width={1600} height={1808}
               className="size-full object-cover"
             />
           </div>
-          <div className="hidden md:block absolute -bottom-8 -left-10 w-48 bg-card rounded-2xl p-5 shadow-[var(--shadow-card)] animate-float">
-            <div className="flex items-center gap-1 text-burgundy">
+          <div className="hidden lg:block absolute -bottom-6 -left-8 w-44 bg-white rounded-2xl p-5 shadow-lg">
+            <div className="flex items-center gap-1 text-lavender">
               {[...Array(5)].map((_, i) => <Star key={i} className="size-3 fill-current" />)}
             </div>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-xs leading-relaxed text-gray-600">
               "It felt like opening a little world of love."
             </p>
-            <p className="mt-2 text-[10px] tracking-[0.2em] uppercase">— Aanya, Delhi</p>
-          </div>
-          <div className="hidden md:flex absolute -top-6 -right-6 size-28 rounded-full bg-burgundy text-white items-center justify-center animate-float" style={{ animationDelay: "1.5s" }}>
-            <div className="text-center">
-              <div className="font-serif italic text-lg leading-tight">Packed<br/>with love</div>
-            </div>
+            <p className="mt-2 text-[10px] tracking-[0.15em] uppercase text-gray-500">— Aanya, Delhi</p>
           </div>
         </div>
       </div>
@@ -214,54 +203,27 @@ function Hero() {
   );
 }
 
-/* ---------- Marquee strip ---------- */
-function Strip() {
-  const items = ["Free shipping over ₹999", "Personalization included", "Same-day dispatch", "Sustainable packaging"];
-  return (
-    <div className="border-y border-border bg-card/50 py-3">
-      <div className="container-evermaze flex flex-wrap justify-center gap-x-8 gap-y-1 text-xs tracking-[0.2em] uppercase text-gray-700 font-medium">
-        {items.map((i) => <span key={i}>· {i}</span>)}
-      </div>
-    </div>
-  );
-}
-
-/* ---------- Occasions ---------- */
-function Occasions() {
-  const items = [
-    { name: "Birthday", img: hamper3 },
-    { name: "Anniversary", img: hamper5 },
-    { name: "Wedding", img: hamper2 },
-    { name: "Baby Shower", img: hamper4 },
-    { name: "Farewell", img: hamper6 },
-    { name: "Friendship", img: hamper1 },
-    { name: "Festivals", img: hamper3 },
-    { name: "Special Moments", img: heroHamper },
+/* ---------- Feature Icons ---------- */
+function FeatureIcons() {
+  const features = [
+    { icon: Award, label: "Premium Quality" },
+    { icon: HeartIcon, label: "Made with Love" },
+    { icon: Sparkles, label: "Carefully Curated" },
+    { icon: Gift, label: "Perfect for Every Occasion" },
+    { icon: Truck, label: "Safe & Fast Delivery" },
   ];
-  return (
-    <section className="py-20 md:py-28">
-      <div className="container-evermaze">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-          <div>
-            <span className="eyebrow">Shop by occasion</span>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Made for every moment.</h2>
-          </div>
-          <Link to="/gift-hampers" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">View all occasions</Link>
-        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {items.map((it, i) => (
-            <Link key={it.name + i} to="/gift-hampers" className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted">
-              <img src={it.img} alt={`${it.name} gift hampers`} loading="lazy" width={1000} height={1200}
-                className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                <h3 className="font-serif text-2xl md:text-3xl text-white">{it.name}</h3>
-                <span className="mt-1 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.3em] uppercase text-white/90">
-                  Explore <ArrowRight className="size-3" />
-                </span>
+  return (
+    <section className="py-8 md:py-12 bg-white border-y border-gray-100">
+      <div className="container-evermaze">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
+          {features.map((f, i) => (
+            <div key={i} className="flex flex-col items-center text-center gap-2">
+              <div className="size-12 md:size-14 rounded-full bg-lavender/10 flex items-center justify-center">
+                <f.icon className="size-5 md:size-6 text-lavender" />
               </div>
-            </Link>
+              <span className="text-xs md:text-sm text-charcoal font-medium tracking-wide">{f.label}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -269,36 +231,40 @@ function Occasions() {
   );
 }
 
-/* ---------- Shop by Price ---------- */
-function ShopByPrice() {
-  const hamperTypes = [
-    { price: 199, name: "Mini Hamper", description: "Perfect small gesture" },
-    { price: 499, name: "Classic Hamper", description: "Thoughtful gift" },
-    { price: 999, name: "Signature Hamper", description: "Premium selection" },
-    { price: 1499, name: "Supreme Hamper", description: "Luxurious experience" },
-    { price: 1999, name: "Luxury Hamper", description: "Ultimate indulgence" },
+/* ---------- Occasion Categories ---------- */
+function OccasionCategories() {
+  const occasions = [
+    { name: "Birthday", img: hamper1 },
+    { name: "Couple", img: hamper2 },
+    { name: "Best Friends", img: hamper3 },
+    { name: "Anniversary", img: hamper4 },
+    { name: "Self Care", img: hamper5 },
+    { name: "Festive", img: hamper6 },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-card border-y border-border">
+    <section className="py-16 md:py-24">
       <div className="container-evermaze">
-        <div className="text-center mb-12">
-          <span className="eyebrow">Build Your Perfect Hamper</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Customize it your way.</h2>
+        <div className="text-center mb-10 md:mb-14">
+          <span className="text-xs tracking-[0.3em] uppercase text-lavender">Shop by Occasion</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">Find the Perfect Gift</h2>
         </div>
-        {/* Hamper Types */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {hamperTypes.map((h) => (
-            <Link 
-              key={h.price}
-              to={`/build-your-box?package=${h.price}`}
-              className="group relative bg-ivory border border-border rounded-2xl py-8 px-4 text-center transition-all hover:border-burgundy hover:-translate-y-1"
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+          {occasions.map((occ, i) => (
+            <Link
+              key={i}
+              to="/shop"
+              className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100"
             >
-              <span className="block font-serif text-3xl md:text-4xl text-burgundy">₹{h.price}</span>
-              <span className="block mt-2 font-serif text-lg text-foreground">{h.name}</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
-                Customize <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
-              </span>
+              <img
+                src={occ.img}
+                alt={occ.name}
+                className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <span className="text-white font-serif text-lg md:text-xl">{occ.name}</span>
+              </div>
             </Link>
           ))}
         </div>
@@ -307,102 +273,67 @@ function ShopByPrice() {
   );
 }
 
-/* ---------- Product card ---------- */
-type Product = { name: string; price: string; oldPrice?: string; rating: number; img: string; tag?: string };
-
-function ProductCard({ p }: { p: Product }) {
+/* ---------- Promotional Banner ---------- */
+function PromoBanner() {
   return (
-    <article className="group">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-        <img src={p.img} alt={p.name} loading="lazy" width={1000} height={1200}
-          className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-        {p.tag && (
-          <span className="absolute top-3 left-3 bg-ivory/95 backdrop-blur px-3 py-1 text-[0.6rem] tracking-[0.25em] uppercase rounded-full">
-            {p.tag}
-          </span>
-        )}
-        <button
-          aria-label={`Add ${p.name} to wishlist`}
-          className="absolute top-3 right-3 size-9 grid place-items-center bg-ivory/95 backdrop-blur rounded-full hover:bg-burgundy hover:text-white transition-colors"
-        >
-          <Heart className="size-4" />
-        </button>
-        <div className="absolute inset-x-3 bottom-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-          <button className="w-full bg-foreground text-ivory text-[0.7rem] tracking-[0.25em] uppercase py-3 rounded-full hover:bg-burgundy">
-            Quick Add
-          </button>
-        </div>
+    <section className="py-16 md:py-20 bg-lavender relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-8 left-12 size-24 rounded-full border-2 border-white" />
+        <div className="absolute bottom-12 right-16 size-16 rounded-full border-2 border-white" />
+        <div className="absolute top-1/2 right-1/4 size-8 rounded-full bg-white" />
       </div>
-      <div className="mt-4 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="font-serif text-lg leading-tight truncate">{p.name}</h3>
-          <div className="mt-1 flex items-center gap-1 text-burgundy">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className={`size-3 ${i < Math.floor(p.rating) ? "fill-current" : ""}`} />
-            ))}
-            <span className="ml-1 text-[10px] text-muted-foreground">{p.rating}</span>
-          </div>
-        </div>
-        <div className="text-right shrink-0">
-          <span className="font-serif text-lg">{p.price}</span>
-          {p.oldPrice && <span className="block text-xs text-muted-foreground line-through">{p.oldPrice}</span>}
-        </div>
+      <div className="container-evermaze text-center relative z-10">
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+          More Than a Gift,<br />It's an Emotion
+        </h2>
+        <p className="mt-4 md:mt-6 max-w-2xl mx-auto text-white/80 text-sm md:text-base leading-relaxed">
+          Curated hampers that speak from the heart and stay in memory forever.
+        </p>
+        <Link to="/shop" className="inline-flex items-center gap-2 mt-8 md:mt-10 px-8 py-3.5 bg-white text-lavender rounded-full font-medium text-sm tracking-wide hover:bg-gray-100 transition-colors">
+          Shop Now <ChevronRight className="size-4" />
+        </Link>
       </div>
-    </article>
+    </section>
   );
 }
 
-/* ---------- Best sellers ---------- */
+/* ---------- Best Sellers ---------- */
 function BestSellers() {
-  const products: Product[] = [
-    { name: "The Sabrina Bloom", price: "₹1,899", oldPrice: "₹2,299", rating: 4.9, img: heroHamper, tag: "Personalized" },
-    { name: "Rose Ritual Box", price: "₹1,499", rating: 4.8, img: hamper5, tag: "Best Seller" },
-    { name: "Little Wonder", price: "₹1,299", rating: 4.9, img: hamper4, tag: "New" },
-    { name: "Golden Diwali", price: "₹2,199", rating: 5.0, img: hamper6, tag: "Limited" },
+  const products = [
+    { name: "Birthday Bliss Hamper", price: 999, rating: 4.9, img: hamper1 },
+    { name: "Romantic Evening Box", price: 1499, rating: 5.0, img: hamper2 },
+    { name: "Self Care Retreat", price: 799, rating: 4.8, img: hamper3 },
+    { name: "Best Friend Forever", price: 1199, rating: 4.9, img: hamper4 },
+    { name: "Festive Celebration", price: 1999, rating: 4.7, img: hamper5 },
   ];
-  return (
-    <section className="py-20 md:py-28">
-      <div className="container-evermaze">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-          <div>
-            <span className="eyebrow">Best Sellers</span>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Loved by thousands.</h2>
-          </div>
-          <Link to="/shop" className="text-xs tracking-[0.2em] uppercase text-burgundy border-b border-burgundy pb-1">Shop all</Link>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {products.map((p) => <ProductCard key={p.name} p={p} />)}
-        </div>
-      </div>
-    </section>
-  );
-}
 
-/* ---------- New Arrivals (horizontal) ---------- */
-function NewArrivals() {
-  const products: Product[] = [
-    { name: "Bridal Whispers", price: "₹2,499", rating: 4.9, img: hamper2, tag: "New" },
-    { name: "Birthday Confetti", price: "₹899", rating: 4.7, img: hamper3, tag: "New" },
-    { name: "Sweet Nothings", price: "₹1,199", rating: 4.8, img: hamper1, tag: "New" },
-    { name: "Rose Ritual", price: "₹1,499", rating: 4.9, img: hamper5, tag: "New" },
-    { name: "Baby Bloom", price: "₹1,299", rating: 5.0, img: hamper4, tag: "New" },
-    { name: "Festive Golden", price: "₹1,999", rating: 4.9, img: hamper6, tag: "New" },
-  ];
   return (
-    <section className="py-20 md:py-28 bg-card border-y border-border">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container-evermaze">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
           <div>
-            <span className="eyebrow">New Arrivals</span>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Freshly wrapped this week.</h2>
+            <span className="text-xs tracking-[0.3em] uppercase text-lavender">Customer Favorites</span>
+            <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">Best Sellers</h2>
           </div>
+          <Link to="/shop" className="text-sm text-lavender hover:text-dusty-lavender transition-colors tracking-wide flex items-center gap-1">
+            View All <ChevronRight className="size-4" />
+          </Link>
         </div>
-      </div>
-      <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex gap-6 px-5 md:px-10 pb-4" style={{ paddingLeft: "max(1.25rem, calc((100vw - 1400px)/2 + 2.5rem))" }}>
-          {products.map((p) => (
-            <div key={p.name} className="w-[70vw] sm:w-[40vw] md:w-[24vw] lg:w-[18vw] shrink-0">
-              <ProductCard p={p} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          {products.map((p, i) => (
+            <div key={i} className="group">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-100 mb-3">
+                <img src={p.img} alt={p.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <button className="absolute bottom-3 right-3 size-10 bg-white rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-lavender hover:text-white">
+                  <Plus className="size-5" />
+                </button>
+              </div>
+              <h3 className="font-medium text-charcoal text-sm md:text-base">{p.name}</h3>
+              <div className="flex items-center gap-1 mt-1">
+                <Star className="size-3 fill-lavender text-lavender" />
+                <span className="text-xs text-gray-600">{p.rating}</span>
+              </div>
+              <p className="mt-1 font-serif text-lg text-lavender">₹{p.price}</p>
             </div>
           ))}
         </div>
@@ -411,157 +342,114 @@ function NewArrivals() {
   );
 }
 
-/* ---------- Build your own box ---------- */
-function BuildYourBox() {
-  const steps = [
-    { n: "01", t: "Choose Box", d: "Pick a size and style that fits your moment." },
-    { n: "02", t: "Choose Occasion", d: "From bridal to birthday, set the mood." },
-    { n: "03", t: "Choose Products", d: "Handpick every little joy inside." },
-    { n: "04", t: "Special Message", d: "Add a handwritten note, straight from you." },
-    { n: "05", t: "Delivery Date", d: "Pick when the surprise should arrive." },
-    { n: "06", t: "Preview & Checkout", d: "See your box, then send with love." },
+/* ---------- Budget Collection ---------- */
+function BudgetCollection() {
+  const boxes = [
+    { price: 199, name: "Mini Surprise", items: 4, img: hamper1 },
+    { price: 499, name: "Signature Box", items: 6, img: hamper2 },
+    { price: 999, name: "Celebration Hamper", items: 9, img: hamper3 },
+    { price: 1499, name: "Premium Moments", items: 12, img: hamper4 },
+    { price: 1999, name: "Grand Gesture Box", items: 15, img: hamper5 },
   ];
+
   return (
-    <section className="py-24 md:py-32">
-      <div className="container-evermaze grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
-        <div className="relative">
-          <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-champagne-soft">
-            <img src={hamper1} alt="Build your own personalized gift box" loading="lazy" width={1000} height={1200}
-              className="size-full object-cover" />
-          </div>
-          <div className="absolute -bottom-6 -right-6 bg-burgundy text-white p-6 rounded-2xl w-52 hidden md:block">
-            <Sparkles className="size-5" />
-            <p className="mt-3 font-serif text-xl leading-tight italic">Yours, entirely.</p>
-            <p className="mt-1 text-[10px] tracking-[0.25em] uppercase opacity-80">Made just for them</p>
-          </div>
-        </div>
-
-        <div>
-          <span className="eyebrow">Build your own box</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-6xl leading-[1.05]">
-            Six little steps.<br /><span className="italic text-burgundy">One perfect gift.</span>
-          </h2>
-          <p className="mt-5 text-muted-foreground max-w-md">
-            Design a hamper as one-of-a-kind as they are. Every choice, every note, every detail — yours to shape.
-          </p>
-
-          <ol className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-6">
-            {steps.map((s) => (
-              <li key={s.n} className="border-l border-border pl-5 py-1">
-                <span className="font-serif italic text-burgundy text-sm">{s.n}</span>
-                <h3 className="mt-1 font-serif text-xl">{s.t}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
-              </li>
-            ))}
-          </ol>
-
-          <Link to="/build-your-box" className="btn-primary mt-10">Start Building <ArrowRight className="size-4" /></Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Why Evermaze ---------- */
-function WhyEvermaze() {
-  const items = [
-    { icon: Package, t: "Premium Packaging", d: "Every box, a keepsake." },
-    { icon: Gift, t: "Handpicked Gifts", d: "Only what we'd gift ourselves." },
-    { icon: HandHeart, t: "Personalized Touch", d: "Notes, names & tiny details." },
-    { icon: Truck, t: "Fast Delivery", d: "Same-day dispatch, most cities." },
-    { icon: Sparkles, t: "Made with Love", d: "Slow-crafted, one at a time." },
-    { icon: Clock, t: "Affordable Luxury", d: "Grand feelings, gentle prices." },
-  ];
-  return (
-    <section className="py-20 md:py-28 bg-card border-y border-border">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-cream to-white">
       <div className="container-evermaze">
-        <div className="text-center mb-14">
-          <span className="eyebrow">Why Evermaze</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Small details. Big feelings.</h2>
+        <div className="text-center mb-10 md:mb-14">
+          <span className="text-xs tracking-[0.3em] uppercase text-lavender">Build Your Own</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">Budget Collections</h2>
+          <p className="mt-3 text-gray-600 text-sm md:text-base">Choose your budget and we'll curate the perfect hamper</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {items.map(({ icon: Icon, t, d }) => (
-            <div key={t} className="flex gap-5">
-              <div className="shrink-0 size-14 rounded-full bg-ivory border border-border grid place-items-center text-burgundy">
-                <Icon className="size-5" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+          {boxes.map((box, i) => (
+            <Link
+              key={i}
+              to="/build-your-box"
+              className="group bg-white rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-100 text-center"
+            >
+              <div className="aspect-square rounded-xl overflow-hidden bg-gray-100 mb-4">
+                <img src={box.img} alt={box.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <div className="min-w-0">
-                <h3 className="font-serif text-2xl">{t}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{d}</p>
-              </div>
-            </div>
+              <p className="font-serif text-2xl md:text-3xl text-lavender">₹{box.price}</p>
+              <p className="mt-1 font-medium text-charcoal text-sm md:text-base">{box.name}</p>
+              <p className="mt-1 text-xs text-gray-500">{box.items} items</p>
+            </Link>
           ))}
         </div>
+        <div className="text-center mt-10">
+          <Link to="/build-your-box" className="btn-secondary">
+            Build Your Custom Hamper <ArrowRight className="size-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------- How it works ---------- */
-function HowItWorks() {
-  const steps = [
-    { n: "01", t: "Choose", d: "Browse curated hampers or start from scratch." },
-    { n: "02", t: "Personalize", d: "Add names, notes and thoughtful touches." },
-    { n: "03", t: "Packed Beautifully", d: "Wrapped by hand, ribbon and all." },
-    { n: "04", t: "Delivered with Love", d: "Straight to their doorstep, on your date." },
+/* ---------- Customization Section ---------- */
+function CustomizationSection() {
+  const options = [
+    { icon: Calendar, label: "Choose Occasion" },
+    { icon: HeartIcon, label: "Add a Personal Message" },
+    { icon: Clock, label: "Select Delivery Date" },
+    { icon: Camera, label: "Add Photos (Optional)" },
+    { icon: Palette, label: "Choose Ribbon Color" },
   ];
+
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container-evermaze">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
-            <span className="eyebrow">How it works</span>
-            <h2 className="mt-3 font-serif text-4xl md:text-6xl leading-[1.05]">
-              From <span className="italic text-burgundy">your heart</span><br /> to their hands.
-            </h2>
-            <div className="mt-8 aspect-[4/3] rounded-[2rem] overflow-hidden">
-              <img src={storyImg} alt="Hands tying a silk ribbon on a cream gift box" loading="lazy" width={1400} height={1000} className="size-full object-cover" />
-            </div>
-          </div>
-          <ol className="space-y-8">
-            {steps.map((s, i) => (
-              <li key={s.n} className="grid grid-cols-[auto_1fr] gap-6 items-start pb-8 border-b border-border last:border-none">
-                <span className="font-serif text-5xl italic text-champagne">{s.n}</span>
-                <div>
-                  <h3 className="font-serif text-3xl">{s.t}</h3>
-                  <p className="mt-2 text-muted-foreground">{s.d}</p>
+            <span className="text-xs tracking-[0.3em] uppercase text-lavender">Personal Touch</span>
+            <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">Make It Uniquely Yours</h2>
+            <p className="mt-4 text-gray-600 leading-relaxed">
+              Every hamper comes with customization options to make your gift truly special. Add personal touches that will be treasured forever.
+            </p>
+            <div className="mt-8 space-y-4">
+              {options.map((opt, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="size-10 rounded-full bg-lavender/10 flex items-center justify-center flex-shrink-0">
+                    <opt.icon className="size-5 text-lavender" />
+                  </div>
+                  <span className="text-charcoal font-medium">{opt.label}</span>
                 </div>
-              </li>
-            ))}
-          </ol>
+              ))}
+            </div>
+            <Link to="/build-your-box" className="btn-secondary mt-8">
+              Start Customizing <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <div className="relative">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-lavender/20 to-dusty-lavender/30">
+              <img src={storyImg} alt="Personalized gift wrapping with lavender ribbon" className="size-full object-cover" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------- Reviews ---------- */
-function Reviews() {
-  const reviews = [
-    { name: "Aanya M.", city: "Delhi", text: "The moment I lifted the lid, I gasped. Every detail felt intentional — even the ribbon smelled lovely.", img: hamper1 },
-    { name: "Karan S.", city: "Mumbai", text: "Sent this to my wife on our anniversary. She cried. In a good way. Evermaze made me look like a hero.", img: hamper5 },
-    { name: "Ritika P.", city: "Bangalore", text: "It's the little handwritten note that got me. Feels like the boxes are packed by someone who really cares.", img: hamper4 },
-    { name: "Ananya G.", city: "Pune", text: "Better than any big-brand hamper I've ordered. Elegant, personal, and delivered right on time.", img: hamper2 },
-  ];
+/* ---------- Instagram Gallery ---------- */
+function InstagramGallery() {
+  const images = [hamper1, hamper2, hamper3, hamper4, hamper5, hamper6];
+
   return (
-    <section className="py-20 md:py-28 bg-card border-y border-border">
+    <section className="py-16 md:py-24 bg-cream">
       <div className="container-evermaze">
-        <div className="text-center mb-14">
-          <span className="eyebrow">Little love notes</span>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">What our gifters are saying.</h2>
+        <div className="text-center mb-10 md:mb-14">
+          <span className="text-xs tracking-[0.3em] uppercase text-lavender">@evermaze.gifts</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">Follow Our Journey</h2>
         </div>
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-          {reviews.map((r) => (
-            <figure key={r.name} className="mb-6 break-inside-avoid bg-ivory border border-border rounded-3xl p-6">
-              <div className="aspect-[4/5] mb-4 overflow-hidden rounded-2xl">
-                <img src={r.img} alt="" loading="lazy" width={1000} height={1200} className="size-full object-cover" />
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+          {images.map((img, i) => (
+            <a key={i} href="#" className="group relative aspect-square rounded-xl overflow-hidden bg-gray-100">
+              <img src={img} alt={`Instagram post ${i + 1}`} className="size-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <Instagram className="size-8 text-white" />
               </div>
-              <div className="flex items-center gap-1 text-burgundy">
-                {[...Array(5)].map((_, i) => <Star key={i} className="size-3 fill-current" />)}
-              </div>
-              <blockquote className="mt-3 font-serif text-lg leading-snug italic">"{r.text}"</blockquote>
-              <figcaption className="mt-4 text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground">— {r.name} · {r.city}</figcaption>
-            </figure>
+            </a>
           ))}
         </div>
       </div>
@@ -569,25 +457,61 @@ function Reviews() {
   );
 }
 
-/* ---------- Instagram ---------- */
-function InstagramGallery() {
-  const imgs = [heroHamper, hamper1, hamper5, hamper3, hamper4, hamper6, hamper2, storyImg];
+/* ---------- Testimonials ---------- */
+function Testimonials() {
+  const reviews = [
+    {
+      name: "Priya S.",
+      location: "Mumbai",
+      rating: 5,
+      text: "The most beautiful gift hamper I've ever received! The attention to detail and personal touch made it so special.",
+      img: hamper1
+    },
+    {
+      name: "Ananya R.",
+      location: "Delhi",
+      rating: 5,
+      text: "Perfect for my best friend's birthday. She cried happy tears when she opened it. Will definitely order again!",
+      img: hamper2
+    },
+    {
+      name: "Meera K.",
+      location: "Bangalore",
+      rating: 5,
+      text: "The packaging is exquisite and the quality of products inside exceeded my expectations. Highly recommend!",
+      img: hamper3
+    },
+  ];
+
   return (
-    <section className="py-20 md:py-28">
-      <div className="container-evermaze mb-10 text-center">
-        <span className="eyebrow">@evermaze on Instagram</span>
-        <h2 className="mt-3 font-serif text-4xl md:text-5xl">Come unbox with us.</h2>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2">
-        {imgs.map((src, i) => (
-          <a key={i} href="#" className="group relative aspect-square overflow-hidden">
-            <img src={src} alt={`Evermaze instagram post ${i + 1}`} loading="lazy" width={1000} height={1000}
-              className="size-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-burgundy/0 group-hover:bg-burgundy/40 transition-colors grid place-items-center">
-              <Instagram className="size-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+    <section className="py-16 md:py-24 bg-white">
+      <div className="container-evermaze">
+        <div className="text-center mb-10 md:mb-14">
+          <span className="text-xs tracking-[0.3em] uppercase text-lavender">Love Letters</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-4xl text-charcoal">What Our Customers Say</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {reviews.map((r, i) => (
+            <div key={i} className="bg-cream rounded-2xl p-6 md:p-8">
+              <Quote className="size-8 text-lavender/40 mb-4" />
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(r.rating)].map((_, j) => (
+                  <Star key={j} className="size-4 fill-lavender text-lavender" />
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-6">"{r.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-full bg-lavender/20 overflow-hidden">
+                  <img src={r.img} alt={r.name} className="size-full object-cover" />
+                </div>
+                <div>
+                  <p className="font-medium text-charcoal">{r.name}</p>
+                  <p className="text-xs text-gray-500">{r.location}</p>
+                </div>
+              </div>
             </div>
-          </a>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -596,23 +520,25 @@ function InstagramGallery() {
 /* ---------- Newsletter ---------- */
 function Newsletter() {
   return (
-    <section className="py-20 md:py-28 bg-burgundy text-white relative overflow-hidden">
-      <div className="container-evermaze text-center max-w-2xl relative z-10">
-        <span className="text-lg tracking-[0.32em] uppercase text-champagne">Join the family</span>
-        <h2 className="mt-4 font-serif text-5xl md:text-7xl text-champagne">Join the Evermaze family.</h2>
-        <p className="mt-4 text-lg text-gray-200">Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.</p>
-        <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-          <input
-            type="email"
-            required
-            placeholder="your@email.com"
-            aria-label="Email address"
-            className="flex-1 bg-transparent border border-white/30 focus:border-champagne rounded-full px-5 py-3 text-sm placeholder:text-white/40 outline-none"
-          />
-          <button type="submit" className="bg-champagne text-foreground px-8 py-3 rounded-full text-base tracking-[0.2em] uppercase hover:bg-white transition-colors">
-            Subscribe
-          </button>
-        </form>
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-cream">
+      <div className="container-evermaze">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-charcoal">Join the Evermaze Family</h2>
+          <p className="mt-4 text-gray-600 leading-relaxed">
+            Get gifting inspiration, exclusive offers, and early access to new hampers.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-5 py-3 rounded-full border border-gray-200 bg-white focus:border-lavender focus:outline-none text-sm"
+            />
+            <button className="btn-secondary whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+          <p className="mt-4 text-xs text-gray-500">By subscribing, you agree to our Privacy Policy</p>
+        </div>
       </div>
     </section>
   );
@@ -621,69 +547,70 @@ function Newsletter() {
 /* ---------- Footer ---------- */
 function Footer() {
   const cols = [
-    { 
-      t: "Shop", 
+    {
+      t: "Quick Links",
       l: [
-        { name: "All Hampers", to: "/shop" },
-        { name: "Occasions", to: "/gift-hampers" },
+        { name: "Shop All", to: "/shop" },
         { name: "Build Your Box", to: "/build-your-box" },
-        { name: "Under ₹999", to: "/shop" },
-        { name: "Gift Cards", to: "/shop" },
-      ] 
-    },
-    { 
-      t: "Help", 
-      l: [
-        { name: "Track Order", to: "/contact" },
-        { name: "Shipping", to: "/faq" },
-        { name: "Returns", to: "/faq" },
-        { name: "FAQs", to: "/faq" },
-        { name: "Contact", to: "/contact" },
-      ] 
-    },
-    { 
-      t: "About", 
-      l: [
-        { name: "Our Story", to: "/about" },
-        { name: "Sustainability", to: "/about" },
-        { name: "Careers", to: "/about" },
+        { name: "Occasions", to: "/gift-hampers" },
         { name: "Corporate Gifting", to: "/contact" },
+      ]
+    },
+    {
+      t: "Help",
+      l: [
+        { name: "FAQs", to: "/faq" },
+        { name: "Shipping & Returns", to: "/faq" },
+        { name: "Track Order", to: "/contact" },
+        { name: "Contact Us", to: "/contact" },
+      ]
+    },
+    {
+      t: "Company",
+      l: [
+        { name: "About Us", to: "/about" },
+        { name: "Our Story", to: "/about" },
         { name: "Press", to: "/about" },
-      ] 
+      ]
     },
   ];
   return (
-    <footer className="bg-ivory border-t border-border pt-20 pb-8">
-      <div className="container-evermaze grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12">
-        <div>
-          <Link to="/" className="font-serif text-3xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-2 text-[0.65rem] tracking-[0.4em] uppercase text-gray-600">Just For You</p>
-          <p className="mt-6 max-w-xs text-base text-gray-700 leading-relaxed">
-            Beautifully personalized gift hampers, thoughtfully packed for every celebration.
-          </p>
-          <div className="mt-6 flex gap-3">
-            {[Instagram, MessageCircle, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="size-10 rounded-full border border-border grid place-items-center hover:bg-burgundy hover:text-white hover:border-burgundy transition-colors" aria-label="Social">
-                <Icon className="size-4" />
+    <footer className="bg-charcoal text-white pt-16 pb-8">
+      <div className="container-evermaze">
+        <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10 md:gap-12">
+          <div>
+            <Link to="/" className="font-serif text-2xl tracking-[0.25em] text-white">EVERMAZE</Link>
+            <p className="mt-1 text-[0.6rem] tracking-[0.35em] uppercase text-gray-400 font-light">Just For You</p>
+            <p className="mt-5 max-w-xs text-gray-400 leading-relaxed text-sm">
+              Beautifully personalized gift hampers, thoughtfully curated for every celebration.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <a href="#" aria-label="Instagram" className="size-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-lavender hover:border-lavender transition-colors">
+                <Instagram className="size-4" />
               </a>
-            ))}
+              <a href="#" aria-label="WhatsApp" className="size-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-lavender hover:border-lavender transition-colors">
+                <MessageCircle className="size-4" />
+              </a>
+              <a href="#" aria-label="Email" className="size-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-lavender hover:border-lavender transition-colors">
+                <Mail className="size-4" />
+              </a>
+            </div>
           </div>
+          {cols.map((c) => (
+            <div key={c.t}>
+              <h4 className="text-xs tracking-[0.2em] uppercase text-gray-400 mb-5">{c.t}</h4>
+              <ul className="space-y-3 text-sm">
+                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="text-gray-300 hover:text-white transition-colors">{li.name}</Link></li>)}
+              </ul>
+            </div>
+          ))}
         </div>
-        {cols.map((c) => (
-          <div key={c.t}>
-            <h4 className="text-xs tracking-[0.25em] uppercase mb-5">{c.t}</h4>
-            <ul className="space-y-3 text-base text-gray-700">
-              {c.l.map((li) => <li key={li.name}><Link to={li.to} className="hover:text-burgundy transition-colors">{li.name}</Link></li>)}
-            </ul>
+        <div className="mt-14 pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between gap-4 text-sm text-gray-500">
+          <span>© 2026 Evermaze. Made with love.</span>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
           </div>
-        ))}
-      </div>
-      <div className="container-evermaze mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-base text-gray-700">
-        <span>Evermaze. Made with love.</span>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-burgundy">Privacy</a>
-          <a href="#" className="hover:text-burgundy">Terms</a>
-          <a href="#" className="hover:text-burgundy">Shipping</a>
         </div>
       </div>
     </footer>
@@ -696,16 +623,14 @@ function HomePage() {
       <Header />
       <main>
         <Hero />
-        <Strip />
-        <Occasions />
-        <ShopByPrice />
+        <FeatureIcons />
+        <OccasionCategories />
+        <PromoBanner />
         <BestSellers />
-        <NewArrivals />
-        <BuildYourBox />
-        <WhyEvermaze />
-        <HowItWorks />
-        <Reviews />
+        <BudgetCollection />
+        <CustomizationSection />
         <InstagramGallery />
+        <Testimonials />
         <Newsletter />
       </main>
       <Footer />
