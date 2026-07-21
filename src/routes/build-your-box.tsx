@@ -19,6 +19,8 @@ const packages = [
 
 const occasions = ["Birthday", "Wedding", "Anniversary", "Farewell", "Return Gift", "Baby Shower", "Festival", "Corporate", "Pet Gift"];
 
+const relations = ["Friend", "Sister", "Brother", "Mother", "Father", "Partner", "Wife", "Husband", "Colleague", "Teacher", "Other"];
+
 const personalItems = [
   { name: "Handwritten Letter", price: 49, description: "Your personal message written with love", icon: "✉️", hasImage: true },
   { name: "Bookmark", price: 39, description: "Beautiful bookmark for book lovers", icon: "📚", hasImage: false },
@@ -49,6 +51,8 @@ function BuildYourBoxPage() {
   const [step, setStep] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(initialPackage);
   const [selectedOccasion, setSelectedOccasion] = useState<string>("");
+  const [selectedRelation, setSelectedRelation] = useState<string>("");
+  const [customRelation, setCustomRelation] = useState<string>("");
   const [customOccasion, setCustomOccasion] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
@@ -135,14 +139,15 @@ function BuildYourBoxPage() {
   const canProceed = useCallback(() => {
     switch (step) {
       case 1: return selectedPackage !== null;
-      case 2: return selectedOccasion !== "" && occasionDate !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
-      case 3: return true; // Personal touches are optional
-      case 4: return true; // Review step
-      case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
-      case 6: return selectedPayment !== ""; // Payment selection required
+      case 2: return selectedOccasion !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
+      case 3: return selectedRelation !== "" && (selectedRelation !== "Other" || customRelation !== "");
+      case 4: return recipientName !== "" && occasionDate !== "";
+      case 5: return true; // Personal touches are optional
+      case 6: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
+      case 7: return selectedPayment !== "";
       default: return true;
     }
-  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, formData, selectedPayment]);
+  }, [step, selectedPackage, selectedOccasion, customOccasion, selectedRelation, customRelation, recipientName, occasionDate, formData, selectedPayment]);
 
   const handleSubmit = () => {
     if (selectedPayment === "cod") {
@@ -195,31 +200,63 @@ function BuildYourBoxPage() {
       </header>
 
       {/* Progress Bar */}
-      <section className="bg-card border-b border-border-color py-4 px-2">
+      <section className="bg-card border-b border-border-color py-5 px-4">
         <div className="container-evermaze">
-          <div className="flex items-center justify-center gap-1 sm:gap-2">
-            {[1, 2, 3, 4, 5].map((s) => (
+          {/* Circles and connecting lines */}
+          <div className="flex items-center justify-between max-w-2xl mx-auto px-2">
+            {[1, 2, 3, 4, 5, 6, 7].map((s) => (
               <div key={s} className="flex items-center">
+                {/* Circle */}
                 <button
                   onClick={() => s < step && setStep(s)}
-                  className={`size-8 sm:size-10 rounded-full flex items-center justify-center font-medium transition-colors text-xs sm:text-sm ${
-                    step >= s ? "bg-dark-lavender text-white" : "bg-secondary-bg text-secondary-text"
+                  className={`size-9 sm:size-11 rounded-full flex items-center justify-center font-medium transition-all text-sm sm:text-base shrink-0 ${
+                    step >= s 
+                      ? "bg-dark-lavender text-white shadow-md" 
+                      : "bg-secondary-bg text-secondary-text"
                   }`}
                 >
-                  {s}
+                  {step > s ? (
+                    <Check className="size-4 sm:size-5" />
+                  ) : (
+                    s
+                  )}
                 </button>
-                {s < 5 && (
-                  <div className={`w-6 sm:w-12 md:w-20 h-1 mx-1 sm:mx-2 rounded ${step > s ? "bg-dark-lavender" : "bg-secondary-bg"}`} />
+                {/* Connecting line - only if not last */}
+                {s < 7 && (
+                  <div 
+                    className={`h-[2px] mx-1 sm:mx-2 rounded-full transition-colors ${
+                      step > s ? "bg-dark-lavender" : "bg-secondary-bg"
+                    }`}
+                    style={{ width: 'clamp(16px, 4vw, 32px)' }}
+                  />
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-center gap-2 sm:gap-4 md:gap-8 mt-2 text-[10px] sm:text-xs md:text-sm text-secondary-text">
-            <span className={step >= 1 ? "text-dark-lavender" : ""}>Package</span>
-            <span className={step >= 2 ? "text-dark-lavender" : ""}>Occasion</span>
-            <span className={step >= 3 ? "text-dark-lavender" : ""}>Items</span>
-            <span className={step >= 4 ? "text-dark-lavender" : ""}>Review</span>
-            <span className={step >= 5 ? "text-dark-lavender" : ""}>Book</span>
+          
+          {/* Labels - perfectly aligned under circles */}
+          <div className="flex items-start justify-between max-w-2xl mx-auto mt-4 px-1">
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 1 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Hamper
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 2 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Occasion
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 3 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Relation
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 4 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Details
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 5 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Touches
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 6 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Address
+            </span>
+            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 7 ? "text-dark-lavender" : "text-secondary-text"}`}>
+              Payment
+            </span>
           </div>
         </div>
       </section>
@@ -365,8 +402,8 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 3: Personal Touches */}
-          {step === 3 && (
+          {/* Step 4: Personal Touches */}
+          {step === 7 && (
             <div className="max-w-5xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
                 <Sparkles className="size-6 text-dark-lavender" />
@@ -505,8 +542,8 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 4: Review */}
-          {step === 4 && (
+          {/* Step 5: Review */}
+          {step === 7 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
                 <Heart className="size-6 text-dark-lavender" />
@@ -579,8 +616,8 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 5: Shipping Address */}
-          {step === 5 && (
+          {/* Step 6: Shipping Address */}
+          {step === 7 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
                 <User className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
@@ -713,7 +750,7 @@ function BuildYourBoxPage() {
           )}
 
           {/* Order Summary - Only on Personal Touches page */}
-          {step === 3 && (
+          {step === 7 && (
             <div className="max-w-4xl mx-auto mt-12">
               <div className="bg-card border border-border-color rounded-2xl p-6">
                 <h3 className="font-serif text-xl mb-4">Order Summary</h3>
@@ -790,7 +827,7 @@ function BuildYourBoxPage() {
       </section>
 
       {/* Step 6: Payment Selection */}
-      {step === 6 && (
+      {step === 7 && (
         <div className="max-w-4xl mx-auto">
           <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
             <CreditCard className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
