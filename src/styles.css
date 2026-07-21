@@ -119,6 +119,7 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     letter-spacing: 0.01em;
+    line-height: 1.7;
   }
 
   h1, h2, h3, h4, h5 {
@@ -128,9 +129,24 @@
     color: var(--heading-color);
   }
 
+  p {
+    line-height: 1.8;
+  }
+
   ::selection {
     background: var(--dusty-lavender);
     color: white;
+  }
+
+  /* Improved readability for small text */
+  .text-label, .text-xs, .text-sm {
+    line-height: 1.5;
+  }
+
+  /* Button text sizing */
+  button, .btn-primary, .btn-outline, .btn-secondary, .btn-white {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em;
   }
 }
 
@@ -149,12 +165,13 @@
   gap: 0.75rem;
   background: var(--dusty-lavender);
   color: white;
-  padding: 1rem 2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  padding: 1rem 2.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 50px;
   transition: all 0.3s ease;
+  min-height: 52px;
   &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
 }
 
@@ -165,13 +182,14 @@
   gap: 0.75rem;
   background: transparent;
   color: var(--heading-color);
-  padding: 1rem 2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  padding: 1rem 2.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
   border-radius: 50px;
   transition: all 0.3s ease;
+  min-height: 52px;
   &:hover { background: var(--dusty-lavender); color: white; }
 }
 
@@ -182,12 +200,13 @@
   gap: 0.75rem;
   background: var(--dusty-lavender);
   color: white;
-  padding: 1rem 2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  padding: 1rem 2.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 50px;
   transition: all 0.3s ease;
+  min-height: 52px;
   &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
 }
 
@@ -198,13 +217,14 @@
   gap: 0.75rem;
   background: white;
   color: var(--dusty-lavender);
-  padding: 1rem 2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  padding: 1rem 2.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
   border-radius: 50px;
   transition: all 0.3s ease;
+  min-height: 52px;
   &:hover { background: var(--card-bg); }
 }
 

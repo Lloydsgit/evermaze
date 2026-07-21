@@ -93,7 +93,10 @@ function BuildYourBoxPage() {
     price: getDeliveryPrice(deliveryOptions.find(d => d.id === deliveryType) || deliveryOptions[0])
   };
 
-  const handlePackageSelect = useCallback((price: number) => {
+  const handlePackageSelect = useCallback((price: number, event?: React.MouseEvent) => {
+    if (event) {
+      event.preventDefault();
+    }
     setSelectedPackage(price);
     setSelectedItems([]);
   }, []);
@@ -140,7 +143,7 @@ function BuildYourBoxPage() {
     switch (step) {
       case 1: return selectedPackage !== null;
       case 2: return selectedOccasion !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
-      case 3: return selectedRelation !== "" && (selectedRelation !== "Other" || customRelation !== "");
+      case 3: return true; // Relation is optional in current implementation
       case 4: return recipientName !== "" && occasionDate !== "";
       case 5: return true; // Personal touches are optional
       case 6: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
@@ -180,43 +183,54 @@ function BuildYourBoxPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border-color py-4">
+      <header 
+        className="py-4 border-b"
+        style={{ 
+          backgroundColor: 'rgba(250, 248, 245, 0.92)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderColor: 'rgba(232, 226, 220, 0.6)',
+        }}
+      >
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors min-h-[44px]">
             <ArrowLeft className="size-4" />
-            Back to Home
+            <span className="hidden sm:inline">Back to Home</span>
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em]" style={{ color: '#5A4B54' }}>EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
-              <ShoppingBag className="size-[18px]" />
+            <Link to="/wishlist" aria-label="Wishlist" className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <Heart className="size-[20px]" />
+            </Link>
+            <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <ShoppingBag className="size-[20px]" />
             </Link>
           </div>
         </div>
       </header>
 
       {/* Progress Bar */}
-      <section className="bg-card border-b border-border-color py-5 px-4">
+      <section className="bg-white border-b border-border-color py-5 px-4">
         <div className="container-evermaze">
           {/* Circles and connecting lines */}
-          <div className="flex items-center justify-between max-w-2xl mx-auto px-2">
+          <div className="flex items-center justify-between max-w-2xl mx-auto">
             {[1, 2, 3, 4, 5, 6, 7].map((s) => (
-              <div key={s} className="flex items-center">
+              <div key={s} className="flex items-center flex-1 last:flex-none">
                 {/* Circle */}
                 <button
                   onClick={() => s < step && setStep(s)}
-                  className={`size-9 sm:size-11 rounded-full flex items-center justify-center font-medium transition-all text-sm sm:text-base shrink-0 ${
+                  className={`size-10 sm:size-12 rounded-full flex items-center justify-center font-medium transition-all text-sm sm:text-base shrink-0 ${
                     step >= s 
                       ? "bg-dark-lavender text-white shadow-md" 
-                      : "bg-secondary-bg text-secondary-text"
+                      : "bg-secondary text-secondary-text"
                   }`}
+                  style={{ width: '40px', height: '40px', minWidth: '40px' }}
                 >
                   {step > s ? (
-                    <Check className="size-4 sm:size-5" />
+                    <Check className="size-5" />
                   ) : (
                     s
                   )}
@@ -224,10 +238,9 @@ function BuildYourBoxPage() {
                 {/* Connecting line - only if not last */}
                 {s < 7 && (
                   <div 
-                    className={`h-[2px] mx-1 sm:mx-2 rounded-full transition-colors ${
-                      step > s ? "bg-dark-lavender" : "bg-secondary-bg"
+                    className={`h-[2px] mx-1 sm:mx-2 flex-1 rounded-full transition-colors ${
+                      step > s ? "bg-dark-lavender" : "bg-secondary"
                     }`}
-                    style={{ width: 'clamp(16px, 4vw, 32px)' }}
                   />
                 )}
               </div>
@@ -235,28 +248,26 @@ function BuildYourBoxPage() {
           </div>
           
           {/* Labels - perfectly aligned under circles */}
-          <div className="flex items-start justify-between max-w-2xl mx-auto mt-4 px-1">
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 1 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Hamper
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 2 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Occasion
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 3 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Relation
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 4 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Details
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 5 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Touches
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 6 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Address
-            </span>
-            <span className={`text-[11px] sm:text-xs font-medium tracking-wide text-center w-12 sm:w-16 shrink-0 ${step >= 7 ? "text-dark-lavender" : "text-secondary-text"}`}>
-              Payment
-            </span>
+          <div className="flex items-start justify-between max-w-2xl mx-auto mt-4">
+            {[
+              { s: 1, label: 'Hamper' },
+              { s: 2, label: 'Occasion' },
+              { s: 3, label: 'Relation' },
+              { s: 4, label: 'Details' },
+              { s: 5, label: 'Touches' },
+              { s: 6, label: 'Address' },
+              { s: 7, label: 'Payment' },
+            ].map((item, i) => (
+              <div 
+                key={item.s} 
+                className="flex flex-col items-center"
+                style={{ width: '40px', minWidth: '40px' }}
+              >
+                <span className={`text-[10px] sm:text-xs font-medium text-center leading-tight ${step >= item.s ? "text-dark-lavender" : "text-secondary-text"}`}>
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -282,12 +293,17 @@ function BuildYourBoxPage() {
                 {packages.map((pkgItem) => (
                   <button
                     key={pkgItem.price}
-                    onClick={() => handlePackageSelect(pkgItem.price)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePackageSelect(pkgItem.price);
+                    }}
                     className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all text-left relative ${
                       selectedPackage === pkgItem.price
                         ? "border-dark-lavender bg-dark-lavender/5"
                         : "border-border-color hover:border-dark-lavender"
                     }`}
+                    style={{ minHeight: '100px' }}
                   >
                     {selectedPackage === pkgItem.price && (
                       <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 bg-dark-lavender rounded-full flex items-center justify-center">
@@ -402,8 +418,8 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 4: Personal Touches */}
-          {step === 7 && (
+          {/* Step 5: Personal Touches (Optional) */}
+          {step === 5 && (
             <div className="max-w-5xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
                 <Sparkles className="size-6 text-dark-lavender" />
@@ -542,8 +558,8 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 5: Review */}
-          {step === 7 && (
+          {/* Step 4: Review */}
+          {step === 4 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
                 <Heart className="size-6 text-dark-lavender" />
@@ -617,7 +633,7 @@ function BuildYourBoxPage() {
           )}
 
           {/* Step 6: Shipping Address */}
-          {step === 7 && (
+          {step === 6 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
                 <User className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
@@ -750,7 +766,7 @@ function BuildYourBoxPage() {
           )}
 
           {/* Order Summary - Only on Personal Touches page */}
-          {step === 7 && (
+          {step === 5 && (
             <div className="max-w-4xl mx-auto mt-12">
               <div className="bg-card border border-border-color rounded-2xl p-6">
                 <h3 className="font-serif text-xl mb-4">Order Summary</h3>
@@ -793,31 +809,31 @@ function BuildYourBoxPage() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="max-w-4xl mx-auto mt-8 flex justify-between">
+          <div className="max-w-4xl mx-auto mt-8 flex flex-col sm:flex-row justify-between gap-4">
             {step > 1 ? (
-              <button onClick={() => setStep(step - 1)} type="button" className="btn-outline">
+              <button onClick={() => setStep(step - 1)} type="button" className="btn-outline w-full sm:w-auto justify-center">
                 ← Previous
               </button>
             ) : (
-              <Link to="/shop" className="btn-outline">
+              <Link to="/shop" className="btn-outline w-full sm:w-auto justify-center">
                 ← Back to Shop
               </Link>
             )}
-            {step < 6 ? (
+            {step < 7 ? (
               <button 
                 type="button"
                 onClick={() => setStep(step + 1)} 
                 disabled={!canProceed()}
-                className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
               >
-                Next <ArrowRight className="size-4" />
+                {step === 5 ? 'Skip (Optional)' : 'Next'} <ArrowRight className="size-4" />
               </button>
             ) : (
               <button 
                 type="button"
                 onClick={handleSubmit}
                 disabled={!canProceed()}
-                className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
               >
                 <Send className="size-4" /> Complete Order
               </button>
@@ -826,7 +842,7 @@ function BuildYourBoxPage() {
         </div>
       </section>
 
-      {/* Step 6: Payment Selection */}
+      {/* Step 7: Payment Selection */}
       {step === 7 && (
         <div className="max-w-4xl mx-auto">
           <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
@@ -944,11 +960,20 @@ function BuildYourBoxPage() {
       )}
 
       {/* Footer */}
-      <footer className="pt-20 pb-10" style={{ backgroundColor: 'var(--heading-color)' }}>
-        <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
-          <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>Just For You</p>
-          <p className="mt-6 text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>Beautifully personalized gift hampers for every celebration.</p>
+      <footer className="pt-16 pb-8" style={{ backgroundColor: '#2F262B' }}>
+        <div className="container-evermaze">
+          <div className="text-center mb-12">
+            <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
+            <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>Just For You</p>
+          </div>
+          <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <a href="mailto:evermaze.info@gmail.com" className="hover:opacity-70 transition-opacity">evermaze.info@gmail.com</a>
+              <Link to="/faq" className="hover:opacity-70 transition-opacity">Privacy</Link>
+              <Link to="/faq" className="hover:opacity-70 transition-opacity">Terms</Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

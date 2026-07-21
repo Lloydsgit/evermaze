@@ -49,45 +49,56 @@ function ShopPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white border-b border-border-color py-4">
+      <header 
+        className="py-4 border-b"
+        style={{ 
+          backgroundColor: 'rgba(250, 248, 245, 0.92)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderColor: 'rgba(232, 226, 220, 0.6)',
+        }}
+      >
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm hover:text-dark-lavender transition-colors min-h-[44px]" style={{ color: '#5A4B54' }}>
             <ArrowLeft className="size-4" />
-            Back to Home
+            <span className="hidden sm:inline">Back to Home</span>
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em]" style={{ color: '#5A4B54' }}>EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
-              <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+            <Link to="/wishlist" aria-label="Wishlist" className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <Heart className="size-[20px]" />
+            </Link>
+            <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <ShoppingBag className="size-[20px]" />
+              <span className="absolute -top-1 -right-1 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-dark-lavender text-white py-16 md:py-20">
+      <section className="text-white py-16 md:py-20" style={{ backgroundColor: '#8D7699' }}>
         <div className="container-evermaze text-center">
           <h1 className="font-serif text-4xl md:text-6xl">Choose Your Hamper</h1>
-          <p className="mt-4 text-white/70 max-w-xl mx-auto">
+          <p className="mt-4 text-white/80 max-w-xl mx-auto">
             Select your package and customize it with your personal touch
           </p>
         </div>
       </section>
 
       {/* Hamper Types Grid */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--background)' }}>
         <div className="container-evermaze">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hamperTypes.map((hamper) => (
               <Link
                 key={hamper.price}
                 to={`/build-your-box?package=${hamper.price}`}
-                className="group bg-white border border-border-color rounded-3xl overflow-hidden hover:border-dark-lavender transition-all"
+                className="group bg-white border border-border-color rounded-3xl overflow-hidden hover:border-dark-lavender transition-all hover:-translate-y-1"
+                style={{ boxShadow: '0 8px 30px rgba(43, 39, 40, 0.08)' }}
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={hamper.img} alt={hamper.name} className="size-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -97,9 +108,9 @@ function ShopPage() {
                     <span className="block font-serif text-xl text-white/90">{hamper.name}</span>
                   </div>
                 </div>
-                <div className="p-6 flex items-center justify-between">
-                  <p className="text-secondary-text text-sm">{hamper.description}</p>
-                  <span className="btn-primary text-sm flex items-center gap-2 shrink-0">
+                <div className="p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <p className="text-sm" style={{ color: '#5A4B54' }}>{hamper.description}</p>
+                  <span className="btn-primary text-sm flex items-center gap-2 shrink-0 w-full sm:w-auto justify-center">
                     Customize <ArrowRight className="size-4" />
                   </span>
                 </div>
@@ -110,10 +121,11 @@ function ShopPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
+      <footer className="pt-16 pb-8" style={{ backgroundColor: '#2F262B' }}>
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
+          <p className="mt-4 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>Beautifully personalized gift hampers for every celebration.</p>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
         </div>
       </footer>
     </div>

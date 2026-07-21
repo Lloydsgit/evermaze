@@ -43,36 +43,46 @@ function CartPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white border-b border-border-color py-4">
+      <header 
+        className="py-4 border-b"
+        style={{ 
+          backgroundColor: 'rgba(250, 248, 245, 0.92)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderColor: 'rgba(232, 226, 220, 0.6)',
+        }}
+      >
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm hover:text-dark-lavender transition-colors min-h-[44px]" style={{ color: '#5A4B54' }}>
             <ArrowLeft className="size-4" />
-            Back to Home
+            <span className="hidden sm:inline">Back to Home</span>
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em]" style={{ color: '#5A4B54' }}>EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
-            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
-              <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">{items.length}</span>
+            <Link to="/wishlist" aria-label="Wishlist" className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <Heart className="size-[20px]" />
+            </Link>
+            <button aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+              <ShoppingBag className="size-[20px]" />
+              <span className="absolute -top-1 -right-1 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">{items.length}</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-dark-lavender text-white py-8 md:py-12">
+      <section className="text-white py-8 md:py-12" style={{ backgroundColor: '#8D7699' }}>
         <div className="container-evermaze">
           <h1 className="font-serif text-3xl md:text-4xl">Shopping Cart</h1>
-          <p className="mt-2 text-white/70">{items.length} {items.length === 1 ? "item" : "items"} in your cart</p>
+          <p className="mt-2 text-white/80">{items.length} {items.length === 1 ? "item" : "items"} in your cart</p>
         </div>
       </section>
 
       {/* Cart Content */}
-      <section className="py-8 md:py-12">
+      <section className="py-8 md:py-12" style={{ backgroundColor: 'var(--background)' }}>
         <div className="container-evermaze">
           <div className="grid lg:grid-cols-[1fr_400px] gap-8">
             {/* Cart Items */}
@@ -192,10 +202,11 @@ function CartPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
+      <footer className="pt-16 pb-8" style={{ backgroundColor: '#2F262B' }}>
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
+          <p className="mt-4 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>Beautifully personalized gift hampers for every celebration.</p>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
         </div>
       </footer>
     </div>
