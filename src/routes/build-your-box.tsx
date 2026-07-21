@@ -125,12 +125,12 @@ function BuildYourBoxPage() {
     switch (step) {
       case 1: return selectedPackage !== null;
       case 2: return selectedOccasion !== "" && occasionDate !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
-      case 3: return selectedItems.length > 0;
+      case 3: return true; // Personal touches are optional
       case 4: return true;
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
       default: return true;
     }
-  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, selectedItems, formData]);
+  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, formData]);
 
   const handleSubmit = () => {
     alert("Order placed successfully! You will receive a confirmation email shortly.");

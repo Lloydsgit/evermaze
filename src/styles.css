@@ -55,20 +55,21 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Luxury warm palette */
-  --primary-bg: #F7F3EE;
-  --secondary-bg: #F2ECE5;
-  --soft-beige: #ECE3D8;
+  /* Brand tokens - Premium boutique palette */
+  --primary-bg: #F5F1EB;
+  --secondary-bg: #ECE5DD;
+  --soft-beige: #E6DDD3;
   --card-bg: #FFFFFF;
-  --border-color: #E9E3DD;
+  --border-color: #E0D8D0;
   --heading-color: #2B2726;
   --body-text: #5D5754;
   --nav-text: #3A3635;
-  --logo-color: #2C2928;
-  --dusty-lavender: #8F7D9E;
-  --dark-lavender: #756582;
-  --muted-mauve: #A093A9;
-  --hover-lavender: #67596F;
+  --logo-color: #2B2726;
+  --dusty-lavender: #8A7A95;
+  --dark-lavender: #73627F;
+  --muted-mauve: #9B8C9F;
+  --soft-lavender: #B3A8B8;
+  --hover-lavender: #66586F;
 
   /* Keep old names for compatibility */
   --primary-text: var(--heading-color);
