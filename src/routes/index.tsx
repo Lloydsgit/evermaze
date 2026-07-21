@@ -5,6 +5,7 @@ import {
   Instagram, Mail, Truck, Sparkles, Gift, Package, HandHeart, Clock, ArrowRight,
   ChevronDown, Plus, Minus, ShoppingCart, Check, CreditCard, Smartphone,
   Building2, Wallet, MapPin, Calendar, HeartHandshake, Package2, Shield, Mail as MailIcon,
+  Leaf, ArrowLeft, TreePine, Scissors, Ribbon, Send, PartyPopper, Flower2, Home, Briefcase,
 } from "lucide-react";
 
 import { Logo } from "@/components/Logo";
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/")({
 });
 
 /* ---------- Luxury Sticky Header ---------- */
-function Header() {
+function Header({ onOpenCheckout }: { onOpenCheckout?: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -44,6 +45,18 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { name: "Shop", href: "#shop" },
     { name: "Gift Hampers", href: "#bestsellers" },
@@ -51,122 +64,192 @@ function Header() {
     { name: "About", href: "#about" },
   ];
 
+  const handleNavClick = (href: string) => {
+    setMobileMenuOpen(false);
+    if (href.startsWith('#build') && onOpenCheckout) {
+      onOpenCheckout();
+    }
+  };
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "bg-[#FAF7F2]/95 backdrop-blur-[12px] shadow-[0_2px_20px_rgba(90,75,84,0.08)]" 
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container-evermaze">
-        <div className="flex items-center justify-between h-[72px] md:h-[80px]">
-          {/* Logo - Left aligned */}
-          <Logo size="md" showTagline={true} />
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled 
+            ? "bg-[#FAF7F2]/95 backdrop-blur-[12px] shadow-[0_2px_20px_rgba(90,75,84,0.08)]" 
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container-evermaze">
+          <div className="flex items-center justify-between h-[72px] md:h-[80px]">
+            {/* Logo - Left aligned */}
+            <Logo size="md" showTagline={true} />
 
-          {/* Center Navigation - Desktop */}
-          <nav className="hidden xl:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {navItems.map((item) => (
-              <a 
-                key={item.name} 
-                href={item.href} 
-                className="text-sm tracking-wide text-[#2F272C]/80 hover:text-[#7D6B87] transition-colors duration-300 relative group whitespace-nowrap"
+            {/* Center Navigation - Desktop */}
+            <nav className="hidden xl:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+              {navItems.map((item) => (
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  onClick={() => handleNavClick(item.href)}
+                  className="text-sm tracking-wide text-[#2F272C]/80 hover:text-[#7D6B87] transition-colors duration-300 relative group whitespace-nowrap"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#7D6B87] transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
+
+            {/* Right Icons - Always Visible on all screens */}
+            <div className="flex items-center gap-1">
+              <button 
+                aria-label="Search" 
+                className="p-2.5 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#7D6B87] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
+                <Search className="size-5" />
+              </button>
+              <button 
+                aria-label="Wishlist" 
+                className="p-2.5 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <Heart className="size-5" />
+              </button>
+              <button 
+                aria-label="Account" 
+                className="p-2.5 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <User className="size-5" />
+              </button>
+              <button 
+                aria-label="Cart" 
+                className="relative p-2.5 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <ShoppingBag className="size-5" />
+                <span className="absolute top-1 right-1 bg-[#7D6B87] text-white text-[10px] font-medium rounded-full min-w-[18px] h-[18px] flex items-center justify-center">
+                  2
+                </span>
+              </button>
 
-          {/* Right Icons - Desktop */}
-          <div className="hidden md:flex items-center gap-1">
-            <button 
-              aria-label="Search" 
-              className="p-2 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300"
-            >
-              <Search className="size-5" />
-            </button>
-            <button 
-              aria-label="Wishlist" 
-              className="p-2 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300"
-            >
-              <Heart className="size-5" />
-            </button>
-            <button 
-              aria-label="Account" 
-              className="p-2 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300"
-            >
-              <User className="size-5" />
-            </button>
-            <button 
-              aria-label="Cart" 
-              className="relative p-2 md:p-3 text-[#2F272C]/70 hover:text-[#7D6B87] hover:bg-[#E9DDD2]/50 rounded-full transition-all duration-300 ml-2"
-            >
-              <ShoppingBag className="size-5" />
-              <span className="absolute top-1 right-1 bg-[#7D6B87] text-white text-[10px] font-medium rounded-full min-w-[18px] h-[18px] flex items-center justify-center">
-                2
-              </span>
-            </button>
+              {/* Mobile Menu Toggle - Only visible on mobile/tablet */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2.5 text-[#2F272C] hover:text-[#7D6B87] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center xl:hidden ml-1"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+              </button>
+            </div>
           </div>
+        </div>
+      </header>
 
-          {/* Mobile Icons - Right side */}
-          <div className="flex items-center gap-1 xl:hidden">
-            <button 
-              aria-label="Cart" 
-              className="relative p-2 text-[#2F272C]/70 hover:text-[#7D6B87] transition-colors"
-            >
-              <ShoppingBag className="size-5" />
-              <span className="absolute top-0.5 right-0.5 bg-[#7D6B87] text-white text-[10px] font-medium rounded-full min-w-[16px] h-[16px] flex items-center justify-center">
-                2
-              </span>
-            </button>
+      {/* Full-Screen Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-[60] transition-all duration-500 ease-out ${
+          mobileMenuOpen 
+            ? "opacity-100 visible" 
+            : "opacity-0 invisible pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-[#2E292C]/60 backdrop-blur-md transition-opacity duration-500"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        
+        {/* Menu Content */}
+        <div 
+          className={`absolute inset-0 bg-[#F8F5F2] transition-transform duration-500 ease-out ${
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Decorative gradient */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#E9DDD2]/50 to-transparent rounded-full blur-3xl" />
+          
+          <div className="relative h-full flex flex-col pt-24 px-6 md:px-10 overflow-y-auto">
+            {/* Close Button */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#2F272C] hover:text-[#7D6B87] transition-colors"
-              aria-label="Toggle menu"
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute top-5 right-5 p-3 text-[#2F272C]/70 hover:text-[#7D6B87] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+              aria-label="Close menu"
             >
-              {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+              <X className="size-7" />
             </button>
+
+            {/* Logo */}
+            <div className="mb-12">
+              <Logo size="lg" showTagline={true} />
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item, index) => (
+                <a 
+                  key={item.name} 
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  className="text-2xl md:text-3xl font-serif text-[#2F272C] hover:text-[#7D6B87] transition-colors py-4 border-b border-[#E9DDD2]/30"
+                  style={{ 
+                    animationDelay: mobileMenuOpen ? `${index * 0.1}s` : '0s',
+                    animation: mobileMenuOpen ? 'slideIn 0.5s ease-out forwards' : 'none',
+                    opacity: mobileMenuOpen ? 1 : 0,
+                    transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(20px)'
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* Divider */}
+            <div className="my-8 h-px bg-gradient-to-r from-transparent via-[#E9DDD2] to-transparent" />
+
+            {/* Icon Links with equal spacing */}
+            <div className="grid grid-cols-4 gap-4 mb-8">
+              <button className="flex flex-col items-center gap-2 text-[#4B4347] hover:text-[#7D6B87] transition-colors py-4 min-h-[80px]">
+                <Search className="size-6" />
+                <span className="text-xs font-medium tracking-wider uppercase">Search</span>
+              </button>
+              <button className="flex flex-col items-center gap-2 text-[#4B4347] hover:text-[#7D6B87] transition-colors py-4 min-h-[80px]">
+                <Heart className="size-6" />
+                <span className="text-xs font-medium tracking-wider uppercase">Wishlist</span>
+              </button>
+              <button className="flex flex-col items-center gap-2 text-[#4B4347] hover:text-[#7D6B87] transition-colors py-4 min-h-[80px]">
+                <User className="size-6" />
+                <span className="text-xs font-medium tracking-wider uppercase">Account</span>
+              </button>
+              <button className="relative flex flex-col items-center gap-2 text-[#4B4347] hover:text-[#7D6B87] transition-colors py-4 min-h-[80px]">
+                <ShoppingBag className="size-6" />
+                <span className="absolute top-2 right-4 bg-[#7D6B87] text-white text-[9px] font-medium rounded-full min-w-[16px] h-[16px] flex items-center justify-center">2</span>
+                <span className="text-xs font-medium tracking-wider uppercase">Cart</span>
+              </button>
+            </div>
+
+            {/* Additional Links */}
+            <div className="flex gap-6 mt-auto mb-8">
+              <a href="#" className="text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors tracking-wide">FAQs</a>
+              <a href="#" className="text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors tracking-wide">Contact</a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div 
-        className={`xl:hidden absolute top-full left-0 right-0 bg-[#F8F5F2]/98 backdrop-blur-lg border-b border-[#E9DDD2]/50 transition-all duration-300 ${
-          mobileMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
-        }`}
-      >
-        <nav className="container-evermaze py-6 flex flex-col gap-5">
-          {navItems.map((item) => (
-            <a 
-              key={item.name} 
-              href={item.href} 
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-serif text-[#2F272C] hover:text-[#7D6B87] transition-colors py-2"
-            >
-              {item.name}
-            </a>
-          ))}
-          <hr className="border-[#E9DDD2]/50 my-2" />
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors">
-              <Search className="size-4" /> Search
-            </button>
-            <button className="flex items-center gap-2 text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors">
-              <Heart className="size-4" /> Wishlist
-            </button>
-            <button className="flex items-center gap-2 text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors">
-              <User className="size-4" /> Account
-            </button>
-          </div>
-          <div className="flex gap-4 mt-2">
-            <a href="#" className="text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors">FAQs</a>
-            <a href="#" className="text-sm text-[#4B4347] hover:text-[#7D6B87] transition-colors">Contact</a>
-          </div>
-        </nav>
-      </div>
-    </header>
+      <style>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
+    </>
   );
 }
 
@@ -285,11 +368,11 @@ function Hero() {
 /* ---------- Luxury Marquee Strip ---------- */
 function Strip() {
   const items = [
-    { icon: "🎁", text: "Free shipping over ₹1499" },
-    { icon: "✨", text: "Personalization included" },
-    { icon: "🚀", text: "Same-day dispatch" },
-    { icon: "💌", text: "Handwritten notes" },
-    { icon: "🌿", text: "Sustainable packaging" },
+    { icon: <Gift className="w-5 h-5" />, text: "Free shipping over ₹999" },
+    { icon: <Sparkles className="w-5 h-5" />, text: "Personalization included" },
+    { icon: <Package className="w-5 h-5" />, text: "Same-day dispatch" },
+    { icon: <MailIcon className="w-5 h-5" />, text: "Handwritten notes" },
+    { icon: <Leaf className="w-5 h-5" />, text: "Eco packaging" },
   ];
   
   return (
@@ -297,9 +380,9 @@ function Strip() {
       <div className="container-evermaze">
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 md:gap-x-12">
           {items.map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-sm text-[#4B4347]">
-              <span className="text-base">{item.icon}</span>
-              <span className="font-medium tracking-wide">{item.text}</span>
+            <div key={i} className="flex items-center gap-2.5 text-sm text-[#4B4347]">
+              <span className="text-[#7D6B87]" aria-hidden="true">{item.icon}</span>
+              <span className="font-medium tracking-wide text-[#2F272C]/80">{item.text}</span>
             </div>
           ))}
         </div>
@@ -607,44 +690,44 @@ function NewArrivals() {
   );
 }
 
-/* ---------- Build Your Own Box Section ---------- */
-function BuildYourBox() {
+/* ---------- Build Your Own Box - Static Info Section ---------- */
+function BuildYourBoxStatic({ onStartBuilding }: { onStartBuilding: () => void }) {
   const steps = [
     { 
       icon: <Package className="w-6 h-6" />,
       n: "01", 
-      t: "Choose Box", 
-      d: "Pick a size and style that fits your moment." 
+      t: "Choose Package", 
+      d: "From ₹149 to ₹1999, find your perfect fit." 
     },
     { 
       icon: <Sparkles className="w-6 h-6" />,
       n: "02", 
-      t: "Choose Theme", 
-      d: "From bridal to birthday, set the mood." 
-    },
-    { 
-      icon: <Gift className="w-6 h-6" />,
-      n: "03", 
-      t: "Choose Products", 
-      d: "Handpick every little joy inside." 
+      t: "Select Occasion", 
+      d: "Birthday, anniversary, or just because." 
     },
     { 
       icon: <Heart className="w-6 h-6" />,
+      n: "03", 
+      t: "Choose Relationship", 
+      d: "We'll tailor the perfect selection." 
+    },
+    { 
+      icon: <MapPin className="w-6 h-6" />,
       n: "04", 
-      t: "Special Message", 
-      d: "Add a handwritten note, straight from you." 
+      t: "Recipient Details", 
+      d: "Name, date, and your heartfelt message." 
     },
     { 
-      icon: <Calendar className="w-6 h-6" />,
+      icon: <Scissors className="w-6 h-6" />,
       n: "05", 
-      t: "Delivery Date", 
-      d: "Pick when the surprise should arrive." 
+      t: "Personal Touches", 
+      d: "Optional upgrades to make it extra special." 
     },
     { 
-      icon: <ShoppingCart className="w-6 h-6" />,
+      icon: <CreditCard className="w-6 h-6" />,
       n: "06", 
-      t: "Preview & Checkout", 
-      d: "See your box, then send with love." 
+      t: "Checkout", 
+      d: "Secure payment and order confirmation." 
     },
   ];
   
@@ -663,11 +746,11 @@ function BuildYourBox() {
                 height={1200}
                 className="size-full object-cover" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-taupe/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2E292C]/20 to-transparent" />
             </div>
             
             {/* Floating badge */}
-            <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-gradient-to-br from-[#7D6B87] to-taupe text-white p-6 md:p-8 rounded-3xl shadow-luxury max-w-[200px] md:max-w-[240px]">
+            <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-gradient-to-br from-[#7D6B87] to-[#66566F] text-white p-6 md:p-8 rounded-3xl shadow-luxury max-w-[200px] md:max-w-[240px]">
               <Sparkles className="w-6 h-6 md:w-7 md:h-7 mb-3" />
               <p className="font-serif text-xl md:text-2xl italic leading-tight">Yours, entirely.</p>
               <p className="mt-2 text-xs tracking-widest uppercase opacity-80">Made just for them</p>
@@ -701,13 +784,679 @@ function BuildYourBox() {
               ))}
             </ol>
 
-            <a href="#" className="btn-primary mt-10 md:mt-12 inline-flex">
+            <button onClick={onStartBuilding} className="btn-primary mt-10 md:mt-12 inline-flex">
               Start Building <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ---------- Build Your Box Checkout Flow ---------- */
+interface CheckoutFormData {
+  // Step 1: Hamper
+  selectedPackage: number | null;
+  // Step 2: Occasion
+  occasion: string;
+  // Step 3: Relationship
+  relationship: string;
+  customRelationship: string;
+  // Step 4: Recipient Details
+  recipientName: string;
+  deliveryDate: string;
+  giftMessage: string;
+  // Step 5: Personal Touches
+  addGiftBox: boolean;
+  addEcoPackaging: boolean;
+  addHandwrittenNote: boolean;
+  // Step 6: Contact & Shipping
+  email: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  apartment: string;
+  city: string;
+  state: string;
+  pincode: string;
+  specialInstructions: string;
+}
+
+function BuildYourBox({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  
+  const [formData, setFormData] = useState<CheckoutFormData>({
+    selectedPackage: null,
+    occasion: '',
+    relationship: '',
+    customRelationship: '',
+    recipientName: '',
+    deliveryDate: '',
+    giftMessage: '',
+    addGiftBox: false,
+    addEcoPackaging: false,
+    addHandwrittenNote: false,
+    email: '',
+    phone: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    apartment: '',
+    city: '',
+    state: '',
+    pincode: '',
+    specialInstructions: '',
+  });
+
+  const packageOptions = [
+    { price: 149, label: "Starter", items: "3-4 products" },
+    { price: 499, label: "Essential", items: "5-6 products" },
+    { price: 999, label: "Classic", items: "7-8 products" },
+    { price: 1499, label: "Premium", items: "10-12 products" },
+    { price: 1999, label: "Luxury", items: "15+ products" },
+  ];
+
+  const occasions = [
+    { id: 'birthday', label: 'Birthday', icon: <PartyPopper className="w-5 h-5" /> },
+    { id: 'anniversary', label: 'Anniversary', icon: <Heart className="w-5 h-5" /> },
+    { id: 'wedding', label: 'Wedding', icon: <Gift className="w-5 h-5" /> },
+    { id: 'baby-shower', label: 'Baby Shower', icon: <Flower2 className="w-5 h-5" /> },
+    { id: 'housewarming', label: 'Housewarming', icon: <Home className="w-5 h-5" /> },
+    { id: 'festival', label: 'Festival', icon: <TreePine className="w-5 h-5" /> },
+    { id: 'corporate', label: 'Corporate', icon: <Briefcase className="w-5 h-5" /> },
+    { id: 'just-because', label: 'Just Because', icon: <Sparkles className="w-5 h-5" /> },
+  ];
+
+  const relationships = [
+    { id: 'friend', label: 'Friend' },
+    { id: 'sister', label: 'Sister' },
+    { id: 'brother', label: 'Brother' },
+    { id: 'mother', label: 'Mother' },
+    { id: 'father', label: 'Father' },
+    { id: 'partner', label: 'Partner' },
+    { id: 'wife', label: 'Wife' },
+    { id: 'husband', label: 'Husband' },
+    { id: 'colleague', label: 'Colleague' },
+    { id: 'teacher', label: 'Teacher' },
+    { id: 'custom', label: 'Custom' },
+  ];
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      // Reset step when closing
+      setTimeout(() => setCurrentStep(1), 500);
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const updateForm = (field: keyof CheckoutFormData, value: any) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handlePackageSelect = (price: number) => {
+    updateForm('selectedPackage', price);
+    // Small delay to show selection before moving
+    setTimeout(() => {
+      if (currentStep === 1) setCurrentStep(2);
+    }, 200);
+  };
+
+  const handleContinue = () => {
+    if (currentStep < 6) {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
+
+  const handleClose = () => {
+    onClose();
+    setTimeout(() => {
+      setCurrentStep(1);
+      setFormData({
+        selectedPackage: null,
+        occasion: '',
+        relationship: '',
+        customRelationship: '',
+        recipientName: '',
+        deliveryDate: '',
+        giftMessage: '',
+        addGiftBox: false,
+        addEcoPackaging: false,
+        addHandwrittenNote: false,
+        email: '',
+        phone: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        apartment: '',
+        city: '',
+        state: '',
+        pincode: '',
+        specialInstructions: '',
+      });
+    }, 500);
+  };
+
+  // Calculate totals
+  const basePrice = formData.selectedPackage || 0;
+  const personalTouchesPrice = 
+    (formData.addGiftBox ? 49 : 0) + 
+    (formData.addEcoPackaging ? 29 : 0) + 
+    (formData.addHandwrittenNote ? 39 : 0);
+  const subtotal = basePrice + personalTouchesPrice;
+  const shipping = subtotal >= 999 ? 0 : 99;
+  const total = subtotal + shipping;
+
+  const steps = [
+    { num: 1, title: 'Choose Package', icon: <Package className="w-5 h-5" /> },
+    { num: 2, title: 'Select Occasion', icon: <Sparkles className="w-5 h-5" /> },
+    { num: 3, title: 'Relationship', icon: <Heart className="w-5 h-5" /> },
+    { num: 4, title: 'Recipient Details', icon: <MapPin className="w-5 h-5" /> },
+    { num: 5, title: 'Personal Touches', icon: <Scissors className="w-5 h-5" /> },
+    { num: 6, title: 'Checkout', icon: <CreditCard className="w-5 h-5" /> },
+  ];
+
+  const canProceed = () => {
+    switch (currentStep) {
+      case 1: return formData.selectedPackage !== null;
+      case 2: return formData.occasion !== '';
+      case 3: return formData.relationship !== '' && (formData.relationship !== 'custom' || formData.customRelationship !== '');
+      case 4: return formData.recipientName !== '' && formData.deliveryDate !== '';
+      case 5: return true; // Personal touches are optional
+      case 6: return formData.email !== '' && formData.phone !== '' && 
+                     formData.firstName !== '' && formData.lastName !== '' &&
+                     formData.address !== '' && formData.city !== '' && 
+                     formData.state !== '' && formData.pincode !== '';
+      default: return false;
+    }
+  };
+
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case 1: return 'Choose Your Package';
+      case 2: return 'Select the Occasion';
+      case 3: return 'Who is this for?';
+      case 4: return 'Recipient Details';
+      case 5: return 'Add a Personal Touch';
+      case 6: return 'Complete Your Order';
+      default: return '';
+    }
+  };
+
+  const getStepSubtitle = () => {
+    switch (currentStep) {
+      case 1: return 'Select a package that fits your budget and occasion';
+      case 2: return 'Help us personalize the perfect hamper';
+      case 3: return 'We\'ll tailor the gift selection accordingly';
+      case 4: return 'Where should we deliver this special gift?';
+      case 5: return 'Optional enhancements to make it extra special';
+      case 6: return 'Review and complete your order';
+      default: return '';
+    }
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {packageOptions.map((pkg) => (
+              <button
+                key={pkg.price}
+                onClick={() => handlePackageSelect(pkg.price)}
+                className={`relative p-6 rounded-2xl border-2 transition-all duration-300 text-left min-h-[140px] flex flex-col justify-between ${
+                  formData.selectedPackage === pkg.price
+                    ? 'border-[#7D6B87] bg-[#7D6B87]/5 shadow-lg'
+                    : 'border-[#E9DDD2] bg-[#F8F5F2] hover:border-[#7D6B87]/50 hover:bg-[#E9DDD2]/30'
+                }`}
+              >
+                {formData.selectedPackage === pkg.price && (
+                  <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-[#7D6B87] flex items-center justify-center">
+                    <Check className="w-4 h-4 text-white" />
+                  </div>
+                )}
+                <div>
+                  <p className="font-serif text-3xl md:text-4xl text-[#7D6B87]">₹{pkg.price}</p>
+                  <p className="text-sm font-medium text-[#2F272C] mt-2">{pkg.label}</p>
+                </div>
+                <p className="text-xs text-[#4B4347]">{pkg.items}</p>
+              </button>
+            ))}
+          </div>
+        );
+
+      case 2:
+        return (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {occasions.map((occ) => (
+              <button
+                key={occ.id}
+                onClick={() => { updateForm('occasion', occ.id); }}
+                className={`flex flex-col items-center gap-3 p-5 rounded-2xl border-2 transition-all duration-300 ${
+                  formData.occasion === occ.id
+                    ? 'border-[#7D6B87] bg-[#7D6B87]/5'
+                    : 'border-[#E9DDD2] bg-[#F8F5F2] hover:border-[#7D6B87]/50'
+                }`}
+              >
+                <span className={`${formData.occasion === occ.id ? 'text-[#7D6B87]' : 'text-[#4B4347]'}`}>
+                  {occ.icon}
+                </span>
+                <span className="text-sm font-medium text-[#2F272C]">{occ.label}</span>
+              </button>
+            ))}
+          </div>
+        );
+
+      case 3:
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {relationships.map((rel) => (
+                <button
+                  key={rel.id}
+                  onClick={() => updateForm('relationship', rel.id)}
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                    formData.relationship === rel.id
+                      ? 'border-[#7D6B87] bg-[#7D6B87]/5'
+                      : 'border-[#E9DDD2] bg-[#F8F5F2] hover:border-[#7D6B87]/50'
+                  }`}
+                >
+                  <span className="text-sm font-medium text-[#2F272C]">{rel.label}</span>
+                </button>
+              ))}
+            </div>
+            {formData.relationship === 'custom' && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-[#2F272C]/70 mb-2">Enter relationship</label>
+                <input
+                  type="text"
+                  value={formData.customRelationship}
+                  onChange={(e) => updateForm('customRelationship', e.target.value)}
+                  placeholder="e.g., Best Friend, Mentor..."
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-[#E9DDD2]/20 focus:bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+            )}
+          </div>
+        );
+
+      case 4:
+        return (
+          <div className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-[#2F272C]/70 mb-2">Recipient Name</label>
+              <input
+                type="text"
+                value={formData.recipientName}
+                onChange={(e) => updateForm('recipientName', e.target.value)}
+                placeholder="Enter recipient's name"
+                className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-[#E9DDD2]/20 focus:bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#2F272C]/70 mb-2">Delivery Date</label>
+              <input
+                type="date"
+                value={formData.deliveryDate}
+                onChange={(e) => updateForm('deliveryDate', e.target.value)}
+                min={new Date().toISOString().split('T')[0]}
+                className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-[#E9DDD2]/20 focus:bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#2F272C]/70 mb-2">Gift Message (Optional)</label>
+              <textarea
+                value={formData.giftMessage}
+                onChange={(e) => updateForm('giftMessage', e.target.value)}
+                placeholder="Write a heartfelt message..."
+                rows={4}
+                className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-[#E9DDD2]/20 focus:bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all resize-none text-base"
+              />
+            </div>
+          </div>
+        );
+
+      case 5:
+        return (
+          <div className="space-y-4">
+            <p className="text-sm text-[#4B4347] mb-6">Select any enhancements you'd like to add (all optional):</p>
+            
+            {[
+              { id: 'addGiftBox', label: 'Premium Gift Box', price: 49, icon: <Gift className="w-5 h-5" />, desc: 'Elegant wrapping with ribbon' },
+              { id: 'addEcoPackaging', label: 'Eco Packaging', price: 29, icon: <Leaf className="w-5 h-5" />, desc: 'Sustainable & biodegradable materials' },
+              { id: 'addHandwrittenNote', label: 'Handwritten Note', price: 39, icon: <Scissors className="w-5 h-5" />, desc: 'Beautiful card with your message' },
+            ].map((option) => (
+              <button
+                key={option.id}
+                onClick={() => updateForm(option.id as keyof CheckoutFormData, !formData[option.id as keyof CheckoutFormData])}
+                className={`w-full flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 ${
+                  formData[option.id as keyof CheckoutFormData]
+                    ? 'border-[#7D6B87] bg-[#7D6B87]/5'
+                    : 'border-[#E9DDD2] bg-[#F8F5F2] hover:border-[#7D6B87]/50'
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                  formData[option.id as keyof CheckoutFormData] ? 'bg-[#7D6B87]/15 text-[#7D6B87]' : 'bg-[#E9DDD2] text-[#4B4347]'
+                }`}>
+                  {option.icon}
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="font-medium text-[#2F272C]">{option.label}</p>
+                  <p className="text-sm text-[#4B4347]">{option.desc}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-[#7D6B87]">+₹{option.price}</span>
+                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
+                    formData[option.id as keyof CheckoutFormData] ? 'border-[#7D6B87] bg-[#7D6B87]' : 'border-[#E9DDD2]'
+                  }`}>
+                    {formData[option.id as keyof CheckoutFormData] && <Check className="w-4 h-4 text-white" />}
+                  </div>
+                </div>
+              </button>
+            ))}
+            
+            <div className="mt-6 p-4 bg-[#E9DDD2]/30 rounded-xl">
+              <p className="text-sm text-[#4B4347]">
+                <span className="font-medium text-[#2F272C]">Pro tip:</span> Personal touches can be added or removed later before dispatch.
+              </p>
+            </div>
+          </div>
+        );
+
+      case 6:
+        return (
+          <div className="space-y-6">
+            {/* Contact Info */}
+            <div className="bg-[#E9DDD2]/20 rounded-2xl p-5">
+              <h4 className="font-serif text-lg text-[#2F272C] mb-4 flex items-center gap-2">
+                <MailIcon className="w-5 h-5 text-[#7D6B87]" />
+                Contact Information
+              </h4>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateForm('email', e.target.value)}
+                  placeholder="Email address"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateForm('phone', e.target.value)}
+                  placeholder="Phone number"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+            </div>
+
+            {/* Shipping Info */}
+            <div className="bg-[#E9DDD2]/20 rounded-2xl p-5">
+              <h4 className="font-serif text-lg text-[#2F272C] mb-4 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-[#7D6B87]" />
+                Shipping Address
+              </h4>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  value={formData.firstName}
+                  onChange={(e) => updateForm('firstName', e.target.value)}
+                  placeholder="First name"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+                <input
+                  type="text"
+                  value={formData.lastName}
+                  onChange={(e) => updateForm('lastName', e.target.value)}
+                  placeholder="Last name"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+              <div className="mt-4">
+                <input
+                  type="text"
+                  value={formData.address}
+                  onChange={(e) => updateForm('address', e.target.value)}
+                  placeholder="Address"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+              <div className="mt-4">
+                <input
+                  type="text"
+                  value={formData.apartment}
+                  onChange={(e) => updateForm('apartment', e.target.value)}
+                  placeholder="Apartment, suite, etc. (optional)"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+              <div className="grid sm:grid-cols-3 gap-4 mt-4">
+                <input
+                  type="text"
+                  value={formData.city}
+                  onChange={(e) => updateForm('city', e.target.value)}
+                  placeholder="City"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+                <input
+                  type="text"
+                  value={formData.state}
+                  onChange={(e) => updateForm('state', e.target.value)}
+                  placeholder="State"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+                <input
+                  type="text"
+                  value={formData.pincode}
+                  onChange={(e) => updateForm('pincode', e.target.value)}
+                  placeholder="Pincode"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all text-base"
+                />
+              </div>
+            </div>
+
+            {/* Special Instructions */}
+            <div>
+              <label className="block text-sm font-medium text-[#2F272C]/70 mb-2">Special Instructions (Optional)</label>
+              <textarea
+                value={formData.specialInstructions}
+                onChange={(e) => updateForm('specialInstructions', e.target.value)}
+                placeholder="Any special requests for your hamper..."
+                rows={3}
+                className="w-full px-4 py-3.5 rounded-xl border border-[#E9DDD2]/50 bg-[#E9DDD2]/20 focus:bg-white focus:border-[#7D6B87] focus:ring-2 focus:ring-[#7D6B87]/20 outline-none transition-all resize-none text-base"
+              />
+            </div>
+
+            {/* Order Summary */}
+            <div className="bg-[#E9DDD2]/20 rounded-2xl p-5">
+              <h4 className="font-serif text-lg text-[#2F272C] mb-4">Order Summary</h4>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-[#4B4347]">Package (₹{formData.selectedPackage})</span>
+                  <span className="text-[#2F272C]">₹{formData.selectedPackage}</span>
+                </div>
+                {personalTouchesPrice > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-[#4B4347]">Personal Touches</span>
+                    <span className="text-[#2F272C]">₹{personalTouchesPrice}</span>
+                  </div>
+                )}
+                <div className="flex justify-between">
+                  <span className="text-[#4B4347]">Shipping</span>
+                  <span className="text-[#2F272C]">
+                    {shipping === 0 ? <span className="text-green-600">Free</span> : `₹${shipping}`}
+                  </span>
+                </div>
+                <div className="border-t border-[#E9DDD2]/50 pt-3 mt-3">
+                  <div className="flex justify-between items-center">
+                    <span className="font-serif text-lg text-[#2F272C]">Total</span>
+                    <span className="font-serif text-2xl text-[#2F272C]">₹{total.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+              {shipping > 0 && (
+                <p className="text-xs text-[#7D6B87] mt-3">
+                  Add ₹{(999 - subtotal).toLocaleString()} more for free shipping!
+                </p>
+              )}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div 
+        className="fixed inset-0 z-[70] flex items-center justify-center"
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-[#2E292C]/50 backdrop-blur-md"
+          onClick={handleClose}
+        />
+
+        {/* Modal Content */}
+        <div className="relative w-full max-w-4xl max-h-[90vh] mx-4 bg-[#F8F5F2] rounded-3xl shadow-[0_25px_80px_rgba(46,41,44,0.2)] overflow-hidden flex flex-col animate-scale-in">
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-[#F8F5F2]/95 backdrop-blur-md border-b border-[#E9DDD2]/50 px-5 md:px-8 py-4">
+            <div className="flex items-center justify-between mb-4">
+              <button
+                onClick={handleClose}
+                className="p-2 text-[#4B4347] hover:text-[#7D6B87] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <div className="text-center">
+                <p className="text-xs font-medium tracking-widest uppercase text-[#7D6B87]">Step {currentStep} of 6</p>
+              </div>
+              <div className="w-10" />
+            </div>
+            
+            {/* Progress Steps */}
+            <div className="flex items-center justify-center gap-2">
+              {steps.map((step) => (
+                <button
+                  key={step.num}
+                  onClick={() => step.num < currentStep && setCurrentStep(step.num)}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all text-xs font-medium ${
+                    step.num === currentStep
+                      ? 'bg-[#7D6B87] text-white'
+                      : step.num < currentStep
+                      ? 'bg-[#7D6B87]/20 text-[#7D6B87]'
+                      : 'bg-[#E9DDD2] text-[#4B4347]'
+                  }`}
+                >
+                  {step.num < currentStep ? <Check className="w-4 h-4" /> : step.num}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto px-5 md:px-8 py-6">
+            <div className="text-center mb-6">
+              <h2 className="font-serif text-2xl md:text-3xl text-[#2F272C]">{getStepTitle()}</h2>
+              <p className="text-sm md:text-base text-[#4B4347] mt-2">{getStepSubtitle()}</p>
+            </div>
+            
+            <div className="transition-all duration-300">
+              {renderStepContent()}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="sticky bottom-0 z-10 bg-[#F8F5F2]/95 backdrop-blur-md border-t border-[#E9DDD2]/50 px-5 md:px-8 py-4">
+            <div className="flex gap-3">
+              {currentStep > 1 && (
+                <button
+                  onClick={handleBack}
+                  className="flex-1 btn-outline py-4"
+                >
+                  Back
+                </button>
+              )}
+              {currentStep < 6 ? (
+                <button
+                  onClick={handleContinue}
+                  disabled={!canProceed()}
+                  className="flex-1 btn-primary py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Continue
+                </button>
+              ) : (
+                <button
+                  onClick={() => setShowConfirmModal(true)}
+                  disabled={!canProceed() || isProcessing}
+                  className="flex-1 btn-primary py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isProcessing ? 'Processing...' : `Place Order · ₹${total.toLocaleString()}`}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Success Modal */}
+      <ConfirmationModal
+        isOpen={showSuccessModal}
+        onClose={() => {
+          setShowSuccessModal(false);
+          handleClose();
+        }}
+        type="success"
+        title="Order Placed Successfully!"
+        message={`Thank you for your order! Your hamper will be beautifully prepared and delivered to ${formData.recipientName}. You'll receive a confirmation email shortly.`}
+        confirmText="Continue Shopping"
+        onConfirm={() => {
+          setShowSuccessModal(false);
+          handleClose();
+        }}
+      />
+
+      {/* Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        type="confirmation"
+        title="Confirm Your Order"
+        message={`You're about to place an order for ₹${total.toLocaleString()}. This will be delivered to ${formData.recipientName} on ${formData.deliveryDate}.`}
+        confirmText="Yes, Place Order"
+        cancelText="Review Again"
+        onConfirm={() => {
+          setIsProcessing(true);
+          setTimeout(() => {
+            setShowConfirmModal(false);
+            setShowSuccessModal(true);
+            setIsProcessing(false);
+          }, 1500);
+        }}
+      />
+    </>
   );
 }
 
@@ -1152,9 +1901,11 @@ function Footer() {
 
 /* ---------- Main HomePage Component ---------- */
 function HomePage() {
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#F8F5F2]">
-      <Header />
+      <Header onOpenCheckout={() => setCheckoutOpen(true)} />
       <main>
         <Hero />
         <Strip />
@@ -1162,7 +1913,7 @@ function HomePage() {
         <ShopByPrice />
         <BestSellers />
         <NewArrivals />
-        <BuildYourBox />
+        <BuildYourBoxStatic onStartBuilding={() => setCheckoutOpen(true)} />
         <WhyEvermaze />
         <HowItWorks />
         <Reviews />
@@ -1170,6 +1921,7 @@ function HomePage() {
         <Newsletter />
       </main>
       <Footer />
+      <BuildYourBox isOpen={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
     </div>
   );
 }

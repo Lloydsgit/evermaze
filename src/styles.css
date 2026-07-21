@@ -149,6 +149,30 @@
   a, button {
     -webkit-tap-highlight-color: transparent;
   }
+
+  /* Improved mobile typography */
+  @media (max-width: 640px) {
+    body {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    
+    label, .label {
+      font-size: 0.9375rem !important; /* 15px */
+    }
+    
+    input, textarea, select {
+      font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+    
+    .text-sm, p {
+      font-size: 0.9375rem !important;
+    }
+    
+    .text-xs {
+      font-size: 0.8125rem !important;
+    }
+  }
 }
 
 @utility container-evermaze {

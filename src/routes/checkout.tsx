@@ -71,7 +71,7 @@ function CheckoutPage() {
 
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shipping = subtotal >= 1499 ? 0 : 99;
+  const shipping = subtotal >= 999 ? 0 : 99;
   const total = subtotal + shipping;
 
   // Update quantity
@@ -407,7 +407,7 @@ function CheckoutPage() {
                 </div>
                 {shipping > 0 && (
                   <p className="text-xs text-[#7D6B87]">
-                    Add ₹{(1499 - subtotal).toLocaleString()} more for free shipping!
+                    Add ₹{(999 - subtotal).toLocaleString()} more for free shipping!
                   </p>
                 )}
               </div>
