@@ -35,30 +35,30 @@ function WishlistPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-burgundy transition-colors">
-              <Heart className="size-[18px] fill-burgundy text-burgundy" />
+            <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors">
+              <Heart className="size-[18px] fill-burgundy text-dark-lavender" />
             </button>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-8 md:py-12">
+      <section className="bg-dark-lavender text-white py-8 md:py-12">
         <div className="container-evermaze flex items-center gap-6">
           <Heart className="size-10 md:size-12" />
           <div>
@@ -72,16 +72,16 @@ function WishlistPage() {
       <section className="py-8 md:py-12">
         <div className="container-evermaze">
           {items.length === 0 ? (
-            <div className="text-center py-16 bg-card rounded-3xl border border-border">
-              <Heart className="size-16 mx-auto text-muted-foreground mb-4" />
+            <div className="text-center py-16 bg-white rounded-3xl border border-border-color">
+              <Heart className="size-16 mx-auto text-secondary-text mb-4" />
               <h2 className="font-serif text-2xl">Your wishlist is empty</h2>
-              <p className="mt-2 text-muted-foreground">Save items you love by clicking the heart icon</p>
+              <p className="mt-2 text-secondary-text">Save items you love by clicking the heart icon</p>
               <Link to="/shop" className="btn-primary mt-6 inline-block">Start Shopping</Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {items.map((item) => (
-                <div key={item.id} className="group bg-card border border-border rounded-2xl overflow-hidden">
+                <div key={item.id} className="group bg-white border border-border-color rounded-2xl overflow-hidden">
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <img
                       src={item.img}
@@ -97,18 +97,18 @@ function WishlistPage() {
                     </button>
                   </div>
                   <div className="p-4">
-                    <div className="flex items-center gap-1 text-burgundy mb-1">
+                    <div className="flex items-center gap-1 text-dark-lavender mb-1">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className={`size-3 ${i < Math.floor(item.rating) ? "fill-current" : ""}`} />
                       ))}
-                      <span className="ml-1 text-[10px] text-muted-foreground">{item.rating}</span>
+                      <span className="ml-1 text-[10px] text-secondary-text">{item.rating}</span>
                     </div>
                     <h3 className="font-serif text-lg">{item.name}</h3>
                     <div className="mt-3 flex items-center justify-between">
                       <span className="font-serif text-xl">₹{item.price}</span>
                       <Link
                         to="/cart"
-                        className="text-xs bg-burgundy text-white px-4 py-2 rounded-full hover:bg-burgundy/90 transition-colors"
+                        className="text-xs bg-dark-lavender text-white px-4 py-2 rounded-full hover:bg-dark-lavender/90 transition-colors"
                       >
                         Add to Cart
                       </Link>
@@ -130,10 +130,10 @@ function WishlistPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6 mt-12">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

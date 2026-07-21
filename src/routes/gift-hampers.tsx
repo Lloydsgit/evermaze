@@ -28,28 +28,28 @@ function GiftHampersPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></button>
-            <button aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></button>
+            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-16 md:py-20">
+      <section className="bg-dark-lavender text-white py-16 md:py-20">
         <div className="container-evermaze text-center">
           <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">Curated with love</span>
           <h1 className="mt-4 font-serif text-4xl md:text-6xl">Gift Hampers</h1>
@@ -81,11 +81,11 @@ function GiftHampersPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-card border-y border-border">
+      <section className="py-16 bg-white border-y border-border-color">
         <div className="container-evermaze text-center">
-          <Gift className="size-12 mx-auto text-burgundy mb-4" />
+          <Gift className="size-12 mx-auto text-dark-lavender mb-4" />
           <h2 className="font-serif text-3xl">Can't find the perfect hamper?</h2>
-          <p className="mt-4 text-muted-foreground max-w-md mx-auto">Build your own custom hamper with exactly what your loved one deserves.</p>
+          <p className="mt-4 text-secondary-text max-w-md mx-auto">Build your own custom hamper with exactly what your loved one deserves.</p>
           <Link to="/build-your-box" className="btn-primary mt-6 inline-flex items-center gap-2">
             Build Your Own Box <ArrowLeft className="size-4 rotate-180" />
           </Link>
@@ -93,10 +93,10 @@ function GiftHampersPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

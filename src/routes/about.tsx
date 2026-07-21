@@ -1,183 +1,157 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, HeartHandshake, Leaf, Sparkles } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Heart, Sparkles, Package, Truck, ShieldCheck, Clock, Gift, Award, Leaf, Quote } from "lucide-react";
 
 import storyImg from "@/assets/story.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us | Evermaze" },
-      { name: "description", content: "Learn about Evermaze - our story, mission, and commitment to creating personalized gift experiences." },
+      { title: "Our Story — Evermaze | Personalized Gift Hampers" },
+      { name: "description", content: "Discover the story behind Evermaze — a gifting brand born from the belief that the most meaningful gifts are chosen with love." },
     ],
   }),
   component: AboutPage,
 });
 
-const values = [
-  {
-    icon: HeartHandshake,
-    title: "Made with Love",
-    desc: "Every hamper is packed by hand, with attention to every detail and a genuine desire to make someone's day special.",
-  },
-  {
-    icon: Sparkles,
-    title: "Thoughtfully Curated",
-    desc: "We source only the finest products and pair them in combinations that tell a story and create lasting memories.",
-  },
-  {
-    icon: Leaf,
-    title: "Sustainably Packaged",
-    desc: "From biodegradable materials to reusable containers, we're committed to being gentle on the planet.",
-  },
-];
-
-const team = [
-  { name: "Priya Sharma", role: "Founder & CEO", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" },
-  { name: "Arjun Mehta", role: "Head of Curation", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" },
-  { name: "Sneha Reddy", role: "Creative Director", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" },
-];
-
 function AboutPage() {
+  const timeline = [
+    { icon: Heart, label: "Thoughtfully Selected" },
+    { icon: Sparkles, label: "Carefully Curated" },
+    { icon: Package, label: "Beautifully Packed" },
+    { icon: Truck, label: "Delivered with Love" },
+    { icon: Heart, label: "Made to Make You Smile" },
+  ];
+
+  const beliefs = [
+    { icon: Heart, label: "Made with Love" },
+    { icon: Award, label: "Premium Quality" },
+    { icon: Sparkles, label: "Meaningful Connections" },
+    { icon: Truck, label: "Safe Delivery" },
+    { icon: Leaf, label: "Supporting Small Businesses" },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-5">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
-            <ArrowLeft className="size-4" />
-            Back to Home
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
+            <span>←</span> Back to Shop
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-xl tracking-[0.25em] text-primary-text">EVERMAZE</span>
+            <span className="mt-0.5 text-[0.5rem] tracking-[0.3em] uppercase text-secondary-text font-light italic">Just For You</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></button>
-            <button aria-label="Cart" className="relative hover:text-burgundy transition-colors">
-              <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
-            </button>
-          </div>
+          <div className="w-24"></div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* Hero Section */}
+      <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
         <div className="container-evermaze">
-          <div className="max-w-2xl">
-            <span className="eyebrow">Our Story</span>
-            <h1 className="mt-4 font-serif text-5xl md:text-7xl leading-tight">
-              Love in<br />
-              <span className="italic text-burgundy">Every Box</span>
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Evermaze was born from a simple belief: the best gifts aren't just objects, they're experiences. 
-              Moments that live longer than the ribbon.
-            </p>
-          </div>
-        </div>
-        <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
-          <img src={storyImg} alt="Evermaze story" className="size-full object-cover" />
-        </div>
-      </section>
-
-      {/* Mission */}
-      <section className="py-16 md:py-24 bg-card border-y border-border">
-        <div className="container-evermaze max-w-3xl">
-          <blockquote className="font-serif text-3xl md:text-4xl text-center leading-relaxed italic">
-            "We believe that when you give a gift from Evermaze, you're not just giving products — 
-            you're giving a piece of your heart, beautifully wrapped."
-          </blockquote>
-          <p className="mt-6 text-center text-muted-foreground">— Priya Sharma, Founder</p>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-16 md:py-24">
-        <div className="container-evermaze">
-          <div className="text-center mb-12">
-            <span className="eyebrow">What we stand for</span>
-            <h2 className="mt-3 font-serif text-4xl">Our Values</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {values.map((value) => (
-              <div key={value.title} className="text-center p-8 bg-card rounded-3xl border border-border">
-                <value.icon className="size-10 mx-auto text-burgundy mb-4" />
-                <h3 className="font-serif text-2xl mb-3">{value.title}</h3>
-                <p className="text-muted-foreground">{value.desc}</p>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Our Story</span>
+              <h1 className="mt-4 font-serif text-4xl lg:text-5xl xl:text-6xl" style={{ color: 'var(--primary-text)' }}>
+                Our Brand Story
+              </h1>
+              <p className="mt-8 text-base lg:text-lg leading-relaxed" style={{ color: 'var(--secondary-text)' }}>
+                Evermaze was created with one simple belief — the most meaningful gifts aren't the most expensive ones, they're the ones chosen with love.
+              </p>
+              <p className="mt-6 leading-relaxed" style={{ color: 'var(--secondary-text)' }}>
+                We believe every celebration deserves a thoughtful surprise. Whether it's a birthday, anniversary, graduation, farewell or just because, every hamper is carefully curated to create unforgettable memories.
+              </p>
+              <p className="mt-6 leading-relaxed" style={{ color: 'var(--secondary-text)' }}>
+                At Evermaze, every box is packed with love, attention to detail and a personal touch, making every gift feel truly special.
+              </p>
+              
+              {/* Quote */}
+              <div className="mt-12 p-8 rounded-2xl" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+                <Quote className="size-8 mb-4" style={{ color: 'var(--dusty-lavender)' }} />
+                <p className="font-serif text-2xl lg:text-3xl italic leading-relaxed" style={{ color: 'var(--primary-text)' }}>
+                  "It's not just a gift,<br />it's a feeling."
+                </p>
               </div>
-            ))}
+            </div>
+            
+            <div>
+              <div className="aspect-[4/5] rounded-3xl overflow-hidden" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+                <img 
+                  src={storyImg} 
+                  alt="Evermaze founder carefully packing a gift hamper" 
+                  className="size-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-16 md:py-24 bg-card border-y border-border">
+      {/* Timeline */}
+      <section className="py-16 lg:py-20" style={{ backgroundColor: 'var(--card-bg)' }}>
         <div className="container-evermaze">
-          <div className="text-center mb-12">
-            <span className="eyebrow">The people behind the packs</span>
-            <h2 className="mt-3 font-serif text-4xl">Meet Our Team</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="aspect-square rounded-full overflow-hidden mb-4 max-w-[200px] mx-auto">
-                  <img src={member.img} alt={member.name} className="size-full object-cover" />
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-16">
+            {timeline.map((t, i) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <div className="size-14 rounded-full flex items-center justify-center mb-3" style={{ backgroundColor: 'rgba(184, 171, 199, 0.2)' }}>
+                  <t.icon className="size-6" style={{ color: 'var(--dark-lavender)' }} />
                 </div>
-                <h3 className="font-serif text-xl">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
+                <p className="text-sm font-medium" style={{ color: 'var(--primary-text)' }}>{t.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 md:py-20">
+      {/* What We Believe In */}
+      <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--primary-bg)' }}>
         <div className="container-evermaze">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <span className="font-serif text-5xl text-burgundy">12k+</span>
-              <p className="mt-2 text-sm text-muted-foreground">Happy Gifters</p>
-            </div>
-            <div>
-              <span className="font-serif text-5xl text-burgundy">4.9</span>
-              <p className="mt-2 text-sm text-muted-foreground">Average Rating</p>
-            </div>
-            <div>
-              <span className="font-serif text-5xl text-burgundy">50+</span>
-              <p className="mt-2 text-sm text-muted-foreground">Unique Hampers</p>
-            </div>
-            <div>
-              <span className="font-serif text-5xl text-burgundy">100%</span>
-              <p className="mt-2 text-sm text-muted-foreground">Handpacked</p>
-            </div>
+          <div className="text-center mb-12 lg:mb-16">
+            <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--dark-lavender)' }}>Our Values</span>
+            <h2 className="mt-4 font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>What We Believe In</h2>
           </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+            {beliefs.map((b, i) => (
+              <div key={i} className="text-center">
+                <div className="size-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'rgba(184, 171, 199, 0.15)' }}>
+                  <b.icon className="size-7" style={{ color: 'var(--dark-lavender)' }} />
+                </div>
+                <p className="text-sm font-medium" style={{ color: 'var(--primary-text)' }}>{b.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Thank You Banner */}
+      <section className="py-16 lg:py-20" style={{ backgroundColor: 'var(--dusty-lavender)' }}>
+        <div className="container-evermaze text-center">
+          <p className="font-serif text-2xl lg:text-3xl text-white">
+            Thank you for being a part of our journey.
+          </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-burgundy text-white">
+      <section className="py-16 lg:py-24" style={{ backgroundColor: 'var(--secondary-bg)' }}>
         <div className="container-evermaze text-center">
-          <h2 className="font-serif text-3xl md:text-4xl">Ready to spread the love?</h2>
-          <p className="mt-4 text-white/70 max-w-md mx-auto">Explore our collection of thoughtfully curated gift hampers.</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/shop" className="bg-champagne text-foreground px-6 py-3 rounded-full text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors">
-              Shop Hampers
-            </Link>
-            <Link to="/build-your-box" className="border border-white/30 px-6 py-3 rounded-full text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-burgundy transition-colors">
-              Build Your Box
-            </Link>
+          <h2 className="font-serif text-3xl lg:text-4xl" style={{ color: 'var(--primary-text)' }}>Ready to spread some love?</h2>
+          <p className="mt-4 max-w-lg mx-auto" style={{ color: 'var(--secondary-text)' }}>
+            Browse our collection of thoughtfully curated gift hampers or build your own custom box.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link to="/shop" className="btn-primary">Shop Hampers <ArrowRight className="size-4" /></Link>
+            <Link to="/build-your-box" className="btn-outline">Build Your Own Box</Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6">
+      <footer className="pt-16 pb-8" style={{ backgroundColor: 'var(--secondary-bg)' }}>
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'var(--primary-text)' }}>EVERMAZE</Link>
+          <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'var(--secondary-text)', fontFamily: 'Allura, cursive' }}>Just For You</p>
+          <p className="mt-4 text-sm" style={{ color: 'var(--secondary-text)' }}>Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

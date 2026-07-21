@@ -49,28 +49,28 @@ function ShopPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-16 md:py-20">
+      <section className="bg-dark-lavender text-white py-16 md:py-20">
         <div className="container-evermaze text-center">
           <h1 className="font-serif text-4xl md:text-6xl">Choose Your Hamper</h1>
           <p className="mt-4 text-white/70 max-w-xl mx-auto">
@@ -87,7 +87,7 @@ function ShopPage() {
               <Link
                 key={hamper.price}
                 to={`/build-your-box?package=${hamper.price}`}
-                className="group bg-card border border-border rounded-3xl overflow-hidden hover:border-burgundy transition-all"
+                className="group bg-white border border-border-color rounded-3xl overflow-hidden hover:border-dark-lavender transition-all"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={hamper.img} alt={hamper.name} className="size-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -98,7 +98,7 @@ function ShopPage() {
                   </div>
                 </div>
                 <div className="p-6 flex items-center justify-between">
-                  <p className="text-muted-foreground text-sm">{hamper.description}</p>
+                  <p className="text-secondary-text text-sm">{hamper.description}</p>
                   <span className="btn-primary text-sm flex items-center gap-2 shrink-0">
                     Customize <ArrowRight className="size-4" />
                   </span>
@@ -110,10 +110,10 @@ function ShopPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

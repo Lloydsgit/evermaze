@@ -157,19 +157,19 @@ function BuildYourBoxPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-card border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
             </Link>
           </div>
@@ -177,7 +177,7 @@ function BuildYourBoxPage() {
       </header>
 
       {/* Progress Bar */}
-      <section className="bg-card border-b border-border py-4 px-2">
+      <section className="bg-card border-b border-border-color py-4 px-2">
         <div className="container-evermaze">
           <div className="flex items-center justify-center gap-1 sm:gap-2">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -185,29 +185,29 @@ function BuildYourBoxPage() {
                 <button
                   onClick={() => s < step && setStep(s)}
                   className={`size-8 sm:size-10 rounded-full flex items-center justify-center font-medium transition-colors text-xs sm:text-sm ${
-                    step >= s ? "bg-burgundy text-white" : "bg-muted text-muted-foreground"
+                    step >= s ? "bg-dark-lavender text-white" : "bg-secondary-bg text-secondary-text"
                   }`}
                 >
                   {s}
                 </button>
                 {s < 5 && (
-                  <div className={`w-6 sm:w-12 md:w-20 h-1 mx-1 sm:mx-2 rounded ${step > s ? "bg-burgundy" : "bg-muted"}`} />
+                  <div className={`w-6 sm:w-12 md:w-20 h-1 mx-1 sm:mx-2 rounded ${step > s ? "bg-dark-lavender" : "bg-secondary-bg"}`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-center gap-2 sm:gap-4 md:gap-8 mt-2 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
-            <span className={step >= 1 ? "text-burgundy" : ""}>Package</span>
-            <span className={step >= 2 ? "text-burgundy" : ""}>Occasion</span>
-            <span className={step >= 3 ? "text-burgundy" : ""}>Items</span>
-            <span className={step >= 4 ? "text-burgundy" : ""}>Review</span>
-            <span className={step >= 5 ? "text-burgundy" : ""}>Book</span>
+          <div className="flex justify-center gap-2 sm:gap-4 md:gap-8 mt-2 text-[10px] sm:text-xs md:text-sm text-secondary-text">
+            <span className={step >= 1 ? "text-dark-lavender" : ""}>Package</span>
+            <span className={step >= 2 ? "text-dark-lavender" : ""}>Occasion</span>
+            <span className={step >= 3 ? "text-dark-lavender" : ""}>Items</span>
+            <span className={step >= 4 ? "text-dark-lavender" : ""}>Review</span>
+            <span className={step >= 5 ? "text-dark-lavender" : ""}>Book</span>
           </div>
         </div>
       </section>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-8 md:py-12">
+      <section className="bg-dark-lavender text-white py-8 md:py-12">
         <div className="container-evermaze text-center">
           <h1 className="font-serif text-3xl md:text-4xl">Customize Your Hamper</h1>
           <p className="mt-2 text-white/70">Create the perfect personalized gift</p>
@@ -220,7 +220,7 @@ function BuildYourBoxPage() {
           {step === 1 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <Gift className="size-6 text-burgundy" />
+                <Gift className="size-6 text-dark-lavender" />
                 Choose Your Package
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
@@ -230,18 +230,18 @@ function BuildYourBoxPage() {
                     onClick={() => handlePackageSelect(pkgItem.price)}
                     className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all text-left relative ${
                       selectedPackage === pkgItem.price
-                        ? "border-burgundy bg-burgundy/5"
-                        : "border-border hover:border-burgundy"
+                        ? "border-dark-lavender bg-dark-lavender/5"
+                        : "border-border-color hover:border-dark-lavender"
                     }`}
                   >
                     {selectedPackage === pkgItem.price && (
-                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 bg-burgundy rounded-full flex items-center justify-center">
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 bg-dark-lavender rounded-full flex items-center justify-center">
                         <Check className="size-3 sm:size-4 text-white" />
                       </div>
                     )}
-                    <span className="block font-serif text-xl sm:text-3xl text-burgundy">₹{pkgItem.price}</span>
+                    <span className="block font-serif text-xl sm:text-3xl text-dark-lavender">₹{pkgItem.price}</span>
                     <span className="block mt-1 sm:mt-2 font-serif text-sm sm:text-lg">{pkgItem.name}</span>
-                    <span className="block mt-1 text-xs sm:text-sm text-muted-foreground">{pkgItem.items} items</span>
+                    <span className="block mt-1 text-xs sm:text-sm text-secondary-text">{pkgItem.items} items</span>
                   </button>
                 ))}
               </div>
@@ -252,7 +252,7 @@ function BuildYourBoxPage() {
           {step === 2 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <Calendar className="size-6 text-burgundy" />
+                <Calendar className="size-6 text-dark-lavender" />
                 Let's Personalize Your Gift
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
@@ -268,12 +268,12 @@ function BuildYourBoxPage() {
                         }}
                         className={`p-3 rounded-xl border text-sm transition-all relative ${
                           selectedOccasion === occ && customOccasion === ""
-                            ? "border-burgundy bg-burgundy/5 text-burgundy"
-                            : "border-border hover:border-burgundy"
+                            ? "border-dark-lavender bg-dark-lavender/5 text-dark-lavender"
+                            : "border-border-color hover:border-dark-lavender"
                         }`}
                       >
                         {selectedOccasion === occ && customOccasion === "" && (
-                          <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
+                          <div className="absolute top-2 right-2 size-4 bg-dark-lavender rounded-full flex items-center justify-center">
                             <Check className="size-3 text-white" />
                           </div>
                         )}
@@ -287,12 +287,12 @@ function BuildYourBoxPage() {
                       }}
                       className={`p-3 rounded-xl border text-sm transition-all relative ${
                         selectedOccasion === "Other"
-                          ? "border-burgundy bg-burgundy/5 text-burgundy"
-                          : "border-border hover:border-burgundy"
+                          ? "border-dark-lavender bg-dark-lavender/5 text-dark-lavender"
+                          : "border-border-color hover:border-dark-lavender"
                       }`}
                     >
                       {selectedOccasion === "Other" && (
-                        <div className="absolute top-2 right-2 size-4 bg-burgundy rounded-full flex items-center justify-center">
+                        <div className="absolute top-2 right-2 size-4 bg-dark-lavender rounded-full flex items-center justify-center">
                           <Check className="size-3 text-white" />
                         </div>
                       )}
@@ -308,7 +308,7 @@ function BuildYourBoxPage() {
                         value={customOccasion}
                         onChange={(e) => setCustomOccasion(e.target.value)}
                         placeholder="Enter the occasion..."
-                        className="w-full px-4 py-3 rounded-xl border-2 border-burgundy bg-background focus:outline-none"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-dark-lavender bg-background focus:outline-none"
                       />
                     </div>
                   )}
@@ -319,7 +319,7 @@ function BuildYourBoxPage() {
                     type="date"
                     value={occasionDate}
                     onChange={(e) => setOccasionDate(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none cursor-pointer"
                     style={{ colorScheme: 'light' }}
                   />
                   <div className="mt-6">
@@ -329,7 +329,7 @@ function BuildYourBoxPage() {
                       value={recipientName}
                       onChange={(e) => setRecipientName(e.target.value)}
                       placeholder="Who is this gift for?"
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                     />
                   </div>
                   <div className="mt-6">
@@ -339,7 +339,7 @@ function BuildYourBoxPage() {
                       onChange={(e) => setRecipientMessage(e.target.value)}
                       placeholder="Write your message here..."
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none resize-none"
                     />
                   </div>
                 </div>
@@ -351,25 +351,25 @@ function BuildYourBoxPage() {
           {step === 3 && (
             <div className="max-w-5xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
-                <Sparkles className="size-6 text-burgundy" />
+                <Sparkles className="size-6 text-dark-lavender" />
                 Add Personal Touches
               </h2>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-secondary-text mb-6">
                 Choose up to {pkg?.maxItems} personal items for your {pkg?.name}. Selected: {selectedItems.length}/{pkg?.maxItems}
               </p>
               
               {/* Selected Items Summary */}
-              <div className="mb-6 p-4 bg-burgundy/10 rounded-xl">
+              <div className="mb-6 p-4 bg-dark-lavender/10 rounded-xl">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-medium">Selected Items ({selectedItems.length}/{pkg?.maxItems})</span>
-                  <span className="text-sm text-burgundy font-medium">₹{calculateTotal() - (selectedPackage || 0)}</span>
+                  <span className="text-sm text-dark-lavender font-medium">₹{calculateTotal() - (selectedPackage || 0)}</span>
                 </div>
                 {selectedItems.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
                     {selectedItems.map((item) => {
                       const itemData = personalItems.find(i => i.name === item);
                       return (
-                        <span key={item} className="bg-burgundy text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2">
+                        <span key={item} className="bg-dark-lavender text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2">
                           <span>{itemData?.icon}</span>
                           <span>{item}</span>
                           <button 
@@ -384,7 +384,7 @@ function BuildYourBoxPage() {
                     })}
                   </div>
                 ) : (
-                  <p className="text-sm text-muted-foreground">Click on items below to select them</p>
+                  <p className="text-sm text-secondary-text">Click on items below to select them</p>
                 )}
               </div>
 
@@ -402,28 +402,28 @@ function BuildYourBoxPage() {
                       disabled={disabled}
                       className={`w-full text-left rounded-2xl border-2 transition-all overflow-hidden ${
                         selected
-                          ? "border-burgundy bg-burgundy/5"
+                          ? "border-dark-lavender bg-dark-lavender/5"
                           : disabled
-                          ? "border-border opacity-50 cursor-not-allowed"
-                          : "border-border hover:border-burgundy"
+                          ? "border-border-color opacity-50 cursor-not-allowed"
+                          : "border-border-color hover:border-dark-lavender"
                       }`}
                     >
                       <div className="p-5">
                         <div className="flex items-start gap-4">
                           <div className={`size-12 rounded-xl flex items-center justify-center text-2xl transition-colors ${
-                            selected ? "bg-burgundy/20" : "bg-muted"
+                            selected ? "bg-dark-lavender/20" : "bg-secondary-bg"
                           }`}>
                             {item.icon}
                           </div>
                           <div className="flex-1">
                             <h4 className="font-medium">{item.name}</h4>
-                            <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                            <p className="mt-2 font-medium text-burgundy">+₹{item.price}</p>
+                            <p className="text-sm text-secondary-text mt-1">{item.description}</p>
+                            <p className="mt-2 font-medium text-dark-lavender">+₹{item.price}</p>
                           </div>
                           <div className={`size-8 rounded-full border-2 flex items-center justify-center transition-all ${
                             selected
-                              ? "border-burgundy bg-burgundy text-white"
-                              : "border-border bg-white"
+                              ? "border-dark-lavender bg-dark-lavender text-white"
+                              : "border-border-color bg-white"
                           }`}>
                             {selected && <Check className="size-5" />}
                           </div>
@@ -432,12 +432,12 @@ function BuildYourBoxPage() {
                       
                       {/* Image Upload Section - Only show for selected items that need images */}
                       {selected && item.hasImage && (
-                        <div className="px-5 pb-5 border-t border-burgundy/20 pt-4 mt-2">
+                        <div className="px-5 pb-5 border-t border-dark-lavender/20 pt-4 mt-2">
                           <label className="block cursor-pointer">
                             <div className={`border-2 border-dashed rounded-xl p-4 text-center transition-colors ${
                               uploadedImages[item.name]
-                                ? "border-burgundy bg-burgundy/10"
-                                : "border-border hover:border-burgundy hover:bg-muted"
+                                ? "border-dark-lavender bg-dark-lavender/10"
+                                : "border-border-color hover:border-dark-lavender hover:bg-secondary-bg"
                             }`}>
                               {uploadedImages[item.name] ? (
                                 <div className="relative">
@@ -456,13 +456,13 @@ function BuildYourBoxPage() {
                                   >
                                     <X className="size-4" />
                                   </button>
-                                  <p className="text-xs text-burgundy mt-2">Click to change image</p>
+                                  <p className="text-xs text-dark-lavender mt-2">Click to change image</p>
                                 </div>
                               ) : (
                                 <>
-                                  <Image className="size-8 mx-auto text-muted-foreground mb-2" />
+                                  <Image className="size-8 mx-auto text-secondary-text mb-2" />
                                   <p className="text-sm font-medium">Upload Image</p>
-                                  <p className="text-xs text-muted-foreground mt-1">For {item.name}</p>
+                                  <p className="text-xs text-secondary-text mt-1">For {item.name}</p>
                                 </>
                               )}
                             </div>
@@ -491,28 +491,28 @@ function BuildYourBoxPage() {
           {step === 4 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <Heart className="size-6 text-burgundy" />
+                <Heart className="size-6 text-dark-lavender" />
                 Review Your Hamper
               </h2>
-              <div className="bg-card border border-border rounded-2xl p-6 mb-6">
+              <div className="bg-card border border-border-color rounded-2xl p-6 mb-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-medium text-burgundy mb-4">Package Details</h3>
+                    <h3 className="font-medium text-dark-lavender mb-4">Package Details</h3>
                     <p className="text-lg font-serif">{pkg?.name} - ₹{pkg?.price}</p>
-                    <p className="text-muted-foreground mt-2">
+                    <p className="text-secondary-text mt-2">
                       <span className="font-medium">Occasion:</span> {getOccasionDisplay()}
                     </p>
-                    <p className="text-muted-foreground">
+                    <p className="text-secondary-text">
                       <span className="font-medium">Date:</span> {formatDate(occasionDate)}
                     </p>
                     {recipientName && (
-                      <p className="text-muted-foreground">
+                      <p className="text-secondary-text">
                         <span className="font-medium">For:</span> {recipientName}
                       </p>
                     )}
                   </div>
                   <div>
-                    <h3 className="font-medium text-burgundy mb-4">Selected Items ({selectedItems.length})</h3>
+                    <h3 className="font-medium text-dark-lavender mb-4">Selected Items ({selectedItems.length})</h3>
                     <div className="space-y-2 max-h-48 overflow-y-auto">
                       {selectedItems.map((itemName) => {
                         const item = personalItems.find(i => i.name === itemName);
@@ -527,7 +527,7 @@ function BuildYourBoxPage() {
                                 </span>
                               )}
                             </span>
-                            <span className="text-muted-foreground">₹{item?.price}</span>
+                            <span className="text-secondary-text">₹{item?.price}</span>
                           </div>
                         );
                       })}
@@ -535,21 +535,21 @@ function BuildYourBoxPage() {
                   </div>
                 </div>
                 {recipientMessage && (
-                  <div className="mt-6 pt-6 border-t border-border">
-                    <h3 className="font-medium text-burgundy mb-2">Your Message</h3>
-                    <p className="text-muted-foreground italic">"{recipientMessage}"</p>
+                  <div className="mt-6 pt-6 border-t border-border-color">
+                    <h3 className="font-medium text-dark-lavender mb-2">Your Message</h3>
+                    <p className="text-secondary-text italic">"{recipientMessage}"</p>
                   </div>
                 )}
                 
                 {/* Uploaded Images Preview */}
                 {Object.keys(uploadedImages).length > 0 && (
-                  <div className="mt-6 pt-6 border-t border-border">
-                    <h3 className="font-medium text-burgundy mb-3">Uploaded Images</h3>
+                  <div className="mt-6 pt-6 border-t border-border-color">
+                    <h3 className="font-medium text-dark-lavender mb-3">Uploaded Images</h3>
                     <div className="flex flex-wrap gap-3">
                       {Object.entries(uploadedImages).map(([itemName, image]) => (
                         <div key={itemName} className="relative">
-                          <img src={image} alt={itemName} className="size-16 rounded-lg object-cover border border-border" />
-                          <span className="absolute -bottom-1 -right-1 text-[10px] bg-burgundy text-white px-1.5 py-0.5 rounded-full">
+                          <img src={image} alt={itemName} className="size-16 rounded-lg object-cover border border-border-color" />
+                          <span className="absolute -bottom-1 -right-1 text-[10px] bg-dark-lavender text-white px-1.5 py-0.5 rounded-full">
                             {itemName.split(' ')[0]}
                           </span>
                         </div>
@@ -565,7 +565,7 @@ function BuildYourBoxPage() {
           {step === 5 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <User className="size-6 text-burgundy" />
+                <User className="size-6 text-dark-lavender" />
                 Complete Your Order
               </h2>
               
@@ -588,22 +588,22 @@ function BuildYourBoxPage() {
                         onClick={() => setDeliveryType(option.id as "standard" | "express" | "same-day")}
                         className={`p-4 rounded-xl border-2 text-left transition-all ${
                           deliveryType === option.id
-                            ? "border-burgundy bg-burgundy/5"
-                            : "border-border hover:border-burgundy"
+                            ? "border-dark-lavender bg-dark-lavender/5"
+                            : "border-border-color hover:border-dark-lavender"
                         }`}
                       >
                         <div className="flex justify-between items-start mb-2">
                           <span className="font-medium">{option.name}</span>
                           {deliveryType === option.id && (
-                            <Check className="size-5 text-burgundy" />
+                            <Check className="size-5 text-dark-lavender" />
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground">{option.description}</p>
+                        <p className="text-sm text-secondary-text">{option.description}</p>
                         <div className="mt-2">
                           {isFreeShipping ? (
                             <span className="inline-block bg-green-100 text-green-700 text-sm font-medium px-2 py-0.5 rounded">FREE</span>
                           ) : (
-                            <span className="font-medium text-burgundy">₹{displayPrice}</span>
+                            <span className="font-medium text-dark-lavender">₹{displayPrice}</span>
                           )}
                         </div>
                       </button>
@@ -620,7 +620,7 @@ function BuildYourBoxPage() {
                       type="text"
                       value={formData.senderName}
                       onChange={(e) => setFormData({ ...formData, senderName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -630,7 +630,7 @@ function BuildYourBoxPage() {
                       type="email"
                       value={formData.senderEmail}
                       onChange={(e) => setFormData({ ...formData, senderEmail: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -640,7 +640,7 @@ function BuildYourBoxPage() {
                       type="tel"
                       value={formData.senderPhone}
                       onChange={(e) => setFormData({ ...formData, senderPhone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -652,7 +652,7 @@ function BuildYourBoxPage() {
                       value={formData.address}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       rows={2}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none resize-none"
                       placeholder="Enter full delivery address"
                     />
                   </div>
@@ -663,7 +663,7 @@ function BuildYourBoxPage() {
                         type="text"
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                         placeholder="City"
                       />
                     </div>
@@ -673,7 +673,7 @@ function BuildYourBoxPage() {
                         type="text"
                         value={formData.pincode}
                         onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none"
+                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none"
                         placeholder="Pincode"
                       />
                     </div>
@@ -684,7 +684,7 @@ function BuildYourBoxPage() {
                       value={formData.specialInstructions}
                       onChange={(e) => setFormData({ ...formData, specialInstructions: e.target.value })}
                       rows={2}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none resize-none"
                       placeholder="Any special delivery instructions..."
                     />
                   </div>
@@ -696,15 +696,15 @@ function BuildYourBoxPage() {
           {/* Order Summary - Only on Personal Touches page */}
           {step === 3 && (
             <div className="max-w-4xl mx-auto mt-12">
-              <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="bg-card border border-border-color rounded-2xl p-6">
                 <h3 className="font-serif text-xl mb-4">Order Summary</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Package</span>
+                    <span className="text-secondary-text">Package</span>
                     <span>{pkg?.name} (₹{pkg?.price})</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Items ({selectedItems.length})</span>
+                    <span className="text-secondary-text">Items ({selectedItems.length})</span>
                     <span>₹{selectedItems.reduce((sum, itemName) => {
                       const found = personalItems.find(i => i.name === itemName);
                       if (found) sum += found.price;
@@ -712,7 +712,7 @@ function BuildYourBoxPage() {
                     }, 0)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Shipping</span>
+                    <span className="text-secondary-text">Shipping</span>
                     <span>
                       {selectedDelivery.price === 0 ? (
                         <span className="text-green-600 font-medium">FREE</span>
@@ -722,13 +722,13 @@ function BuildYourBoxPage() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Occasion</span>
+                    <span className="text-secondary-text">Occasion</span>
                     <span>{getOccasionDisplay()} - {formatDate(occasionDate)}</span>
                   </div>
-                  <div className="border-t border-border pt-3 mt-3">
+                  <div className="border-t border-border-color pt-3 mt-3">
                     <div className="flex justify-between font-serif text-2xl">
                       <span>Total</span>
-                      <span className="text-burgundy">₹{calculateTotal()}</span>
+                      <span className="text-dark-lavender">₹{calculateTotal()}</span>
                     </div>
                   </div>
                 </div>
@@ -771,10 +771,10 @@ function BuildYourBoxPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6 mt-12">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

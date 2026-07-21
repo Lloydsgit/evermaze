@@ -27,28 +27,28 @@ function ProfilePage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
-            <Link to="/cart" aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
+            <Link to="/cart" aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-12 md:py-16">
+      <section className="bg-dark-lavender text-white py-12 md:py-16">
         <div className="container-evermaze flex items-center gap-6">
           <div className="size-20 md:size-24 rounded-full bg-champagne/20 flex items-center justify-center">
             <User className="size-10 md:size-12 text-champagne" />
@@ -61,7 +61,7 @@ function ProfilePage() {
       </section>
 
       {/* Tabs */}
-      <section className="border-b border-border">
+      <section className="border-b border-border-color">
         <div className="container-evermaze">
           <div className="flex gap-8">
             {(["orders", "addresses", "settings"] as const).map((tab) => (
@@ -70,8 +70,8 @@ function ProfilePage() {
                 onClick={() => setActiveTab(tab)}
                 className={`py-4 text-sm tracking-[0.2em] uppercase border-b-2 transition-colors ${
                   activeTab === tab
-                    ? "border-burgundy text-burgundy"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    ? "border-dark-lavender text-dark-lavender"
+                    : "border-transparent text-secondary-text hover:text-foreground"
                 }`}
               >
                 {tab === "orders" ? "My Orders" : tab === "addresses" ? "Addresses" : "Settings"}
@@ -88,16 +88,16 @@ function ProfilePage() {
             <div className="space-y-6">
               <h2 className="font-serif text-2xl">My Orders</h2>
               {orders.map((order) => (
-                <div key={order.id} className="bg-card border border-border rounded-2xl p-6">
+                <div key={order.id} className="bg-white border border-border-color rounded-2xl p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="flex gap-4">
-                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-muted">
+                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-secondary-bg">
                         <img src={order.img} alt={order.items} className="size-full object-cover" />
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">{order.id}</p>
+                        <p className="text-xs text-secondary-text">{order.id}</p>
                         <h3 className="font-serif text-lg mt-1">{order.items}</h3>
-                        <p className="text-sm text-muted-foreground mt-1">{order.date}</p>
+                        <p className="text-sm text-secondary-text mt-1">{order.date}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -111,8 +111,8 @@ function ProfilePage() {
               ))}
               {orders.length === 0 && (
                 <div className="text-center py-12">
-                  <Package className="size-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground">No orders yet</p>
+                  <Package className="size-12 mx-auto text-secondary-text mb-4" />
+                  <p className="text-secondary-text">No orders yet</p>
                   <Link to="/shop" className="btn-primary mt-4 inline-block">Start Shopping</Link>
                 </div>
               )}
@@ -123,24 +123,24 @@ function ProfilePage() {
             <div className="space-y-6">
               <h2 className="font-serif text-2xl">My Addresses</h2>
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-card border border-border rounded-2xl p-6">
+                <div className="bg-white border border-border-color rounded-2xl p-6">
                   <div className="flex items-start gap-4">
-                    <MapPin className="size-5 text-burgundy mt-1" />
+                    <MapPin className="size-5 text-dark-lavender mt-1" />
                     <div>
                       <h3 className="font-medium">Home</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
+                      <p className="mt-2 text-sm text-secondary-text">
                         Secunderabad, Hyderabad, Telangana 500062
                       </p>
-                      <p className="mt-1 text-xs text-muted-foreground">+91 9848507639</p>
+                      <p className="mt-1 text-xs text-secondary-text">+91 9848507639</p>
                     </div>
                   </div>
                 </div>
-                <button className="bg-card border border-dashed border-border rounded-2xl p-6 text-left hover:border-burgundy transition-colors">
+                <button className="bg-white border border-dashed border-border-color rounded-2xl p-6 text-left hover:border-dark-lavender transition-colors">
                   <div className="flex items-center gap-4">
-                    <div className="size-10 rounded-full border border-border grid place-items-center">
+                    <div className="size-10 rounded-full border border-border-color grid place-items-center">
                       <span className="text-xl">+</span>
                     </div>
-                    <span className="text-muted-foreground">Add new address</span>
+                    <span className="text-secondary-text">Add new address</span>
                   </div>
                 </button>
               </div>
@@ -154,10 +154,10 @@ function ProfilePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6 mt-12">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>
@@ -183,31 +183,31 @@ function SettingsForm() {
     return (
       <div className="space-y-6">
         <h2 className="font-serif text-2xl">Edit Account Settings</h2>
-        <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+        <div className="bg-white border border-border-color rounded-2xl p-6 md:p-8">
           <div className="space-y-6">
             {/* Name */}
             <div>
               <h3 className="font-medium mb-4 flex items-center gap-2">
-                <User className="size-5 text-burgundy" />
+                <User className="size-5 text-dark-lavender" />
                 Personal Information
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-2">First Name</label>
+                  <label className="block text-sm text-secondary-text mb-2">First Name</label>
                   <input
                     type="text"
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-2">Last Name</label>
+                  <label className="block text-sm text-secondary-text mb-2">Last Name</label>
                   <input
                     type="text"
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -216,30 +216,30 @@ function SettingsForm() {
             {/* Email */}
             <div>
               <h3 className="font-medium mb-4 flex items-center gap-2">
-                <Mail className="size-5 text-burgundy" />
+                <Mail className="size-5 text-dark-lavender" />
                 Email Address
               </h3>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
               />
             </div>
 
             {/* Phone */}
             <div>
               <h3 className="font-medium mb-4 flex items-center gap-2">
-                <Phone className="size-5 text-burgundy" />
+                <Phone className="size-5 text-dark-lavender" />
                 Phone Number
               </h3>
               <div className="flex gap-3">
-                <span className="px-4 py-3 bg-muted rounded-xl text-muted-foreground">+91</span>
+                <span className="px-4 py-3 bg-secondary-bg rounded-xl text-secondary-text">+91</span>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="flex-1 px-4 py-3 rounded-xl border border-border bg-background focus:border-burgundy focus:outline-none transition-colors"
+                  className="flex-1 px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -247,7 +247,7 @@ function SettingsForm() {
             {/* Newsletter */}
             <div>
               <h3 className="font-medium mb-4 flex items-center gap-2">
-                <HeartHandshake className="size-5 text-burgundy" />
+                <HeartHandshake className="size-5 text-dark-lavender" />
                 Newsletter Preferences
               </h3>
               <label className="flex items-center gap-3 cursor-pointer">
@@ -255,14 +255,14 @@ function SettingsForm() {
                   type="checkbox"
                   checked={formData.newsletter}
                   onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
-                  className="size-5 rounded border-border text-burgundy focus:ring-burgundy"
+                  className="size-5 rounded border-border-color text-dark-lavender focus:ring-burgundy"
                 />
                 <span className="text-sm">Subscribe to newsletters and promotional emails</span>
               </label>
             </div>
 
             {/* Actions */}
-            <div className="flex gap-4 pt-4 border-t border-border">
+            <div className="flex gap-4 pt-4 border-t border-border-color">
               <button onClick={handleSave} className="btn-primary">
                 Save Changes
               </button>
@@ -284,33 +284,33 @@ function SettingsForm() {
           Edit Profile
         </button>
       </div>
-      <div className="bg-card border border-border rounded-2xl divide-y divide-border">
+      <div className="bg-white border border-border-color rounded-2xl divide-y divide-border">
         <div className="p-6 flex items-center gap-4">
-          <User className="size-5 text-muted-foreground" />
+          <User className="size-5 text-secondary-text" />
           <div className="flex-1">
             <p className="font-medium">Full Name</p>
-            <p className="text-sm text-muted-foreground">{formData.firstName} {formData.lastName}</p>
+            <p className="text-sm text-secondary-text">{formData.firstName} {formData.lastName}</p>
           </div>
         </div>
         <div className="p-6 flex items-center gap-4">
-          <Mail className="size-5 text-muted-foreground" />
+          <Mail className="size-5 text-secondary-text" />
           <div className="flex-1">
             <p className="font-medium">Email Address</p>
-            <p className="text-sm text-muted-foreground">{formData.email}</p>
+            <p className="text-sm text-secondary-text">{formData.email}</p>
           </div>
         </div>
         <div className="p-6 flex items-center gap-4">
-          <Phone className="size-5 text-muted-foreground" />
+          <Phone className="size-5 text-secondary-text" />
           <div className="flex-1">
             <p className="font-medium">Phone Number</p>
-            <p className="text-sm text-muted-foreground">+91 {formData.phone}</p>
+            <p className="text-sm text-secondary-text">+91 {formData.phone}</p>
           </div>
         </div>
         <div className="p-6 flex items-center gap-4">
-          <HeartHandshake className="size-5 text-muted-foreground" />
+          <HeartHandshake className="size-5 text-secondary-text" />
           <div className="flex-1">
             <p className="font-medium">Newsletter Preferences</p>
-            <p className="text-sm text-muted-foreground">{formData.newsletter ? "Subscribed" : "Not subscribed"}</p>
+            <p className="text-sm text-secondary-text">{formData.newsletter ? "Subscribed" : "Not subscribed"}</p>
           </div>
         </div>
       </div>

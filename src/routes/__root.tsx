@@ -18,7 +18,7 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="font-serif text-7xl">404</h1>
         <h2 className="mt-4 text-xl">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-secondary-text">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
@@ -40,7 +40,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="font-serif text-3xl">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-secondary-text">
           Please try refreshing or return home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">

@@ -54,28 +54,28 @@ function FAQPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></button>
-            <button aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></button>
+            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-16 md:py-20">
+      <section className="bg-dark-lavender text-white py-16 md:py-20">
         <div className="container-evermaze text-center">
           <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">We're here to help</span>
           <h1 className="mt-4 font-serif text-4xl md:text-6xl">Frequently Asked Questions</h1>
@@ -88,16 +88,16 @@ function FAQPage() {
         <div className="container-evermaze max-w-3xl">
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-card border border-border rounded-2xl overflow-hidden">
+              <div key={i} className="bg-white border border-border-color rounded-2xl overflow-hidden">
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between p-6 text-left"
                 >
                   <span className="font-medium pr-4">{faq.q}</span>
-                  <ChevronDown className={`size-5 text-muted-foreground shrink-0 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`size-5 text-secondary-text shrink-0 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
                 </button>
                 {openIndex === i && (
-                  <div className="px-6 pb-6 text-muted-foreground">
+                  <div className="px-6 pb-6 text-secondary-text">
                     {faq.a}
                   </div>
                 )}
@@ -108,10 +108,10 @@ function FAQPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-12 bg-card border-y border-border">
+      <section className="py-12 bg-white border-y border-border-color">
         <div className="container-evermaze text-center">
           <h2 className="font-serif text-2xl">Still have questions?</h2>
-          <p className="mt-2 text-muted-foreground">Our team is here to help you with anything you need.</p>
+          <p className="mt-2 text-secondary-text">Our team is here to help you with anything you need.</p>
           <Link to="/contact" className="btn-primary mt-6 inline-block">
             Contact Us
           </Link>
@@ -119,10 +119,10 @@ function FAQPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

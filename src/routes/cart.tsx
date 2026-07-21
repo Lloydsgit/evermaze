@@ -43,28 +43,28 @@ function CartPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-card border-b border-border py-4">
+      <header className="bg-white border-b border-border-color py-4">
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-burgundy transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
             <ArrowLeft className="size-4" />
             Back to Home
           </Link>
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-burgundy">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-muted-foreground">Just For You</span>
+            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
+            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-burgundy transition-colors"><Heart className="size-[18px]" /></Link>
-            <button aria-label="Cart" className="relative hover:text-burgundy transition-colors">
+            <Link to="/wishlist" aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
+            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
               <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-burgundy text-white text-[9px] rounded-full size-4 grid place-items-center">{items.length}</span>
+              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">{items.length}</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-burgundy text-white py-8 md:py-12">
+      <section className="bg-dark-lavender text-white py-8 md:py-12">
         <div className="container-evermaze">
           <h1 className="font-serif text-3xl md:text-4xl">Shopping Cart</h1>
           <p className="mt-2 text-white/70">{items.length} {items.length === 1 ? "item" : "items"} in your cart</p>
@@ -78,29 +78,29 @@ function CartPage() {
             {/* Cart Items */}
             <div>
               {items.length === 0 ? (
-                <div className="text-center py-16 bg-card rounded-3xl border border-border">
-                  <ShoppingBag className="size-16 mx-auto text-muted-foreground mb-4" />
+                <div className="text-center py-16 bg-white rounded-3xl border border-border-color">
+                  <ShoppingBag className="size-16 mx-auto text-secondary-text mb-4" />
                   <h2 className="font-serif text-2xl">Your cart is empty</h2>
-                  <p className="mt-2 text-muted-foreground">Add some beautiful gift hampers to get started</p>
+                  <p className="mt-2 text-secondary-text">Add some beautiful gift hampers to get started</p>
                   <Link to="/shop" className="btn-primary mt-6 inline-block">Shop Now</Link>
                 </div>
               ) : (
                 <div className="space-y-4">
                   {items.map((item) => (
-                    <div key={item.id} className="bg-card border border-border rounded-2xl p-4 md:p-6">
+                    <div key={item.id} className="bg-white border border-border-color rounded-2xl p-4 md:p-6">
                       <div className="flex gap-4 md:gap-6">
-                        <div className="w-24 md:w-32 h-24 md:h-32 rounded-xl overflow-hidden bg-muted shrink-0">
+                        <div className="w-24 md:w-32 h-24 md:h-32 rounded-xl overflow-hidden bg-secondary-bg shrink-0">
                           <img src={item.img} alt={item.name} className="size-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-4">
                             <div>
                               <h3 className="font-serif text-lg md:text-xl">{item.name}</h3>
-                              <p className="mt-1 text-sm text-muted-foreground">Personalized Gift Hamper</p>
+                              <p className="mt-1 text-sm text-secondary-text">Personalized Gift Hamper</p>
                             </div>
                             <button
                               onClick={() => removeItem(item.id)}
-                              className="p-2 text-muted-foreground hover:text-red-500 transition-colors"
+                              className="p-2 text-secondary-text hover:text-red-500 transition-colors"
                               aria-label="Remove item"
                             >
                               <X className="size-5" />
@@ -110,14 +110,14 @@ function CartPage() {
                             <div className="flex items-center gap-3">
                               <button
                                 onClick={() => updateQty(item.id, -1)}
-                                className="size-8 rounded-full border border-border grid place-items-center hover:border-burgundy transition-colors"
+                                className="size-8 rounded-full border border-border-color grid place-items-center hover:border-dark-lavender transition-colors"
                               >
                                 <Minus className="size-4" />
                               </button>
                               <span className="w-8 text-center font-medium">{item.qty}</span>
                               <button
                                 onClick={() => updateQty(item.id, 1)}
-                                className="size-8 rounded-full border border-border grid place-items-center hover:border-burgundy transition-colors"
+                                className="size-8 rounded-full border border-border-color grid place-items-center hover:border-dark-lavender transition-colors"
                               >
                                 <Plus className="size-4" />
                               </button>
@@ -135,24 +135,24 @@ function CartPage() {
             {/* Order Summary */}
             {items.length > 0 && (
               <div className="lg:sticky lg:top-24 h-fit">
-                <div className="bg-card border border-border rounded-2xl p-6">
+                <div className="bg-white border border-border-color rounded-2xl p-6">
                   <h2 className="font-serif text-2xl mb-6">Order Summary</h2>
                   
                   <div className="space-y-4 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Subtotal</span>
+                      <span className="text-secondary-text">Subtotal</span>
                       <span>₹{subtotal}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Shipping</span>
+                      <span className="text-secondary-text">Shipping</span>
                       <span>{shipping === 0 ? <span className="text-green-600">Free</span> : `₹${shipping}`}</span>
                     </div>
                     {shipping > 0 && (
-                      <p className="text-xs text-muted-foreground bg-champagne-soft p-2 rounded-lg">
+                      <p className="text-xs text-secondary-text bg-champagne-soft p-2 rounded-lg">
                         Add ₹{1499 - subtotal} more for free shipping!
                       </p>
                     )}
-                    <div className="border-t border-border pt-4">
+                    <div className="border-t border-border-color pt-4">
                       <div className="flex justify-between font-serif text-xl">
                         <span>Total</span>
                         <span>₹{total}</span>
@@ -165,15 +165,15 @@ function CartPage() {
                   </button>
 
                   <div className="mt-6 space-y-3">
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-3 text-xs text-secondary-text">
                       <Truck className="size-4" />
                       <span>Free shipping on orders above ₹1499</span>
                     </div>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-3 text-xs text-secondary-text">
                       <Sparkles className="size-4" />
                       <span>Handpacked with love</span>
                     </div>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-3 text-xs text-secondary-text">
                       <Shield className="size-4" />
                       <span>Secure checkout</span>
                     </div>
@@ -181,7 +181,7 @@ function CartPage() {
                 </div>
 
                 <div className="mt-4">
-                  <Link to="/shop" className="text-sm text-burgundy hover:underline">
+                  <Link to="/shop" className="text-sm text-dark-lavender hover:underline">
                     ← Continue Shopping
                   </Link>
                 </div>
@@ -192,10 +192,10 @@ function CartPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border pt-12 pb-6 mt-12">
+      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-burgundy">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-muted-foreground">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
+          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>
