@@ -55,16 +55,23 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Luxury gifting palette */
-  --primary-bg: #F9F6F2;
-  --secondary-bg: #F4EFE8;
+  /* Brand tokens - Luxury warm palette */
+  --primary-bg: #F7F3EE;
+  --secondary-bg: #F2ECE5;
   --card-bg: #FFFFFF;
   --border-color: #E9E3DD;
-  --primary-text: #2E2B2A;
-  --secondary-text: #6C6663;
-  --dusty-lavender: #B8ABC7;
+  --heading-color: #2B2726;
+  --body-text: #5D5754;
+  --nav-text: #3C3836;
+  --logo-color: #2A2725;
+  --dusty-lavender: #A99BB9;
   --dark-lavender: #9E8FB3;
   --hover-lavender: #8F7DA8;
+
+  /* Keep old names for compatibility */
+  --primary-text: var(--heading-color);
+  --secondary-text: var(--body-text);
+  --charcoal: var(--heading-color);
 
   --ivory: oklch(0.972 0.008 85);
   --champagne: oklch(0.82 0.035 75);
@@ -73,22 +80,22 @@
   --success: oklch(0.62 0.06 145);
 
   --background: var(--primary-bg);
-  --foreground: var(--primary-text);
+  --foreground: var(--heading-color);
 
   --card: var(--card-bg);
-  --card-foreground: var(--primary-text);
+  --card-foreground: var(--heading-color);
 
   --popover: var(--card-bg);
-  --popover-foreground: var(--primary-text);
+  --popover-foreground: var(--heading-color);
 
   --primary: var(--dark-lavender);
   --primary-foreground: oklch(1 0 0);
 
   --secondary: var(--secondary-bg);
-  --secondary-foreground: var(--primary-text);
+  --secondary-foreground: var(--heading-color);
 
   --muted: var(--secondary-bg);
-  --muted-foreground: var(--secondary-text);
+  --muted-foreground: var(--body-text);
 
   --accent: var(--dusty-lavender);
   --accent-foreground: oklch(1 0 0);
@@ -112,18 +119,18 @@
 
   body {
     background-color: var(--primary-bg);
-    color: var(--primary-text);
+    color: var(--body-text);
     font-family: var(--font-sans);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     letter-spacing: 0.01em;
   }
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--primary-text);
+    color: var(--heading-color);
   }
 
   ::selection {

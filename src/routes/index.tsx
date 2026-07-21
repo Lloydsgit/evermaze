@@ -69,9 +69,9 @@ function Header() {
     >
       <div className="container-evermaze py-5">
         <div className="hidden lg:flex items-center justify-between">
-          <nav className="flex items-center gap-8">
+          <nav className="flex items-center gap-10">
             {nav.slice(0, 2).map((n) => (
-              <Link key={n.name} to={n.to} className="text-sm tracking-wide text-secondary-text hover:text-dark-lavender transition-colors">
+              <Link key={n.name} to={n.to} className="text-[15px] tracking-wide font-medium" style={{ color: 'var(--nav-text)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--nav-text)'}>
                 {n.name}
               </Link>
             ))}
@@ -79,7 +79,10 @@ function Header() {
               <button
                 onMouseEnter={() => setOccasionsOpen(true)}
                 onMouseLeave={() => setOccasionsOpen(false)}
-                className="text-sm tracking-wide text-secondary-text hover:text-dark-lavender transition-colors flex items-center gap-1"
+                className="text-[15px] tracking-wide font-medium flex items-center gap-1"
+                style={{ color: 'var(--nav-text)' }}
+                onMouseOver={(e) => (e.currentTarget as HTMLElement).style.color = 'var(--dusty-lavender)'}
+                onMouseOut={(e) => (e.currentTarget as HTMLElement).style.color = 'var(--nav-text)'}
               >
                 Occasions <ChevronRight className="size-3.5 rotate-90" />
               </button>
@@ -87,13 +90,16 @@ function Header() {
                 <div
                   onMouseEnter={() => setOccasionsOpen(true)}
                   onMouseLeave={() => setOccasionsOpen(false)}
-                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-border-color py-2 animate-in fade-in slide-in-from-top-2"
+                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-border-color py-2"
                 >
                   {occasionItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.to}
-                      className="block px-5 py-2.5 text-sm text-secondary-text hover:text-dark-lavender hover:bg-secondary-bg transition-colors"
+                      className="block px-5 py-2.5 text-sm hover:bg-secondary-bg transition-colors"
+                      style={{ color: 'var(--body-text)' }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--body-text)'}
                     >
                       {item.name}
                     </Link>
@@ -104,27 +110,34 @@ function Header() {
           </nav>
 
           <Link to="/" className="flex flex-col items-center leading-none mx-8">
-            <span className="font-serif text-2xl tracking-[0.25em] text-primary-text">EVERMAZE</span>
-            <span className="mt-0.5 text-[0.55rem] tracking-[0.3em] uppercase text-secondary-text font-light italic">Just For You</span>
+            <span className="font-serif text-3xl tracking-[0.25em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="mt-0.5 text-[0.6rem] tracking-[0.35em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
           </Link>
 
-          <nav className="flex items-center gap-8">
+          <nav className="flex items-center gap-10">
             {nav.slice(2).map((n) => (
-              <Link key={n.name} to={n.to} className="text-sm tracking-wide text-secondary-text hover:text-dark-lavender transition-colors">
+              <Link key={n.name} to={n.to} className="text-[15px] tracking-wide font-medium"
+                style={{ color: 'var(--nav-text)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--nav-text)'}
+              >
                 {n.name}
               </Link>
             ))}
-            <div className="flex items-center gap-5 ml-4">
+            <div className="flex items-center gap-6 ml-6">
               <button 
                 onClick={() => setSearchOpen(!searchOpen)} 
                 aria-label="Search" 
-                className="text-secondary-text hover:text-dark-lavender transition-colors"
+                className="transition-colors"
+                style={{ color: 'var(--nav-text)' }}
               >
-                <Search className="size-[18px]" />
+                <Search className="size-[19px]" />
               </button>
-              <Link to="/wishlist" aria-label="Wishlist" className="text-secondary-text hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></Link>
-              <Link to="/cart" aria-label="Cart" className="relative text-secondary-text hover:text-dark-lavender transition-colors">
-                <ShoppingBag className="size-[18px]" />
+              <Link to="/wishlist" aria-label="Wishlist" style={{ color: 'var(--nav-text)' }}>
+                <Heart className="size-[19px]" />
+              </Link>
+              <Link to="/cart" aria-label="Cart" className="relative" style={{ color: 'var(--nav-text)' }}>
+                <ShoppingBag className="size-[19px]" />
               </Link>
             </div>
           </nav>
@@ -133,26 +146,27 @@ function Header() {
         <div className="flex lg:hidden items-center justify-between">
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 -ml-2 z-20 text-primary-text"
+            className="p-2 -ml-2 z-20"
+            style={{ color: 'var(--nav-text)' }}
             aria-label="Toggle menu"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
 
           <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-xl tracking-[0.25em] text-primary-text">EVERMAZE</span>
-            <span className="mt-0.5 text-[0.5rem] tracking-[0.3em] uppercase text-secondary-text font-light italic">Just For You</span>
+            <span className="font-serif text-xl tracking-[0.25em] font-semibold" style={{ color: 'var(--logo-color)' }}>EVERMAZE</span>
+            <span className="mt-0.5 text-[0.5rem] tracking-[0.35em] uppercase font-light italic" style={{ color: 'var(--body-text)' }}>Just For You</span>
           </Link>
 
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setSearchOpen(!searchOpen)} 
               aria-label="Search" 
-              className="text-primary-text"
+              style={{ color: 'var(--nav-text)' }}
             >
               <Search className="size-[18px]" />
             </button>
-            <Link to="/cart" aria-label="Cart" className="text-primary-text hover:text-dark-lavender transition-colors">
+            <Link to="/cart" aria-label="Cart" style={{ color: 'var(--nav-text)' }}>
               <ShoppingBag className="size-[18px]" />
             </Link>
           </div>
@@ -164,16 +178,18 @@ function Header() {
         <div className="absolute top-full left-0 right-0 bg-white border-b border-border-color p-4 shadow-md">
           <div className="container-evermaze">
             <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-secondary-text" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5" style={{ color: 'var(--body-text)' }} />
               <input
                 type="search"
                 placeholder="Search for gift hampers..."
                 autoFocus
-                className="w-full pl-12 pr-4 py-3 bg-secondary-bg border border-border-color rounded-full focus:border-dark-lavender focus:outline-none transition-colors"
+                className="w-full pl-12 pr-4 py-3 rounded-full border transition-colors"
+                style={{ backgroundColor: 'var(--secondary-bg)', borderColor: 'var(--border-color)', color: 'var(--heading-color)' }}
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-secondary-text hover:text-primary-text"
+                className="absolute right-4 top-1/2 -translate-y-1/2"
+                style={{ color: 'var(--body-text)' }}
                 aria-label="Close search"
               >
                 <X className="size-5" />
@@ -187,12 +203,12 @@ function Header() {
         <div className="lg:hidden border-t border-border-color bg-white">
           <nav className="container-evermaze py-6 flex flex-col gap-4">
             {nav.map((n) => (
-              <Link key={n.name} to={n.to} className="text-sm tracking-wide text-secondary-text">{n.name}</Link>
+              <Link key={n.name} to={n.to} className="text-sm tracking-wide font-medium" style={{ color: 'var(--nav-text)' }}>{n.name}</Link>
             ))}
             <div className="pt-4 border-t border-border-color">
-              <p className="text-xs tracking-wider uppercase text-secondary-text mb-3">Occasions</p>
+              <p className="text-xs tracking-wider uppercase mb-3" style={{ color: 'var(--body-text)' }}>Occasions</p>
               {occasionItems.map((item) => (
-                <Link key={item.name} to={item.to} className="block py-2 text-sm text-secondary-text">{item.name}</Link>
+                <Link key={item.name} to={item.to} className="block py-2 text-sm" style={{ color: 'var(--body-text)' }}>{item.name}</Link>
               ))}
             </div>
           </nav>
@@ -205,26 +221,28 @@ function Header() {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden" style={{ backgroundColor: 'var(--primary-bg)' }}>
+    <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--primary-bg)' }}>
       <div className="container-evermaze">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <span className="inline-block text-xs tracking-[0.35em] uppercase text-dark-lavender font-medium">EVERMAZE</span>
-            <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.15] tracking-tight text-primary-text">
+        <div className="grid lg:grid-cols-[45%_55%] gap-8 lg:gap-12 items-center min-h-[85vh] lg:min-h-[80vh]">
+          {/* Left Column - Text */}
+          <div className="order-2 lg:order-1 py-12 lg:py-0 flex flex-col justify-center">
+            <span className="text-xs tracking-[0.4em] uppercase" style={{ color: 'var(--dusty-lavender)', fontWeight: 500 }}>EVERMAZE</span>
+            <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight" style={{ color: 'var(--heading-color)' }}>
               Thoughtful Gifts,<br />
-              <span className="italic" style={{ color: 'var(--dusty-lavender)', fontFamily: 'Allura, cursive' }}>Made with Love</span>
+              <span className="italic" style={{ color: 'var(--dusty-lavender)', fontFamily: 'Allura, cursive', fontSize: '1.1em' }}>Made with Love</span>
             </h1>
-            <p className="mt-8 max-w-lg mx-auto lg:mx-0 text-secondary-text leading-relaxed text-base lg:text-lg">
+            <p className="mt-6 max-w-md text-base lg:text-lg leading-relaxed" style={{ color: 'var(--body-text)' }}>
               Curated gift hampers for every occasion, packed with care and made to create unforgettable moments.
             </p>
-            <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/shop" className="btn-primary">Explore Hampers <ArrowRight className="size-4" /></Link>
-              <Link to="/build-your-box" className="btn-outline">Build Your Own Box</Link>
+              <Link to="/build-your-box" className="btn-outline" style={{ borderColor: 'var(--dusty-lavender)', color: 'var(--heading-color)' }}>Build Your Own Box</Link>
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <div className="relative aspect-[4/5] max-w-lg mx-auto lg:max-w-none overflow-hidden rounded-3xl" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+          {/* Right Column - Image */}
+          <div className="order-1 lg:order-2 py-8 lg:py-0">
+            <div className="relative aspect-[4/5] max-w-xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl" style={{ backgroundColor: 'var(--secondary-bg)', boxShadow: '0 25px 60px rgba(43, 39, 38, 0.12)' }}>
               <img
                 src={heroHamper}
                 alt="Premium gift hamper with dried lavender flowers and satin ribbon"
