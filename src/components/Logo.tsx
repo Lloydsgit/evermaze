@@ -12,9 +12,9 @@ export function Logo({ className = '', size = 'md', showTagline = true }: LogoPr
   };
 
   const taglineSizes = {
-    sm: 'text-[0.65rem] md:text-[0.7rem]',
-    md: 'text-[0.7rem] md:text-[0.75rem]',
-    lg: 'text-[0.75rem] md:text-[0.8rem]',
+    sm: 'text-[0.7rem] md:text-[0.75rem]',
+    md: 'text-[0.75rem] md:text-[0.8rem]',
+    lg: 'text-[0.8rem] md:text-[0.85rem]',
   };
 
   return (
@@ -33,7 +33,7 @@ export function Logo({ className = '', size = 'md', showTagline = true }: LogoPr
           className={`mt-1 tracking-[0.35em] uppercase text-[#7D6B87] ${taglineSizes[size]}`}
           style={{ fontWeight: 400 }}
         >
-          Love in a Box
+          Just for You
         </span>
       )}
     </a>

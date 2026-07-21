@@ -184,7 +184,7 @@ function Hero() {
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E9DDD2]/60 backdrop-blur-sm rounded-full mb-6 md:mb-8">
               <Sparkles className="w-4 h-4 text-[#7D6B87]" />
-              <span className="text-xs font-medium tracking-widest uppercase text-[#7D6B87]">Made with love · Est. 2024</span>
+              <span className="text-xs font-medium tracking-widest uppercase text-[#7D6B87]">Made with love</span>
             </div>
             
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] tracking-tight text-[#2F272C]">
@@ -328,7 +328,7 @@ function Occasions() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div>
             <span className="eyebrow">Shop by occasion</span>
-            <h2 className="mt-4 text-[#2F272C]">A hamper for every hello.</h2>
+            <h2 className="mt-4 text-[#2F272C]">A hamper for every occasion.</h2>
           </div>
           <a href="#" className="group inline-flex items-center gap-2 text-sm font-medium text-[#7D6B87] hover:text-[#2F272C] transition-colors">
             View all occasions
@@ -375,11 +375,11 @@ function Occasions() {
 /* ---------- Shop by Price ---------- */
 function ShopByPrice() {
   const prices = [
-    { label: "Under ₹199", amount: "₹199" },
+    { label: "Under ₹149", amount: "₹149" },
     { label: "Under ₹499", amount: "₹499" },
     { label: "Under ₹999", amount: "₹999" },
     { label: "Under ₹1499", amount: "₹1,499" },
-    { label: "Under ₹1999", amount: "₹1,999" },
+    { label: "Under ₹1499", amount: "₹1,999" },
   ];
   
   return (

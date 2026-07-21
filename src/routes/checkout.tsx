@@ -12,7 +12,7 @@ import { sendOrderEmail } from "@/lib/emailService";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout | Evermaze — Love in a Box" },
+      { title: "Checkout | Evermaze — Just for You" },
       { name: "description", content: "Complete your order securely. Build your perfect gift hamper and have it delivered with love." },
     ],
   }),
@@ -76,7 +76,7 @@ function CheckoutPage() {
 
   // Update quantity
   const updateQuantity = (id: string, delta: number) => {
-    setCartItems(items =>
+    setCartItems((items) =>
       items.map(item =>
         item.id === id
           ? { ...item, quantity: Math.max(1, item.quantity + delta) }
@@ -87,12 +87,12 @@ function CheckoutPage() {
 
   // Remove item
   const removeItem = (id: string) => {
-    setCartItems(items => items.filter(item => item.id !== id));
+    setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
   // Handle form change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   // Handle order placement
