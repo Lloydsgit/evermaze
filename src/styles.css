@@ -55,33 +55,34 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Luxury boutique palette (Jo Malone / Zara Home style) */
-  --primary: #8F7A99;
-  --secondary: #F6F2EC;
-  --background: #FAF8F5;
-  --card-bg: #EFE7DF;
-  --heading-color: #2E2A2B;
-  --body-text: #5D5754;
+  /* Brand tokens - Luxury boutique palette */
+  --primary: #8B7A92;
+  --secondary: #EFE7DF;
+  --background: #F8F5F1;
+  --card-bg: #FDFBF8;
+  --heading-color: #2B2728;
+  --body-text: #756D6C;
   --nav-text: #3D3738;
   --border-color: #E5DDD4;
-  --dusty-lavender: #8F7A99;
-  --hover-lavender: #7B667F;
+  --dusty-lavender: #8B7A92;
+  --dark-lavender: #74627A;
   --soft-lavender: #A99BAD;
+  --champagne: #DCC9AE;
+  --champagne-light: #F2E9DF;
 
   /* Keep old names for compatibility */
   --primary-bg: var(--background);
   --secondary-bg: var(--secondary);
-  --soft-beige: var(--card-bg);
+  --soft-beige: var(--secondary);
   --card: var(--card-bg);
   --primary-text: var(--heading-color);
   --secondary-text: var(--body-text);
   --charcoal: var(--heading-color);
-  --dark-lavender: var(--hover-lavender);
+  --hover-lavender: var(--dark-lavender);
   --muted-mauve: var(--soft-lavender);
 
   --ivory: oklch(0.972 0.008 85);
-  --champagne: oklch(0.82 0.035 75);
-  --champagne-soft: oklch(0.92 0.02 80);
+  --champagne-oklch: oklch(0.82 0.035 75);
   --burgundy: oklch(0.38 0.09 20);
   --success: oklch(0.62 0.06 145);
 
