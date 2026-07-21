@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, X, Image } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Heart, Check, Calendar, User, Gift, Sparkles, ArrowRight, Send, X, Image, CreditCard, Smartphone, Building, Truck, Package, PartyPopper } from "lucide-react";
 import { useState, useRef, useCallback } from "react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
@@ -34,6 +34,13 @@ const personalItems = [
   { name: "Succulent Plant", price: 99, description: "Low maintenance beautiful plant", icon: "🌱", hasImage: false },
 ];
 
+const paymentMethods = [
+  { id: "upi", name: "UPI", icon: Smartphone, description: "PhonePe / Google Pay / Paytm" },
+  { id: "card", name: "Credit / Debit Card", icon: CreditCard, description: "Visa, Mastercard, RuPay" },
+  { id: "netbanking", name: "Net Banking", icon: Building, description: "All major banks supported" },
+  { id: "cod", name: "Cash on Delivery", icon: Truck, description: "Pay when you receive" },
+];
+
 function BuildYourBoxPage() {
   const search = Route.useSearch();
   const initialPackage = search.package ? parseInt(search.package as string) : null;
@@ -48,6 +55,9 @@ function BuildYourBoxPage() {
   const [recipientName, setRecipientName] = useState("");
   const [recipientMessage, setRecipientMessage] = useState("");
   const [deliveryType, setDeliveryType] = useState<"standard" | "express" | "same-day">("standard");
+  const [selectedPayment, setSelectedPayment] = useState<string>("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [orderNumber] = useState(`#EVM${Date.now().toString().slice(-8)}`);
   const [formData, setFormData] = useState({
     senderName: "",
     senderEmail: "",
@@ -126,15 +136,22 @@ function BuildYourBoxPage() {
       case 1: return selectedPackage !== null;
       case 2: return selectedOccasion !== "" && occasionDate !== "" && (selectedOccasion !== "Other" || customOccasion !== "");
       case 3: return true; // Personal touches are optional
-      case 4: return true;
+      case 4: return true; // Review step
       case 5: return formData.senderName && formData.senderEmail && formData.senderPhone && formData.address && formData.city && formData.pincode;
+      case 6: return selectedPayment !== ""; // Payment selection required
       default: return true;
     }
-  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, formData]);
+  }, [step, selectedPackage, selectedOccasion, customOccasion, occasionDate, formData, selectedPayment]);
 
   const handleSubmit = () => {
-    alert("Order placed successfully! You will receive a confirmation email shortly.");
+    if (selectedPayment === "cod") {
+      setShowSuccessModal(true);
+    } else {
+      alert("Payment Gateway Coming Soon! Please select Cash on Delivery for now, or we will integrate Razorpay soon.");
+    }
   };
+
+  const selectedPaymentMethod = paymentMethods.find(p => p.id === selectedPayment);
 
   const getOccasionDisplay = () => {
     if (customOccasion) return customOccasion;
@@ -561,16 +578,17 @@ function BuildYourBoxPage() {
             </div>
           )}
 
-          {/* Step 5: Booking Details */}
+          {/* Step 5: Shipping Address */}
           {step === 5 && (
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <User className="size-6 text-dark-lavender" />
-                Complete Your Order
+              <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
+                <User className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
+                Shipping Address
               </h2>
+              <p className="text-lg mb-8" style={{ color: 'var(--body-text)' }}>Enter your delivery details</p>
               
               {/* Delivery Options */}
-              <div className="mb-8">
+              <div className="mb-10">
                 <h3 className="font-medium mb-4">
                   Delivery Options
                   {selectedPackage && [999, 1499, 1999].includes(selectedPackage) && (
@@ -747,7 +765,7 @@ function BuildYourBoxPage() {
                 ← Back to Shop
               </Link>
             )}
-            {step < 5 ? (
+            {step < 6 ? (
               <button 
                 type="button"
                 onClick={() => setStep(step + 1)} 
@@ -763,18 +781,136 @@ function BuildYourBoxPage() {
                 disabled={!canProceed()}
                 className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="size-4" /> Book Now
+                <Send className="size-4" /> Complete Order
               </button>
             )}
           </div>
         </div>
       </section>
 
+      {/* Step 6: Payment Selection */}
+      {step === 6 && (
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
+            <CreditCard className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
+            Select Payment Method
+          </h2>
+          <p className="text-lg mb-8" style={{ color: 'var(--body-text)' }}>Choose how you'd like to pay for your order</p>
+          
+          <div className="grid md:grid-cols-2 gap-5 mb-8">
+            {paymentMethods.map((method) => {
+              const IconComponent = method.icon;
+              return (
+                <button
+                  key={method.id}
+                  type="button"
+                  onClick={() => setSelectedPayment(method.id)}
+                  className={`p-6 rounded-2xl border-2 text-left transition-all ${
+                    selectedPayment === method.id
+                      ? "border-dusty-lavender"
+                      : "border-border-color hover:border-dusty-lavender"
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedPayment === method.id ? 'rgba(143, 122, 153, 0.08)' : 'var(--background)',
+                    borderColor: selectedPayment === method.id ? 'var(--dusty-lavender)' : 'var(--border-color)'
+                  }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="size-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(143, 122, 153, 0.15)' }}>
+                      <IconComponent className="size-6" style={{ color: 'var(--dusty-lavender)' }} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium text-lg">{method.name}</span>
+                        {selectedPayment === method.id && (
+                          <Check className="size-5" style={{ color: 'var(--dusty-lavender)' }} />
+                        )}
+                      </div>
+                      <p className="text-sm mt-1" style={{ color: 'var(--body-text)' }}>{method.description}</p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {selectedPayment && (
+            <div className="rounded-2xl p-8 mb-8" style={{ backgroundColor: 'var(--secondary)', border: '1px solid var(--border-color)' }}>
+              <h3 className="font-serif text-xl mb-6">Order Summary</h3>
+              <div className="space-y-3 text-base">
+                <div className="flex justify-between">
+                  <span style={{ color: 'var(--body-text)' }}>Package</span>
+                  <span>{pkg?.name} (₹{pkg?.price})</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: 'var(--body-text)' }}>Personal Items ({selectedItems.length})</span>
+                  <span>₹{selectedItems.reduce((sum, itemName) => {
+                    const found = personalItems.find(i => i.name === itemName);
+                    if (found) sum += found.price;
+                    return sum;
+                  }, 0)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: 'var(--body-text)' }}>Shipping</span>
+                  <span>{selectedDelivery.price === 0 ? <span className="text-green-600 font-medium">FREE</span> : <>₹{selectedDelivery.price}</>}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: 'var(--body-text)' }}>Payment Method</span>
+                  <span className="font-medium">{selectedPaymentMethod?.name}</span>
+                </div>
+                <div className="border-t border-border-color pt-4 mt-4">
+                  <div className="flex justify-between font-serif text-2xl">
+                    <span>Total</span>
+                    <span style={{ color: 'var(--dusty-lavender)' }}>₹{calculateTotal()}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(46, 42, 43, 0.5)', backdropFilter: 'blur(8px)' }}>
+          <div className="w-full max-w-lg rounded-3xl p-10 text-center animate-in fade-in zoom-in duration-300" style={{ backgroundColor: 'white', boxShadow: '0 25px 80px rgba(46, 42, 43, 0.25)' }}>
+            <div className="size-20 rounded-full mx-auto mb-8 flex items-center justify-center" style={{ backgroundColor: 'rgba(143, 122, 153, 0.15)' }}>
+              <PartyPopper className="size-10" style={{ color: 'var(--dusty-lavender)' }} />
+            </div>
+            <h2 className="font-serif text-3xl mb-3" style={{ color: 'var(--heading-color)' }}>
+              ✨ Order Received!
+            </h2>
+            <p className="text-lg mb-2" style={{ color: 'var(--heading-color)' }}>
+              Thank you for choosing Evermaze.
+            </p>
+            <p className="mb-6" style={{ color: 'var(--body-text)' }}>
+              We've received your order and are preparing your personalized hamper with care.
+            </p>
+            <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: 'var(--secondary)' }}>
+              <p className="text-sm" style={{ color: 'var(--body-text)' }}>Your Order Number</p>
+              <p className="font-serif text-2xl" style={{ color: 'var(--dusty-lavender)' }}>{orderNumber}</p>
+            </div>
+            <p className="text-sm mb-8" style={{ color: 'var(--body-text)' }}>
+              You'll receive an order confirmation via email shortly.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/" className="btn-outline flex-1">
+                Continue Shopping
+              </Link>
+              <button className="btn-primary flex-1" onClick={() => setShowSuccessModal(false)}>
+                View My Order
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
+      <footer className="pt-20 pb-10" style={{ backgroundColor: 'var(--heading-color)' }}>
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
+          <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>Just For You</p>
+          <p className="mt-6 text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>Beautifully personalized gift hampers for every celebration.</p>
         </div>
       </footer>
     </div>

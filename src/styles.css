@@ -55,26 +55,29 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Premium boutique palette */
-  --primary-bg: #F5F1EB;
-  --secondary-bg: #ECE5DD;
-  --soft-beige: #E6DDD3;
-  --card-bg: #FFFFFF;
-  --border-color: #E0D8D0;
-  --heading-color: #2B2726;
+  /* Brand tokens - Luxury boutique palette (Jo Malone / Zara Home style) */
+  --primary: #8F7A99;
+  --secondary: #F6F2EC;
+  --background: #FAF8F5;
+  --card-bg: #EFE7DF;
+  --heading-color: #2E2A2B;
   --body-text: #5D5754;
-  --nav-text: #3A3635;
-  --logo-color: #2B2726;
-  --dusty-lavender: #8A7A95;
-  --dark-lavender: #73627F;
-  --muted-mauve: #9B8C9F;
-  --soft-lavender: #B3A8B8;
-  --hover-lavender: #66586F;
+  --nav-text: #3D3738;
+  --border-color: #E5DDD4;
+  --dusty-lavender: #8F7A99;
+  --hover-lavender: #7B667F;
+  --soft-lavender: #A99BAD;
 
   /* Keep old names for compatibility */
+  --primary-bg: var(--background);
+  --secondary-bg: var(--secondary);
+  --soft-beige: var(--card-bg);
+  --card: var(--card-bg);
   --primary-text: var(--heading-color);
   --secondary-text: var(--body-text);
   --charcoal: var(--heading-color);
+  --dark-lavender: var(--hover-lavender);
+  --muted-mauve: var(--soft-lavender);
 
   --ivory: oklch(0.972 0.008 85);
   --champagne: oklch(0.82 0.035 75);
@@ -82,30 +85,18 @@
   --burgundy: oklch(0.38 0.09 20);
   --success: oklch(0.62 0.06 145);
 
-  --background: var(--primary-bg);
   --foreground: var(--heading-color);
-
-  --card: var(--card-bg);
   --card-foreground: var(--heading-color);
-
   --popover: var(--card-bg);
   --popover-foreground: var(--heading-color);
-
-  --primary: var(--dusty-lavender);
   --primary-foreground: oklch(1 0 0);
-
-  --secondary: var(--secondary-bg);
   --secondary-foreground: var(--heading-color);
-
-  --muted: var(--secondary-bg);
+  --muted: var(--secondary);
   --muted-foreground: var(--body-text);
-
-  --accent: var(--muted-mauve);
+  --accent: var(--dusty-lavender);
   --accent-foreground: oklch(1 0 0);
-
   --destructive: oklch(0.55 0.18 25);
   --destructive-foreground: oklch(1 0 0);
-
   --border: var(--border-color);
   --input: var(--border-color);
   --ring: var(--dusty-lavender);
@@ -154,31 +145,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   background: var(--dusty-lavender);
   color: white;
-  padding: 0.875rem 1.75rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 9999px;
+  border-radius: 50px;
   transition: all 0.3s ease;
-  &:hover { background: var(--hover-lavender); }
+  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
 }
 
 @utility btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   background: transparent;
   color: var(--heading-color);
-  padding: 0.875rem 1.75rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
-  border-radius: 9999px;
+  border-radius: 50px;
   transition: all 0.3s ease;
   &:hover { background: var(--dusty-lavender); color: white; }
 }
@@ -187,33 +178,33 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   background: var(--dusty-lavender);
   color: white;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 9999px;
+  border-radius: 50px;
   transition: all 0.3s ease;
-  &:hover { background: var(--hover-lavender); }
+  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
 }
 
 @utility btn-white {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   background: white;
-  color: var(--dark-lavender);
-  padding: 0.875rem 1.75rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  color: var(--dusty-lavender);
+  padding: 1rem 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid var(--dusty-lavender);
-  border-radius: 9999px;
+  border-radius: 50px;
   transition: all 0.3s ease;
-  &:hover { background: var(--secondary-bg); }
+  &:hover { background: var(--card-bg); }
 }
 
 @utility eyebrow {
