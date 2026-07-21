@@ -50,16 +50,16 @@ function ShopPage() {
     <div className="min-h-screen">
       {/* Header */}
       <header 
-        className="py-4 border-b"
+        className="py-4 border-b sticky top-0 z-50"
         style={{ 
-          backgroundColor: 'rgba(250, 248, 245, 0.92)',
+          backgroundColor: 'rgba(248, 243, 236, 0.92)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderColor: 'rgba(232, 226, 220, 0.6)',
+          borderColor: 'rgba(232, 226, 220, 0.5)',
         }}
       >
         <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm hover:text-dark-lavender transition-colors min-h-[44px]" style={{ color: '#5A4B54' }}>
+          <Link to="/" className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity min-h-[44px]" style={{ color: '#5A4B54' }}>
             <ArrowLeft className="size-4" />
             <span className="hidden sm:inline">Back to Home</span>
           </Link>
@@ -68,19 +68,19 @@ function ShopPage() {
             <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>Just For You</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/wishlist" aria-label="Wishlist" className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+            <Link to="/wishlist" aria-label="Wishlist" className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:opacity-70 transition-opacity" style={{ color: '#5A4B54' }}>
               <Heart className="size-[20px]" />
             </Link>
-            <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-dark-lavender transition-colors" style={{ color: '#5A4B54' }}>
+            <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:opacity-70 transition-opacity" style={{ color: '#5A4B54' }}>
               <ShoppingBag className="size-[20px]" />
-              <span className="absolute -top-1 -right-1 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
+              <span className="absolute -top-1 -right-1 text-white text-[9px] rounded-full size-4 grid place-items-center" style={{ backgroundColor: '#8E78A8' }}>2</span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="text-white py-16 md:py-20" style={{ backgroundColor: '#8D7699' }}>
+      <section className="text-white py-16 md:py-20" style={{ backgroundColor: '#8E78A8' }}>
         <div className="container-evermaze text-center">
           <h1 className="font-serif text-4xl md:text-6xl">Choose Your Hamper</h1>
           <p className="mt-4 text-white/80 max-w-xl mx-auto">
@@ -90,7 +90,7 @@ function ShopPage() {
       </section>
 
       {/* Hamper Types Grid */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--background)' }}>
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F3EC' }}>
         <div className="container-evermaze">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hamperTypes.map((hamper) => (
@@ -98,7 +98,7 @@ function ShopPage() {
                 key={hamper.price}
                 to={`/build-your-box?package=${hamper.price}`}
                 className="group bg-white border border-border-color rounded-3xl overflow-hidden hover:border-dark-lavender transition-all hover:-translate-y-1"
-                style={{ boxShadow: '0 8px 30px rgba(43, 39, 40, 0.08)' }}
+                style={{ boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={hamper.img} alt={hamper.name} className="size-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -121,11 +121,11 @@ function ShopPage() {
       </section>
 
       {/* Footer */}
-      <footer className="pt-16 pb-8" style={{ backgroundColor: '#2F262B' }}>
+      <footer className="pt-16 pb-8" style={{ backgroundColor: '#5A4B54' }}>
         <div className="container-evermaze text-center">
           <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
-          <p className="mt-4 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>Beautifully personalized gift hampers for every celebration.</p>
-          <p className="mt-6 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
+          <p className="mt-4 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>Beautifully personalized gift hampers for every celebration.</p>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>© 2026 Evermaze. Made with love.</p>
         </div>
       </footer>
     </div>

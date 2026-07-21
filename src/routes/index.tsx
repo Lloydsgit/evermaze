@@ -64,24 +64,31 @@ function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-md" : ""
+        scrolled ? "shadow-sm" : ""
       }`}
       style={{ 
-        minHeight: '96px',
-        backgroundColor: 'rgba(250, 248, 245, 0.92)',
+        minHeight: '88px',
+        backgroundColor: 'rgba(248, 243, 236, 0.92)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(232, 226, 220, 0.6)',
+        borderBottom: '1px solid rgba(232, 226, 220, 0.5)',
       }}
     >
       <div className="container-evermaze h-full flex items-center">
+        {/* Logo - Left aligned */}
+        <Link to="/" className="flex flex-col items-start leading-none lg:mr-12">
+          <span className="font-serif text-3xl lg:text-4xl tracking-[0.15em] font-semibold" style={{ color: '#5A4B54' }}>EVERMAZE</span>
+          <span className="mt-0.5 text-[9px] lg:text-[10px] tracking-[0.3em] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>JUST FOR YOU</span>
+        </Link>
+
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center justify-between w-full">
-          <nav className="flex items-center gap-10" style={{ gap: '44px' }}>
+          <nav className="flex items-center gap-8" style={{ gap: '36px' }}>
             {nav.slice(0, 2).map((n) => (
               <Link 
                 key={n.name} 
                 to={n.to} 
-                className="text-[17px] font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
+                className="text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
                 style={{ color: '#5A4B54', letterSpacing: '0.3px' }}
               >
                 {n.name}
@@ -91,22 +98,23 @@ function Header() {
               <button
                 onMouseEnter={() => setOccasionsOpen(true)}
                 onMouseLeave={() => setOccasionsOpen(false)}
-                className="text-[17px] font-medium flex items-center gap-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
+                className="text-sm font-medium flex items-center gap-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
                 style={{ color: '#5A4B54', letterSpacing: '0.3px' }}
               >
-                Occasions <ChevronRight className="size-3.5 rotate-90" />
+                Occasions <ChevronRight className="size-3 rotate-90" />
               </button>
               {occasionsOpen && (
                 <div
                   onMouseEnter={() => setOccasionsOpen(true)}
                   onMouseLeave={() => setOccasionsOpen(false)}
-                  className="absolute top-full left-0 mt-3 w-52 bg-white rounded-2xl shadow-xl border border-border-color py-3"
+                  className="absolute top-full left-0 mt-3 w-52 rounded-2xl shadow-xl border border-border-color py-3"
+                  style={{ backgroundColor: '#FFFDF9' }}
                 >
                   {occasionItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.to}
-                      className="block px-6 py-3 text-[15px] transition-colors"
+                      className="block px-6 py-3 text-sm transition-colors"
                       style={{ color: '#5A4B54' }}
                       onMouseEnter={(e) => e.currentTarget.style.color = 'var(--dusty-lavender)'}
                       onMouseLeave={(e) => e.currentTarget.style.color = '#5A4B54'}
@@ -119,41 +127,37 @@ function Header() {
             </div>
           </nav>
 
-          <Link to="/" className="flex flex-col items-center leading-none mx-12">
-            <span className="font-serif text-[46px] tracking-[9px] font-semibold" style={{ color: '#5A4B54' }}>EVERMAZE</span>
-            <span className="mt-1 text-[10px] tracking-[9px] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>JUST FOR YOU</span>
-          </Link>
-
-          <nav className="flex items-center gap-10" style={{ gap: '44px' }}>
+          <nav className="flex items-center gap-8" style={{ gap: '36px' }}>
             {nav.slice(2).map((n) => (
               <Link 
                 key={n.name} 
                 to={n.to} 
-                className="text-[17px] font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
+                className="text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-dusty-lavender hover:after:w-full after:transition-all after:duration-300"
                 style={{ color: '#5A4B54', letterSpacing: '0.3px' }}
               >
                 {n.name}
               </Link>
             ))}
-            <div className="flex items-center gap-6 ml-6">
+            <div className="flex items-center gap-5 ml-4">
               <button 
                 onClick={() => setSearchOpen(!searchOpen)} 
                 aria-label="Search" 
                 style={{ color: '#5A4B54' }}
                 className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
-                <Search className="size-[20px]" />
+                <Search className="size-[18px]" />
               </button>
               <Link to="/wishlist" aria-label="Wishlist" style={{ color: '#5A4B54' }} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                <Heart className="size-[20px]" />
+                <Heart className="size-[18px]" />
               </Link>
               <Link to="/cart" aria-label="Cart" className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" style={{ color: '#5A4B54' }}>
-                <ShoppingBag className="size-[20px]" />
+                <ShoppingBag className="size-[18px]" />
               </Link>
             </div>
           </nav>
         </div>
 
+        {/* Mobile Navigation */}
         <div className="flex lg:hidden items-center justify-between w-full">
           <button
             onClick={() => setOpen(!open)}
@@ -164,17 +168,20 @@ function Header() {
             {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
 
-          <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[6px] font-semibold" style={{ color: '#5A4B54' }}>EVERMAZE</span>
-            <span className="mt-0.5 text-[9px] tracking-[6px] uppercase" style={{ color: '#5A4B54', opacity: 0.7 }}>JUST FOR YOU</span>
-          </Link>
-
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={() => setSearchOpen(!searchOpen)} 
+              aria-label="Search" 
+              style={{ color: '#5A4B54' }}
+              className="p-3 min-w-[48px] min-h-[48px] flex items-center justify-center"
+            >
+              <Search className="size-[18px]" />
+            </button>
             <Link to="/wishlist" aria-label="Wishlist" className="p-3 min-w-[48px] min-h-[48px] flex items-center justify-center" style={{ color: '#5A4B54' }}>
-              <Heart className="size-[20px]" />
+              <Heart className="size-[18px]" />
             </Link>
             <Link to="/cart" aria-label="Cart" className="p-3 min-w-[48px] min-h-[48px] flex items-center justify-center" style={{ color: '#5A4B54' }}>
-              <ShoppingBag className="size-[20px]" />
+              <ShoppingBag className="size-[18px]" />
             </Link>
           </div>
         </div>
@@ -182,20 +189,20 @@ function Header() {
 
       {/* Search Bar */}
       {searchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-border-color p-5 shadow-lg" style={{ minHeight: '80px', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute top-full left-0 right-0 p-4 shadow-lg" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid var(--border-color)' }}>
           <div className="container-evermaze">
             <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 size-5" style={{ color: '#5A4B54' }} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5" style={{ color: '#5A4B54' }} />
               <input
                 type="search"
                 placeholder="Search for gift hampers..."
                 autoFocus
-                className="w-full pl-14 pr-12 py-4 rounded-full border text-base"
-                style={{ backgroundColor: 'var(--secondary-bg)', borderColor: 'var(--border-color)', color: 'var(--heading-color)' }}
+                className="w-full pl-12 pr-12 py-3.5 rounded-full border text-sm"
+                style={{ backgroundColor: '#F5EFE7', borderColor: 'var(--border-color)', color: '#5A4B54' }}
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="absolute right-5 top-1/2 -translate-y-1/2"
+                className="absolute right-4 top-1/2 -translate-y-1/2"
                 style={{ color: '#5A4B54' }}
                 aria-label="Close search"
               >
@@ -207,15 +214,15 @@ function Header() {
       )}
 
       {open && (
-        <div className="lg:hidden border-t border-border-color bg-white" style={{ minHeight: 'calc(100vh - 96px)' }}>
-          <nav className="container-evermaze py-8 flex flex-col gap-5">
+        <div className="lg:hidden border-t border-border-color" style={{ backgroundColor: '#FFFDF9', maxHeight: 'calc(100vh - 88px)', overflow: 'auto' }}>
+          <nav className="container-evermaze py-8 flex flex-col gap-4">
             {nav.map((n) => (
-              <Link key={n.name} to={n.to} className="text-lg font-medium" style={{ color: '#5A4B54' }}>{n.name}</Link>
+              <Link key={n.name} to={n.to} className="text-base font-medium py-2" style={{ color: '#5A4B54' }}>{n.name}</Link>
             ))}
-            <div className="pt-6 border-t border-border-color">
-              <p className="text-sm tracking-widest uppercase mb-4" style={{ color: '#5A4B54' }}>Occasions</p>
+            <div className="pt-6 border-t border-border-color mt-2">
+              <p className="text-xs tracking-widest uppercase mb-3 font-medium" style={{ color: '#5A4B54' }}>Occasions</p>
               {occasionItems.map((item) => (
-                <Link key={item.name} to={item.to} className="block py-3 text-base" style={{ color: '#5A4B54' }}>{item.name}</Link>
+                <Link key={item.name} to={item.to} className="block py-2.5 text-sm" style={{ color: '#5A4B54' }}>{item.name}</Link>
               ))}
             </div>
           </nav>
@@ -228,18 +235,18 @@ function Header() {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 md:pt-40 pb-16 lg:pb-0" style={{ backgroundColor: 'var(--background)' }}>
+    <section className="relative overflow-hidden pt-36 md:pt-40 pb-16 lg:pb-0" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="grid lg:grid-cols-[48%_52%] gap-12 lg:gap-16 items-center min-h-[80vh] lg:min-h-[85vh] py-12 lg:py-16">
           {/* Left Column - Text */}
           <div className="order-2 lg:order-1 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 mb-6 lg:mb-8">
-              <Sparkles className="size-4" style={{ color: 'var(--dusty-lavender)' }} />
-              <span className="text-[11px] tracking-[0.4em] uppercase font-medium" style={{ color: 'var(--dusty-lavender)' }}>Made With Love</span>
+              <Sparkles className="size-4" style={{ color: '#8E78A8' }} />
+              <span className="text-[11px] tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>Made With Love</span>
             </div>
-            <h1 className="font-serif leading-[1.05] tracking-tight" style={{ color: '#2F262B' }}>
+            <h1 className="font-serif leading-[1.05] tracking-tight" style={{ color: '#5A4B54' }}>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light">Personalized</span>
-              <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl italic mt-1" style={{ color: '#8D7699' }}>Gift Hampers</span>
+              <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl italic mt-1" style={{ color: '#8E78A8' }}>Gift Hampers</span>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Made With</span>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Love.</span>
             </h1>
@@ -254,7 +261,7 @@ function Hero() {
 
           {/* Right Column - Image */}
           <div className="order-1 lg:order-2 flex items-center">
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-3xl" style={{ backgroundColor: 'var(--secondary)', boxShadow: '0 40px 100px rgba(43, 39, 40, 0.12)' }}>
+            <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-3xl" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 40px 100px rgba(90, 75, 84, 0.1)' }}>
               <img
                 src={heroHamper}
                 alt="Premium gift hamper with dried lavender flowers and satin ribbon"
@@ -262,11 +269,11 @@ function Hero() {
                 className="size-full object-cover"
               />
               {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 px-5 py-3 rounded-full bg-white/95 backdrop-blur-sm shadow-lg">
+              <div className="absolute bottom-6 left-6 px-5 py-3 rounded-full backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
                 <span className="text-sm font-medium" style={{ color: '#5A4B54' }}>Packed with love</span>
               </div>
               {/* Review Card */}
-              <div className="absolute top-6 right-6 px-5 py-4 rounded-2xl bg-white/95 backdrop-blur-sm shadow-lg">
+              <div className="absolute top-6 right-6 px-5 py-4 rounded-2xl backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
                 <div className="flex items-center gap-2 mb-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="size-3 fill-current" style={{ color: '#DCC9AE' }} />
@@ -276,9 +283,9 @@ function Hero() {
               </div>
               {/* Slider Dots */}
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="size-2 rounded-full" style={{ backgroundColor: '#8D7699' }} />
-                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(141, 118, 153, 0.3)' }} />
-                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(141, 118, 153, 0.3)' }} />
+                <div className="size-2 rounded-full" style={{ backgroundColor: '#8E78A8' }} />
+                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
+                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
               </div>
             </div>
           </div>
@@ -291,20 +298,20 @@ function Hero() {
 /* ---------- Announcement Bar ---------- */
 function AnnouncementBar() {
   const features = [
-    { icon: Truck, text: "Free shipping over ₹999" },
-    { icon: Gift, text: "Personalization included" },
-    { icon: Clock, text: "Same-day dispatch" },
-    { icon: HeartIcon, text: "Handwritten note" },
-    { icon: Package, text: "Premium gift packaging" },
+    { icon: Truck, text: "Free Shipping on Orders Above ₹999" },
+    { icon: Gift, text: "Personalization Included" },
+    { icon: Clock, text: "Same-Day Dispatch" },
+    { icon: HeartIcon, text: "Handwritten Gift Note" },
+    { icon: Package, text: "Premium Packaging" },
   ];
 
   return (
-    <section className="py-4 border-b" style={{ backgroundColor: 'rgba(250, 248, 245, 0.95)', borderColor: 'var(--border-color)' }}>
+    <section className="py-4 border-b" style={{ backgroundColor: '#FFFDF9', borderColor: '#E8E2DC' }}>
       <div className="container-evermaze">
         <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
           {features.map((feature, i) => (
             <div key={i} className="flex items-center gap-2.5">
-              <feature.icon className="size-4 shrink-0" style={{ color: '#8D7699' }} />
+              <feature.icon className="size-4 shrink-0" style={{ color: '#8E78A8' }} />
               <span className="text-xs lg:text-sm whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
             </div>
           ))}
@@ -313,7 +320,7 @@ function AnnouncementBar() {
           <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide">
             {features.slice(0, 3).map((feature, i) => (
               <div key={i} className="flex items-center gap-2 shrink-0">
-                <feature.icon className="size-4 shrink-0" style={{ color: '#8D7699' }} />
+                <feature.icon className="size-4 shrink-0" style={{ color: '#8E78A8' }} />
                 <span className="text-xs whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
               </div>
             ))}
@@ -327,7 +334,7 @@ function AnnouncementBar() {
 /* ---------- Emotion Banner ---------- */
 function EmotionBanner() {
   return (
-    <section className="py-28 lg:py-36" style={{ backgroundColor: 'var(--dusty-lavender)' }}>
+    <section className="py-28 lg:py-36" style={{ backgroundColor: '#8E78A8' }}>
       <div className="container-evermaze text-center">
         <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white">
           More Than a Gift,<br />It's an Emotion
@@ -358,11 +365,11 @@ function OccasionCategories() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--secondary)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>SHOP BY OCCASION</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>Find the Perfect Gift</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>SHOP BY OCCASION</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Find the Perfect Gift</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
           {occasions.map((occ, i) => (
@@ -370,7 +377,7 @@ function OccasionCategories() {
               key={i}
               to="/shop"
               className="group relative aspect-[3/4] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
-              style={{ boxShadow: '0 8px 30px rgba(43, 39, 40, 0.1)' }}
+              style={{ boxShadow: '0 8px 30px rgba(90, 75, 84, 0.1)' }}
             >
               <img
                 src={occ.img}
@@ -399,32 +406,32 @@ function FeaturedCollection() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--background)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 lg:mb-20">
           <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>FEATURED COLLECTION</span>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>Our Bestsellers</h2>
+            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>FEATURED COLLECTION</span>
+            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Our Bestsellers</h2>
           </div>
-          <Link to="/shop" className="text-sm flex items-center gap-2 transition-colors hover:opacity-70" style={{ color: '#8D7699' }}>
+          <Link to="/shop" className="text-sm flex items-center gap-2 transition-colors hover:opacity-70" style={{ color: '#8E78A8' }}>
             View All <ArrowRight className="size-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {products.map((p, i) => (
             <div key={i} className="group">
-              <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 lg:mb-5 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: 'var(--card-bg)', boxShadow: '0 8px 30px rgba(43, 39, 40, 0.08)' }}>
+              <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 lg:mb-5 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}>
                 <img src={p.img} alt={p.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <button className="absolute bottom-4 right-4 size-12 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ color: 'var(--dusty-lavender)' }}>
+                <button className="absolute bottom-4 right-4 size-12 rounded-full bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ color: '#8E78A8' }}>
                   <Plus className="size-5" />
                 </button>
               </div>
-              <h3 className="font-medium text-sm lg:text-base" style={{ color: '#2F262B' }}>{p.name}</h3>
+              <h3 className="font-medium text-sm lg:text-base" style={{ color: '#5A4B54' }}>{p.name}</h3>
               <div className="flex items-center gap-2 mt-2">
                 <Star className="size-3.5 fill-current" style={{ color: '#DCC9AE' }} />
                 <span className="text-xs" style={{ color: '#5A4B54' }}>{p.rating}</span>
               </div>
-              <p className="mt-1 font-serif text-lg" style={{ color: '#2F262B' }}>₹{p.price}</p>
+              <p className="mt-1 font-serif text-lg" style={{ color: '#5A4B54' }}>₹{p.price}</p>
             </div>
           ))}
         </div>
@@ -436,12 +443,12 @@ function FeaturedCollection() {
 /* ---------- Build Your Own Box Promo ---------- */
 function BuildBoxPromo() {
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--champagne-light)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>CREATE YOUR OWN</span>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>
+            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>CREATE YOUR OWN</span>
+            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
               Build a Hamper<br />That's Uniquely Yours
             </h2>
             <p className="mt-5 text-base leading-relaxed max-w-md" style={{ color: '#5A4B54' }}>
@@ -452,7 +459,7 @@ function BuildBoxPromo() {
             </Link>
           </div>
           <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden" style={{ boxShadow: '0 30px 80px rgba(43, 39, 40, 0.12)' }}>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden" style={{ boxShadow: '0 30px 80px rgba(90, 75, 84, 0.1)' }}>
               <img src={hamper5} alt="Custom gift hamper" className="size-full object-cover" />
             </div>
           </div>
@@ -473,19 +480,19 @@ function WhyChoose() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--background)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>WHY EVERMAZE</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>What Makes Us Special</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>WHY EVERMAZE</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Makes Us Special</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-10">
           {reasons.map((r, i) => (
             <div key={i} className="text-center">
-              <div className="size-16 rounded-full mx-auto mb-5 flex items-center justify-center transition-transform duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(139, 122, 146, 0.1)' }}>
-                <r.icon className="size-7" style={{ color: '#8D7699' }} />
+              <div className="size-16 rounded-full mx-auto mb-5 flex items-center justify-center transition-transform duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(142, 120, 168, 0.1)' }}>
+                <r.icon className="size-7" style={{ color: '#8E78A8' }} />
               </div>
-              <p className="text-sm font-medium" style={{ color: '#2F262B' }}>{r.label}</p>
+              <p className="text-sm font-medium" style={{ color: '#5A4B54' }}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -521,15 +528,15 @@ function Testimonials() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--secondary)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>LOVE LETTERS</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>What Our Customers Say</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>LOVE LETTERS</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Our Customers Say</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {reviews.map((r, i) => (
-            <div key={i} className="rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: 'var(--card-bg)', boxShadow: '0 8px 40px rgba(43, 39, 40, 0.06)' }}>
+            <div key={i} className="rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#F5EFE7', boxShadow: '0 8px 40px rgba(90, 75, 84, 0.06)' }}>
               <Quote className="size-8 mb-5" style={{ color: '#DCC9AE' }} />
               <div className="flex items-center gap-1.5 mb-4">
                 {[...Array(r.rating)].map((_, j) => (
@@ -538,11 +545,11 @@ function Testimonials() {
               </div>
               <p className="leading-relaxed text-sm mb-5" style={{ color: '#5A4B54' }}>"{r.text}"</p>
               <div className="flex items-center gap-3">
-                <div className="size-12 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--secondary)' }}>
+                <div className="size-12 rounded-full overflow-hidden" style={{ backgroundColor: '#FFFDF9' }}>
                   <img src={r.img} alt={r.name} className="size-full object-cover" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm" style={{ color: '#2F262B' }}>{r.name}</p>
+                  <p className="font-medium text-sm" style={{ color: '#5A4B54' }}>{r.name}</p>
                   <p className="text-xs" style={{ color: '#5A4B54' }}>{r.location}</p>
                 </div>
               </div>
@@ -559,17 +566,17 @@ function InstagramGallery() {
   const images = [hamper1, hamper2, hamper3, hamper4, hamper5, hamper6];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--background)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8D7699' }}>@evermaze.gifts</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>Follow Our Journey</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#8E78A8' }}>@evermaze.gifts</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Follow Our Journey</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {images.map((img, i) => (
-            <a key={i} href="#" className="group relative aspect-square rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style={{ boxShadow: '0 8px 30px rgba(43, 39, 40, 0.08)' }}>
+            <a key={i} href="#" className="group relative aspect-square rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" style={{ boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}>
               <img src={img} alt={`Instagram post ${i + 1}`} className="size-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ backgroundColor: 'rgba(43, 39, 40, 0.4)' }}>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ backgroundColor: 'rgba(45, 39, 38, 0.4)' }}>
                 <Instagram className="size-8 text-white" />
               </div>
             </a>
@@ -583,10 +590,10 @@ function InstagramGallery() {
 /* ---------- Newsletter ---------- */
 function Newsletter() {
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: 'var(--champagne-light)' }}>
+    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#2F262B' }}>Join the Evermaze Family</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Join the Evermaze Family</h2>
           <p className="mt-5 text-base" style={{ color: '#5A4B54' }}>
             Get gifting inspiration, exclusive offers, and early access to new hampers.
           </p>
@@ -595,7 +602,7 @@ function Newsletter() {
               type="email"
               placeholder="Enter your email"
               className="flex-1 px-6 py-4 rounded-full border text-sm min-h-[52px]"
-              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)', color: '#2F262B' }}
+              style={{ backgroundColor: '#F5EFE7', borderColor: '#E8E2DC', color: '#5A4B54' }}
             />
             <button className="btn-primary whitespace-nowrap w-full sm:w-auto justify-center">
               Subscribe
@@ -633,18 +640,18 @@ function Footer() {
       t: "Company",
       l: [
         { name: "Our Story", to: "/about" },
-        { name: "Press", to: "/about" },
-        { name: "Careers", to: "/about" },
+        { name: "Track Order", to: "/contact" },
+        { name: "Contact", to: "/contact" },
       ]
     },
   ];
   return (
-    <footer className="pt-20 pb-10" style={{ backgroundColor: '#2F262B' }}>
+    <footer className="pt-20 pb-10" style={{ backgroundColor: '#5A4B54' }}>
       <div className="container-evermaze">
         {/* Newsletter mini */}
         <div className="max-w-xl mx-auto text-center mb-16">
           <h3 className="font-serif text-2xl text-white mb-3">Stay Connected</h3>
-          <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>
             Subscribe for exclusive offers and gifting inspiration.
           </p>
           <div className="flex gap-3 max-w-md mx-auto">
@@ -654,7 +661,7 @@ function Footer() {
               className="flex-1 px-5 py-3 rounded-full text-sm min-h-[48px]"
               style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
             />
-            <button className="px-6 py-3 rounded-full bg-white min-h-[48px] text-sm font-medium transition-colors hover:bg-opacity-90" style={{ color: '#2F262B' }}>
+            <button className="px-6 py-3 rounded-full bg-white min-h-[48px] text-sm font-medium transition-colors hover:bg-opacity-90" style={{ color: '#5A4B54' }}>
               Join
             </button>
           </div>
@@ -663,8 +670,8 @@ function Footer() {
         <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 lg:gap-16">
           <div>
             <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
-            <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>Just For You</p>
-            <p className="mt-8 max-w-xs leading-relaxed text-base" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>Just For You</p>
+            <p className="mt-8 max-w-xs leading-relaxed text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
               Beautifully personalized gift hampers, thoughtfully curated for every celebration.
             </p>
             <div className="mt-8 flex gap-4">
@@ -681,14 +688,14 @@ function Footer() {
           </div>
           {cols.map((c) => (
             <div key={c.t}>
-              <h4 className="text-xs tracking-[0.25em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.4)' }}>{c.t}</h4>
+              <h4 className="text-xs tracking-[0.25em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.5)' }}>{c.t}</h4>
               <ul className="space-y-4 text-base">
-                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="transition-colors hover:opacity-70" style={{ color: 'rgba(255,255,255,0.7)' }}>{li.name}</Link></li>)}
+                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="transition-colors hover:opacity-70" style={{ color: 'rgba(255,255,255,0.8)' }}>{li.name}</Link></li>)}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-16 lg:mt-20 pt-8 border-t flex flex-col md:flex-row justify-between gap-4 text-sm" style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.4)' }}>
+        <div className="mt-16 lg:mt-20 pt-8 border-t flex flex-col md:flex-row justify-between gap-4 text-sm" style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}>
           <span>© 2026 Evermaze. Made with love.</span>
           <div className="flex flex-wrap gap-6">
             <a href="#" className="transition-colors hover:opacity-70">Privacy Policy</a>

@@ -56,19 +56,19 @@
   --radius: 0.5rem;
 
   /* Brand tokens - Luxury boutique palette */
-  --primary: #8D7699;
-  --secondary: #F3ECE4;
-  --background: #FAF8F5;
-  --card-bg: #FDFBF8;
-  --heading-color: #2F2A2D;
+  --primary: #8E78A8;
+  --secondary: #FFFDF9;
+  --background: #F8F3EC;
+  --card-bg: #F5EFE7;
+  --heading-color: #5A4B54;
   --body-text: #5A4B54;
-  --nav-text: #2F2A2D;
+  --nav-text: #5A4B54;
   --border-color: #E8E2DC;
-  --dusty-lavender: #8D7699;
+  --dusty-lavender: #8E78A8;
   --dark-lavender: #5A4B54;
   --soft-lavender: #A99BAD;
   --champagne: #DCC9AE;
-  --champagne-light: #F3ECE4;
+  --champagne-light: #F8F3EC;
 
   /* Keep old names for compatibility */
   --primary-bg: var(--background);
@@ -77,11 +77,11 @@
   --card: var(--card-bg);
   --primary-text: var(--heading-color);
   --secondary-text: var(--body-text);
-  --charcoal: var(--heading-color);
+  --charcoal: #2D2726;
   --hover-lavender: var(--dark-lavender);
   --muted-mauve: var(--soft-lavender);
 
-  --ivory: #FAF8F5;
+  --ivory: #FFFDF9;
   --champagne-oklch: oklch(0.82 0.035 75);
   --burgundy: #5A4B54;
   --success: oklch(0.62 0.06 145);
