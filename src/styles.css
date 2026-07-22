@@ -48,58 +48,68 @@
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-soft: 0 1px 2px oklch(0.2 0.02 40 / 0.04), 0 8px 24px oklch(0.2 0.02 40 / 0.06);
-  --shadow-card: 0 1px 2px oklch(0.2 0.02 40 / 0.03), 0 12px 40px oklch(0.2 0.02 40 / 0.08);
+  --shadow-soft: 0 2px 8px rgba(90, 75, 84, 0.06), 0 8px 32px rgba(90, 75, 84, 0.08);
+  --shadow-card: 0 4px 12px rgba(90, 75, 84, 0.05), 0 16px 48px rgba(90, 75, 84, 0.1);
+  --shadow-elevated: 0 8px 24px rgba(90, 75, 84, 0.08), 0 24px 64px rgba(90, 75, 84, 0.12);
+  --shadow-soft-lg: 0 4px 20px rgba(90, 75, 84, 0.08), 0 12px 40px rgba(90, 75, 84, 0.1);
 }
 
+/* Luxury Pinterest-inspired Color Palette */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  /* Brand tokens - Luxury boutique palette */
-  --primary: #957DAD;
-  --secondary: #FFFDF9;
-  --background: #F8F3EC;
-  --card-bg: #F5EFE7;
-  --heading-color: #5A4B54;
-  --body-text: #5A4B54;
-  --nav-text: #5A4B54;
-  --border-color: #E8E2DC;
-  --dusty-lavender: #957DAD;
-  --dark-lavender: #5A4B54;
-  --soft-lavender: #A99BAD;
+  /* Core palette - Pinterest luxury aesthetic */
+  --warm-ivory: #FAF7F2;
+  --warm-beige: #F3EEE8;
+  --dusty-lavender: #8C7A95;
+  --taupe: #5A4B54;
+  
+  /* Semantic mappings */
+  --primary: var(--dusty-lavender);
+  --secondary: var(--warm-ivory);
+  --background: var(--warm-ivory);
+  --card-bg: var(--warm-ivory);
+  --card-bg-alt: var(--warm-beige);
+  --heading-color: var(--taupe);
+  --body-text: var(--taupe);
+  --nav-text: var(--taupe);
+  --border-color: rgba(90, 75, 84, 0.12);
+  --dark-lavender: var(--taupe);
+  --soft-lavender: rgba(140, 122, 149, 0.15);
+  --lavender-bg: rgba(140, 122, 149, 0.08);
   --champagne: #DCC9AE;
   --champagne-light: #F8F3EC;
+  --lavender-hover: rgba(140, 122, 149, 0.2);
 
   /* Keep old names for compatibility */
-  --primary-bg: var(--background);
-  --secondary-bg: var(--secondary);
-  --soft-beige: var(--secondary);
-  --card: var(--card-bg);
-  --primary-text: var(--heading-color);
-  --secondary-text: var(--body-text);
+  --primary-bg: var(--warm-ivory);
+  --secondary-bg: var(--warm-beige);
+  --soft-beige: var(--warm-beige);
+  --card: var(--warm-ivory);
+  --primary-text: var(--taupe);
+  --secondary-text: var(--taupe);
   --charcoal: #2D2726;
-  --hover-lavender: var(--dark-lavender);
+  --hover-lavender: rgba(140, 122, 149, 0.85);
   --muted-mauve: var(--soft-lavender);
-
-  --ivory: #FFFDF9;
+  --ivory: var(--warm-ivory);
   --champagne-oklch: oklch(0.82 0.035 75);
-  --burgundy: #5A4B54;
-  --success: oklch(0.62 0.06 145);
+  --burgundy: var(--taupe);
+  --success: #7D9A78;
 
-  --foreground: var(--heading-color);
-  --card-foreground: var(--heading-color);
-  --popover: var(--card-bg);
-  --popover-foreground: var(--heading-color);
-  --primary-foreground: oklch(1 0 0);
-  --secondary-foreground: var(--heading-color);
-  --muted: var(--secondary);
-  --muted-foreground: var(--body-text);
+  --foreground: var(--taupe);
+  --card-foreground: var(--taupe);
+  --popover: var(--warm-ivory);
+  --popover-foreground: var(--taupe);
+  --primary-foreground: white;
+  --secondary-foreground: var(--taupe);
+  --muted: var(--warm-beige);
+  --muted-foreground: rgba(90, 75, 84, 0.7);
   --accent: var(--dusty-lavender);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.55 0.18 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: var(--border-color);
-  --input: var(--border-color);
+  --accent-foreground: white;
+  --destructive: #C17C74;
+  --destructive-foreground: white;
+  --border: rgba(90, 75, 84, 0.12);
+  --input: rgba(90, 75, 84, 0.1);
   --ring: var(--dusty-lavender);
 }
 
@@ -113,8 +123,8 @@
   }
 
   body {
-    background-color: var(--primary-bg);
-    color: var(--body-text);
+    background-color: var(--warm-ivory);
+    color: var(--taupe);
     font-family: var(--font-sans);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -124,9 +134,10 @@
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: -0.01em;
-    color: var(--heading-color);
+    color: var(--taupe);
+    line-height: 1.2;
   }
 
   p {
@@ -144,9 +155,9 @@
   }
 
   /* Button text sizing */
-  button, .btn-primary, .btn-outline, .btn-secondary, .btn-white {
-    font-size: 0.8rem !important;
-    letter-spacing: 0.08em;
+  button, .btn-primary, .btn-outline, .btn-secondary, .btn-white, .btn-ghost {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -156,83 +167,139 @@
   margin-inline: auto;
   padding-inline: 1.25rem;
   @media (min-width: 768px) { padding-inline: 2.5rem; }
+  @media (min-width: 1536px) { max-width: 1536px; }
 }
 
+/* Premium Button Styles - Luxury Pinterest Aesthetic */
 @utility btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
   background: var(--dusty-lavender);
   color: white;
-  padding: 1rem 2.25rem;
-  font-size: 0.8rem;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
+  font-weight: 500;
   text-transform: uppercase;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border-radius: 100px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 52px;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  box-shadow: 0 2px 8px rgba(140, 122, 149, 0.25);
+  border: none;
+  cursor: pointer;
+  &:hover { 
+    background: #7A6A82; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(140, 122, 149, 0.35);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @utility btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
   background: transparent;
-  color: var(--heading-color);
-  padding: 1rem 2.25rem;
-  font-size: 0.8rem;
+  color: var(--taupe);
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
+  font-weight: 500;
   text-transform: uppercase;
-  border: 1px solid var(--dusty-lavender);
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border: 1.5px solid var(--dusty-lavender);
+  border-radius: 100px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 52px;
-  &:hover { background: var(--dusty-lavender); color: white; }
+  cursor: pointer;
+  &:hover { 
+    background: var(--dusty-lavender); 
+    color: white;
+    border-color: var(--dusty-lavender);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(140, 122, 149, 0.25);
+  }
 }
 
 @utility btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  background: var(--dusty-lavender);
-  color: white;
-  padding: 1rem 2.25rem;
-  font-size: 0.8rem;
+  gap: 0.625rem;
+  background: var(--warm-beige);
+  color: var(--taupe);
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
+  font-weight: 500;
   text-transform: uppercase;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border-radius: 100px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 52px;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  border: none;
+  cursor: pointer;
+  &:hover { 
+    background: #E8E2DC;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(90, 75, 84, 0.1);
+  }
 }
 
 @utility btn-white {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
   background: white;
-  color: var(--dusty-lavender);
-  padding: 1rem 2.25rem;
-  font-size: 0.8rem;
+  color: var(--taupe);
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
+  font-weight: 500;
   text-transform: uppercase;
-  border: 1px solid var(--dusty-lavender);
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border: 1.5px solid rgba(90, 75, 84, 0.15);
+  border-radius: 100px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 52px;
-  &:hover { background: var(--card-bg); }
+  cursor: pointer;
+  &:hover { 
+    background: var(--warm-ivory);
+    border-color: var(--dusty-lavender);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(90, 75, 84, 0.1);
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--taupe);
+  padding: 0.625rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+  min-height: 40px;
+  border: none;
+  cursor: pointer;
+  &:hover { 
+    background: rgba(90, 75, 84, 0.06);
+  }
 }
 
 @utility eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.32em;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--dark-lavender);
+  color: var(--dusty-lavender);
   font-weight: 500;
 }
 
@@ -249,4 +316,40 @@
 
 @utility animate-float {
   animation: float-soft 6s ease-in-out infinite;
+}
+
+/* Premium card hover effects */
+@utility card-luxury {
+  background: white;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(90, 75, 84, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(90, 75, 84, 0.04);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(90, 75, 84, 0.12);
+    border-color: rgba(140, 122, 149, 0.2);
+  }
+}
+
+/* Sticky header with blur */
+@utility header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(90, 75, 84, 0.08);
+  box-shadow: 0 1px 3px rgba(90, 75, 84, 0.04);
+}
+
+/* Section spacing */
+@utility section-luxury {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  @media (min-width: 768px) { 
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 }

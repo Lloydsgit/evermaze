@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, Mail, Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Send } from "lucide-react";
 import { useState } from "react";
+
+import { LuxuryHeader } from "@/components/LuxuryHeader";
+import { LuxuryFooter } from "@/components/LuxuryFooter";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -29,89 +32,105 @@ function ContactPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="bg-white border-b border-border-color py-4">
-        <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
-            <ArrowLeft className="size-4" />
-            Back to Home
-          </Link>
-          <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></button>
-            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
-              <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <LuxuryHeader />
 
       {/* Hero */}
-      <section className="bg-dark-lavender text-white py-16 md:py-20">
+      <section 
+        className="py-16 lg:py-24"
+        style={{ backgroundColor: '#F3EEE8' }}
+      >
         <div className="container-evermaze text-center">
-          <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">We'd love to hear from you</span>
-          <h1 className="mt-4 font-serif text-4xl md:text-6xl">Contact Us</h1>
-          <p className="mt-4 text-white/70 max-w-xl mx-auto">Have a question, feedback, or just want to say hello? We're here for you.</p>
+          <span className="eyebrow">We'd love to hear from you</span>
+          <h1 className="mt-4 font-serif text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
+            Contact Us
+          </h1>
+          <p 
+            className="mt-4 max-w-xl mx-auto"
+            style={{ color: '#5A4B54', opacity: 0.75 }}
+          >
+            Have a question, feedback, or just want to say hello? We're here for you.
+          </p>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 lg:py-16" style={{ backgroundColor: '#FAF7F2' }}>
         <div className="container-evermaze">
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Contact Info */}
             <div>
-              <h2 className="font-serif text-3xl mb-6">Get in Touch</h2>
-              <p className="text-secondary-text mb-8">
+              <h2 className="font-serif text-2xl lg:text-3xl mb-5" style={{ color: '#5A4B54' }}>
+                Get in Touch
+              </h2>
+              <p className="mb-8" style={{ color: '#5A4B54', opacity: 0.75 }}>
                 Whether you have a question about our hampers, need help with an order, or want to explore corporate gifting options, we'd love to hear from you.
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="size-12 bg-white border border-border-color rounded-xl grid place-items-center shrink-0">
-                    <Mail className="size-5 text-dark-lavender" />
+                  <div 
+                    className="size-12 rounded-xl grid place-items-center shrink-0"
+                    style={{ backgroundColor: '#F3EEE8' }}
+                  >
+                    <Mail className="size-5" style={{ color: '#8C7A95' }} />
                   </div>
                   <div>
-                    <h3 className="font-medium">Email Us</h3>
-                    <p className="text-secondary-text">evermaze.info@gmail.com</p>
-                    <p className="text-sm text-secondary-text">We reply within 24 hours</p>
+                    <h3 className="font-medium mb-1" style={{ color: '#5A4B54' }}>Email Us</h3>
+                    <p style={{ color: '#5A4B54', opacity: 0.7 }}>evermaze.info@gmail.com</p>
+                    <p className="text-sm" style={{ color: '#5A4B54', opacity: 0.6 }}>We reply within 24 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="size-12 bg-white border border-border-color rounded-xl grid place-items-center shrink-0">
-                    <Phone className="size-5 text-dark-lavender" />
+                  <div 
+                    className="size-12 rounded-xl grid place-items-center shrink-0"
+                    style={{ backgroundColor: '#F3EEE8' }}
+                  >
+                    <Phone className="size-5" style={{ color: '#8C7A95' }} />
                   </div>
                   <div>
-                    <h3 className="font-medium">Call Us</h3>
-                    <p className="text-secondary-text">+91 9848507639</p>
-                    <p className="text-sm text-secondary-text">Mon-Sat, 10am-7pm IST</p>
+                    <h3 className="font-medium mb-1" style={{ color: '#5A4B54' }}>Call Us</h3>
+                    <p style={{ color: '#5A4B54', opacity: 0.7 }}>+91 9848507639</p>
+                    <p className="text-sm" style={{ color: '#5A4B54', opacity: 0.6 }}>Mon-Sat, 10am-7pm IST</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="size-12 bg-white border border-border-color rounded-xl grid place-items-center shrink-0">
-                    <MapPin className="size-5 text-dark-lavender" />
+                  <div 
+                    className="size-12 rounded-xl grid place-items-center shrink-0"
+                    style={{ backgroundColor: '#F3EEE8' }}
+                  >
+                    <MapPin className="size-5" style={{ color: '#8C7A95' }} />
                   </div>
                   <div>
-                    <h3 className="font-medium">Visit Us</h3>
-                    <p className="text-secondary-text">Secunderabad, Road No: 5</p>
-                    <p className="text-secondary-text">Hyderabad, Telangana - 500062</p>
+                    <h3 className="font-medium mb-1" style={{ color: '#5A4B54' }}>Visit Us</h3>
+                    <p style={{ color: '#5A4B54', opacity: 0.7 }}>Secunderabad, Road No: 5</p>
+                    <p style={{ color: '#5A4B54', opacity: 0.7 }}>Hyderabad, Telangana - 500062</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-10">
-                <h3 className="font-medium mb-4">Follow Us</h3>
+                <h3 className="font-medium mb-4" style={{ color: '#5A4B54' }}>Follow Us</h3>
                 <div className="flex gap-3">
-                  <a href="#" className="size-12 rounded-full border border-border-color grid place-items-center hover:bg-dark-lavender hover:text-white hover:border-dark-lavender transition-colors">
+                  <a 
+                    href="#" 
+                    className="size-11 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                    style={{ 
+                      border: '1px solid rgba(90, 75, 84, 0.15)',
+                      color: '#5A4B54'
+                    }}
+                  >
                     <Instagram className="size-5" />
                   </a>
-                  <a href="#" className="size-12 rounded-full border border-border-color grid place-items-center hover:bg-dark-lavender hover:text-white hover:border-dark-lavender transition-colors">
+                  <a 
+                    href="#" 
+                    className="size-11 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                    style={{ 
+                      border: '1px solid rgba(90, 75, 84, 0.15)',
+                      color: '#5A4B54'
+                    }}
+                  >
                     <MessageCircle className="size-5" />
                   </a>
                 </div>
@@ -119,75 +138,110 @@ function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white border border-border-color rounded-3xl p-8">
+            <div 
+              className="rounded-2xl p-6 lg:p-8"
+              style={{ 
+                backgroundColor: 'white',
+                boxShadow: '0 4px 24px rgba(90, 75, 84, 0.06)'
+              }}
+            >
               {submitted ? (
                 <div className="text-center py-12">
-                  <div className="size-16 bg-dark-lavender/10 rounded-full grid place-items-center mx-auto mb-4">
-                    <Mail className="size-8 text-dark-lavender" />
+                  <div 
+                    className="size-16 rounded-full grid place-items-center mx-auto mb-5"
+                    style={{ backgroundColor: 'rgba(140, 122, 149, 0.1)' }}
+                  >
+                    <Mail className="size-8" style={{ color: '#8C7A95' }} />
                   </div>
-                  <h3 className="font-serif text-2xl">Message Sent!</h3>
-                  <p className="mt-2 text-secondary-text">We'll get back to you within 24 hours.</p>
+                  <h3 className="font-serif text-2xl mb-2" style={{ color: '#5A4B54' }}>Message Sent!</h3>
+                  <p className="mb-6" style={{ color: '#5A4B54', opacity: 0.7 }}>We'll get back to you within 24 hours.</p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="btn-outline mt-6"
+                    className="btn-outline"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
                 <>
-                  <h2 className="font-serif text-2xl mb-6">Send us a Message</h2>
+                  <h2 className="font-serif text-xl lg:text-2xl mb-5" style={{ color: '#5A4B54' }}>
+                    Send us a Message
+                  </h2>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: '#5A4B54' }}>Your Name</label>
                       <input
                         type="text"
                         id="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
+                        className="w-full px-5 py-4 rounded-xl border text-base"
+                        style={{ 
+                          backgroundColor: '#FAF7F2',
+                          borderColor: 'rgba(90, 75, 84, 0.12)',
+                          color: '#5A4B54',
+                          outline: 'none'
+                        }}
                         placeholder="Priya Sharma"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: '#5A4B54' }}>Email Address</label>
                       <input
                         type="email"
                         id="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
+                        className="w-full px-5 py-4 rounded-xl border text-base"
+                        style={{ 
+                          backgroundColor: '#FAF7F2',
+                          borderColor: 'rgba(90, 75, 84, 0.12)',
+                          color: '#5A4B54',
+                          outline: 'none'
+                        }}
                         placeholder="priya@example.com"
                       />
                     </div>
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+                      <label htmlFor="subject" className="block text-sm font-medium mb-2" style={{ color: '#5A4B54' }}>Subject</label>
                       <input
                         type="text"
                         id="subject"
                         required
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors"
+                        className="w-full px-5 py-4 rounded-xl border text-base"
+                        style={{ 
+                          backgroundColor: '#FAF7F2',
+                          borderColor: 'rgba(90, 75, 84, 0.12)',
+                          color: '#5A4B54',
+                          outline: 'none'
+                        }}
                         placeholder="Question about my order"
                       />
                     </div>
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                      <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: '#5A4B54' }}>Message</label>
                       <textarea
                         id="message"
                         required
                         rows={5}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border-color bg-background focus:border-dark-lavender focus:outline-none transition-colors resize-none"
+                        className="w-full px-5 py-4 rounded-xl border text-base resize-none"
+                        style={{ 
+                          backgroundColor: '#FAF7F2',
+                          borderColor: 'rgba(90, 75, 84, 0.12)',
+                          color: '#5A4B54',
+                          outline: 'none'
+                        }}
                         placeholder="How can we help you?"
                       />
                     </div>
                     <button type="submit" className="btn-primary w-full">
-                      Send Message
+                      Send Message <Send className="size-4" />
                     </button>
                   </form>
                 </>
@@ -197,13 +251,7 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
-        <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
-        </div>
-      </footer>
+      <LuxuryFooter />
     </div>
   );
 }

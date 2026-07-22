@@ -1,7 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ShoppingBag, Heart, ChevronDown } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import { useState } from "react";
+
+import { LuxuryHeader } from "@/components/LuxuryHeader";
+import { LuxuryFooter } from "@/components/LuxuryFooter";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
@@ -53,51 +55,55 @@ function FAQPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="bg-white border-b border-border-color py-4">
-        <div className="container-evermaze flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-secondary-text hover:text-dark-lavender transition-colors">
-            <ArrowLeft className="size-4" />
-            Back to Home
-          </Link>
-          <Link to="/" className="flex flex-col items-center leading-none">
-            <span className="font-serif text-2xl tracking-[0.35em] text-dark-lavender">EVERMAZE</span>
-            <span className="mt-1 text-[0.6rem] tracking-[0.4em] uppercase text-secondary-text">Just For You</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <button aria-label="Wishlist" className="hover:text-dark-lavender transition-colors"><Heart className="size-[18px]" /></button>
-            <button aria-label="Cart" className="relative hover:text-dark-lavender transition-colors">
-              <ShoppingBag className="size-[18px]" />
-              <span className="absolute -top-1.5 -right-2 bg-dark-lavender text-white text-[9px] rounded-full size-4 grid place-items-center">2</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <LuxuryHeader />
 
       {/* Hero */}
-      <section className="bg-dark-lavender text-white py-16 md:py-20">
+      <section 
+        className="py-16 lg:py-24"
+        style={{ backgroundColor: '#F3EEE8' }}
+      >
         <div className="container-evermaze text-center">
-          <span className="text-[0.7rem] tracking-[0.32em] uppercase text-champagne">We're here to help</span>
-          <h1 className="mt-4 font-serif text-4xl md:text-6xl">Frequently Asked Questions</h1>
-          <p className="mt-4 text-white/70 max-w-xl mx-auto">Can't find the answer you're looking for? Reach out to our team at evermaze.info@gmail.com</p>
+          <span className="eyebrow">We're here to help</span>
+          <h1 className="mt-4 font-serif text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
+            Frequently Asked Questions
+          </h1>
+          <p 
+            className="mt-4 max-w-xl mx-auto"
+            style={{ color: '#5A4B54', opacity: 0.75 }}
+          >
+            Can't find the answer you're looking for? Reach out to our team at evermaze.info@gmail.com
+          </p>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 lg:py-16" style={{ backgroundColor: '#FAF7F2' }}>
         <div className="container-evermaze max-w-3xl">
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-white border border-border-color rounded-2xl overflow-hidden">
+              <div 
+                key={i} 
+                className="rounded-2xl overflow-hidden transition-all duration-300"
+                style={{ 
+                  backgroundColor: 'white',
+                  boxShadow: '0 2px 12px rgba(90, 75, 84, 0.04)'
+                }}
+              >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-center justify-between p-6 text-left"
+                  className="w-full flex items-center justify-between p-5 lg:p-6 text-left"
                 >
-                  <span className="font-medium pr-4">{faq.q}</span>
-                  <ChevronDown className={`size-5 text-secondary-text shrink-0 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
+                  <span className="font-medium pr-4" style={{ color: '#5A4B54' }}>{faq.q}</span>
+                  <ChevronDown 
+                    className={`size-5 shrink-0 transition-all duration-300 ${openIndex === i ? "rotate-180" : ""}`} 
+                    style={{ color: '#8C7A95' }} 
+                  />
                 </button>
                 {openIndex === i && (
-                  <div className="px-6 pb-6 text-secondary-text">
+                  <div 
+                    className="px-5 lg:px-6 pb-5 lg:pb-6 text-base"
+                    style={{ color: '#5A4B54', opacity: 0.75 }}
+                  >
                     {faq.a}
                   </div>
                 )}
@@ -108,23 +114,30 @@ function FAQPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-12 bg-white border-y border-border-color">
+      <section 
+        className="py-12 lg:py-16"
+        style={{ backgroundColor: '#F3EEE8' }}
+      >
         <div className="container-evermaze text-center">
-          <h2 className="font-serif text-2xl">Still have questions?</h2>
-          <p className="mt-2 text-secondary-text">Our team is here to help you with anything you need.</p>
-          <Link to="/contact" className="btn-primary mt-6 inline-block">
+          <div 
+            className="size-16 rounded-full mx-auto mb-5 flex items-center justify-center"
+            style={{ backgroundColor: 'rgba(140, 122, 149, 0.12)' }}
+          >
+            <MessageCircle className="size-7" style={{ color: '#8C7A95' }} />
+          </div>
+          <h2 className="font-serif text-2xl lg:text-3xl mb-3" style={{ color: '#5A4B54' }}>
+            Still have questions?
+          </h2>
+          <p className="mb-6" style={{ color: '#5A4B54', opacity: 0.7 }}>
+            Our team is here to help you with anything you need.
+          </p>
+          <Link to="/contact" className="btn-primary">
             Contact Us
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6">
-        <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
-        </div>
-      </footer>
+      <LuxuryFooter />
     </div>
   );
 }
