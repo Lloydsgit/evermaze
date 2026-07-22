@@ -208,7 +208,7 @@ function BuildYourBoxPage() {
 
   const selectedPaymentMethod = paymentMethods.find(p => p.id === selectedPayment);
 
-  const stepLabels = ["Package", "Occasion", "Relation", "Details", "Personalize", "Address", "Payment"];
+  const stepLabels = ["hamper", "occasion", "relation", "details", "personalize", "address", "payment"];
 
   const renderStepContent = () => {
     switch (step) {
@@ -218,10 +218,10 @@ function BuildYourBoxPage() {
             <div className="text-center mb-10">
               <span className="eyebrow">Step 1 of 7</span>
               <h2 className="font-serif text-3xl sm:text-4xl mt-4" style={{ color: '#5A4B54' }}>
-                Choose Your Package
+                Customize Your Hamper
               </h2>
               <p className="text-base mt-3" style={{ color: '#5A4B54', opacity: 0.7 }}>
-                Select the perfect hamper size for your gift
+                Create the perfect personalized gift
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -718,9 +718,9 @@ function BuildYourBoxPage() {
     <div className="min-h-screen">
       <LuxuryHeader />
       
-      <main className="pt-28 pb-20">
+      <main className="pt-28 pb-20" style={{ backgroundColor: '#F3EEE8' }}>
         {/* Progress Bar */}
-        <div className="py-6 border-b" style={{ backgroundColor: '#FAF7F2', borderColor: 'rgba(90, 75, 84, 0.08)' }}>
+        <div className="py-6 border-b" style={{ backgroundColor: '#F3EEE8', borderColor: 'rgba(90, 75, 84, 0.08)' }}>
           <div className="container-evermaze">
             <div className="flex items-center justify-between max-w-2xl mx-auto">
               {[1, 2, 3, 4, 5, 6, 7].map((s) => (
@@ -750,9 +750,15 @@ function BuildYourBoxPage() {
                 </div>
               ))}
             </div>
-            <div className="flex justify-between max-w-[calc(100%-3rem)] mx-auto mt-3 text-xs" style={{ color: '#5A4B54', opacity: 0.6 }}>
+            <div className="flex justify-between max-w-[calc(100%-2rem)] mx-auto mt-4 pt-2 text-xs" style={{ color: '#5A4B54', opacity: 0.6 }}>
               {stepLabels.map((label, i) => (
-                <span key={label} className={i + 1 === step ? 'opacity-100 font-medium' : ''}>{label}</span>
+                <span 
+                  key={label} 
+                  className={`${i + 1 === step ? 'opacity-100 font-medium' : ''} capitalize text-center`}
+                  style={{ minWidth: '50px' }}
+                >
+                  {label}
+                </span>
               ))}
             </div>
           </div>

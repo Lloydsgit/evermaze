@@ -1,20 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle, Mail, Heart } from "lucide-react";
-import { useState } from "react";
 
 export function LuxuryFooter() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
-
   const footerLinks = {
     shop: {
       title: "Shop",
@@ -46,67 +33,6 @@ export function LuxuryFooter() {
 
   return (
     <footer style={{ backgroundColor: "#5A4B54" }}>
-      {/* Newsletter Section */}
-      <div 
-        className="py-16 lg:py-20 border-b"
-        style={{ borderColor: "rgba(255,255,255,0.08)" }}
-      >
-        <div className="container-evermaze">
-          <div className="max-w-xl mx-auto text-center">
-            <h3 
-              className="font-serif text-2xl lg:text-3xl mb-3 text-white"
-            >
-              Stay Connected
-            </h3>
-            <p 
-              className="text-base mb-8"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              Subscribe for exclusive offers, gifting inspiration, and early access to new collections.
-            </p>
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-full text-sm min-h-[52px]"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "white",
-                  outline: "none",
-                }}
-                required
-              />
-              <button 
-                type="submit"
-                className="px-8 py-4 rounded-full min-h-[52px] text-sm font-medium transition-all duration-300 whitespace-nowrap"
-                style={{
-                  backgroundColor: "#8C7A95",
-                  color: "white",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#7A6A82";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#8C7A95";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                {subscribed ? "Subscribed!" : "Subscribe"}
-              </button>
-            </form>
-            {subscribed && (
-              <p className="mt-4 text-sm" style={{ color: "#7D9A78" }}>
-                Welcome to the Evermaze family!
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
       <div className="py-16 lg:py-20">
         <div className="container-evermaze">
