@@ -235,7 +235,7 @@ function Header() {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 md:pt-40 pb-16 lg:pb-0" style={{ backgroundColor: '#F8F3EC' }}>
+    <section className="relative overflow-hidden pt-36 md:pt-40 pb-0 lg:pb-0" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="grid lg:grid-cols-[48%_52%] gap-12 lg:gap-16 items-center min-h-[80vh] lg:min-h-[85vh] py-12 lg:py-16">
           {/* Left Column - Text */}
@@ -268,10 +268,29 @@ function Hero() {
                 width={1600} height={1808}
                 className="size-full object-cover"
               />
-              {/* Floating Badge */}
+              
+              {/* Floating "Made with Love" Badge - Top Right Corner */}
+              <div className="absolute -top-4 -right-4 animate-float z-10">
+                <div className="relative">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex flex-col items-center justify-center shadow-xl" style={{ 
+                    background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)',
+                    boxShadow: '0 10px 40px rgba(149, 125, 173, 0.4), inset 0 2px 4px rgba(255,255,255,0.3)'
+                  }}>
+                    <HeartIcon className="size-5 md:size-6 text-white fill-white mb-1" />
+                    <span className="text-[8px] md:text-[9px] text-white font-medium text-center leading-tight px-1" style={{ letterSpacing: '0.05em' }}>Made with</span>
+                    <span className="text-[9px] md:text-[10px] text-white font-semibold" style={{ letterSpacing: '0.02em' }}>Love</span>
+                  </div>
+                  {/* Sparkle accents */}
+                  <div className="absolute -top-2 -right-2 w-3 h-3 rounded-full animate-ping" style={{ backgroundColor: '#DCC9AE', animationDuration: '2s' }} />
+                  <div className="absolute -bottom-1 -left-3 w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: '#957DAD', animationDuration: '3s', animationDelay: '1s' }} />
+                </div>
+              </div>
+
+              {/* Floating Badge - Bottom Left */}
               <div className="absolute bottom-6 left-6 px-5 py-3 rounded-full backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
                 <span className="text-sm font-medium" style={{ color: '#5A4B54' }}>Packed with love</span>
               </div>
+              
               {/* Review Card */}
               <div className="absolute top-6 right-6 px-5 py-4 rounded-2xl backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
                 <div className="flex items-center gap-2 mb-1">
@@ -281,11 +300,87 @@ function Hero() {
                 </div>
                 <p className="text-xs" style={{ color: '#5A4B54' }}>"Absolutely beautiful!"</p>
               </div>
+              
               {/* Slider Dots */}
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                 <div className="size-2 rounded-full" style={{ backgroundColor: '#957DAD' }} />
                 <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
                 <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonial Quote - End of Hero */}
+        <div className="py-12 lg:py-16 flex justify-center animate-fade-in-up">
+          <div className="relative max-w-2xl text-center px-6">
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-20">
+              <Quote className="size-16 md:size-20" style={{ color: '#957DAD' }} />
+            </div>
+            <p className="font-serif text-xl md:text-2xl lg:text-3xl italic leading-relaxed" style={{ color: '#5A4B54' }}>
+              "It felt like opening a little world of love."
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 100%)' }}>
+                <span className="text-white font-semibold text-sm">A</span>
+              </div>
+              <div className="text-left">
+                <p className="font-medium" style={{ color: '#5A4B54' }}>Aanya</p>
+                <p className="text-sm" style={{ color: '#A99BAD' }}>Delhi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Shipping Info Bar - Below Hero */}
+      <div className="border-t" style={{ backgroundColor: 'rgba(255, 253, 249, 0.8)', borderColor: '#E8E2DC' }}>
+        <div className="container-evermaze">
+          <div className="py-5 lg:py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8">
+              <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center shrink-0" style={{ 
+                  background: 'linear-gradient(145deg, rgba(149, 125, 173, 0.1) 0%, rgba(149, 125, 173, 0.05) 100%)',
+                  border: '1px solid rgba(149, 125, 173, 0.2)'
+                }}>
+                  <Truck className="size-5 lg:size-5.5" style={{ color: '#957DAD' }} />
+                </div>
+                <span className="text-xs lg:text-sm font-medium" style={{ color: '#5A4B54' }}>
+                  Free shipping over <span className="font-semibold">₹999</span>
+                </span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center shrink-0" style={{ 
+                  background: 'linear-gradient(145deg, rgba(149, 125, 173, 0.1) 0%, rgba(149, 125, 173, 0.05) 100%)',
+                  border: '1px solid rgba(149, 125, 173, 0.2)'
+                }}>
+                  <Palette className="size-5 lg:size-5.5" style={{ color: '#957DAD' }} />
+                </div>
+                <span className="text-xs lg:text-sm font-medium" style={{ color: '#5A4B54' }}>
+                  Personalization included
+                </span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center shrink-0" style={{ 
+                  background: 'linear-gradient(145deg, rgba(149, 125, 173, 0.1) 0%, rgba(149, 125, 173, 0.05) 100%)',
+                  border: '1px solid rgba(149, 125, 173, 0.2)'
+                }}>
+                  <ShieldCheck className="size-5 lg:size-5.5" style={{ color: '#957DAD' }} />
+                </div>
+                <span className="text-xs lg:text-sm font-medium" style={{ color: '#5A4B54' }}>
+                  Safe dispatch
+                </span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center shrink-0" style={{ 
+                  background: 'linear-gradient(145deg, rgba(149, 125, 173, 0.1) 0%, rgba(149, 125, 173, 0.05) 100%)',
+                  border: '1px solid rgba(149, 125, 173, 0.2)'
+                }}>
+                  <Leaf className="size-5 lg:size-5.5" style={{ color: '#957DAD' }} />
+                </div>
+                <span className="text-xs lg:text-sm font-medium" style={{ color: '#5A4B54' }}>
+                  Sustainable packaging
+                </span>
               </div>
             </div>
           </div>

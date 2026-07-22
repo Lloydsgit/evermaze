@@ -163,16 +163,37 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: var(--dusty-lavender);
+  background: linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%);
   color: white;
   padding: 1rem 2.25rem;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   min-height: 52px;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  box-shadow: 0 4px 20px rgba(149, 125, 173, 0.35), inset 0 1px 2px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s ease;
+  }
+  &:hover { 
+    background: linear-gradient(145deg, #C4B4D6 0%, #A893BE 50%, #8A72A3 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(149, 125, 173, 0.5), inset 0 1px 2px rgba(255,255,255,0.3);
+    &::before { left: 100%; }
+  }
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
 }
 
 @utility btn-outline {
@@ -186,11 +207,31 @@
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid var(--dusty-lavender);
+  border: 2px solid var(--dusty-lavender);
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   min-height: 52px;
-  &:hover { background: var(--dusty-lavender); color: white; }
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  &:hover { 
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(149, 125, 173, 0.35);
+    &::before { opacity: 1; }
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @utility btn-secondary {
@@ -198,16 +239,37 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: var(--dusty-lavender);
+  background: linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%);
   color: white;
   padding: 1rem 2.25rem;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   min-height: 52px;
-  &:hover { background: var(--hover-lavender); transform: translateY(-1px); }
+  box-shadow: 0 4px 20px rgba(149, 125, 173, 0.35), inset 0 1px 2px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s ease;
+  }
+  &:hover { 
+    background: linear-gradient(145deg, #C4B4D6 0%, #A893BE 50%, #8A72A3 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(149, 125, 173, 0.5), inset 0 1px 2px rgba(255,255,255,0.3);
+    &::before { left: 100%; }
+  }
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
 }
 
 @utility btn-white {
@@ -221,11 +283,30 @@
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid var(--dusty-lavender);
+  border: 2px solid transparent;
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   min-height: 52px;
-  &:hover { background: var(--card-bg); }
+  box-shadow: 0 4px 15px rgba(90, 75, 84, 0.1);
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--dusty-lavender);
+    border-radius: 50px;
+    transition: inset 0.3s ease;
+  }
+  &:hover { 
+    background: linear-gradient(145deg, #FFFDF9 0%, #F8F3EC 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(90, 75, 84, 0.15);
+    &::before { inset: 2px; }
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @utility eyebrow {
@@ -244,9 +325,59 @@
 
 @keyframes float-soft {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-soft-delayed {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(2deg); }
+  75% { transform: translateY(-6px) rotate(-2deg); }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @utility animate-float {
   animation: float-soft 6s ease-in-out infinite;
+}
+
+@utility animate-float-delayed {
+  animation: float-soft-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@utility animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+@utility animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
 }
