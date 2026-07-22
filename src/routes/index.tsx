@@ -232,6 +232,20 @@ function Header() {
   );
 }
 
+/* ---------- Premium Floating Badge Component ---------- */
+function PremiumBadge({ text, icon: Icon }: { text: string; icon?: React.ComponentType<{ className?: string; style?: React.CSSProperties }> }) {
+  return (
+    <div className="premium-badge group cursor-pointer">
+      <div className="flex flex-col items-center px-4 py-3" style={{ gap: '2px' }}>
+        {Icon && <Icon className="size-4 text-white" style={{ fill: 'white' }} />}
+        <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+          {text}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Hero ---------- */
 function Hero() {
   return (
@@ -281,21 +295,8 @@ function Hero() {
 
           {/* Right Column - Image */}
           <div className="order-1 lg:order-2 flex items-center">
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none">
-              {/* Floating "Made with Love" Badge - Top Right Corner */}
-              <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 z-20 animate-float" style={{ animationDuration: '4s' }}>
-                <div className="relative">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full flex flex-col items-center justify-center shadow-xl" style={{ 
-                    background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)',
-                    boxShadow: '0 8px 30px rgba(149, 125, 173, 0.4), inset 0 2px 4px rgba(255,255,255,0.3)'
-                  }}>
-                    <HeartIcon className="size-4 md:size-5 text-white fill-white mb-0.5" />
-                    <span className="text-[7px] md:text-[8px] text-white font-medium text-center leading-tight px-0.5" style={{ letterSpacing: '0.03em' }}>Made with</span>
-                    <span className="text-[8px] md:text-[9px] text-white font-semibold" style={{ letterSpacing: '0.02em' }}>Love</span>
-                  </div>
-                </div>
-              </div>
-
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+              
               {/* Main Image Container */}
               <div className="relative overflow-hidden rounded-3xl" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 40px 100px rgba(90, 75, 84, 0.1)' }}>
                 <img
@@ -305,9 +306,16 @@ function Hero() {
                   className="size-full object-cover"
                 />
                 
-                {/* Bottom Badge */}
-                <div className="absolute bottom-6 left-6 px-5 py-3 rounded-full backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
-                  <span className="text-sm font-medium" style={{ color: '#5A4B54' }}>Packed with love</span>
+                {/* Premium Floating Badge - Top Right - Overlapping */}
+                <div className="absolute -top-5 -right-6 md:-top-6 md:-right-8 z-20 premium-badge-container" style={{ transform: 'translateX(35%)' }}>
+                  <div className="premium-badge group cursor-pointer">
+                    <div className="flex flex-col items-center px-5 py-4" style={{ gap: '3px' }}>
+                      <HeartIcon className="size-5 text-white" style={{ fill: 'white' }} />
+                      <span className="text-[11px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.08em' }}>
+                        made with Love
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Review Card */}
@@ -331,7 +339,19 @@ function Hero() {
 /* ---------- Emotion Banner ---------- */
 function EmotionBanner() {
   return (
-    <section className="py-20 lg:py-28" style={{ background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)' }}>
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)' }}>
+      {/* Premium Badge - Handpicked for You */}
+      <div className="absolute top-8 -right-4 md:-right-6 z-20 premium-badge-container">
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <Sparkles className="size-4 text-white" />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Handpicked for You
+            </span>
+          </div>
+        </div>
+      </div>
+      
       <div className="container-evermaze">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="text-center lg:text-left">
@@ -392,7 +412,19 @@ function OccasionCategories() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#FFFDF9' }}>
+      {/* Premium Badge - Thoughtfully Curated */}
+      <div className="absolute top-8 -left-4 md:-left-6 z-20 premium-badge-container" style={{ animationDelay: '1s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <HeartIcon className="size-4 text-white" style={{ fill: 'white' }} />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Thoughtfully Curated
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="container-evermaze">
         <div className="text-center mb-10 lg:mb-14">
           <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>SHOP BY OCCASION</span>
@@ -426,7 +458,18 @@ function OccasionCategories() {
         </div>
 
         {/* Hamper Prices Section */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 relative">
+          {/* Premium Badge - Wrapped with Care */}
+          <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 premium-badge-container hidden lg:block" style={{ animationDelay: '2s' }}>
+            <div className="premium-badge group cursor-pointer">
+              <div className="flex flex-col items-center px-4 py-3" style={{ gap: '2px' }}>
+                <Gift className="size-4 text-white" />
+                <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+                  Wrapped with Care
+                </span>
+              </div>
+            </div>
+          </div>
           <h3 className="font-serif text-2xl lg:text-3xl" style={{ color: '#5A4B54' }}>Build Your Perfect Hamper</h3>
           <p className="mt-2 text-base" style={{ color: '#A99BAD' }}>Customize it your way.</p>
         </div>
@@ -461,7 +504,19 @@ function FeaturedCollection() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#F8F3EC' }}>
+      {/* Premium Badge - Gift Ready */}
+      <div className="absolute top-8 -right-4 md:-right-6 z-20 premium-badge-container" style={{ animationDelay: '1.5s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <Gift className="size-4 text-white" />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Gift Ready
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="container-evermaze">
         {/* Best Sellers */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 lg:mb-20">
@@ -527,7 +582,19 @@ function BuildBoxPromo() {
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#FFFDF9' }}>
+      {/* Premium Badge - Made Just for You */}
+      <div className="absolute top-8 -left-4 md:-left-6 z-20 premium-badge-container" style={{ animationDelay: '2s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <HeartIcon className="size-4 text-white" style={{ fill: 'white' }} />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Made Just for You
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
           <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>BUILD YOUR OWN BOX</span>

@@ -361,6 +361,60 @@
   }
 }
 
+/* Premium Floating Badge Animation */
+@keyframes premium-float {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  50% { 
+    transform: translateY(-7px) scale(1.02); 
+  }
+}
+
+@keyframes premium-scale-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@utility premium-badge {
+  display: inline-flex;
+  border-radius: 50px;
+  background: rgba(142, 124, 152, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  animation: premium-float 5s ease-in-out infinite, premium-scale-subtle 8s ease-in-out infinite;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  will-change: transform;
+  &:hover {
+    animation-play-state: paused;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+    transform: scale(1.05);
+  }
+}
+
+@utility premium-badge-container {
+  animation: premium-float 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@utility premium-badge-static {
+  display: inline-flex;
+  border-radius: 50px;
+  background: rgba(142, 124, 152, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  &:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+  }
+}
+
 @utility animate-float {
   animation: float-soft 6s ease-in-out infinite;
 }
