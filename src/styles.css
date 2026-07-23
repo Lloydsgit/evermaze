@@ -55,36 +55,39 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand tokens - Luxury boutique palette */
-  --primary: #957DAD;
-  --secondary: #FFFDF9;
-  --background: #F8F3EC;
-  --card-bg: #F5EFE7;
-  --heading-color: #5A4B54;
-  --body-text: #5A4B54;
-  --nav-text: #5A4B54;
-  --border-color: #E8E2DC;
-  --dusty-lavender: #957DAD;
-  --dark-lavender: #5A4B54;
-  --soft-lavender: #A99BAD;
-  --champagne: #DCC9AE;
-  --champagne-light: #F8F3EC;
-
+  /* Evermaze Design System - Luxury Boutique Palette */
+  
+  /* Primary Colors */
+  --primary-bg: #E4CEB5;           /* Primary Background */
+  --secondary-bg: #EFE3D3;         /* Secondary Background */
+  --card-bg: #FAF7F3;              /* Cards & Containers */
+  --heading-color: #5A4B54;        /* Primary Text */
+  --body-text: #5A4B54;            /* Body Text */
+  --nav-text: #5A4B54;             /* Navigation Text */
+  
+  /* Accent Colors */
+  --dusty-lavender: #8E7C98;       /* Accent Lavender */
+  --dark-lavender: #5A4B54;        /* Dark Lavender */
+  --soft-lavender: #A99BAD;        /* Soft Lavender */
+  --champagne: #C8A97E;            /* Champagne Gold */
+  --champagne-light: #EFE3D3;      /* Champagne Light */
+  
+  /* Utility Colors */
+  --border-color: rgba(90,75,84,0.08); /* Borders */
+  --ivory: #FAF7F3;                /* Ivory */
+  --charcoal: #2D2726;             /* Charcoal */
+  --success: #4A7C59;              /* Success Green */
+  
   /* Keep old names for compatibility */
-  --primary-bg: var(--background);
-  --secondary-bg: var(--secondary);
-  --soft-beige: var(--secondary);
+  --background: var(--primary-bg);
+  --secondary: var(--secondary-bg);
   --card: var(--card-bg);
   --primary-text: var(--heading-color);
   --secondary-text: var(--body-text);
-  --charcoal: #2D2726;
   --hover-lavender: var(--dark-lavender);
   --muted-mauve: var(--soft-lavender);
-
-  --ivory: #FFFDF9;
   --champagne-oklch: oklch(0.82 0.035 75);
   --burgundy: #5A4B54;
-  --success: oklch(0.62 0.06 145);
 
   --foreground: var(--heading-color);
   --card-foreground: var(--heading-color);
@@ -92,7 +95,7 @@
   --popover-foreground: var(--heading-color);
   --primary-foreground: oklch(1 0 0);
   --secondary-foreground: var(--heading-color);
-  --muted: var(--secondary);
+  --muted: var(--secondary-bg);
   --muted-foreground: var(--body-text);
   --accent: var(--dusty-lavender);
   --accent-foreground: oklch(1 0 0);
