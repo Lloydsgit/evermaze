@@ -263,7 +263,7 @@ function BuildYourBoxPage() {
                 className="flex flex-col items-center"
                 style={{ width: '40px', minWidth: '40px' }}
               >
-                <span className={`text-[10px] sm:text-xs font-medium text-center leading-tight ${step >= item.s ? "text-dark-lavender" : "text-secondary-text"}`}>
+                <span className={`text-[10px] sm:text-xs font-medium text-center leading-tight ${step >= item.s ? "" : ""}`} style={{ color: step >= item.s ? '#957DAD' : '#A99BAD' }}>
                   {item.label}
                 </span>
               </div>
@@ -273,10 +273,10 @@ function BuildYourBoxPage() {
       </section>
 
       {/* Hero */}
-      <section className="bg-dark-lavender text-white py-8 md:py-12">
+      <section className="py-8 md:py-12" style={{ background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)' }}>
         <div className="container-evermaze text-center">
-          <h1 className="font-serif text-3xl md:text-4xl">Customize Your Hamper</h1>
-          <p className="mt-2 text-white/70">Create the perfect personalized gift</p>
+          <h1 className="font-serif text-3xl md:text-4xl text-white">Customize Your Hamper</h1>
+          <p className="mt-2 text-white/80">Create the perfect personalized gift</p>
         </div>
       </section>
 
@@ -285,10 +285,11 @@ function BuildYourBoxPage() {
           {/* Step 1: Package Selection */}
           {step === 1 && (
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <Gift className="size-6 text-dark-lavender" />
-                Choose Your Package
+              <h2 className="font-serif text-2xl mb-3 flex items-center gap-2">
+                <Gift className="size-6" style={{ color: '#957DAD' }} />
+                Customize Your Hamper
               </h2>
+              <p className="text-lg mb-6" style={{ color: '#A99BAD' }}>Create the perfect personalized gift</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
                 {packages.map((pkgItem) => (
                   <button
@@ -300,19 +301,22 @@ function BuildYourBoxPage() {
                     }}
                     className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all text-left relative ${
                       selectedPackage === pkgItem.price
-                        ? "border-dark-lavender bg-dark-lavender/5"
-                        : "border-border-color hover:border-dark-lavender"
+                        ? "border-dusty-lavender"
+                        : "border-border-color hover:border-dusty-lavender"
                     }`}
-                    style={{ minHeight: '100px' }}
+                    style={{ 
+                      minHeight: '100px',
+                      backgroundColor: selectedPackage === pkgItem.price ? 'rgba(149, 125, 173, 0.08)' : 'transparent'
+                    }}
                   >
                     {selectedPackage === pkgItem.price && (
-                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 bg-dark-lavender rounded-full flex items-center justify-center">
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-5 sm:size-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#957DAD' }}>
                         <Check className="size-3 sm:size-4 text-white" />
                       </div>
                     )}
-                    <span className="block font-serif text-xl sm:text-3xl text-dark-lavender">₹{pkgItem.price}</span>
-                    <span className="block mt-1 sm:mt-2 font-serif text-sm sm:text-lg">{pkgItem.name}</span>
-                    <span className="block mt-1 text-xs sm:text-sm text-secondary-text">{pkgItem.items} items</span>
+                    <span className="block font-serif text-xl sm:text-3xl" style={{ color: '#957DAD' }}>₹{pkgItem.price}</span>
+                    <span className="block mt-1 sm:mt-2 font-serif text-sm sm:text-lg" style={{ color: '#5A4B54' }}>{pkgItem.name}</span>
+                    <span className="block mt-1 text-xs sm:text-sm" style={{ color: '#A99BAD' }}>{pkgItem.items} items</span>
                   </button>
                 ))}
               </div>
@@ -322,10 +326,11 @@ function BuildYourBoxPage() {
           {/* Step 2: Personalization */}
           {step === 2 && (
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-2xl mb-6 flex items-center gap-2">
-                <Calendar className="size-6 text-dark-lavender" />
-                Let's Personalize Your Gift
+              <h2 className="font-serif text-2xl mb-3 flex items-center gap-2">
+                <Calendar className="size-6" style={{ color: '#957DAD' }} />
+                Choose Occasion
               </h2>
+              <p className="text-lg mb-6" style={{ color: '#A99BAD' }}>From bridal to birthday, set the mood.</p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Occasion Type</label>
@@ -422,17 +427,17 @@ function BuildYourBoxPage() {
           {step === 5 && (
             <div className="max-w-5xl mx-auto">
               <h2 className="font-serif text-2xl mb-2 flex items-center gap-2">
-                <Sparkles className="size-6 text-dark-lavender" />
-                Add Personal Touches
+                <Sparkles className="size-6" style={{ color: '#957DAD' }} />
+                Special Touches
               </h2>
-              <p className="text-secondary-text mb-6">
-                Choose up to {pkg?.maxItems} personal items for your {pkg?.name}. Selected: {selectedItems.length}/{pkg?.maxItems}
+              <p className="text-sm mb-6" style={{ color: '#A99BAD' }}>
+                Pick when the surprise should arrive. Choose up to {pkg?.maxItems} personal items for your {pkg?.name}. Selected: {selectedItems.length}/{pkg?.maxItems}
               </p>
               
               {/* Selected Items Summary */}
-              <div className="mb-6 p-4 bg-dark-lavender/10 rounded-xl">
+              <div className="mb-6 p-4 rounded-xl" style={{ backgroundColor: 'rgba(149, 125, 173, 0.1)' }}>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium">Selected Items ({selectedItems.length}/{pkg?.maxItems})</span>
+                  <span className="text-sm font-medium" style={{ color: '#5A4B54' }}>Selected Items ({selectedItems.length}/{pkg?.maxItems})</span>
                   <span className="text-sm text-dark-lavender font-medium">₹{calculateTotal() - (selectedPackage || 0)}</span>
                 </div>
                 {selectedItems.length > 0 ? (
@@ -635,18 +640,18 @@ function BuildYourBoxPage() {
           {/* Step 6: Shipping Address */}
           {step === 6 && (
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
-                <User className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
-                Shipping Address
+              <h2 className="font-serif text-2xl mb-3 flex items-center gap-2">
+                <User className="size-6" style={{ color: '#957DAD' }} />
+                Delivery Date
               </h2>
-              <p className="text-lg mb-8" style={{ color: 'var(--body-text)' }}>Enter your delivery details</p>
+              <p className="text-lg mb-8" style={{ color: '#A99BAD' }}>See your box, then send with love.</p>
               
               {/* Delivery Options */}
               <div className="mb-10">
-                <h3 className="font-medium mb-4">
+                <h3 className="font-medium mb-4" style={{ color: '#5A4B54' }}>
                   Delivery Options
                   {selectedPackage && [999, 1499, 1999].includes(selectedPackage) && (
-                    <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">FREE Shipping</span>
+                    <span className="ml-2 text-xs px-2 py-1 rounded-full" style={{ backgroundColor: '#dcfce7', color: '#15803d' }}>FREE Shipping</span>
                   )}
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
@@ -660,17 +665,18 @@ function BuildYourBoxPage() {
                         onClick={() => setDeliveryType(option.id as "standard" | "express" | "same-day")}
                         className={`p-4 rounded-xl border-2 text-left transition-all ${
                           deliveryType === option.id
-                            ? "border-dark-lavender bg-dark-lavender/5"
-                            : "border-border-color hover:border-dark-lavender"
+                            ? "border-dusty-lavender"
+                            : "border-border-color hover:border-dusty-lavender"
                         }`}
+                        style={{ backgroundColor: deliveryType === option.id ? 'rgba(149, 125, 173, 0.08)' : 'transparent' }}
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <span className="font-medium">{option.name}</span>
+                          <span className="font-medium" style={{ color: '#5A4B54' }}>{option.name}</span>
                           {deliveryType === option.id && (
-                            <Check className="size-5 text-dark-lavender" />
+                            <Check className="size-5" style={{ color: '#957DAD' }} />
                           )}
                         </div>
-                        <p className="text-sm text-secondary-text">{option.description}</p>
+                        <p className="text-sm" style={{ color: '#A99BAD' }}>{option.description}</p>
                         <div className="mt-2">
                           {isFreeShipping ? (
                             <span className="inline-block bg-green-100 text-green-700 text-sm font-medium px-2 py-0.5 rounded">FREE</span>
@@ -845,11 +851,11 @@ function BuildYourBoxPage() {
       {/* Step 7: Payment Selection */}
       {step === 7 && (
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-3xl mb-3 flex items-center gap-3">
-            <CreditCard className="size-7" style={{ color: 'var(--dusty-lavender)' }} />
-            Select Payment Method
+          <h2 className="font-serif text-2xl mb-3 flex items-center gap-2">
+            <CreditCard className="size-6" style={{ color: '#957DAD' }} />
+            Checkout
           </h2>
-          <p className="text-lg mb-8" style={{ color: 'var(--body-text)' }}>Choose how you'd like to pay for your order</p>
+          <p className="text-lg mb-8" style={{ color: '#A99BAD' }}>Made just for them.</p>
           
           <div className="grid md:grid-cols-2 gap-5 mb-8">
             {paymentMethods.map((method) => {
@@ -865,13 +871,12 @@ function BuildYourBoxPage() {
                       : "border-border-color hover:border-dusty-lavender"
                   }`}
                   style={{ 
-                    backgroundColor: selectedPayment === method.id ? 'rgba(143, 122, 153, 0.08)' : 'var(--background)',
-                    borderColor: selectedPayment === method.id ? 'var(--dusty-lavender)' : 'var(--border-color)'
+                    backgroundColor: selectedPayment === method.id ? 'rgba(149, 125, 173, 0.08)' : '#F8F3EC',
                   }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="size-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(143, 122, 153, 0.15)' }}>
-                      <IconComponent className="size-6" style={{ color: 'var(--dusty-lavender)' }} />
+                    <div className="size-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(149, 125, 173, 0.15)' }}>
+                      <IconComponent className="size-6" style={{ color: '#957DAD' }} />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">

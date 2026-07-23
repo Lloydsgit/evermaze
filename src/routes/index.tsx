@@ -232,12 +232,40 @@ function Header() {
   );
 }
 
+/* ---------- Premium Floating Badge Component ---------- */
+function PremiumBadge({ text, icon: Icon }: { text: string; icon?: React.ComponentType<{ className?: string; style?: React.CSSProperties }> }) {
+  return (
+    <div className="premium-badge group cursor-pointer">
+      <div className="flex flex-col items-center px-4 py-3" style={{ gap: '2px' }}>
+        {Icon && <Icon className="size-4 text-white" style={{ fill: 'white' }} />}
+        <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+          {text}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 md:pt-40 pb-16 lg:pb-0" style={{ backgroundColor: '#F8F3EC' }}>
-      <div className="container-evermaze">
-        <div className="grid lg:grid-cols-[48%_52%] gap-12 lg:gap-16 items-center min-h-[80vh] lg:min-h-[85vh] py-12 lg:py-16">
+    <section className="relative overflow-hidden pt-36 md:pt-40" style={{ backgroundColor: '#F8F3EC' }}>
+      {/* Shipping Info Bar - Top of Hero */}
+      <div className="border-b" style={{ backgroundColor: 'rgba(255, 253, 249, 0.8)', borderColor: '#E8E2DC' }}>
+        <div className="container-evermaze">
+          <div className="py-3 lg:py-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-10 gap-y-2 text-xs lg:text-sm" style={{ color: '#5A4B54' }}>
+              <span className="flex items-center gap-1.5"><span style={{ color: '#957DAD' }}>·</span> Free shipping over ₹999</span>
+              <span className="hidden sm:flex items-center gap-1.5"><span style={{ color: '#957DAD' }}>·</span> Personalization included</span>
+              <span className="hidden sm:flex items-center gap-1.5"><span style={{ color: '#957DAD' }}>·</span> Safe dispatch</span>
+              <span className="hidden md:flex items-center gap-1.5"><span style={{ color: '#957DAD' }}>·</span> Sustainable packaging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-evermaze py-12 lg:py-16">
+        <div className="grid lg:grid-cols-[48%_52%] gap-12 lg:gap-16 items-center">
           {/* Left Column - Text */}
           <div className="order-2 lg:order-1 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 mb-6 lg:mb-8">
@@ -250,10 +278,16 @@ function Hero() {
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Made With</span>
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light mt-1">Love.</span>
             </h1>
-            <p className="mt-8 lg:mt-10 max-w-md text-base lg:text-lg leading-relaxed" style={{ color: '#5A4B54' }}>
-              Curated with care, personalized with heart. The perfect gift for every celebration.
+            <p className="mt-6 lg:mt-8 max-w-md text-base lg:text-lg leading-relaxed" style={{ color: '#5A4B54' }}>
+              Personalized Evermaze gift hamper with candle, dried florals and silk ribbon.
             </p>
-            <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row gap-4">
+            <div className="mt-8 lg:mt-10 max-w-md">
+              <p className="font-serif text-lg md:text-xl italic" style={{ color: '#5A4B54' }}>
+                "It felt like opening a little world of love."
+              </p>
+              <p className="mt-2 text-sm" style={{ color: '#A99BAD' }}>— Aanya, Delhi</p>
+            </div>
+            <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-4">
               <Link to="/shop" className="btn-primary w-full sm:w-auto justify-center">Shop Hampers</Link>
               <Link to="/build-your-box" className="btn-outline w-full sm:w-auto justify-center">Build Your Own Box</Link>
             </div>
@@ -261,69 +295,40 @@ function Hero() {
 
           {/* Right Column - Image */}
           <div className="order-1 lg:order-2 flex items-center">
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-3xl" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 40px 100px rgba(90, 75, 84, 0.1)' }}>
-              <img
-                src={heroHamper}
-                alt="Premium gift hamper with dried lavender flowers and satin ribbon"
-                width={1600} height={1808}
-                className="size-full object-cover"
-              />
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 px-5 py-3 rounded-full backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
-                <span className="text-sm font-medium" style={{ color: '#5A4B54' }}>Packed with love</span>
-              </div>
-              {/* Review Card */}
-              <div className="absolute top-6 right-6 px-5 py-4 rounded-2xl backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
-                <div className="flex items-center gap-2 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="size-3 fill-current" style={{ color: '#DCC9AE' }} />
-                  ))}
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+              
+              {/* Main Image Container */}
+              <div className="relative overflow-hidden rounded-3xl" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 40px 100px rgba(90, 75, 84, 0.1)' }}>
+                <img
+                  src={heroHamper}
+                  alt="Premium gift hamper with dried lavender flowers and satin ribbon"
+                  width={1600} height={1808}
+                  className="size-full object-cover"
+                />
+                
+                {/* Premium Floating Badge - Top Right - Overlapping */}
+                <div className="absolute -top-5 -right-6 md:-top-6 md:-right-8 z-20 premium-badge-container" style={{ transform: 'translateX(35%)' }}>
+                  <div className="premium-badge group cursor-pointer">
+                    <div className="flex flex-col items-center px-5 py-4" style={{ gap: '3px' }}>
+                      <HeartIcon className="size-5 text-white" style={{ fill: 'white' }} />
+                      <span className="text-[11px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.08em' }}>
+                        made with Love
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-xs" style={{ color: '#5A4B54' }}>"Absolutely beautiful!"</p>
-              </div>
-              {/* Slider Dots */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="size-2 rounded-full" style={{ backgroundColor: '#957DAD' }} />
-                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
-                <div className="size-2 rounded-full" style={{ backgroundColor: 'rgba(142, 120, 168, 0.3)' }} />
+                
+                {/* Review Card */}
+                <div className="absolute top-6 right-6 px-5 py-4 rounded-2xl backdrop-blur-sm shadow-lg" style={{ backgroundColor: 'rgba(255, 253, 249, 0.95)' }}>
+                  <div className="flex items-center gap-2 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="size-3 fill-current" style={{ color: '#DCC9AE' }} />
+                    ))}
+                  </div>
+                  <p className="text-xs" style={{ color: '#5A4B54' }}>"Absolutely beautiful!"</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Announcement Bar ---------- */
-function AnnouncementBar() {
-  const features = [
-    { icon: Truck, text: "Free Shipping on Orders Above ₹999" },
-    { icon: Gift, text: "Personalization Included" },
-    { icon: Clock, text: "Same-Day Dispatch" },
-    { icon: HeartIcon, text: "Handwritten Gift Note" },
-    { icon: Package, text: "Premium Packaging" },
-  ];
-
-  return (
-    <section className="py-4 border-b" style={{ backgroundColor: '#FFFDF9', borderColor: '#E8E2DC' }}>
-      <div className="container-evermaze">
-        <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
-          {features.map((feature, i) => (
-            <div key={i} className="flex items-center gap-2.5">
-              <feature.icon className="size-4 shrink-0" style={{ color: '#957DAD' }} />
-              <span className="text-xs lg:text-sm whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
-            </div>
-          ))}
-        </div>
-        <div className="md:hidden">
-          <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide">
-            {features.slice(0, 3).map((feature, i) => (
-              <div key={i} className="flex items-center gap-2 shrink-0">
-                <feature.icon className="size-4 shrink-0" style={{ color: '#957DAD' }} />
-                <span className="text-xs whitespace-nowrap" style={{ color: '#5A4B54' }}>{feature.text}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -334,17 +339,52 @@ function AnnouncementBar() {
 /* ---------- Emotion Banner ---------- */
 function EmotionBanner() {
   return (
-    <section className="py-28 lg:py-36" style={{ backgroundColor: '#957DAD' }}>
-      <div className="container-evermaze text-center">
-        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white">
-          More Than a Gift,<br />It's an Emotion
-        </h2>
-        <p className="mt-6 lg:mt-8 max-w-xl mx-auto text-white/80 text-base lg:text-lg leading-relaxed">
-          Curated hampers that speak from the heart and stay in memory forever.
-        </p>
-        <Link to="/shop" className="inline-flex items-center gap-3 mt-10 lg:mt-12 px-10 lg:px-12 py-4 lg:py-5 bg-white rounded-full font-medium text-sm tracking-wider transition-all hover:shadow-2xl hover:-translate-y-0.5" style={{ color: '#5A4B54' }}>
-          Shop Now <ChevronRight className="size-5" />
-        </Link>
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: 'linear-gradient(145deg, #B8A5C9 0%, #957DAD 50%, #7A6194 100%)' }}>
+      {/* Premium Badge - Handpicked for You */}
+      <div className="absolute top-8 -right-4 md:-right-6 z-20 premium-badge-container">
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <Sparkles className="size-4 text-white" />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Handpicked for You
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div className="container-evermaze">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="text-center lg:text-left">
+            <span className="text-xs tracking-[0.4em] uppercase font-medium text-white/80">Made with love</span>
+            <h2 className="mt-4 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white">
+              Personalized<br /><span className="italic">Gift Hampers</span><br />Made With Love.
+            </h2>
+            <p className="mt-6 lg:mt-8 max-w-lg mx-auto lg:mx-0 text-white/80 text-base lg:text-lg leading-relaxed">
+              Curated gifts for every celebration, thoughtfully packed to create unforgettable memories — moments that live longer than the ribbon.
+            </p>
+            <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link to="/shop" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white rounded-full font-medium text-sm tracking-wider transition-all hover:shadow-2xl hover:-translate-y-0.5" style={{ color: '#5A4B54' }}>
+                Shop Hampers <ArrowRight className="size-4" />
+              </Link>
+              <Link to="/build-your-box" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-sm tracking-wider transition-all border-2 border-white/30 hover:bg-white/10 hover:-translate-y-0.5" style={{ color: 'white' }}>
+                Build Your Own Box
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm">
+              <p className="font-serif text-5xl lg:text-6xl font-bold text-white">12k+</p>
+              <p className="mt-2 text-white/80 text-sm">Happy gifters</p>
+            </div>
+            <div className="text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm">
+              <div className="flex items-center justify-center gap-1">
+                <Star className="size-8 fill-white text-white" />
+                <p className="font-serif text-5xl lg:text-6xl font-bold text-white">4.9</p>
+              </div>
+              <p className="mt-2 text-white/80 text-sm">Rating</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -357,21 +397,43 @@ function OccasionCategories() {
     { name: "Anniversary", img: hamper2 },
     { name: "Best Friend", img: hamper3 },
     { name: "Couple", img: hamper4 },
-    { name: "Corporate", img: hamper5 },
+    { name: "Wedding", img: hamper5 },
     { name: "Baby", img: hamper6 },
-    { name: "Wedding", img: hamper1 },
-    { name: "Self Care", img: hamper2 },
-    { name: "Graduation", img: hamper3 },
+    { name: "Self Care", img: hamper1 },
+    { name: "Graduation", img: hamper2 },
+  ];
+
+  const hamperPrices = [
+    { price: 149, name: "Mini Hamper" },
+    { price: 499, name: "Classic Hamper" },
+    { price: 999, name: "Signature Hamper" },
+    { price: 1499, name: "Supreme Hamper" },
+    { price: 1999, name: "Luxury Hamper" },
   ];
 
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
-      <div className="container-evermaze">
-        <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>SHOP BY OCCASION</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Find the Perfect Gift</h2>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#FFFDF9' }}>
+      {/* Premium Badge - Thoughtfully Curated */}
+      <div className="absolute top-8 -left-4 md:-left-6 z-20 premium-badge-container" style={{ animationDelay: '1s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <HeartIcon className="size-4 text-white" style={{ fill: 'white' }} />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Thoughtfully Curated
+            </span>
+          </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
+      </div>
+
+      <div className="container-evermaze">
+        <div className="text-center mb-10 lg:mb-14">
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>SHOP BY OCCASION</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Made for every moment</h2>
+          <p className="mt-4 text-base lg:text-lg max-w-xl mx-auto" style={{ color: '#A99BAD' }}>
+            Build Your Perfect Hamper — Customize it your way.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5 mb-16 lg:mb-20">
           {occasions.map((occ, i) => (
             <Link
               key={i}
@@ -384,11 +446,42 @@ function OccasionCategories() {
                 alt={occ.name}
                 className="size-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: 'rgba(149, 125, 173, 0.3)' }}>
+                <span className="px-4 py-2 rounded-full bg-white text-sm font-medium" style={{ color: '#5A4B54' }}>View</span>
+              </div>
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-5">
                 <span className="text-white font-serif text-sm lg:text-base">{occ.name}</span>
               </div>
             </Link>
+          ))}
+        </div>
+
+        {/* Hamper Prices Section */}
+        <div className="text-center mb-8 relative">
+          {/* Premium Badge - Wrapped with Care */}
+          <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 premium-badge-container hidden lg:block" style={{ animationDelay: '2s' }}>
+            <div className="premium-badge group cursor-pointer">
+              <div className="flex flex-col items-center px-4 py-3" style={{ gap: '2px' }}>
+                <Gift className="size-4 text-white" />
+                <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+                  Wrapped with Care
+                </span>
+              </div>
+            </div>
+          </div>
+          <h3 className="font-serif text-2xl lg:text-3xl" style={{ color: '#5A4B54' }}>Build Your Perfect Hamper</h3>
+          <p className="mt-2 text-base" style={{ color: '#A99BAD' }}>Customize it your way.</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 lg:gap-6">
+          {hamperPrices.map((pkg, i) => (
+            <div key={i} className="text-center p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#F8F3EC', boxShadow: '0 4px 20px rgba(90, 75, 84, 0.06)' }}>
+              <p className="font-serif text-2xl lg:text-3xl font-semibold" style={{ color: '#5A4B54' }}>₹{pkg.price}</p>
+              <p className="mt-1 text-sm" style={{ color: '#A99BAD' }}>{pkg.name}</p>
+              <Link to="/build-your-box" className="mt-4 inline-flex items-center justify-center gap-1 text-xs font-medium px-4 py-2 rounded-full transition-all hover:scale-105" style={{ backgroundColor: '#957DAD', color: 'white' }}>
+                Customize
+              </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -405,19 +498,37 @@ function FeaturedCollection() {
     { name: "Best Friend Hamper", price: 1199, rating: 4.9, img: hamper4 },
   ];
 
+  const newArrivals = [
+    { name: "Festival Special Box", price: 1299, img: hamper5 },
+    { name: "New Baby Hamper", price: 1599, img: hamper6 },
+  ];
+
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#F8F3EC' }}>
+      {/* Premium Badge - Gift Ready */}
+      <div className="absolute top-8 -right-4 md:-right-6 z-20 premium-badge-container" style={{ animationDelay: '1.5s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <Gift className="size-4 text-white" />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Gift Ready
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="container-evermaze">
+        {/* Best Sellers */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 lg:mb-20">
           <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>FEATURED COLLECTION</span>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Our Bestsellers</h2>
+            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>BEST SELLERS</span>
+            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Loved by thousands.</h2>
           </div>
           <Link to="/shop" className="text-sm flex items-center gap-2 transition-colors hover:opacity-70" style={{ color: '#957DAD' }}>
             View All <ArrowRight className="size-4" />
           </Link>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 mb-20 lg:mb-24">
           {products.map((p, i) => (
             <div key={i} className="group">
               <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 lg:mb-5 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}>
@@ -435,6 +546,24 @@ function FeaturedCollection() {
             </div>
           ))}
         </div>
+
+        {/* New Arrivals */}
+        <div className="mb-10">
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>NEW ARRIVALS</span>
+          <h2 className="mt-4 font-serif text-2xl sm:text-3xl lg:text-4xl" style={{ color: '#5A4B54' }}>Freshly wrapped this week.</h2>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+          {newArrivals.map((p, i) => (
+            <div key={i} className="group">
+              <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 lg:mb-5 transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#FFFDF9', boxShadow: '0 8px 30px rgba(90, 75, 84, 0.08)' }}>
+                <span className="absolute top-3 left-3 z-10 px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#957DAD', color: 'white' }}>New</span>
+                <img src={p.img} alt={p.name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <h3 className="font-medium text-sm lg:text-base" style={{ color: '#5A4B54' }}>{p.name}</h3>
+              <p className="mt-1 font-serif text-lg" style={{ color: '#5A4B54' }}>₹{p.price}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -442,27 +571,65 @@ function FeaturedCollection() {
 
 /* ---------- Build Your Own Box Promo ---------- */
 function BuildBoxPromo() {
+  const steps = [
+    { num: "01", title: "Choose Box", desc: "Pick a size and style that fits your moment." },
+    { num: "02", title: "Choose Occasion", desc: "From bridal to birthday, set the mood." },
+    { num: "03", title: "Choose Relation", desc: "Handpick every little joy inside." },
+    { num: "04", title: "Choose Products", desc: "Add a handwritten note, straight from you." },
+    { num: "05", title: "Special Touches", desc: "Pick when the surprise should arrive." },
+    { num: "06", title: "Delivery Date", desc: "See your box, then send with love." },
+    { num: "07", title: "Checkout", desc: "Made just for them." },
+  ];
+
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
+    <section className="py-24 lg:py-32 relative" style={{ backgroundColor: '#FFFDF9' }}>
+      {/* Premium Badge - Made Just for You */}
+      <div className="absolute top-8 -left-4 md:-left-6 z-20 premium-badge-container" style={{ animationDelay: '2s' }}>
+        <div className="premium-badge group cursor-pointer">
+          <div className="flex flex-col items-center px-5 py-3" style={{ gap: '2px' }}>
+            <HeartIcon className="size-4 text-white" style={{ fill: 'white' }} />
+            <span className="text-[10px] text-white font-normal whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+              Made Just for You
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="container-evermaze">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>CREATE YOUR OWN</span>
-            <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
-              Build a Hamper<br />That's Uniquely Yours
-            </h2>
-            <p className="mt-5 text-base leading-relaxed max-w-md" style={{ color: '#5A4B54' }}>
-              Choose your package, add personal touches, and create a gift that's made just for them. From handwritten letters to custom photo frames.
-            </p>
-            <Link to="/build-your-box" className="btn-primary inline-flex mt-8 lg:mt-10">
-              Start Building <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden" style={{ boxShadow: '0 30px 80px rgba(90, 75, 84, 0.1)' }}>
-              <img src={hamper5} alt="Custom gift hamper" className="size-full object-cover" />
+        <div className="text-center mb-14 lg:mb-20">
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>BUILD YOUR OWN BOX</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
+            Seven little steps.<br />One perfect gift.
+          </h2>
+          <p className="mt-6 max-w-2xl mx-auto text-base lg:text-lg" style={{ color: '#5A4B54' }}>
+            Design a hamper as one-of-a-kind as they are. Every choice, every note, every detail — yours to shape.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-14 lg:mb-16">
+          {steps.slice(0, 4).map((step, i) => (
+            <div key={i} className="p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#F8F3EC', boxShadow: '0 4px 20px rgba(90, 75, 84, 0.06)' }}>
+              <span className="font-serif text-4xl font-bold" style={{ color: '#DCC9AE' }}>{step.num}</span>
+              <h3 className="mt-3 font-serif text-xl" style={{ color: '#5A4B54' }}>{step.title}</h3>
+              <p className="mt-2 text-sm" style={{ color: '#A99BAD' }}>{step.desc}</p>
             </div>
-          </div>
+          ))}
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-14 lg:mb-16 max-w-3xl mx-auto">
+          {steps.slice(4).map((step, i) => (
+            <div key={i} className="p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#F8F3EC', boxShadow: '0 4px 20px rgba(90, 75, 84, 0.06)' }}>
+              <span className="font-serif text-4xl font-bold" style={{ color: '#DCC9AE' }}>{step.num}</span>
+              <h3 className="mt-3 font-serif text-xl" style={{ color: '#5A4B54' }}>{step.title}</h3>
+              <p className="mt-2 text-sm" style={{ color: '#A99BAD' }}>{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link to="/build-your-box" className="btn-primary inline-flex items-center gap-2">
+            Start Building Yours <ArrowRight className="size-4" />
+          </Link>
+          <p className="mt-4 text-sm" style={{ color: '#A99BAD' }}>Made just for them</p>
         </div>
       </div>
     </section>
@@ -531,8 +698,8 @@ function Testimonials() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>LOVE LETTERS</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Our Customers Say</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>LITTLE LOVE NOTES</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What our gifters are saying.</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {reviews.map((r, i) => (
@@ -569,8 +736,8 @@ function InstagramGallery() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#F8F3EC' }}>
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
-          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>@evermaze.gifts</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Follow Our Journey</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>@evermaze on Instagram</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Come unbox with us.</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {images.map((img, i) => (
@@ -593,9 +760,12 @@ function Newsletter() {
     <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
       <div className="container-evermaze">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Join the Evermaze Family</h2>
+          <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>JOIN THE FAMILY</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>
+            Join the Evermaze family.
+          </h2>
           <p className="mt-5 text-base" style={{ color: '#5A4B54' }}>
-            Get gifting inspiration, exclusive offers, and early access to new hampers.
+            Get exclusive offers, new launches and gentle gifting inspiration — straight to your inbox.
           </p>
           <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
@@ -608,7 +778,7 @@ function Newsletter() {
               Subscribe
             </button>
           </div>
-          <p className="mt-5 text-sm" style={{ color: '#5A4B54' }}>By subscribing, you agree to our Privacy Policy</p>
+          <p className="mt-5 text-sm" style={{ color: '#A99BAD' }}>By subscribing, you agree to our Privacy Policy</p>
         </div>
       </div>
     </section>
@@ -648,25 +818,6 @@ function Footer() {
   return (
     <footer className="pt-20 pb-10" style={{ backgroundColor: '#5A4B54' }}>
       <div className="container-evermaze">
-        {/* Newsletter mini */}
-        <div className="max-w-xl mx-auto text-center mb-16">
-          <h3 className="font-serif text-2xl text-white mb-3">Stay Connected</h3>
-          <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            Subscribe for exclusive offers and gifting inspiration.
-          </p>
-          <div className="flex gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 px-5 py-3 rounded-full text-sm min-h-[48px]"
-              style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
-            />
-            <button className="px-6 py-3 rounded-full bg-white min-h-[48px] text-sm font-medium transition-colors hover:bg-opacity-90" style={{ color: '#5A4B54' }}>
-              Join
-            </button>
-          </div>
-        </div>
-        
         <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 lg:gap-16">
           <div>
             <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
@@ -714,7 +865,6 @@ function HomePage() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <AnnouncementBar />
         <Hero />
         <EmotionBanner />
         <OccasionCategories />
