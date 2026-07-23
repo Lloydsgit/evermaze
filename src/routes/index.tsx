@@ -631,8 +631,8 @@ function Footer() {
       t: "Help",
       l: [
         { name: "FAQs", to: "/faq" },
-        { name: "Shipping Policy", to: "/faq" },
-        { name: "Refund Policy", to: "/faq" },
+        { name: "Shipping Policy", to: "/shipping-policy" },
+        { name: "Refund Policy", to: "/refund-policy" },
         { name: "Contact Us", to: "/contact" },
       ]
     },
@@ -698,10 +698,10 @@ function Footer() {
         <div className="mt-16 lg:mt-20 pt-8 border-t flex flex-col md:flex-row justify-between gap-4 text-sm" style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}>
           <span>© 2026 Evermaze. Made with love.</span>
           <div className="flex flex-wrap gap-6">
-            <a href="#" className="transition-colors hover:opacity-70">Privacy Policy</a>
-            <a href="#" className="transition-colors hover:opacity-70">Terms & Conditions</a>
-            <a href="#" className="transition-colors hover:opacity-70">Shipping Policy</a>
-            <a href="#" className="transition-colors hover:opacity-70">Refund Policy</a>
+            <Link to="/privacy-policy" className="transition-colors hover:opacity-70">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="transition-colors hover:opacity-70">Terms & Conditions</Link>
+            <Link to="/shipping-policy" className="transition-colors hover:opacity-70">Shipping Policy</Link>
+            <Link to="/refund-policy" className="transition-colors hover:opacity-70">Refund Policy</Link>
           </div>
         </div>
       </div>

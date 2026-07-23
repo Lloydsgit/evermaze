@@ -13,18 +13,18 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BuildYourBoxRouteImport } from './routes/build-your-box'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GiftHampersRouteImport } from './routes/gift-hampers'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as WishlistRouteImport } from './routes/wishlist'
-import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
-import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
-import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as TermsConditionsRouteImport } from './routes/terms-conditions'
-import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +46,11 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -61,9 +66,24 @@ const GiftHampersRoute = GiftHampersRouteImport.update({
   path: '/gift-hampers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
+  id: '/shipping-policy',
+  path: '/shipping-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -74,6 +94,11 @@ const ShopRoute = ShopRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsConditionsRoute = TermsConditionsRouteImport.update({
+  id: '/terms-conditions',
+  path: '/terms-conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WishlistRoute = WishlistRouteImport.update({
@@ -87,36 +112,36 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/build-your-box': typeof BuildYourBoxRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gift-hampers': typeof GiftHampersRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/wishlist': typeof WishlistRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/shipping-policy': typeof ShippingPolicyRoute
-  '/refund-policy': typeof RefundPolicyRoute
   '/terms-conditions': typeof TermsConditionsRoute
-  '/checkout': typeof CheckoutRoute
+  '/wishlist': typeof WishlistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/build-your-box': typeof BuildYourBoxRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gift-hampers': typeof GiftHampersRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/wishlist': typeof WishlistRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/shipping-policy': typeof ShippingPolicyRoute
-  '/refund-policy': typeof RefundPolicyRoute
   '/terms-conditions': typeof TermsConditionsRoute
-  '/checkout': typeof CheckoutRoute
+  '/wishlist': typeof WishlistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,18 +149,18 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/build-your-box': typeof BuildYourBoxRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gift-hampers': typeof GiftHampersRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/wishlist': typeof WishlistRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/shipping-policy': typeof ShippingPolicyRoute
-  '/refund-policy': typeof RefundPolicyRoute
   '/terms-conditions': typeof TermsConditionsRoute
-  '/checkout': typeof CheckoutRoute
+  '/wishlist': typeof WishlistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -144,54 +169,54 @@ export interface FileRouteTypes {
     | '/about'
     | '/build-your-box'
     | '/cart'
+    | '/checkout'
     | '/contact'
     | '/faq'
     | '/gift-hampers'
+    | '/privacy-policy'
     | '/profile'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
-    | '/wishlist'
-    | '/privacy-policy'
-    | '/shipping-policy'
-    | '/refund-policy'
     | '/terms-conditions'
-    | '/checkout'
+    | '/wishlist'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/build-your-box'
     | '/cart'
+    | '/checkout'
     | '/contact'
     | '/faq'
     | '/gift-hampers'
+    | '/privacy-policy'
     | '/profile'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
-    | '/wishlist'
-    | '/privacy-policy'
-    | '/shipping-policy'
-    | '/refund-policy'
     | '/terms-conditions'
-    | '/checkout'
+    | '/wishlist'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/build-your-box'
     | '/cart'
+    | '/checkout'
     | '/contact'
     | '/faq'
     | '/gift-hampers'
+    | '/privacy-policy'
     | '/profile'
+    | '/refund-policy'
+    | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
-    | '/wishlist'
-    | '/privacy-policy'
-    | '/shipping-policy'
-    | '/refund-policy'
     | '/terms-conditions'
-    | '/checkout'
+    | '/wishlist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -199,18 +224,18 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BuildYourBoxRoute: typeof BuildYourBoxRoute
   CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   GiftHampersRoute: typeof GiftHampersRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProfileRoute: typeof ProfileRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
+  ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  WishlistRoute: typeof WishlistRoute
-  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
-  ShippingPolicyRoute: typeof ShippingPolicyRoute
-  RefundPolicyRoute: typeof RefundPolicyRoute
   TermsConditionsRoute: typeof TermsConditionsRoute
-  CheckoutRoute: typeof CheckoutRoute
+  WishlistRoute: typeof WishlistRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -243,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -264,11 +296,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GiftHampersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shipping-policy': {
+      id: '/shipping-policy'
+      path: '/shipping-policy'
+      fullPath: '/shipping-policy'
+      preLoaderRoute: typeof ShippingPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -285,34 +338,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/wishlist': {
-      id: '/wishlist'
-      path: '/wishlist'
-      fullPath: '/wishlist'
-      preLoaderRoute: typeof WishlistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy-policy': {
-      id: '/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shipping-policy': {
-      id: '/shipping-policy'
-      path: '/shipping-policy'
-      fullPath: '/shipping-policy'
-      preLoaderRoute: typeof ShippingPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund-policy': {
-      id: '/refund-policy'
-      path: '/refund-policy'
-      fullPath: '/refund-policy'
-      preLoaderRoute: typeof RefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/terms-conditions': {
       id: '/terms-conditions'
       path: '/terms-conditions'
@@ -320,11 +345,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsConditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/checkout': {
-      id: '/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof CheckoutRouteImport
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -335,18 +360,18 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BuildYourBoxRoute: BuildYourBoxRoute,
   CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   GiftHampersRoute: GiftHampersRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProfileRoute: ProfileRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
+  ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  WishlistRoute: WishlistRoute,
-  PrivacyPolicyRoute: PrivacyPolicyRoute,
-  ShippingPolicyRoute: ShippingPolicyRoute,
-  RefundPolicyRoute: RefundPolicyRoute,
   TermsConditionsRoute: TermsConditionsRoute,
-  CheckoutRoute: CheckoutRoute,
+  WishlistRoute: WishlistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

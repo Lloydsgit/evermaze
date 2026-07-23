@@ -154,10 +154,17 @@ function ProfilePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ivory border-t border-border-color pt-12 pb-6 mt-12">
+      <footer className="bg-dark-lavender pt-12 pb-6 mt-12">
         <div className="container-evermaze text-center">
-          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-dark-lavender">EVERMAZE</Link>
-          <p className="mt-4 text-sm text-secondary-text">Beautifully personalized gift hampers for every celebration.</p>
+          <Link to="/" className="font-serif text-2xl tracking-[0.3em] text-white">EVERMAZE</Link>
+          <p className="mt-4 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>Beautifully personalized gift hampers for every celebration.</p>
+          <div className="mt-6 flex justify-center gap-6 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <Link to="/privacy-policy" className="hover:opacity-100">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="hover:opacity-100">Terms</Link>
+            <Link to="/shipping-policy" className="hover:opacity-100">Shipping</Link>
+            <Link to="/refund-policy" className="hover:opacity-100">Refunds</Link>
+          </div>
+          <p className="mt-6 text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
         </div>
       </footer>
     </div>

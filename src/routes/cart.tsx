@@ -170,9 +170,9 @@ function CartPage() {
                     </div>
                   </div>
 
-                  <button className="btn-primary w-full mt-6">
+                  <Link to="/checkout" className="btn-primary w-full mt-6 text-center">
                     Proceed to Checkout
-                  </button>
+                  </Link>
 
                   <div className="mt-6 space-y-3">
                     <div className="flex items-center gap-3 text-xs text-secondary-text">
