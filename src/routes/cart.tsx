@@ -25,7 +25,7 @@ function CartPage() {
   const [items, setItems] = useState(cartItems);
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const shipping = subtotal >= 1499 ? 0 : 99;
+  const shipping = subtotal >= 999 ? 0 : 99;
   const total = subtotal + shipping;
 
   const updateQty = (id: number, delta: number) => {
@@ -159,7 +159,7 @@ function CartPage() {
                     </div>
                     {shipping > 0 && (
                       <p className="text-xs text-secondary-text bg-champagne-soft p-2 rounded-lg">
-                        Add ₹{1499 - subtotal} more for free shipping!
+                        Add ₹{999 - subtotal} more for free shipping!
                       </p>
                     )}
                     <div className="border-t border-border-color pt-4">
@@ -177,7 +177,7 @@ function CartPage() {
                   <div className="mt-6 space-y-3">
                     <div className="flex items-center gap-3 text-xs text-secondary-text">
                       <Truck className="size-4" />
-                      <span>Free shipping on orders above ₹1499</span>
+                      <span>Free shipping on orders above ₹999</span>
                     </div>
                     <div className="flex items-center gap-3 text-xs text-secondary-text">
                       <Sparkles className="size-4" />
