@@ -4,7 +4,10 @@ import {
   Search, Heart, ShoppingBag, User, Menu, X, Star,
   Instagram, MessageCircle, Mail, Truck, Gift, Package, HandHeart, Clock, ArrowRight,
   Sparkles, Award, Heart as HeartIcon, Calendar, Palette, Camera,
-  Plus, ChevronRight, Quote, Lock, ShieldCheck, Leaf
+  Plus, ChevronRight, Quote, Lock, ShieldCheck, Leaf, 
+  HeartPulse, Users, Gift as GiftIcon, TruckDelivery, PackageOpen,
+  Ribbon, Star as StarIcon, Sparkle, ArrowUpRight, Check, 
+  Gem, Flower2, HeartHandshake, Package2
 } from "lucide-react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
@@ -15,6 +18,8 @@ import hamper4 from "@/assets/hamper-4.jpg";
 import hamper5 from "@/assets/hamper-5.jpg";
 import hamper6 from "@/assets/hamper-6.jpg";
 import storyImg from "@/assets/story.jpg";
+
+import { useScrollAnimation, useCounterAnimation } from "@/hooks/use-scroll-animation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -532,7 +537,7 @@ function Testimonials() {
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
           <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>LOVE LETTERS</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What Our Customers Say</h2>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>What our gifters are saying.</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {reviews.map((r, i) => (
@@ -570,7 +575,7 @@ function InstagramGallery() {
       <div className="container-evermaze">
         <div className="text-center mb-14 lg:mb-20">
           <span className="text-xs tracking-[0.4em] uppercase font-medium" style={{ color: '#957DAD' }}>@evermaze.gifts</span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Follow Our Journey</h2>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Come unbox with us</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {images.map((img, i) => (
@@ -590,25 +595,34 @@ function InstagramGallery() {
 /* ---------- Newsletter ---------- */
 function Newsletter() {
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: '#FFFDF9' }}>
-      <div className="container-evermaze">
-        <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#5A4B54' }}>Join the Evermaze Family</h2>
-          <p className="mt-5 text-base" style={{ color: '#5A4B54' }}>
-            Get gifting inspiration, exclusive offers, and early access to new hampers.
+    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ backgroundColor: '#5A4B54' }}>
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
+      <div className="container-evermaze relative z-10">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="eyebrow" style={{ color: '#C8A97E' }}>Stay Inspired</span>
+          <h2 className="font-serif text-4xl lg:text-5xl mt-4 text-white">Join the Evermaze Family</h2>
+          <p className="mt-5 text-lg" style={{ color: 'rgba(255,255,255,0.8)' }}>
+            Be the first to know about new collections, exclusive offers, and gifting inspiration delivered to your inbox.
           </p>
-          <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
             <input
               type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-full border text-sm min-h-[52px]"
-              style={{ backgroundColor: '#F5EFE7', borderColor: '#E8E2DC', color: '#5A4B54' }}
+              placeholder="Enter your email address"
+              className="flex-1 px-7 py-5 rounded-full border-0 text-sm min-h-[56px]"
+              style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
             />
-            <button className="btn-primary whitespace-nowrap w-full sm:w-auto justify-center">
+            <button className="btn-gold whitespace-nowrap w-full sm:w-auto justify-center">
               Subscribe
+              <ArrowRight className="size-4" />
             </button>
           </div>
-          <p className="mt-5 text-sm" style={{ color: '#5A4B54' }}>By subscribing, you agree to our Privacy Policy</p>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>By subscribing, you agree to our Privacy Policy. Unsubscribe anytime.</p>
         </div>
       </div>
     </section>
@@ -648,49 +662,30 @@ function Footer() {
   return (
     <footer className="pt-20 pb-10" style={{ backgroundColor: '#5A4B54' }}>
       <div className="container-evermaze">
-        {/* Newsletter mini */}
-        <div className="max-w-xl mx-auto text-center mb-16">
-          <h3 className="font-serif text-2xl text-white mb-3">Stay Connected</h3>
-          <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            Subscribe for exclusive offers and gifting inspiration.
-          </p>
-          <div className="flex gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 px-5 py-3 rounded-full text-sm min-h-[48px]"
-              style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
-            />
-            <button className="px-6 py-3 rounded-full bg-white min-h-[48px] text-sm font-medium transition-colors hover:bg-opacity-90" style={{ color: '#5A4B54' }}>
-              Join
-            </button>
-          </div>
-        </div>
-        
-        <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 lg:gap-16">
+        <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 lg:gap-16 mb-16">
           <div>
             <Link to="/" className="font-serif text-2xl tracking-[0.2em]" style={{ color: 'white' }}>EVERMAZE</Link>
-            <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>Just For You</p>
+            <p className="mt-2 text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>Luxury Gifting</p>
             <p className="mt-8 max-w-xs leading-relaxed text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              Beautifully personalized gift hampers, thoughtfully curated for every celebration.
+              Beautifully personalized gift hampers, thoughtfully curated for every celebration. Making moments memorable since 2020.
             </p>
             <div className="mt-8 flex gap-4">
-              <a href="#" aria-label="Instagram" className="size-12 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#A99BAD' }}>
+              <a href="#" aria-label="Instagram" className="size-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#B5A9BC' }}>
                 <Instagram className="size-5" />
               </a>
-              <a href="#" aria-label="WhatsApp" className="size-12 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#A99BAD' }}>
+              <a href="#" aria-label="WhatsApp" className="size-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#B5A9BC' }}>
                 <MessageCircle className="size-5" />
               </a>
-              <a href="mailto:evermaze.info@gmail.com" aria-label="Email" className="size-12 rounded-full flex items-center justify-center transition-colors" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#A99BAD' }}>
+              <a href="mailto:evermaze.info@gmail.com" aria-label="Email" className="size-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#B5A9BC' }}>
                 <Mail className="size-5" />
               </a>
             </div>
           </div>
           {cols.map((c) => (
             <div key={c.t}>
-              <h4 className="text-xs tracking-[0.25em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.5)' }}>{c.t}</h4>
-              <ul className="space-y-4 text-base">
-                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="transition-colors hover:opacity-70" style={{ color: 'rgba(255,255,255,0.8)' }}>{li.name}</Link></li>)}
+              <h4 className="text-xs tracking-[0.25em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.4)' }}>{c.t}</h4>
+              <ul className="space-y-4">
+                {c.l.map((li) => <li key={li.name}><Link to={li.to} className="text-base transition-all duration-300 inline-block hover:-translate-x-1" style={{ color: 'rgba(255,255,255,0.7)' }}>{li.name}</Link></li>)}
               </ul>
             </div>
           ))}
