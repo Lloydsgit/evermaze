@@ -970,8 +970,8 @@ function BuildYourBoxPage() {
             <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Evermaze. Made with love.</p>
             <div className="flex flex-wrap justify-center gap-6 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
               <a href="mailto:evermaze.info@gmail.com" className="hover:opacity-70 transition-opacity">evermaze.info@gmail.com</a>
-              <Link to="/faq" className="hover:opacity-70 transition-opacity">Privacy</Link>
-              <Link to="/faq" className="hover:opacity-70 transition-opacity">Terms</Link>
+              <Link to="/privacy-policy" className="hover:opacity-70 transition-opacity">Privacy</Link>
+              <Link to="/terms-conditions" className="hover:opacity-70 transition-opacity">Terms</Link>
             </div>
           </div>
         </div>
