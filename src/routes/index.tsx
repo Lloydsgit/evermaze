@@ -4,7 +4,10 @@ import {
   Search, Heart, ShoppingBag, User, Menu, X, Star,
   Instagram, MessageCircle, Mail, Truck, Gift, Package, HandHeart, Clock, ArrowRight,
   Sparkles, Award, Heart as HeartIcon, Calendar, Palette, Camera,
-  Plus, ChevronRight, Quote, Lock, ShieldCheck, Leaf
+  Plus, ChevronRight, Quote, Lock, ShieldCheck, Leaf, 
+  HeartPulse, Users, Gift as GiftIcon, TruckDelivery, PackageOpen,
+  Ribbon, Star as StarIcon, Sparkle, ArrowUpRight, Check, 
+  Gem, Flower2, HeartHandshake, Package2
 } from "lucide-react";
 
 import heroHamper from "@/assets/hero-hamper.jpg";
@@ -15,6 +18,8 @@ import hamper4 from "@/assets/hamper-4.jpg";
 import hamper5 from "@/assets/hamper-5.jpg";
 import hamper6 from "@/assets/hamper-6.jpg";
 import storyImg from "@/assets/story.jpg";
+
+import { useScrollAnimation, useCounterAnimation } from "@/hooks/use-scroll-animation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
